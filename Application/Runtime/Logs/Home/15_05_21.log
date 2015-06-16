@@ -1,0 +1,1493 @@
+[ 2015-05-21T13:59:29+08:00 ] 127.0.0.1 /home/Index/cmpCar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000841s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000515s ]
+ERR: 非法操作:cmpCar
+
+[ 2015-05-21T13:59:40+08:00 ] 127.0.0.1 /home/Index/cmpLogo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000323s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000514s ]
+ERR: Think\Controller:news18aLogo方法不存在！
+
+[ 2015-05-21T14:00:03+08:00 ] 127.0.0.1 /home/Index/cmpLogo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000796s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000702s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000756s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 162 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 162 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000674s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000723s ]
+
+[ 2015-05-21T14:00:17+08:00 ] 127.0.0.1 /home/Index/cmpLogo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000687s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001091s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001185s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 161 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 155 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 155 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 161 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001043s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001455s ]
+
+[ 2015-05-21T14:02:01+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000378s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000470s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000504s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001671s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001837s ]
+
+[ 2015-05-21T14:04:16+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000811s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001130s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001208s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000699s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000758s ]
+
+[ 2015-05-21T14:04:19+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000396s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002057s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002243s ]
+
+[ 2015-05-21T14:05:48+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000078s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001652s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001062s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001152s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002935s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003222s ]
+
+[ 2015-05-21T14:22:45+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000529s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000564s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 191 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:29:20+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000719s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001008s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001077s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:32+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000986s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001404s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001501s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:33+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000602s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000940s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:33+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001038s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001878s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002054s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:33+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000749s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000988s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001098s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:33+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001097s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001026s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001103s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:34+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000740s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001021s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001100s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:34+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001178s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000862s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000936s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:36:52+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000850s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001136s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001224s ]
+NOTIC: [8] Undefined variable: file D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 210 行.
+NOTIC: [2] file_get_contents(): Filename cannot be empty D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Model\simple_html_dom.php 第 70 行.
+
+[ 2015-05-21T14:37:05+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000941s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001226s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001322s ]
+
+[ 2015-05-21T14:37:08+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000813s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001555s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001739s ]
+
+[ 2015-05-21T14:41:36+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000656s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001633s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001743s ]
+
+[ 2015-05-21T14:41:52+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000761s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000996s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001073s ]
+
+[ 2015-05-21T14:43:01+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000858s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000918s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001011s ]
+
+[ 2015-05-21T14:43:01+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000616s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000803s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000864s ]
+
+[ 2015-05-21T14:43:01+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000961s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001141s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001229s ]
+
+[ 2015-05-21T14:43:02+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001289s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001762s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001905s ]
+
+[ 2015-05-21T14:44:49+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000587s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000942s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001008s ]
+
+[ 2015-05-21T14:49:53+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000805s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001478s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001569s ]
+
+[ 2015-05-21T15:03:19+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000588s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000877s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000945s ]
+
+[ 2015-05-21T15:14:44+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000713s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001278s ]
+
+[ 2015-05-21T15:15:26+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001208s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002125s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002296s ]
+
+[ 2015-05-21T15:16:07+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000747s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000994s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001073s ]
+NOTIC: [2] str_replace() expects at least 3 parameters, 2 given D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 243 行.
+
+[ 2015-05-21T15:16:15+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000743s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001319s ]
+
+[ 2015-05-21T15:16:23+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000661s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000886s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000954s ]
+
+[ 2015-05-21T15:17:07+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000855s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000892s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000958s ]
+NOTIC: [8] Undefined variable: url D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 243 行.
+
+[ 2015-05-21T15:17:13+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000791s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001128s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001209s ]
+
+[ 2015-05-21T15:53:37+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000905s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001161s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001244s ]
+
+[ 2015-05-21T15:54:40+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000643s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000906s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000967s ]
+
+[ 2015-05-21T15:59:49+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000811s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001131s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001209s ]
+
+[ 2015-05-21T15:59:51+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000540s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000589s ]
+
+[ 2015-05-21T16:01:16+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000716s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001488s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001608s ]
+
+[ 2015-05-21T16:01:45+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000852s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001142s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001232s ]
+
+[ 2015-05-21T16:02:17+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000634s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000888s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000957s ]
+
+[ 2015-05-21T16:08:57+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000790s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000844s ]
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+NOTIC: [8] Array to string conversion D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 298 行.
+
+[ 2015-05-21T16:09:34+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000797s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001132s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001209s ]
+
+[ 2015-05-21T16:11:22+08:00 ] 127.0.0.1 /home/Index/snatchLogoPage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000658s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001316s ]
+
+[ 2015-05-21T16:14:51+08:00 ] 127.0.0.1 /home/Index/cmpBrand/id/9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000356s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000470s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000505s ]
+
+[ 2015-05-21T16:14:58+08:00 ] 127.0.0.1 /home/Index/cmpBrand?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000534s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+
+[ 2015-05-21T16:15:19+08:00 ] 127.0.0.1 /home/Index/cmpBrand
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000365s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000469s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000505s ]
+
+[ 2015-05-21T16:15:54+08:00 ] 127.0.0.1 /home/Index/cmp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000306s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000484s ]
+NOTIC: [8] Undefined index: id D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 283 行.
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 230 行.
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 275 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 288 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001169s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001240s ]
+
+[ 2015-05-21T16:16:02+08:00 ] 127.0.0.1 /home/Index/cmp?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000469s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000504s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000695s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000753s ]
+
+[ 2015-05-21T16:17:26+08:00 ] 127.0.0.1 /home/Index/cmpBrand?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000325s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000460s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000492s ]
+
+[ 2015-05-21T16:18:35+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000386s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000546s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000580s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000665s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000715s ]
+
+[ 2015-05-21T16:19:58+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000519s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 162 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 162 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000920s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001048s ]
+
+[ 2015-05-21T16:22:34+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002300s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001801s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001984s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001049s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001170s ]
+
+[ 2015-05-21T16:22:36+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000308s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000443s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000482s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 223 行.
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 268 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 281 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002684s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003052s ]
+
+[ 2015-05-21T16:23:12+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000652s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000905s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000968s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005444s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005631s ]
+
+[ 2015-05-21T16:23:13+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000087s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000416s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000449s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 223 行.
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 268 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 281 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003558s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003726s ]
+
+[ 2015-05-21T16:23:24+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000736s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000803s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 223 行.
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 268 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 281 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000534s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000570s ]
+
+[ 2015-05-21T16:23:29+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000337s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000410s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000447s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000594s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000636s ]
+
+[ 2015-05-21T16:23:31+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000309s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000436s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000474s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000571s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000617s ]
+
+[ 2015-05-21T16:23:35+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000393s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000424s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 223 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 281 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000807s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000861s ]
+
+[ 2015-05-21T16:23:50+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000466s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000501s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 223 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 281 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000884s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000938s ]
+
+[ 2015-05-21T16:24:45+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000606s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000807s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000871s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 223 行.
+
+[ 2015-05-21T16:25:46+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000728s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001137s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001218s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 223 行.
+
+[ 2015-05-21T16:26:21+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000081s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000835s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000686s ]
+
+[ 2015-05-21T16:29:58+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000596s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000851s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+
+[ 2015-05-21T16:30:09+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000822s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001168s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001248s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000656s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000703s ]
+
+[ 2015-05-21T16:30:35+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000607s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001446s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001550s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000612s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000662s ]
+
+[ 2015-05-21T16:30:46+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000687s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000888s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000958s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000709s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000785s ]
+
+[ 2015-05-21T16:30:53+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=92
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000409s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000441s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000655s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000717s ]
+
+[ 2015-05-21T16:31:01+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=180
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000315s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000420s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000458s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001693s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001912s ]
+
+[ 2015-05-21T16:31:04+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=228
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000401s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000436s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001438s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001559s ]
+
+[ 2015-05-21T16:31:11+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=26
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000422s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000642s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000691s ]
+
+[ 2015-05-21T16:31:15+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=127
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000410s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000448s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000654s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000708s ]
+
+[ 2015-05-21T16:31:21+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000397s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000429s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000585s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000635s ]
+
+[ 2015-05-21T16:31:27+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000289s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000407s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000442s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000657s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000705s ]
+
+[ 2015-05-21T16:31:39+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=15
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000282s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000410s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000442s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000852s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000936s ]
+
+[ 2015-05-21T16:31:43+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000280s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000463s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000707s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000762s ]
+
+[ 2015-05-21T16:34:25+08:00 ] 192.168.0.136 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000872s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001278s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000702s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000739s ]
+
+[ 2015-05-21T16:34:32+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=26
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000578s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000972s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000652s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000700s ]
+
+[ 2015-05-21T16:34:51+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=159
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000596s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000800s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000861s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000645s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000695s ]
+
+[ 2015-05-21T16:35:03+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000858s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000561s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000605s ]
+
+[ 2015-05-21T16:36:04+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=26
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000623s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001302s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001545s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000635s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000683s ]
+
+[ 2015-05-21T16:36:25+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=82
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001272s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001752s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001896s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000566s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000610s ]
+
+[ 2015-05-21T16:36:41+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=92
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000591s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000818s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000873s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000627s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000678s ]
+
+[ 2015-05-21T16:36:45+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=127
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000768s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001127s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000586s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000640s ]
+
+[ 2015-05-21T16:36:55+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=17
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000894s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001258s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001347s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000591s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000637s ]
+
+[ 2015-05-21T16:37:01+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=221
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001270s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001754s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001899s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000728s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000781s ]
+
+[ 2015-05-21T16:37:14+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=205
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000793s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000854s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000646s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000693s ]
+
+[ 2015-05-21T16:38:04+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=216
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000540s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000700s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000752s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000993s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001096s ]
+
+[ 2015-05-21T16:39:11+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=85
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000708s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001009s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001077s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000613s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000662s ]
+
+[ 2015-05-21T16:39:38+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=8
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000331s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000526s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000569s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000615s ]
+
+[ 2015-05-21T16:41:16+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=13
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000342s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000463s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000498s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000620s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000665s ]
+
+[ 2015-05-21T16:44:34+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=13
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000645s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000938s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001007s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000691s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000739s ]
+
+[ 2015-05-21T16:45:51+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=13
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000701s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001222s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000616s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000660s ]
+
+[ 2015-05-21T16:46:09+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=13
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000521s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000724s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000787s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000603s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000654s ]
+
+[ 2015-05-21T16:46:30+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000524s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001057s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001485s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000573s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000619s ]
+
+[ 2015-05-21T16:46:49+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=100
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000304s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000450s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000482s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000696s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000743s ]
+
+[ 2015-05-21T16:47:02+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000631s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000682s ]
+
+[ 2015-05-21T16:48:53+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000651s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000911s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000974s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000796s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000848s ]
+
+[ 2015-05-21T16:49:34+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000792s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000748s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000816s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000633s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000679s ]
+
+[ 2015-05-21T16:50:04+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000763s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000913s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000973s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000579s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000626s ]
+
+[ 2015-05-21T16:50:15+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000604s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001925s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002154s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000567s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000612s ]
+
+[ 2015-05-21T16:50:26+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000596s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000793s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000856s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000593s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000643s ]
+
+[ 2015-05-21T16:50:33+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000519s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001255s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001347s ]
+
+[ 2015-05-21T16:50:47+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000054s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000914s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000897s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000970s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001164s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001288s ]
+
+[ 2015-05-21T16:50:48+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000055s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001412s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001050s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001157s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001322s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001450s ]
+
+[ 2015-05-21T16:50:48+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000686s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000885s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000971s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001700s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001838s ]
+
+[ 2015-05-21T16:51:01+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000711s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001002s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001074s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001610s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001768s ]
+
+[ 2015-05-21T16:51:12+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=26
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000300s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000404s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000437s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000547s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000594s ]
+
+[ 2015-05-21T16:51:12+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=26
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000281s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000676s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000547s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000593s ]
+
+[ 2015-05-21T16:51:25+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000321s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000434s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000473s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002231s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002501s ]
+
+[ 2015-05-21T16:51:30+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=82
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000295s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000407s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000439s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000770s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000833s ]
+
+[ 2015-05-21T16:51:35+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=85
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000462s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000495s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000862s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000923s ]
+
+[ 2015-05-21T16:51:41+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000393s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000425s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001083s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001141s ]
+
+[ 2015-05-21T16:52:02+08:00 ] 192.168.0.136 /home/Index/cmpFactory?id=8
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000708s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000939s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001008s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000622s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000668s ]
+
+[ 2015-05-21T18:06:28+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000527s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000640s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000686s ]
+
+[ 2015-05-21T18:06:41+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=157
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000331s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000473s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000510s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000969s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001040s ]
+
+[ 2015-05-21T18:06:49+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000407s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000440s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000968s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001030s ]
+
+[ 2015-05-21T18:07:30+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=82
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000285s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000425s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000641s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000689s ]
+
+[ 2015-05-21T18:07:39+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000403s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000436s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000557s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000592s ]
+
+[ 2015-05-21T18:09:15+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000790s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001126s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001243s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000865s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000936s ]
+
+[ 2015-05-21T18:09:20+08:00 ] 127.0.0.1 /home/Index/auto.news18a.com/logo/163/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000440s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000640s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000700s ]
+ERR: 非法操作:auto.news18a.com
+
+[ 2015-05-21T18:09:32+08:00 ] 127.0.0.1 /home/Index/auto.news18a.com/logo/163/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000643s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000851s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000917s ]
+ERR: 非法操作:auto.news18a.com
+
+[ 2015-05-21T18:09:35+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000283s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000469s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 309 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000618s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000659s ]
+
+[ 2015-05-21T18:11:04+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000662s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000919s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000642s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000679s ]
+
+[ 2015-05-21T18:11:05+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000824s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001068s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001148s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000659s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000701s ]
+
+[ 2015-05-21T18:11:06+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000943s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001262s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001361s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001319s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001420s ]
+
+[ 2015-05-21T18:11:06+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000854s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001288s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000551s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000592s ]
+
+[ 2015-05-21T18:11:06+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000682s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000813s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000650s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000702s ]
+
+[ 2015-05-21T18:11:06+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000847s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001172s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001264s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000663s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000704s ]
+
+[ 2015-05-21T18:11:06+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000787s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001823s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001970s ]
+NOTIC: [8] Undefined index: 北京 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 312 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000784s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000837s ]
+
+[ 2015-05-21T18:11:36+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000902s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000966s ]
+
+[ 2015-05-21T18:11:46+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=163
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000796s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001135s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001215s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001102s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001197s ]
+
+[ 2015-05-21T18:12:01+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000297s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000424s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000600s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000651s ]
+
+[ 2015-05-21T18:12:05+08:00 ] 127.0.0.1 /home/Index/cmpFactory?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001591s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001618s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001871s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000582s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000631s ]
+
+[ 2015-05-21T18:12:21+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000305s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000420s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000457s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 156 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 164 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000632s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000671s ]
+

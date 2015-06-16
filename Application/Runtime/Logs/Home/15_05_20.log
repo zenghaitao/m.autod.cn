@@ -1,0 +1,45 @@
+[ 2015-05-20T13:58:59+08:00 ] 192.168.0.221 /home/Index/cmpCar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000704s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000994s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001065s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 111 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 105 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 105 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000627s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000663s ]
+
+[ 2015-05-20T14:51:54+08:00 ] 192.168.0.221 /home/Index/cmpCar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000634s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000822s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000888s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 111 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 105 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 105 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000612s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000648s ]
+
+[ 2015-05-20T17:57:50+08:00 ] 192.168.0.221 /home/Index/cmpCar
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000706s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000995s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001066s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 111 行.
+NOTIC: [8] Undefined index: P D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 105 行.
+NOTIC: [2] Invalid argument supplied for foreach() D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 105 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\jiakao.juzhong.me\Application\Home\Controller\IndexController.class.php 第 111 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000614s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000651s ]
+

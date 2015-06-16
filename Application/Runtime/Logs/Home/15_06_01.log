@@ -1,0 +1,167 @@
+[ 2015-06-01T09:45:53+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.017019s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000601s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000637s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 178 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 178 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.011497s ]
+INFO: [ app_end ] --END-- [ RunTime:0.011565s ]
+
+[ 2015-06-01T09:46:17+08:00 ] 127.0.0.1 /home/Index/cmpBrand?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000599s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000641s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004959s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005170s ]
+
+[ 2015-06-01T09:46:23+08:00 ] 127.0.0.1 /home/Index/cmpBrand?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000487s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000535s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000732s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000781s ]
+
+[ 2015-06-01T14:35:30+08:00 ] 192.168.0.189 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000583s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000824s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000881s ]
+NOTIC: [8] Undefined index: 康迪 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 178 行.
+NOTIC: [8] Undefined index: 赛麟 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 178 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000719s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000779s ]
+
+[ 2015-06-01T14:35:35+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000827s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000883s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000632s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000679s ]
+
+[ 2015-06-01T14:35:57+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=3
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000733s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000990s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001072s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000574s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000620s ]
+
+[ 2015-06-01T14:36:01+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=9
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000909s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001242s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001338s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000565s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000611s ]
+
+[ 2015-06-01T14:36:06+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000538s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000720s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000777s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000815s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000868s ]
+
+[ 2015-06-01T14:41:49+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=8
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000590s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000763s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000821s ]
+NOTIC: [2] filectime(): stat failed for logo_page/bitauto_8 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 226 行.
+NOTIC: [2] unlink(logo_page/bitauto_8): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 228 行.
+NOTIC: [2] filectime(): stat failed for logo_page/news18a_8 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 291 行.
+NOTIC: [2] unlink(logo_page/news18a_8): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 293 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000624s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000670s ]
+
+[ 2015-06-01T14:42:03+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000587s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000791s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000852s ]
+NOTIC: [2] filectime(): stat failed for logo_page/bitauto_18 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 226 行.
+NOTIC: [2] unlink(logo_page/bitauto_18): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 228 行.
+NOTIC: [2] filectime(): stat failed for logo_page/news18a_18 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 291 行.
+NOTIC: [2] unlink(logo_page/news18a_18): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 293 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000564s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000610s ]
+
+[ 2015-06-01T14:42:57+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=30
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000555s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000787s ]
+NOTIC: [2] filectime(): stat failed for logo_page/bitauto_30 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 226 行.
+NOTIC: [2] unlink(logo_page/bitauto_30): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 228 行.
+NOTIC: [2] filectime(): stat failed for logo_page/news18a_30 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 291 行.
+NOTIC: [2] unlink(logo_page/news18a_30): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 293 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000556s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000601s ]
+
+[ 2015-06-01T14:43:20+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=229
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000603s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000792s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000853s ]
+NOTIC: [2] filectime(): stat failed for logo_page/bitauto_229 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 226 行.
+NOTIC: [2] unlink(logo_page/bitauto_229): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 228 行.
+NOTIC: [2] filectime(): stat failed for logo_page/news18a_229 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 291 行.
+NOTIC: [2] unlink(logo_page/news18a_229): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 293 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000943s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001017s ]
+
+[ 2015-06-01T14:43:24+08:00 ] 192.168.0.189 /home/Index/cmpBrand?id=16
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000879s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000946s ]
+NOTIC: [2] filectime(): stat failed for logo_page/bitauto_16 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 226 行.
+NOTIC: [2] unlink(logo_page/bitauto_16): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 228 行.
+NOTIC: [2] filectime(): stat failed for logo_page/news18a_16 D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 291 行.
+NOTIC: [2] unlink(logo_page/news18a_16): No such file or directory D:\var\wwwroot\auto.data.juzhong.me\Application\Home\Controller\IndexController.class.php 第 293 行.
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000560s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000606s ]
+
