@@ -1,7 +1,7 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
 
-//var_dump($_SERVER);exit;
+var_dump($_SERVER);exit;
 
 error_reporting ( E_ALL  ^  E_NOTICE );
 // +----------------------------------------------------------------------
