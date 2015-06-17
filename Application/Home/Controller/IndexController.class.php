@@ -7,4 +7,15 @@ class IndexController extends Controller {
     public function __construct(){
         parent::__construct();        
     }
+    
+    public function index(){
+        echo '<html>
+<head><title>403 Forbidden</title></head>
+<body bgcolor="white">
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+';
+    }
 }
