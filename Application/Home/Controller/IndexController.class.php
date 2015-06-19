@@ -9,6 +9,7 @@ class IndexController extends Controller {
     }
     
     public function index(){
+//        var_dump(__FUNCTION__);
         echo '<html>
 <head><title>403 Forbidden</title></head>
 <body bgcolor="white">

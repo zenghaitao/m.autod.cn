@@ -1,17 +1,11 @@
-<?
+<?php
 namespace API\Controller;
 use Think\Controller;
-
-//恢复session设置
-if($_GET['session'])
-    session_id($_GET['session']);
-session_start();
 
 class BaseController extends Controller{
     
     public function __construct(){
         parent::__construct();
-        
         /* 根据版本号调用不同的方法文件 */
         $this -> _path = dirname(__FILE__);
         $_class_path = $this -> _path."/{$_GET['ver']}/".CONTROLLER_NAME."Controller.class.php";
@@ -26,9 +20,6 @@ class BaseController extends Controller{
             }
         }
         
-        if(!$this -> checkPermission()){
-            
-        }
     }
     
     /**
@@ -48,9 +39,7 @@ class BaseController extends Controller{
      *
      * @param mixed $data
      */
-    protected function api_encode($data , $show_text='' , $talkshow=''){
-        $data['barshow'] = $show_text;
-        $data['talkshow'] = $talkshow;
+    protected function api_encode($data){
         return json_encode($data);
     }
     
