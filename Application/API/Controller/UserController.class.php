@@ -17,7 +17,11 @@ class UserController extends BaseController {
     }
     
     public function index(){
-
+        $t1 = 1434693492;
+        $t2 = 1434702359;
+        $t3 = 1434702492;
+        $t3 = 1434702976;
+        var_dump(date("Y-m-d H:i:s" , $t3));
     }
     
     
@@ -27,9 +31,7 @@ class UserController extends BaseController {
      */
     public function registerDevice()
     {
-        //$_POST = $this -> testDate();
-        
-        
+
         $this -> _auto_check = 0;
         
         if(empty($_POST['device_id']) || empty($_POST['device_plant']) || empty($_POST['device_name']) || empty($_POST['device_os'])) {
@@ -81,8 +83,6 @@ class UserController extends BaseController {
 	 *	更新用户的device_token
 	 */
 	public function setPushToken(){
-	
-	    $_POST['device_token'] = "token";
 	    
 		if(empty($_SESSION['reg_id']) || empty($_POST['device_token'])) {
             $status = array('status'=>'fail','info'=>array('message'=>'data format fail!','code'=>400));
