@@ -45,7 +45,7 @@ class UserController extends BaseController {
         $data['device_name']    = $_POST['deviceName'];
         $data['device_os']      = $_POST['deviceOS'];
         // $data['add_time']       = $time;
-        $data['add_time']       = time();
+        $data['add_time']       = date("Y-m-d H:i:s");
         if(!empty($_POST['device_token'])) {
            $data['device_token'] = $_POST['deviceToken'];
         }
