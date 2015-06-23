@@ -1,6 +1,8 @@
 <?php
 namespace API\Controller;
-use Think\Controller;
+use API\Model\NewsModel;
+use API\Model\StoryModel;
+
 class NewsController extends BaseController  {
     
     public function __construct(){
@@ -12,6 +14,28 @@ class NewsController extends BaseController  {
      *
      */
     public function index(){
+        
+        $ids = $_SESSION['uids'];
+        $ids = explode(',' , $ids);
+        $uids = array();
+        
+        $M_news = new NewsModel();
+        $list = $M_news -> newsPool($ids);
+        
+        foreach ($list as &$row){
+            $uids[] = $row['story_id'];
+            
+            $images = explode(';,;' , $row['images']);
+            $row['image_count'] = count($images);
+            $row['images'] = $images;
+            
+            $row['post_time'] = $row['story_date'];
+            $row['display_mode'] = 'default';
+            $row['gourl'] = '';
+            
+        }
+        
+        var_dump($list);
         
     }
     
