@@ -32,7 +32,7 @@ class UserController extends BaseController {
 
         $this -> _auto_check = 0;
         
-        if(empty($_POST['deviceId']) || empty($_POST['devicePlant']) || empty($_POST['deviceName']) || empty($_POST['deviceOs'])) {
+        if(empty($_POST['deviceId']) || empty($_POST['devicePlant']) || empty($_POST['deviceName']) || empty($_POST['deviceOS'])) {
             $status = array('status'=>'fail','info'=>array('message'=>'data format fail!'));
             echo $this -> api_encode($status);
             exit;
