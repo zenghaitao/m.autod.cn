@@ -9,6 +9,19 @@ class NewsController extends BaseController  {
         parent::__construct();
     }
     
+    public function init(){
+        $M_story = new StoryModel();
+        $M_news = new NewsModel();
+        $list = $M_story -> initNews();
+        foreach ($list as $row){
+            $M_news -> addToChoice($row['id']);
+        }
+    }
+    
+    public function reset(){
+        session_destroy();
+    }
+    
     /**
      * 推荐新闻列表
      *
@@ -17,7 +30,7 @@ class NewsController extends BaseController  {
         
         $ids = $_SESSION['uids'];
         $ids = explode(',' , $ids);
-        $uids = array();
+        $uids = $ids;        
         
         $M_news = new NewsModel();
         $list = $M_news -> newsPool($ids);
@@ -33,9 +46,20 @@ class NewsController extends BaseController  {
             $row['display_mode'] = 'default';
             $row['gourl'] = '';
             
+            if(count($uids) > 80){
+                array_shift($uids);
+            }
         }
         
-        var_dump($list);
+        $_SESSION['uids'] = implode(',' , $uids);
+        
+        $result = array();
+        $result['status'] = 'succ';
+        $result['info']['statuses'] = $list;
+        $result['info']['update_count'] = count($list);
+        
+        echo $this -> api_encode($result);
+        exit();
         
     }
     
