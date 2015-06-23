@@ -2562,3 +2562,16 @@ ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using 
 SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0043s ]
 SQL: SELECT * FROM `ad_news_choice` ORDER BY id DESC LIMIT 100   [ RunTime:0.0012s ]
 
+[ 2015-06-23T11:25:48+08:00 ] 127.0.0.1 /API/News/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000303s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000596s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000648s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 11 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 12 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0234s ]
+SQL: SELECT * FROM `ad_news_choice` ORDER BY id DESC LIMIT 100   [ RunTime:0.0012s ]
+

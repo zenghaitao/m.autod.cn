@@ -39,8 +39,16 @@ class BaseController extends Controller{
      *
      * @param mixed $data
      */
-    protected function api_encode($data){
+    protected function apiEncode($data){
         return json_encode($data);
     }
     
+    
+    protected function convArray($array){
+        foreach ($array as $key => $val){
+            if(strpos($key , '_') !== false){
+                
+            }
+        }
+    }
 }

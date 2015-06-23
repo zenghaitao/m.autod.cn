@@ -38,6 +38,12 @@ class StoryModel
         return $info;
     }
     
+    
+    public function getVideo($video_id){
+        
+    }
+    
+    
     public function initNews(){
         $list = $this -> _db_story -> select();
         return $list;

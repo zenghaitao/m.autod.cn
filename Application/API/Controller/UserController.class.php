@@ -58,11 +58,11 @@ class UserController extends BaseController {
         if($reg_id){
             //设置session数据
             $M_user -> setSession($reg_id);
-            $status = array('status'=>'succ','info'=>array('session_id'=>session_id(),'reg_id'=>$reg_id,'uid'=>0,'user'=>NULL));
+            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>0,'user'=>NULL));
         }else 
             $status = array('status'=>'fail','info'=>array('message'=>'add device fail!'));
             
-        echo $this -> api_encode($status);
+        echo $this -> apiEncode($status);
         exit;
         
     }
@@ -84,7 +84,7 @@ class UserController extends BaseController {
 	    
 		if(empty($_SESSION['reg_id']) || empty($_POST['deviceToken'])) {
             $status = array('status'=>'fail','info'=>array('message'=>'data format fail!','code'=>400));
-            echo $this -> api_encode($status);
+            echo $this -> apiEncode($status);
             exit;
         }
 		
@@ -96,7 +96,7 @@ class UserController extends BaseController {
 		}else{
 			$status = array('status'=>'fail','info'=>array('message'=>'update device_token fail!'));
 		}
-        echo $this -> api_encode($status);
+        echo $this -> apiEncode($status);
         exit;
 	}
     
@@ -106,12 +106,12 @@ class UserController extends BaseController {
      * @
      */
     public function reconnect() {
-        $reg_id    = intval($_POST['reg_id']);
+        $reg_id    = intval($_POST['regId']);
         $reg_id    = 4;
         
         if(empty($reg_id)) {
             $status = array('status'=>'fail','info'=>array('message'=>'data format fail!'));
-            echo $this -> api_encode($data);
+            echo $this -> apiEncode($data);
             exit;
         }
         
@@ -119,7 +119,7 @@ class UserController extends BaseController {
         $res = $M_user -> setSession($reg_id);
         
         if($res){
-            $status = array('status'=>'succ','info'=>array('session_id'=>session_id(),'reg_id'=>$reg_id,'uid'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
+            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
         }else{
             $status = array('status'=>'fail','info'=>array('message'=>'device id fail!'));
         }
@@ -133,8 +133,8 @@ class UserController extends BaseController {
      */
     public function bind(){
         $platform       = $_POST['platform'];
-        $token          = $_POST['access_token'];
-        $open_id        = $_POST['open_id'];
+        $token          = $_POST['accessToken'];
+        $open_id        = $_POST['openId'];
         $name           = $_POST['name'];
         $photo          = $_POST['photo'];
         $gender         = $_POST['gender'];
@@ -156,12 +156,12 @@ class UserController extends BaseController {
             $info = $M_user -> getUserInfo($uid);
             //重设session
             $M_user -> setSession($_SESSION['reg_id']);
-            $status = array('status'=>'succ','info'=>array('session_id'=>session_id(),'reg_id'=>$_SESSION['reg_id'],'uid'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
+            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
         }else{
             $data = array('status'=>'fail','info'=>array('message'=>'add user fail!'));
         }
         
-        echo $this -> api_encode($status);
+        echo $this -> apiEncode($status);
         exit;
     }
     
@@ -175,11 +175,11 @@ class UserController extends BaseController {
         $M_user = new UserModel();
         if($M_user -> unbind($reg_id)){
             $M_user -> setSession($reg_id);
-            $status = array('status'=>'succ','info'=>array('session_id'=>session_id(),'reg_id'=>$_SESSION['reg_id'],'uid'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
+            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
         }else{
             $status = array('status'=>'fail','info'=>array('message'=>'logout fail!'));
         }
-        echo $this -> api_encode($status);
+        echo $this -> apiEncode($status);
         exit;
     }
     
@@ -201,7 +201,7 @@ class UserController extends BaseController {
         }else{
             $status = array( 'status' => 'fail' , 'info'=>array('message' => 'reg id fail') );
         }
-        echo $this -> api_encode($status);
+        echo $this -> apiEncode($status);
         exit;
     }
     

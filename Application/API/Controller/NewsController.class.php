@@ -33,19 +33,34 @@ class NewsController extends BaseController  {
         $uids = $ids;        
         
         $M_news = new NewsModel();
+        //从当天数据池中获取推荐新闻
         $list = $M_news -> newsPool($ids);
         
         foreach ($list as &$row){
             $uids[] = $row['story_id'];
-            
+            $row['storyId'] = $row['story_id'];
+            $row['cateId'] = $row['cate_id'];
+            $row['sourceId'] = $row['source_id'];
+
             $images = explode(';,;' , $row['images']);
-            $row['image_count'] = count($images);
+            $row['imageCount'] = count($images);
             $row['images'] = $images;
             
-            $row['post_time'] = $row['story_date'];
+            $row['postTime'] = $row['story_date'];
             $row['display_mode'] = 'default';
             $row['gourl'] = '';
             
+            $row['favCount'] = $row['fav_count'];
+            $row['likeCount'] = $row['like_count'];
+            $row['commentsCount'] = $row['comments_count'];
+            
+            unset($row['story_id']);
+            unset($row['cate_id']);
+            unset($row['source_id']);
+            unset($row['fav_count']);
+            unset($row['like_count']);
+            unset($row['comments_count']);
+
             if(count($uids) > 80){
                 array_shift($uids);
             }
@@ -58,7 +73,7 @@ class NewsController extends BaseController  {
         $result['info']['statuses'] = $list;
         $result['info']['update_count'] = count($list);
         
-        echo $this -> api_encode($result);
+        echo $this -> apiEncode($result);
         exit();
         
     }
