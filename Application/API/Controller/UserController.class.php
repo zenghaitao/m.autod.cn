@@ -43,7 +43,7 @@ class UserController extends BaseController {
         $data['device_id']      = $_POST['deviceId'];
         $data['device_plant']   = $_POST['devicePlant'];
         $data['device_name']    = $_POST['deviceName'];
-        $data['device_os']      = $_POST['deviceOs'];
+        $data['device_os']      = $_POST['deviceOS'];
         // $data['add_time']       = $time;
         $data['add_time']       = time();
         if(!empty($_POST['device_token'])) {
