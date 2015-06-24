@@ -31,8 +31,9 @@ class BaseController extends Controller{
      */
     private function setSession(){
         if(isset($_POST['sessionId'])){
-            var_dump($_POST['sessionId']);
             session_id($_POST['sessionId']);
+            session_start();
+        }else{
             session_start();
         }
     }

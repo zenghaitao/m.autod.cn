@@ -1,7 +1,7 @@
 <?php
 return array(
 	//'配置项'=>'配置值'
-	
+	'SESSION_AUTO_START' => false,
 	'DB0_CONFIG' => array(
 	    'db_name'           => 'autodaily',
         'db_type'           => 'mysql',
