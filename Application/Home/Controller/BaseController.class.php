@@ -49,7 +49,10 @@ class BaseController extends Controller{
      * @param mixed $data
      */
     protected function apiEncode($data){
-        return json_encode($data);
+        if($_GET['jsoncallback']){
+            return "{$_GET['jsoncallback']}{[".json_encode($data)."]}";
+        }else 
+            return json_encode($data);
     }
     
 }
