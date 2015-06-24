@@ -6,6 +6,9 @@ class BaseController extends Controller{
     
     public function __construct(){
         parent::__construct();
+        
+        $this -> setSession();
+        
         /* 根据版本号调用不同的方法文件 */
         $this -> _path = dirname(__FILE__);
         $_class_path = $this -> _path."/{$_GET['ver']}/".CONTROLLER_NAME."Controller.class.php";
@@ -23,15 +26,28 @@ class BaseController extends Controller{
     }
     
     /**
+     * 设置session
+     *
+     */
+    private function setSession(){
+        if(isset($_POST['sessionId'])){
+            session_id($_POST['sessionId']);
+            session_start();
+        }
+    }
+    
+    /**
      * 处理用户是否有权限请求
      *
      * @return bool
      */
     protected function checkPermission(){
-        return true;
-        if($_SERVER['IS_DEBUG'] == 'yes'){
-            return true;
+        if(!isset($_SESSION['reg_id'])){
+            return false;
         }
+/*        if($_SERVER['IS_DEBUG'] == 'yes'){
+            return true;
+        }*/
     }
     
     /**
