@@ -121,15 +121,21 @@ class UserModel
      *
      * @param array $data
      */
-    public function bind($reg_id , $data){
+    public function bind($reg_id , $platform , $token , $open_id){
         //用户是否已被创建
-        $info = $this -> _db_user -> where("open_id = '{$data['open_id']}'") -> find();
+        $info = $this -> _db_user -> where("open_id = '{$open_id}' AND platform = '{$platform}'") -> find();
         if(!$info){
             //创建用户
-            $data['add_time'] = time();
-            $data['last_login'] = time();
-            $uid = $this -> _db_user -> add($data);
-            
+            if($platform == 'weibo'){
+                $data = $this -> weibo($token , $open_id);
+            }
+            if($platform == 'qq'){
+                $data = $this -> qq($token , $open_id);
+            }
+            if(!$data)
+                return false;
+                
+            $uid = $this -> _db_user -> add($data);            
         }else{
             //更新用户登录时间
             //$data['last_login'] = time();
@@ -154,4 +160,45 @@ class UserModel
         else 
             return false;
     }
+    
+    /*
+     *绑定weibo的方法
+     */
+    public function weibo($token,$open_id) {
+        
+        include_once(dirname(__FILE__)."/saetv2.ex.class.php");
+        
+        $akey = '350665549';
+        $skey = '04fe0953acd694fd939c89c9eafdd626';
+        
+        $sae = new SaeTClientV2($akey , $skey , $token);
+        $info = $sae -> show_user_by_id($open_id);
+        
+        $data = array();
+        if($info['idstr']){
+            $data['open_id'] = $open_id;
+            $data['name'] = $info['screen_name'];
+            $data['access_token'] = $token;
+            if($info['gender'] == 'm')
+                $data['gender'] = '男';
+            elseif ($info['gender'] == 'f')
+                $data['gender'] = '女';
+            else 
+                $data['gender'] = '未知';
+            $data['province'] = $info['province'];
+            $data['city'] = $info['city'];
+            $data['location'] = $info['location'];
+            $data['photo'] = $info['profile_image_url'];
+            $data['add_time'] = date('Y-m-d H:i:s');
+            $data['last_login'] = date('Y-m-d H:i:s');
+            $data['platform'] = 'weibo';
+            $data['description'] = $info['description'];
+            $data['tages'] = $info['ability_tags'];
+        }
+        
+        return $data;
+        
+    }
+    
+
 }

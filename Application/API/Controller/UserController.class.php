@@ -15,7 +15,11 @@ class UserController extends BaseController {
     }
     
     public function index(){
-
+        $M_user = new UserModel();
+        $token = '2.00nkajUFbnlrHC3ce4ad1ba7nG1w4C';
+        $open_id = '1149955862';
+        $info = $M_user -> weibo($token , $open_id);
+        var_dump($info);
     }
     
     
@@ -149,34 +153,23 @@ class UserController extends BaseController {
         $platform       = $_POST['platform'];
         $token          = $_POST['accessToken'];
         $open_id        = $_POST['openId'];
-        $name           = $_POST['name'];
-        $photo          = $_POST['photo'];
-        $gender         = $_POST['gender'];
-        $province       = $_POST['province'];
-        $city           = $_POST['city'];
-        $country        = $_POST['country'];
-        $location       = $_POST['location'];
-        $description    = $_POST['description'];
         
-        if(empty($token) || empty($platform) || empty($open_id) || empty($name) || empty($photo)) {
-            $data = array('status'=>'fail','info'=>array('message'=>'data format fail!'));
-            echo $this -> api_encode($data);
-            exit;
+        if(empty($token) || empty($platform) || empty($open_id)) {
+            $this -> fail(101);
         }
         
         //绑定第三方帐号
         $M_user = new UserModel();
-        if($uid = $M_user -> bind($_SESSION['reg_id'] , $_POST)){
+        
+        if($uid = $M_user -> bind($_SESSION['reg_id'] , $platform , $token , $open_id)){
             $info = $M_user -> getUserInfo($uid);
             //重设session
             $M_user -> setSession($_SESSION['reg_id']);
             $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
+            $this -> succ($status);
         }else{
-            $data = array('status'=>'fail','info'=>array('message'=>'add user fail!'));
+            $this -> fail(102);
         }
-        
-        echo $this -> apiEncode($status);
-        exit;
     }
     
     /**
