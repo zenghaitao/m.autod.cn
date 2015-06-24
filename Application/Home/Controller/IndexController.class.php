@@ -42,7 +42,7 @@ class IndexController extends BaseController  {
             $row['images'] = $images;
             
             $row['postTime'] = $row['story_date'];
-            $row['display_mode'] = 'default';
+            $row['displayMode'] = 'default';
             $row['gourl'] = '';
             
             $row['favCount'] = $row['fav_count'];
@@ -55,6 +55,7 @@ class IndexController extends BaseController  {
             unset($row['fav_count']);
             unset($row['like_count']);
             unset($row['comments_count']);
+            unset($row['story_date']);
 
             if(count($uids) > 80){
                 array_shift($uids);
