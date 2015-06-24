@@ -77,7 +77,7 @@ class UserModel
      */
     public function updatePush($reg_id , $val){
         
-        $res = $this -> _db_user_device -> where("reg_id = {$reg_id}") -> save(array('push'=>$val));
+        $res = $this -> _db_user_device -> where("reg_id = {$reg_id}") -> save(array('device_push'=>$val));
         
         if($res !== false){
             return true;
