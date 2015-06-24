@@ -164,7 +164,7 @@ class UserModel
     /*
      *绑定weibo的方法
      */
-    public function weibo($token,$open_id) {
+    private function weibo($token,$open_id) {
         
         include_once(dirname(__FILE__)."/saetv2.ex.class.php");
         
@@ -198,6 +198,23 @@ class UserModel
         
         return $data;
         
+    }
+    
+    public function qq($token , $open_id){
+        
+        $app_id = '101030407';
+        $app_key = '5abfdd9910cbe5140e2ba341300a9687';
+        
+        $get_user_info = "https://graph.qq.com/user/get_user_info?"
+        . "access_token=" . $token
+        . "&oauth_consumer_key=" . $app_id
+        . "&openid=" . $open_id
+        . "&format=json";
+        
+        $info = file_get_contents($get_user_info);
+        $arr = json_decode($info, true);
+        
+        var_dump($arr);
     }
     
 

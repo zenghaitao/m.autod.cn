@@ -16,9 +16,9 @@ class UserController extends BaseController {
     
     public function index(){
         $M_user = new UserModel();
-        $token = '2.00nkajUFbnlrHC3ce4ad1ba7nG1w4C';
-        $open_id = '1149955862';
-        $info = $M_user -> weibo($token , $open_id);
+        $token = 'FFAC42D2A9233418386CF435D07EBA6F';
+        $open_id = 'FA4BF3CA310195E3804F67C1552AF365';
+        $info = $M_user -> qq($token , $open_id);
         var_dump($info);
     }
     
@@ -29,7 +29,7 @@ class UserController extends BaseController {
      */
     public function registerDevice()
     {
-
+        //无需检测登录状态
         $this -> _auto_check = 0;
         
         if(empty($_POST['deviceId']) || empty($_POST['devicePlant']) || empty($_POST['deviceName']) || empty($_POST['deviceOS'])) {
@@ -60,16 +60,6 @@ class UserController extends BaseController {
         }else 
             $this -> fail(102);
         
-    }
-    
-    private function testDate(){
-        return array(
-            'device_id' => 'dadsadsadsadsa',
-            'device_plant' => 'ios',
-            'device_name' => 'iphone6',
-            'device_os' => 'ios7',
-            'device_token' => 'dadsadsadsadsa'
-        );
     }
     
     /**
@@ -123,26 +113,25 @@ class UserController extends BaseController {
      * @
      */
     public function reconnect() {
+        //无需检测登录状态
         $this -> _auto_check = 0;
         
         $reg_id    = intval($_POST['regId']);
         
         if(empty($reg_id)) {
-            $status = array('status'=>'fail','info'=>array('message'=>'data format fail!'));
-            echo $this -> apiEncode($data);
-            exit;
+            $this -> fail(101);
         }
         
         $M_user = new UserModel();
         $res = $M_user -> setSession($reg_id);
         
         if($res){
-            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
+            $status = array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']);
+            $this -> succ($status);
         }else{
-            $status = array('status'=>'fail','info'=>array('message'=>'device id fail!'));
+            $this -> fail(102);
         }
         
-        echo json_encode($status);
     }
     
     /**
@@ -165,7 +154,7 @@ class UserController extends BaseController {
             $info = $M_user -> getUserInfo($uid);
             //重设session
             $M_user -> setSession($_SESSION['reg_id']);
-            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
+            $status = array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']);
             $this -> succ($status);
         }else{
             $this -> fail(102);
@@ -182,12 +171,12 @@ class UserController extends BaseController {
         $M_user = new UserModel();
         if($M_user -> unbind($reg_id)){
             $M_user -> setSession($reg_id);
-            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']));
+            $status = array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']);
+            $this -> succ($status);
+            
         }else{
-            $status = array('status'=>'fail','info'=>array('message'=>'logout fail!'));
+            $this -> fail(102);
         }
-        echo $this -> apiEncode($status);
-        exit;
     }
     
     /**
@@ -204,12 +193,12 @@ class UserController extends BaseController {
         if($uid){
             $M_user = new UserModel();
             $res = $M_user -> getUserInfo($uid);
-            $status = array( 'status' => 'succ' , 'info' => $res );
+            
+            $this -> succ($res);
         }else{
-            $status = array( 'status' => 'fail' , 'info'=>array('message' => 'reg id fail') );
+
+            $this -> fail(102);
         }
-        echo $this -> apiEncode($status);
-        exit;
     }
     
 }

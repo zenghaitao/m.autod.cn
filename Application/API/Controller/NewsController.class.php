@@ -7,9 +7,11 @@ class NewsController extends BaseController  {
     
     public function __construct(){
         parent::__construct();
+        $this -> checkPermission();
     }
     
     public function init(){
+        return false;
         $M_story = new StoryModel();
         $M_news = new NewsModel();
         $list = $M_story -> initNews();
@@ -74,15 +76,12 @@ class NewsController extends BaseController  {
         $_SESSION['uids'] = implode(',' , $uids);
         
         $result = array();
-        $result['status'] = 'succ';
-        $result['info']['statuses'] = $list;
-        $result['info']['updateCount'] = count($list);
-        $result['info']['nextPage'] = $page + 1;
-        $result['info']['prevPage'] = $page - 1;
-        
-        echo $this -> apiEncode($result);
-        exit();
-        
+        $result['statuses'] = $list;
+        $result['updateCount'] = count($list);
+        $result['nextPage'] = $page + 1;
+        $result['prevPage'] = $page - 1;
+
+        $this -> succ($result);
     }
     
     /**
@@ -127,13 +126,11 @@ class NewsController extends BaseController  {
         }
         
         $result = array();
-        $result['status'] = 'succ';
-        $result['info']['statuses'] = $list;
-        $result['info']['updateCount'] = count($list);
-        $result['info']['sinceId'] = $since_id;
+        $result['statuses'] = $list;
+        $result['updateCount'] = count($list);
+        $result['sinceId'] = $since_id;
         
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($result);
     }
     
     /**
@@ -178,13 +175,11 @@ class NewsController extends BaseController  {
         }
         
         $result = array();
-        $result['status'] = 'succ';
-        $result['info']['statuses'] = $list;
-        $result['info']['updateCount'] = count($list);
-        $result['info']['sinceId'] = $since_id;
+        $result['statuses'] = $list;
+        $result['updateCount'] = count($list);
+        $result['sinceId'] = $since_id;
         
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($result);
     }
     
     /**
@@ -200,12 +195,7 @@ class NewsController extends BaseController  {
         $M_story = new StoryModel();
         $info = $M_story -> getStoryPage($story_id , $page);
         
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $info;
-        
-        echo $this -> apiEncode($result);
-        exit();       
+        $this -> succ($info);
         
     }
     
@@ -220,12 +210,7 @@ class NewsController extends BaseController  {
         $M_story = new StoryModel();
         $info = $M_story -> getVideo($video_id);
         
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $info;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($info);
     }
     
     /**
@@ -248,12 +233,7 @@ class NewsController extends BaseController  {
         $M_news = new NewsModel();
         $list = $M_news -> search($keyword , $since_id , $count);
         
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $list;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($list);
     }
     
     /**
@@ -275,12 +255,7 @@ class NewsController extends BaseController  {
             $comment_id = $M_news -> comments((int)$_POST['newsId'] , $_POST['post'] , $uid , $_POST['replyId']);
         }
         
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $comment_id;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($comment_id);
     }
     
     /**
@@ -291,12 +266,7 @@ class NewsController extends BaseController  {
         $M_news = new NewsModel();
         $list = $M_news -> commentsList((int)$_GET['newsId'] , (int)$_GET['sinceId'] , (int)$_GET['count'] );
         
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $list;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($list);
     }
     
     /**
@@ -310,12 +280,8 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> commentsDel((int)$_POST['commentId'] , $uid);
         }
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $res;
         
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($res);
     }
     
     /**
@@ -329,12 +295,7 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> likeAdd((int)$_POST['newsId'] , $uid);
         }
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $res;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($res);
     }
     
     /**
@@ -348,12 +309,7 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> likeDel((int)$_POST['newsId'] , $uid);
         }
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $res;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($res);
     }
     
     /**
@@ -367,12 +323,7 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> favAdd((int)$_POST['newsId'] , $uid);
         }
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $res;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($res);
     }
     
     /**
@@ -386,12 +337,7 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> favDel((int)$_POST['newsId'] , $uid);
         }
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $res;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($res);
     }
     
     /**
@@ -411,12 +357,7 @@ class NewsController extends BaseController  {
             $list[] = $M_news -> getNews($row['news_id']);
         }
         
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $list;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($list);
     }
     
     /**
@@ -430,12 +371,7 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> followAdd((int)$_POST['sourceId'] , $uid);
         }
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $res;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($res);
     }
     
     /**
@@ -449,12 +385,7 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> followDel((int)$_POST['sourceId'] , $uid);
         }
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $res;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($res);
     }
     
     /**
@@ -474,12 +405,7 @@ class NewsController extends BaseController  {
             $list[] = $M_news -> getSource($row['source_id']);
         }
         
-        $result = array();
-        $result['status'] = 'succ';
-        $result['info'] = $list;
-        
-        echo $this -> apiEncode($result);
-        exit();
+        $this -> succ($list);
     }
     
 }
