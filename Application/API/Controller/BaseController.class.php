@@ -43,11 +43,48 @@ class BaseController extends Controller{
      */
     protected function checkPermission(){
         if(!isset($_SESSION['reg_id'])){
+            $this -> fail(104);
             return false;
         }
+        return true;
 /*        if($_SERVER['IS_DEBUG'] == 'yes'){
             return true;
         }*/
+    }
+    
+    /**
+     * 返回错误信息
+     *
+     */
+    protected function fail($code){
+        $data = array();
+        $msg = $this -> errCode($code);
+        $data = array('status'=>'fail','info'=>array('code' => $code , 'message' => $msg));
+        die($this -> apiEncode($data));
+    }
+    
+    /**
+     * 返回成功信息
+     *
+     */
+    protected function succ($info){
+        $data = array();
+        $data = array('status'=>'succ','info'=>$info);
+        die($this -> apiEncode($data));
+    }
+    
+    /**
+     * 返回错误状态码对应中文说明
+     *
+     * @param int $code
+     * @return string
+     */
+    private function errCode($code){
+        $error = C('ERROR_CODE');
+        if(isset($error[$code]))
+            return $error[$code];
+        else 
+            return "操作失败！";
     }
     
     /**
@@ -59,12 +96,4 @@ class BaseController extends Controller{
         return json_encode($data);
     }
     
-    
-    protected function convArray($array){
-        foreach ($array as $key => $val){
-            if(strpos($key , '_') !== false){
-                
-            }
-        }
-    }
 }

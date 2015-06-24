@@ -9,9 +9,7 @@ class UserController extends BaseController {
     public function __construct(){
         parent::__construct();
         if($this -> auto_check){
-            if(!$this -> checkPermission()){
-                return false;
-            }
+            $this -> checkPermission();
         }
         
     }
@@ -31,9 +29,7 @@ class UserController extends BaseController {
         $this -> _auto_check = 0;
         
         if(empty($_POST['deviceId']) || empty($_POST['devicePlant']) || empty($_POST['deviceName']) || empty($_POST['deviceOS'])) {
-            $status = array('status'=>'fail','info'=>array('message'=>'data format fail!'));
-            echo $this -> api_encode($status);
-            exit;
+            $this -> fail(101);
         }
         
         $time                   = date('Y-m-d H:i:s',time());
@@ -56,12 +52,9 @@ class UserController extends BaseController {
         if($reg_id){
             //设置session数据
             $M_user -> setSession($reg_id);
-            $status = array('status'=>'succ','info'=>array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>0,'user'=>NULL));
+            $this -> succ(array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>0,'user'=>NULL));
         }else 
-            $status = array('status'=>'fail','info'=>array('message'=>'add device fail!'));
-            
-        echo $this -> apiEncode($status);
-        exit;
+            $this -> fail(102);
         
     }
     
@@ -96,6 +89,28 @@ class UserController extends BaseController {
 		}
         echo $this -> apiEncode($status);
         exit;
+	}
+	
+	/**
+	 * 设置推送开关
+	 *
+	 */
+	public function setPushOpen(){
+	    if(empty($_POST['val'])) {
+            $this -> fail(101);
+        }
+		
+        if($_POST['val'] != 'yes')
+            $_POST['val'] = 'no';
+        
+        $M_user = new UserModel();
+        $res = $M_user -> updatePush($_SESSION['reg_id'] , $_POST['val']);
+        
+		if($res){
+		    $this -> succ(array('message'=>'update push open'));
+		}else{
+		    $this -> fail(102);
+		}
 	}
     
     /*

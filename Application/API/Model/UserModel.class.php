@@ -69,6 +69,24 @@ class UserModel
     }
     
     /**
+     * 设置是否为用户推送
+     *
+     * @param int $reg_id
+     * @param string $val
+     * @return bool
+     */
+    public function updatePush($reg_id , $val){
+        
+        $res = $this -> _db_user_device -> where("reg_id = {$reg_id}") -> save(array('push'=>$val));
+        
+        if($res !== false){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    /**
      * 获取用户信息
      *
      * @param int $uid
