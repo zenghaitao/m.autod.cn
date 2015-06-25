@@ -24,4 +24,16 @@ return array(
 	   '105'   => '请先登录后访问',
 	   '106'   => '暂无此访问权限',
 	),
+	'UPLOAD_SITEIMG_QINIU' => array ( 
+        'maxSize' => 5 * 1024 * 1024,//文件大小
+        'rootPath' => './',
+        'saveName' => array ('uniqid', ''),
+        'driver' => 'Qiniu',
+        'driverConfig' => array (
+            'secrectKey' => 'f_ChZHHqliljnu0gZal5_uvRdS7EZ2yMN49BF5DD', 
+            'accessKey' => 'P34_Ls3LpEFpjisNpHgmXNnEOMB1nCqcFtEBdj-q',
+            'domain' => '7xjrkc.com1.z0.glb.clouddn.com',
+            'bucket' => 'autod', 
+        )
+    ),
 );

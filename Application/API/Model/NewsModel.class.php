@@ -440,4 +440,13 @@ class NewsModel
     public function getSource($source_id){
         return $this -> _db_news_source -> where("id = '{$source_id}'") -> find();
     }
+    
+    /**
+     * 获取所有内容源
+     *
+     * @return mixed
+     */
+    public function getSoureList(){
+        return $this -> _db_news_source -> order("pinyin ASC") -> select();
+    }
 }

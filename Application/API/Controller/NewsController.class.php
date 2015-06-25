@@ -399,10 +399,41 @@ class NewsController extends BaseController  {
         
         $list = array();
         foreach ($res as $row){
+            $row['followed'] = 'yes';
             $list[] = $M_news -> getSource($row['source_id']);
         }
         
         $this -> succ($list);
+    }
+    
+    /**
+     * 待订阅列表
+     *
+     */
+    public function sourceList(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
+        $uid = $_SESSION['user_id'];
+        
+        $M_news = new NewsModel();
+        $list = $M_news -> getSoureList();
+        
+        $follows = $M_news -> favList($uid);
+        $follow_ids = array();
+        foreach ($follows as $row){
+            $follow_ids[] = $row['source_id'];
+        }
+        
+        foreach ($list as $row){
+            if(in_array($row['id'] , $follow_ids)){
+                $row['followed'] = 'no';
+            }else{
+                $row['followde'] = 'yes';
+            }
+        }
+        
+        $this -> succ($res);
     }
     
 }
