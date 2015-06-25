@@ -250,3 +250,122 @@ SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0059s ]
 SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0092s ]
 SQL: SELECT * FROM `ad_news_choice` ORDER BY rand() LIMIT 100   [ RunTime:0.0020s ]
 
+[ 2015-06-25T17:45:23+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000651s ]
+
+[ 2015-06-25T17:46:07+08:00 ] 127.0.0.1 /API/News/sources
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000507s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000594s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000636s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+
+[ 2015-06-25T17:46:50+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000358s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000535s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+
+[ 2015-06-25T17:47:17+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000613s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003124s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003299s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+
+[ 2015-06-25T17:47:18+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000763s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001410s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001538s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+
+[ 2015-06-25T17:47:18+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000735s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001175s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001263s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+
+[ 2015-06-25T17:47:19+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001058s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001135s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+
+[ 2015-06-25T17:47:52+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000594s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001679s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001853s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: user_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 417 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0286s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0199s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0282s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0116s ]
+SQL: SELECT * FROM `ad_news_source` ORDER BY pinyin ASC  [ RunTime:0.0095s ]
+SQL: SELECT * FROM `ad_news_fav` WHERE ( uid = '' ) ORDER BY id DESC LIMIT 10   [ RunTime:0.0325s ]
+NOTIC: [8] Undefined variable: res D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 438 行.
+
+[ 2015-06-25T17:48:35+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000605s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000928s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000991s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+
+[ 2015-06-25T17:48:43+08:00 ] 127.0.0.1 /API/News/sourceList
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000429s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000569s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: user_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 417 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0277s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0041s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0241s ]
+SQL: SELECT * FROM `ad_news_source` ORDER BY pinyin ASC  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ad_news_fav` WHERE ( uid = '' ) ORDER BY id DESC LIMIT 10   [ RunTime:0.0002s ]
+

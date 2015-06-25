@@ -7,7 +7,7 @@ class NewsController extends BaseController  {
     
     public function __construct(){
         parent::__construct();
-        $this -> checkPermission();
+        //$this -> checkPermission();
     }
     
     public function init(){
@@ -85,7 +85,7 @@ class NewsController extends BaseController  {
         $news['images'] = $images;
         
         $news['postTime'] = $row['story_date'];
-        $news['displayMode'] = 'default';
+        $news['displayMode'] = 'A';
         $news['type'] = $row['type'];
         $news['openMode'] = $row['open_mode'];
         $news['gourl'] = '';
@@ -130,7 +130,7 @@ class NewsController extends BaseController  {
      * 媒体新闻列表
      *
      */
-    public function sourceList(){  
+    public function sourceNewsList(){  
         $source_id = $_GET['sourceId'];
         $count = (int)$_GET['count'];
         if(!$count)
@@ -425,15 +425,15 @@ class NewsController extends BaseController  {
             $follow_ids[] = $row['source_id'];
         }
         
-        foreach ($list as $row){
+        foreach ($list as &$row){
             if(in_array($row['id'] , $follow_ids)){
-                $row['followed'] = 'no';
+                $row['followed'] = 'yes';
             }else{
-                $row['followde'] = 'yes';
+                $row['followed'] = 'no';
             }
         }
         
-        $this -> succ($res);
+        $this -> succ($list);
     }
     
 }
