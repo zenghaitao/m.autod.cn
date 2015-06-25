@@ -399,7 +399,7 @@ class NewsModel
         
         $res = $this -> _db_news_follow -> add($data);
         if($res){
-            //$this -> _db_news_choice -> where("id = '{$news_id}'")->setInc('fav_count'); 
+            $this -> _db_news_source -> where("id = '{$source_id}'")->setInc('fans'); 
         }
         return $res;
     }
@@ -414,7 +414,7 @@ class NewsModel
         $data = "source_id = '{$news_id}' AND uid = '{$uid}'";
         $res = $this -> _db_news_follow -> where($data) -> delete();
         if($res){
-            //$this -> _db_news_choice -> where("id = '{$news_id}'")->setDec('fav_count'); 
+            $this -> _db_news_source -> where("id = '{$source_id}'")->setDec('fans'); 
         }
         return $res;
     }
