@@ -36,6 +36,7 @@ class BaseController extends Controller{
         }else{
             session_start();
         }
+        session(array('expire'=>3600*24));
     }
     
     /**

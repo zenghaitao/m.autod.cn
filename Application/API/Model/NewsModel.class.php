@@ -391,15 +391,15 @@ class NewsModel
      * @param int $news_id
      * @param int $uid
      */
-    public function followAdd($news_id , $uid){
+    public function followAdd($source_id , $uid){
         $data = array();
-        $data['news_id'] = $news_id;
+        $data['source_id'] = $source_id;
         $data['uid'] = $uid;
         $data['add_time'] = date('Y-m-d H:i:s');
         
         $res = $this -> _db_news_follow -> add($data);
         if($res){
-            $this -> _db_news_choice -> where("id = '{$news_id}'")->setInc('fav_count'); 
+            //$this -> _db_news_choice -> where("id = '{$news_id}'")->setInc('fav_count'); 
         }
         return $res;
     }
@@ -410,11 +410,11 @@ class NewsModel
      * @param int $news_id
      * @param int $uid
      */
-    public function followDel($news_id , $uid){
-        $data = "news_id = '{$news_id}' AND uid = '{$uid}'";
+    public function followDel($source_id , $uid){
+        $data = "source_id = '{$news_id}' AND uid = '{$uid}'";
         $res = $this -> _db_news_follow -> where($data) -> delete();
         if($res){
-            $this -> _db_news_choice -> where("id = '{$news_id}'")->setDec('fav_count'); 
+            //$this -> _db_news_choice -> where("id = '{$news_id}'")->setDec('fav_count'); 
         }
         return $res;
     }

@@ -1,5 +1,5 @@
 <?php
-namespace Home\Model;
+namespace Admin\Model;
 
 /**
  * Website: http://sourceforge.net/projects/simplehtmldom/
