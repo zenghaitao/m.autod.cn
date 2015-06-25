@@ -55,6 +55,19 @@ class BaseController extends Controller{
     }
     
     /**
+     * 检测用户是否为登录状态
+     *
+     * @return bool
+     */
+    protected function mustLogin(){
+        if(!isset($_SESSION['user_id'])){
+            $this -> fail(105);
+            return false;
+        }
+        return true;
+    }
+    
+    /**
      * 返回错误信息
      *
      */

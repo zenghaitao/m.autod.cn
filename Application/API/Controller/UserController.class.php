@@ -4,14 +4,13 @@ use API\Model\UserModel;
 
 class UserController extends BaseController {
     
-    protected $_auto_check = 1;
-    
     public function __construct(){
         parent::__construct();
-        if($this -> auto_check){
+        
+        //是否为合法访问
+        if(!in_array($_SERVER['REDIRECT_URL'] , array('/API/User/registerDevice','/API/User/reconnect'))){
             $this -> checkPermission();
         }
-        
     }
     
     public function index(){
@@ -29,9 +28,6 @@ class UserController extends BaseController {
      */
     public function registerDevice()
     {
-        //无需检测登录状态
-        $this -> _auto_check = 0;
-        
         if(empty($_POST['deviceId']) || empty($_POST['devicePlant']) || empty($_POST['deviceName']) || empty($_POST['deviceOS'])) {
             $this -> fail(101);
         }
@@ -113,9 +109,6 @@ class UserController extends BaseController {
      * @
      */
     public function reconnect() {
-        //无需检测登录状态
-        $this -> _auto_check = 0;
-        
         $reg_id    = intval($_POST['regId']);
         
         if(empty($reg_id)) {

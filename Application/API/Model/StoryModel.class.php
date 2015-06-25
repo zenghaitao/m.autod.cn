@@ -36,7 +36,7 @@ class StoryModel
      * @return array
      */
     public function getStoryPage($story_id , $page = 0){
-        $page += 1;
+        $page += 1;  
         $info = $this -> _db_story_content -> where("storyId = '$story_id' AND page = '{$page}'") -> find();
         return $info;
     }

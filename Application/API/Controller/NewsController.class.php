@@ -45,30 +45,9 @@ class NewsController extends BaseController  {
         
         foreach ($list as &$row){
             $uids[] = $row['story_id'];
-            $row['storyId'] = $row['story_id'];
-            $row['cateId'] = $row['cate_id'];
-            $row['sourceId'] = $row['source_id'];
-
-            $images = explode(';,;' , $row['images']);
-            $row['imageCount'] = count($images);
-            $row['images'] = $images;
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
             
-            $row['postTime'] = $row['story_date'];
-            $row['displayMode'] = 'default';
-            $row['gourl'] = '';
-            
-            $row['favCount'] = $row['fav_count'];
-            $row['likeCount'] = $row['like_count'];
-            $row['commentsCount'] = $row['comments_count'];
-            
-            unset($row['story_id']);
-            unset($row['cate_id']);
-            unset($row['source_id']);
-            unset($row['fav_count']);
-            unset($row['like_count']);
-            unset($row['comments_count']);
-            unset($row['story_date']);
-
             if(count($uids) > 80){
                 array_shift($uids);
             }
@@ -86,6 +65,39 @@ class NewsController extends BaseController  {
     }
     
     /**
+     * 格式化新闻行记录
+     *
+     * @param array $row
+     * @return array
+     */
+    private function formatNews($row){
+        
+        $news['id'] = $row['id'];
+        $news['storyId'] = $row['story_id'];
+        $news['cateId'] = $row['cate_id'];
+        $news['title'] = $row['title'];
+        $news['summary'] = $row['summary'];
+        $news['source'] = $row['source'];
+        $news['sourceId'] = $row['source_id'];
+
+        $images = explode(';,;' , $row['images']);
+        $news['imageCount'] = count($images);
+        $news['images'] = $images;
+        
+        $news['postTime'] = $row['story_date'];
+        $news['displayMode'] = 'default';
+        $news['type'] = $row['type'];
+        $news['openMode'] = $row['open_mode'];
+        $news['gourl'] = '';
+        
+        $news['favCount'] = $row['fav_count'];
+        $news['likeCount'] = $row['like_count'];
+        $news['commentsCount'] = $row['comments_count'];
+        
+        return $news;
+    }
+    
+    /**
      * 分类新闻列表
      *
      */
@@ -100,28 +112,8 @@ class NewsController extends BaseController  {
         $since_id = 0;
         
         foreach ($list as &$row){
-            $row['storyId'] = $row['story_id'];
-            $row['cateId'] = $row['cate_id'];
-            $row['sourceId'] = $row['source_id'];
-
-            $images = explode(';,;' , $row['images']);
-            $row['imageCount'] = count($images);
-            $row['images'] = $images;
-            
-            $row['postTime'] = $row['story_date'];
-            $row['display_mode'] = 'default';
-            $row['gourl'] = '';
-            
-            $row['favCount'] = $row['fav_count'];
-            $row['likeCount'] = $row['like_count'];
-            $row['commentsCount'] = $row['comments_count'];
-            
-            unset($row['story_id']);
-            unset($row['cate_id']);
-            unset($row['source_id']);
-            unset($row['fav_count']);
-            unset($row['like_count']);
-            unset($row['comments_count']);
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
             
             $since_id = $row['id'];
         }
@@ -149,28 +141,8 @@ class NewsController extends BaseController  {
         $since_id = 0;
         
         foreach ($list as &$row){
-            $row['storyId'] = $row['story_id'];
-            $row['cateId'] = $row['cate_id'];
-            $row['sourceId'] = $row['source_id'];
-
-            $images = explode(';,;' , $row['images']);
-            $row['imageCount'] = count($images);
-            $row['images'] = $images;
-            
-            $row['postTime'] = $row['story_date'];
-            $row['display_mode'] = 'default';
-            $row['gourl'] = '';
-            
-            $row['favCount'] = $row['fav_count'];
-            $row['likeCount'] = $row['like_count'];
-            $row['commentsCount'] = $row['comments_count'];
-            
-            unset($row['story_id']);
-            unset($row['cate_id']);
-            unset($row['source_id']);
-            unset($row['fav_count']);
-            unset($row['like_count']);
-            unset($row['comments_count']);
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
             
             $since_id = $row['id'];
         }
@@ -250,6 +222,9 @@ class NewsController extends BaseController  {
      *
      */
     public function post(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         if($uid > 0){
             $M_news = new NewsModel();
@@ -275,6 +250,9 @@ class NewsController extends BaseController  {
      *
      */
     public function delComment(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
@@ -290,6 +268,9 @@ class NewsController extends BaseController  {
      *
      */
     public function ding(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
@@ -304,6 +285,9 @@ class NewsController extends BaseController  {
      *
      */
     public function unding(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
@@ -346,6 +330,9 @@ class NewsController extends BaseController  {
      *
      */
     public function favList(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
@@ -366,6 +353,9 @@ class NewsController extends BaseController  {
      *
      */
     public function follow(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
@@ -380,6 +370,9 @@ class NewsController extends BaseController  {
      *
      */
     public function unfollow(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
@@ -394,6 +387,9 @@ class NewsController extends BaseController  {
      *
      */
     public function followList(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
