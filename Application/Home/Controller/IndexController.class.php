@@ -73,10 +73,14 @@ class IndexController extends BaseController  {
         $news['images'] = $images;
         
         $news['postTime'] = $row['story_date'];
-        $news['displayMode'] = 'default';
         $news['type'] = $row['type'];
         $news['openMode'] = $row['open_mode'];
         $news['gourl'] = '';
+        
+        if($news['imageCount'] == 3)
+            $news['displayMode'] = 'B';
+        else 
+            $news['displayMode'] = 'A';
         
         $news['favCount'] = $row['fav_count'];
         $news['likeCount'] = $row['like_count'];
