@@ -61,7 +61,7 @@ class BaseController extends Controller{
      * @return bool
      */
     protected function mustLogin(){
-        if(!isset($_SESSION['user_id'])){
+        if($_SESSION['user_id'] < 1){
             $this -> fail(105);
             return false;
         }
