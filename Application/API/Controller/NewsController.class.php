@@ -357,6 +357,7 @@ class NewsController extends BaseController  {
      *
      */
     public function follow(){
+        var_dump($_SESSION);
         //此方法需要用户登录后操作
         $this -> mustLogin();
         
