@@ -82,6 +82,8 @@ class IndexController extends BaseController  {
         $news['likeCount'] = $row['like_count'];
         $news['commentsCount'] = $row['comments_count'];
         
+        $news['hot'] = rand(1000 , 9999);
+        
         return $news;
     }
     
