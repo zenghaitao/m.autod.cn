@@ -430,6 +430,8 @@ class NewsController extends BaseController  {
         }
         
         foreach ($list as &$row){
+            $row = $this -> formatSource($row);
+            
             if(in_array($row['id'] , $follow_ids)){
                 $row['followed'] = 'yes';
             }else{
@@ -438,6 +440,20 @@ class NewsController extends BaseController  {
         }
         
         $this -> succ($list);
+    }
+    
+    /**
+     * 格式化新闻源信息
+     *
+     * @param array $info
+     * @return array
+     */
+    private function formatSource($info){
+        $data = $info;
+        $data['lastNews'] = $info['last_news'];
+        $data['photo'] = 'http://autod.b0.upaiyun.com/autod_img/source_logo/face.jpg';
+        unset($data['last_news']);
+        return $data;
     }
     
 }
