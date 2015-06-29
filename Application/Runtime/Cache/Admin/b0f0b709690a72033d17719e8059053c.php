@@ -57,18 +57,24 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">栏目管理</a></li>
+            <li class="active"><a href="#">控制台</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="#">栏目管理</a></li>
             <li><a href="#">来源管理</a></li>
             <li><a href="#">新闻管理</a></li>
             <li><a href="#">添加新闻</a></li>
             <li><a href="#">新闻推送</a></li>
+            <li><a href="#">抓取管理</a></li>
+            <li><a href="#">回复评论</a></li>
+            <li><a href="#">广告管理</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">板块管理</a></li>
             <li><a href="">帖子管理</a></li>
             <li><a href="">发布公告</a></li>
             <li><a href="">发布帖子</a></li>
-            <li><a href="">回复评论</a></li>
+            <li><a href="">回复管理</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">设备管理</a></li>

@@ -407,7 +407,7 @@ class NewsController extends BaseController  {
             $list[] = $M_news -> getSource($row['source_id']);
         }
         
-        $this -> succ($list);
+        $this -> succ(array('statuses'=>$list));
     }
     
     /**
@@ -439,7 +439,7 @@ class NewsController extends BaseController  {
             }
         }
         
-        $this -> succ($list);
+        $this -> succ(array('statuses'=>$list));
     }
     
     /**
