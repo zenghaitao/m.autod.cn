@@ -31,8 +31,8 @@ class NewsController extends BaseController  {
      */
     public function index(){
         
-        $page = (int)$_GET['page'];
-        if(!$page)
+        $since_id = (int)$_GET['sinceId'];
+        if(!$since_id)
             $_SESSION['uids'] = '';
         
         $ids = $_SESSION['uids'];

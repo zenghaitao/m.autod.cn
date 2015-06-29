@@ -24,19 +24,21 @@ class NewsModel
      * 获取当天新闻池
      *
      */
-    public function newsPool($use_ids = array()){
-        $list = $this -> _db_news_choice -> order('id DESC') -> limit(100) ->order("rand()") -> select();
-        $res = array();
-        $i = 0;
-        foreach ($list as $row){
-            if(!in_array($row['story_id'] , $use_ids)){
-                $i ++;
-                $res[] = $row;
-                if($i >= 10 )
-                    break;
-            }
-        }
+    public function newsPool($since_id , $day , $count = 10){
+        $list = $this -> _db_news_choice -> where("id < '{$since_id}' AND day = '2015-06-23' ") -> order('id DESC') -> limit($count) ->order("rand()") -> select();
         return $res;
+    }
+    
+    /**
+     * 剩余库中的数据行数
+     *
+     * @param int $end_id
+     * @param date $day
+     * @return int
+     */
+    public function lastNewsPoolNum($end_id , $day){
+        $num = $this -> _db_news_choice -> where("id < '{$end_id}' AND day = '2015-06-23' ") -> count();
+        return $num;
     }
     
     /**

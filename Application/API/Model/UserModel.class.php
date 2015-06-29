@@ -143,7 +143,7 @@ class UserModel
             $uid = $info['id'];
         }
         //将此设备绑定到用户
-        $res = $this -> _db_user_device -> where("reg_id = '{$reg_id}'") -> save(array('user_id' => $uid));
+        $res = $this -> _db_user_device -> where("reg_id = '{$reg_id}'") -> save(array('uid' => $uid));
         
         return $uid;
     }
