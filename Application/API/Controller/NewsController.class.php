@@ -264,7 +264,23 @@ class NewsController extends BaseController  {
      *
      */
     public function hotWord(){
+        $keyword = array("凯迪拉克",
+                          "宝马",
+                          "奔驰",
+                          "英菲尼迪",
+                          "奥迪",
+                          "保时捷",
+                          "大众",
+                          "丰田",
+                          "雪铁龙",
+                          "本田",
+                          "日产",
+                          "特斯拉");
+        $result = array();
+        $result['word'] = $keyword;
+        $result['wordCount'] = count($keyword);
         
+        $this -> succ($result);
     }
     
     /**
