@@ -4,6 +4,7 @@ use API\Model\NewsModel;
 use API\Model\StoryModel;
 use API\Model\SnsModel;
 use API\Model\UserModel;
+use API\Model\QiniuModel;
 use Admin\Model\SnatchModel;
 use Think\Upload\Driver\Qiniu\QiniuStorage;
 
@@ -126,9 +127,7 @@ class IndexController extends BaseController  {
      *
      */
     public function qiniuToken(){
-        $ak = 'P34_Ls3LpEFpjisNpHgmXNnEOMB1nCqcFtEBdj-q';
-        $sk = 'f_ChZHHqliljnu0gZal5_uvRdS7EZ2yMN49BF5DD';
-        
+       
         $QN_config = C('UPLOAD_SITEIMG_QINIU');
         //var_dump($QN_config);exit;
         
@@ -136,5 +135,14 @@ class IndexController extends BaseController  {
         $token = $qiniu -> UploadToken($QN_config['driverConfig']['secrectKey'] , $QN_config['driverConfig']['accessKey'] ,$param);
         echo json_encode(array('uptoken'=>$token));
         //echo json_encode(array('uptoken'=>'0MLvWPnyya1WtPnXFy9KLyGHyFPNdZceomLVk0c9:gsa0agNkLsn-ChFV2-erE51qs6k=:eyJzY29wZSI6InFpbml1LXBsdXBsb2FkIiwiZGVhZGxpbmUiOjE0MzU2NDY0NTJ9'));
+    }
+    
+    public function qiniuLog(){
+        $domain = $_POST['domain'];
+        $key = $_POST['key'];
+        
+        $M_qiniu = new QiniuModel();
+        $M_qiniu -> add($domain , $key);
+        
     }
 }

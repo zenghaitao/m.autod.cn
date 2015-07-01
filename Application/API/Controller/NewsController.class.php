@@ -244,8 +244,19 @@ class NewsController extends BaseController  {
         
         $M_news = new NewsModel();
         $list = $M_news -> search($keyword , $since_id , $count);
+        foreach ($list as &$row){
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
+            
+            $since_id = $row['id'];
+        }
         
-        $this -> succ($list);
+        $result = array();
+        $result['statuses'] = $list;
+        $result['updateCount'] = count($list);
+        $result['sinceId'] = $since_id;
+        
+        $this -> succ($result);
     }
     
     /**
@@ -444,7 +455,7 @@ class NewsController extends BaseController  {
             $list[] = $row;
         }
         
-        $this -> succ(array('followList'=>$list));
+        $this -> succ(array('sourceList'=>$list));
     }
     
     /**
