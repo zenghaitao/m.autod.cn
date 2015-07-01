@@ -99,6 +99,7 @@ class NewsController extends BaseController  {
         $news['commentsCount'] = $row['comments_count'];
         
         $news['hot'] = rand(1000 , 9999);
+        $news['faved'] = 'no';
         return $news;
     }
     
