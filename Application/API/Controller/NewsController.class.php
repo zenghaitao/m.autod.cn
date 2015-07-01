@@ -169,14 +169,20 @@ class NewsController extends BaseController  {
      */
     public function page(){
         //新闻ID
-        $story_id = (int)$_GET['storyId'];
+        $news_id = (int)$_GET['newsId'];
         //页码
         $page = (int)$_GET['page'];
         
-        $M_story = new StoryModel();
-        $info = $M_story -> getStoryPage($story_id , $page);
+        $M_news = new NewsModel();
+        $news_info = $M_news -> getNews($news_id);
+        $news_info = $this -> formatNews($news_info);
         
-        $this -> succ($info);
+        $M_story = new StoryModel();
+        $page_info = $M_story -> getStoryPage($news_info['storyId']);
+        
+        $news_info['page'] = $page_info['content'];       
+        
+        $this -> succ($news_info);
         
     }
     

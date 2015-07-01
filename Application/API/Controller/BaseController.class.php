@@ -45,7 +45,7 @@ class BaseController extends Controller{
      * @return bool
      */
     protected function checkPermission(){
-        if($_SERVER['debug'] == 'yes')
+        if($_SERVER['IS_DEBUG'] == 'yes')
             return true;
         
         if(!isset($_SESSION['reg_id'])){
