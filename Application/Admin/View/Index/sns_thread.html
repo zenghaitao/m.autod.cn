@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+    <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="sub-header">帖子管理
+          
+          <!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    发布新帖 <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="/Admin/Index/sns_thread_status">动态</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="/Admin/Index/sns_thread_news">图文</a></li>
+  </ul>
+</div>
+          </h1>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>标题</th>
+                  <th>正文</th>
+                  <th>配图</th>
+                  <th>发布时间</th>
+                  <th>评论数</th>
+                  <th>喜欢数</th>
+                </tr>
+              </thead>
+              <tbody>
+              <foreach name="list" item="vo">
+                <tr>
+                  <td>{$vo.id}</td>
+                  <td>{$vo.title}</td>
+                  <td>{$vo.contents}</td>
+                  <td>{$vo.images}</td>
+                  <td>{$vo.add_time}</td>
+                  <td>{$vo.comments_count}</td>
+                  <td>{$vo.like_count}</td>
+                </tr>
+              </foreach>
+              </tbody>
+            </table>
+<include file="common:page" />
+          </div>
+        </div>
+      </div>
+    </div>
+<include file="common:footer" />
+  </body>
+</html>

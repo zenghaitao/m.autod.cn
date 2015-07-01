@@ -117,6 +117,16 @@ class UserModel
     }
     
     /**
+     * 获取机器人列表
+     *
+     * @return array
+     */
+    public function getRoot(){
+        $list = $this -> _db_user -> where("is_root = 'yes'") -> select();
+        return $list;
+    }
+    
+    /**
      * 第三方用户绑定
      *
      * @param array $data
@@ -216,6 +226,5 @@ class UserModel
         
         var_dump($arr);
     }
-    
 
 }

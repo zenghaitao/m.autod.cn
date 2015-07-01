@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+    <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="sub-header">社区版块</h1>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>名称</th>
+                  <th>今日发帖量</th>
+                  <th>昨日发帖量</th>
+                  <th>前日发帖量</th>
+                  <th>精华总量</th>
+                  <th>文章总量</th>
+                  <th>最后发帖时间</th>
+                </tr>
+              </thead>
+              <tbody>
+              <foreach name="list" item="vo">
+                <tr>
+                  <td>{$vo.id}</td>
+                  <td>{$vo.name}</td>
+                  <td>{$vo.today_num}</td>
+                  <td>{$vo.today_num}</td>
+                  <td>{$vo.today_num}</td>
+                  <td>{$vo.num}</td>
+                  <td>{$vo.last_time}</td>
+                </tr>
+              </foreach>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<include file="common:footer" />
+  </body>
+</html>

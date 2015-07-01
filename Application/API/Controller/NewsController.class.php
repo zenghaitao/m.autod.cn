@@ -151,8 +151,12 @@ class NewsController extends BaseController  {
             $since_id = $row['id'];
         }
         
+        $info = $M_news -> getSource($source_id);
+        $info = $this -> formatSource($info);
+        
         $result = array();
         $result['statuses'] = $list;
+        $result['source'] = $info;
         $result['updateCount'] = count($list);
         $result['sinceId'] = $since_id;
         
@@ -404,7 +408,9 @@ class NewsController extends BaseController  {
         $list = array();
         foreach ($res as $row){
             $row['followed'] = 'yes';
-            $list[] = $M_news -> getSource($row['source_id']);
+            $row = $M_news -> getSource($row['source_id']);
+            $row = $this -> formatSource($row);
+            $list[] = $row;
         }
         
         $this -> succ(array('followList'=>$list));
@@ -451,6 +457,7 @@ class NewsController extends BaseController  {
     private function formatSource($info){
         $data = $info;
         $data['lastNews'] = $info['last_news'];
+        $data['lastTime'] = $info['last_time'];
         $data['photo'] = 'http://autod.b0.upaiyun.com/autod_img/source_logo/face.jpg';
         unset($data['last_news']);
         return $data;

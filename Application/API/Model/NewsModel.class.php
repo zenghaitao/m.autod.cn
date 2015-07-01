@@ -10,6 +10,7 @@ class NewsModel
     protected $_db_news_fav;
     protected $_db_news_follow;
     protected $_db_news_source;
+    protected $_db_news_cate;
     
     public function __construct(){
         $this -> _db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
@@ -18,6 +19,7 @@ class NewsModel
         $this -> _db_news_fav = M('news_fav' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_follow = M('news_follow' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
+        $this -> _db_news_cate = M('news_cate' , 'ad_' , 'DB0_CONFIG');
     }
     
     /**
@@ -447,6 +449,15 @@ class NewsModel
      * @return mixed
      */
     public function getSoureList(){
-        return $this -> _db_news_source -> order("pinyin ASC") -> select();
+        return $this -> _db_news_source -> order("id ASC") -> select();
+    }
+    
+    /**
+     * 获取所有分类
+     *
+     * @return array
+     */
+    public function getCateList(){
+        return $this -> _db_news_cate -> select();
     }
 }

@@ -1,0 +1,17 @@
+<nav>
+  <ul class="pagination">
+    <li>
+      <a href="{$page.first.url}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <foreach name="page.arr" item="row">
+    <if condition="$row.active eq 'yes'"><li class="active"><else/><li></if><a href="{$row.url}">{$row.num}</a></li>
+    </foreach>
+    <li>
+      <a href="{$page.end.url}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
