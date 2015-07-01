@@ -2,6 +2,7 @@
 namespace API\Controller;
 use API\Model\NewsModel;
 use API\Model\StoryModel;
+use Admin\Model\SnatchModel;
 
 class NewsController extends BaseController  {
     
@@ -170,8 +171,6 @@ class NewsController extends BaseController  {
     public function page(){
         //新闻ID
         $news_id = (int)$_GET['newsId'];
-        //页码
-        $page = (int)$_GET['page'];
         
         $M_news = new NewsModel();
         $news_info = $M_news -> getNews($news_id);
@@ -205,7 +204,24 @@ class NewsController extends BaseController  {
      *
      */
     public function photo(){
+        //新闻ID
+        $news_id = (int)$_GET['newsId'];
         
+        $M_news = new NewsModel();
+        $news_info = $M_news -> getNews($news_id);
+        $news_info = $this -> formatNews($news_info);
+        
+        $M_story = new StoryModel();
+        $page_html = $M_story -> getStoryPage($news_info['storyId']);
+        
+        $images = strip_tags($page_html , "<img>");
+        $M_snatch = new SnatchModel();
+        $res = $M_snatch -> img($images);
+        
+        $news_info['imageCount'] = count($res);
+        $news_info['images'] = $res;
+        
+        $this -> succ($news_info);
     }
     
     /**

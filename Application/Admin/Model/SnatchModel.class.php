@@ -27,4 +27,14 @@ class SnatchModel
         
         return (iconv('gbk' , 'utf-8' , $res));
     }
+    
+    public function img($string){
+        $html = str_get_html($string);
+        $imgs = $html -> find('img');
+        $res = array();
+        foreach ($imgs as $img){
+            $res[] = $img -> src;
+        }
+        return $res;
+    }
 }

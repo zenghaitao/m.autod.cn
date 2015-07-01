@@ -218,18 +218,5 @@ class IndexController extends BaseController  {
         
         $this -> succ($list);
     }
-    
-    
-    /**
-     * 处理采集相应
-     *
-     */
-    public function snatch(){
-        $url = 'http://news.163.com/15/0625/06/ASUGGVRH00014JB6.html';
-        
-        $M_snatch = new SnatchModel($url);
-//        $M_snatch -> netease($url);
-        var_dump($M_snatch -> parse() );
-        
-    }
+
 }
