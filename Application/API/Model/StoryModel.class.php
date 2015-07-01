@@ -39,7 +39,7 @@ class StoryModel
         $pages = $this -> _db_story_content -> where("storyId = '$story_id'") -> order("page ASC") -> select();
         $html = '';
         foreach ($pages as $row){
-            $html .= $row['content'];
+            $html .= strip_tags($row['content'] , "<p><img>");;
         }
         return $html;
     }
