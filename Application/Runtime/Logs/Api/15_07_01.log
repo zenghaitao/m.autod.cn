@@ -376,3 +376,177 @@ SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER 
 NOTIC: [2] Missing argument 1 for Admin\Model\SnatchModel::__construct(), called in D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php on line 218 and defined D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 8 行.
 NOTIC: [8] Undefined variable: url D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 9 行.
 
+[ 2015-07-01T15:12:37+08:00 ] 127.0.0.1 /API/News/photo?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000798s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000854s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0321s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0078s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0159s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0037s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0071s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0075s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0064s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 1 for Admin\Model\SnatchModel::__construct(), called in D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php on line 226 and defined D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 8 行.
+NOTIC: [8] Undefined variable: url D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 9 行.
+
+[ 2015-07-01T15:13:00+08:00 ] 127.0.0.1 /API/News/photo?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000299s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000565s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0173s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0096s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0032s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 1 for Admin\Model\SnatchModel::__construct(), called in D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php on line 227 and defined D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 8 行.
+NOTIC: [8] Undefined variable: url D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 9 行.
+
+[ 2015-07-01T15:13:01+08:00 ] 127.0.0.1 /API/News/photo?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000638s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000936s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000999s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0276s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0039s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0072s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0044s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0102s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0003s ]
+NOTIC: [2] Missing argument 1 for Admin\Model\SnatchModel::__construct(), called in D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php on line 227 and defined D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 8 行.
+NOTIC: [8] Undefined variable: url D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 9 行.
+
+[ 2015-07-01T15:13:01+08:00 ] 127.0.0.1 /API/News/photo?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000349s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000502s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0087s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0134s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0080s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0085s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0039s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0055s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0005s ]
+NOTIC: [2] Missing argument 1 for Admin\Model\SnatchModel::__construct(), called in D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php on line 227 and defined D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 8 行.
+NOTIC: [8] Undefined variable: url D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 9 行.
+
+[ 2015-07-01T15:13:01+08:00 ] 127.0.0.1 /API/News/photo?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001016s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000851s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000935s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0118s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0029s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0037s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0051s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0035s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0003s ]
+NOTIC: [2] Missing argument 1 for Admin\Model\SnatchModel::__construct(), called in D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php on line 227 and defined D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 8 行.
+NOTIC: [8] Undefined variable: url D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 9 行.
+
+[ 2015-07-01T15:13:17+08:00 ] 127.0.0.1 /API/News/photo?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000476s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003904s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004161s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0282s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0053s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0297s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0061s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0041s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0003s ]
+NOTIC: [2] Missing argument 1 for Admin\Model\SnatchModel::__construct(), called in D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php on line 226 and defined D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 8 行.
+NOTIC: [8] Undefined variable: url D:\var\wwwroot\m.autod.cn\Application\Admin\Model\SnatchModel.class.php 第 9 行.
+
+[ 2015-07-01T15:13:24+08:00 ] 127.0.0.1 /API/News/page?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000514s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000550s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0090s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0072s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0190s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0052s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0048s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0117s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0193s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( cate_id = '3' AND id != '86' ) ORDER BY id DESC LIMIT 3   [ RunTime:0.0005s ]
+

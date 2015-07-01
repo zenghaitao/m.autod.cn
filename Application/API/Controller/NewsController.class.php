@@ -181,6 +181,14 @@ class NewsController extends BaseController  {
         
         $news_info['page'] = $page_html;
         
+        /*获取相关新闻*/
+        $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId']);
+        foreach ($relate_news as &$row){
+            $row = $this -> formatNews($row);
+        }
+        $news_info['relate'] = $relate_news;
+        
+        
         $this -> succ($news_info);
         
     }

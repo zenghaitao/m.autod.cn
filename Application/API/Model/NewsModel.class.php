@@ -192,6 +192,18 @@ class NewsModel
     }
     
     /**
+     * 获取相关新闻
+     *
+     * @param unknown_type $news_id
+     * @param unknown_type $cate_id
+     */
+    public function getRelatedNews($news_id , $cate_id = 0){
+        $where_str = "cate_id = '{$cate_id}' AND id != '{$news_id}'";
+        $list = $this -> _db_news_choice -> where($where_str) -> order("id DESC") -> limit(3) -> select();
+        return $list;
+    }
+    
+    /**
      * 获取媒体新闻列表
      *
      * @param int $source_id
