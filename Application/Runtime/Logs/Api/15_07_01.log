@@ -207,3 +207,27 @@ SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0040s ]
 SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0052s ]
 SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '' AND page = '1' ) LIMIT 1   [ RunTime:0.0015s ]
 
+[ 2015-07-01T14:22:15+08:00 ] 127.0.0.1 /API/News/page?newsId=86
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000289s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000384s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000420s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: page D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 174 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0214s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0035s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0082s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0035s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0073s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0045s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `cms_autod_story_content` WHERE ( storyId = '502192' ) ORDER BY page ASC  [ RunTime:0.0003s ]
+

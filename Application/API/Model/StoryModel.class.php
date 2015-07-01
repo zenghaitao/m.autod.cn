@@ -35,10 +35,13 @@ class StoryModel
      * @param int $page
      * @return array
      */
-    public function getStoryPage($story_id , $page = 0){
-        $page += 1;  
-        $info = $this -> _db_story_content -> where("storyId = '$story_id' AND page = '{$page}'") -> find();
-        return $info;
+    public function getStoryPage($story_id){
+        $pages = $this -> _db_story_content -> where("storyId = '$story_id'") -> order("page ASC") -> select();
+        $html = '';
+        foreach ($pages as $row){
+            $html .= $row['content'];
+        }
+        return $html;
     }
     
     /**

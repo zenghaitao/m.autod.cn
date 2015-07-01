@@ -178,9 +178,9 @@ class NewsController extends BaseController  {
         $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $page_info = $M_story -> getStoryPage($news_info['storyId']);
+        $page_html = $M_story -> getStoryPage($news_info['storyId']);
         
-        $news_info['page'] = $page_info['content'];       
+        $news_info['page'] = $page_html;
         
         $this -> succ($news_info);
         
