@@ -170,3 +170,15 @@ NOTIC: [8] Undefined index: reg_id D:\var\wwwroot\m.autod.cn\Application\API\Con
 SQL: SELECT * FROM `ad_user_device` WHERE ( reg_id = '' ) LIMIT 1   [ RunTime:0.0018s ]
 SQL: SELECT * FROM `ad_user` WHERE ( id = '' ) LIMIT 1   [ RunTime:0.0009s ]
 
+[ 2015-07-02T11:08:13+08:00 ] 127.0.0.1 /API/News/post
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000468s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: user_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 312 行.
+NOTIC: [8] Undefined variable: comment_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 318 行.
+

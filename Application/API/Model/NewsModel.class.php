@@ -267,9 +267,12 @@ class NewsModel
      * @param int $reply_id
      */
     public function comments($news_id , $post , $user_id , $reply_id = 0){
+        $reply_id = (int)$reply_id;
         if($reply_id)
             $reply = $this -> getComments($reply_id);
-        
+        else 
+            $reply_id = 0;
+            
         $M_user = new UserModel();
         $user = $M_user -> getUserInfo($user_id);
         
@@ -279,7 +282,7 @@ class NewsModel
         $data['uid'] = $user_id;
         $data['username'] = $user['name'];
         $data['userphoto'] = $user['photo'];
-        $data['reply_id'] = (int)$reply_id;
+        $data['reply_id'] = $reply_id;
         $data['reply_uid'] = $reply['uid'];
         $data['reply_post'] = $reply['post'];
         $data['reply_username'] = $reply['username'];
