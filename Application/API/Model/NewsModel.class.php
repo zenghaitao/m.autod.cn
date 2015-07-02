@@ -333,9 +333,9 @@ class NewsModel
      * @param int $news_id
      */
     public function commentsHotList($news_id){
-        $where_str = "news_id = '{$news_id}' AND hot > 0";
+        $where_str = "news_id = '{$news_id}' AND like_count > 0";
         
-        $list = $this -> _db_news_comments -> where($where_str) -> order("hot DESC , id DESC") -> limit(3) -> select();
+        $list = $this -> _db_news_comments -> where($where_str) -> order("like_count DESC , id DESC") -> limit(3) -> select();
         return $list;
     }
     
