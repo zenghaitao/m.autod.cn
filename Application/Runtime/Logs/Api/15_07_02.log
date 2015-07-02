@@ -1,0 +1,172 @@
+[ 2015-07-02T09:09:15+08:00 ] 127.0.0.1 /API/News/video?newsId=97
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001533s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001478s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001590s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0076s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0466s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0054s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0198s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0214s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0179s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id = '97' ) LIMIT 1   [ RunTime:0.0058s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story` [ RunTime:0.0061s ]
+SQL: SHOW COLUMNS FROM `cms_autod_story_content` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `cms_ina_vedio` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `cms_ina_vedio` WHERE ( id = '1646430' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( cate_id = '20' AND id != '97' ) ORDER BY id DESC LIMIT 3   [ RunTime:0.0004s ]
+
+[ 2015-07-02T09:37:44+08:00 ] 127.0.0.1 /API/News/search?keyWord=%E5%AE%9D%E9%A9%AC
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003158s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003426s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: keyword D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 259 行.
+NOTIC: [8] Undefined index: sinceId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 260 行.
+NOTIC: [8] Undefined index: count D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 261 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0378s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0155s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0139s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0113s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0220s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0062s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( title LIKE '%%' ) ORDER BY id DESC  [ RunTime:0.0023s ]
+
+[ 2015-07-02T09:37:53+08:00 ] 127.0.0.1 /API/News/search?keyWord=%E5%A5%94%E9%A9%B0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000557s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000595s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: keyword D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 259 行.
+NOTIC: [8] Undefined index: sinceId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 260 行.
+NOTIC: [8] Undefined index: count D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 261 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0220s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0041s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0037s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0091s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( title LIKE '%%' ) ORDER BY id DESC  [ RunTime:0.0015s ]
+
+[ 2015-07-02T09:38:59+08:00 ] 127.0.0.1 /API/News/search?keyWord=%E5%A4%A7%E5%AE%B6
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000324s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000491s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000531s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: keyword D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 259 行.
+NOTIC: [8] Undefined index: sinceId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 260 行.
+NOTIC: [8] Undefined index: count D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 261 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0072s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0217s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0036s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0200s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0045s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( title LIKE '%%' ) ORDER BY id DESC  [ RunTime:0.0014s ]
+
+[ 2015-07-02T09:39:17+08:00 ] 127.0.0.1 /API/News/search?keyword=%E5%A4%A7%E5%AE%B6
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000677s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: sinceId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 260 行.
+NOTIC: [8] Undefined index: count D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 261 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0540s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0284s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0044s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0127s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( title LIKE '%大家%' ) ORDER BY id DESC  [ RunTime:0.0004s ]
+
+[ 2015-07-02T10:31:12+08:00 ] 127.0.0.1 /API/User/bind
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000473s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000509s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: platform D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 135 行.
+NOTIC: [8] Undefined index: accessToken D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 136 行.
+NOTIC: [8] Undefined index: openId D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 137 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_user_device` [ RunTime:0.0083s ]
+SQL: SHOW COLUMNS FROM `ad_user` [ RunTime:0.0561s ]
+NOTIC: [8] Undefined index: reg_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 150 行.
+SQL: SELECT * FROM `ad_user` WHERE ( open_id = 'A289AD622F186B0C29774917E9133AB0' AND platform = 'qq' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2015-07-02T10:31:36+08:00 ] 127.0.0.1 /API/User/bind
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000352s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000493s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: platform D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 135 行.
+NOTIC: [8] Undefined index: accessToken D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 136 行.
+NOTIC: [8] Undefined index: openId D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 137 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_user_device` [ RunTime:0.0293s ]
+SQL: SHOW COLUMNS FROM `ad_user` [ RunTime:0.0120s ]
+NOTIC: [8] Undefined index: reg_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 150 行.
+SQL: SELECT * FROM `ad_user` WHERE ( open_id = 'A289AD622F186B0C29774917E9133AB0' AND platform = 'qq' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2015-07-02T10:36:14+08:00 ] 127.0.0.1 /API/User/bind
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000354s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000538s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000633s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: platform D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 135 行.
+NOTIC: [8] Undefined index: accessToken D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 136 行.
+NOTIC: [8] Undefined index: openId D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 137 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_user_device` [ RunTime:0.0223s ]
+SQL: SHOW COLUMNS FROM `ad_user` [ RunTime:0.0063s ]
+NOTIC: [8] Undefined index: reg_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 150 行.
+SQL: SELECT * FROM `ad_user` WHERE ( open_id = 'A289AD622F186B0C29774917E9133AB0' AND platform = 'qq' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: INSERT INTO `ad_user` (`open_id`,`name`,`access_token`,`gender`,`province`,`city`,`location`,`photo`,`add_time`,`last_login`,`platform`,`description`) VALUES ('A289AD622F186B0C29774917E9133AB0','给立乐*','FA563887D2667F979FE98B40A46695F9','男','北京','朝阳','北京朝阳','http://qzapp.qlogo.cn/qzapp/101030407/A289AD622F186B0C29774917E9133AB0/100','2015-07-02 10:36:14','2015-07-02 10:36:14','qq','') [ RunTime:0.0141s ]
+SQL: UPDATE `ad_user_device` SET `uid`='4' WHERE ( reg_id = '' ) [ RunTime:0.0087s ]
+SQL: SELECT * FROM `ad_user` WHERE ( id = '4' ) LIMIT 1   [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: pid D:\var\wwwroot\m.autod.cn\Application\API\Model\UserModel.class.php 第 97 行.
+NOTIC: [8] Undefined index: reg_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 153 行.
+SQL: SELECT * FROM `ad_user_device` WHERE ( reg_id = '' ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT * FROM `ad_user` WHERE ( id = '' ) LIMIT 1   [ RunTime:0.0009s ]
+

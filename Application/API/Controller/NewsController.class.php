@@ -189,6 +189,8 @@ class NewsController extends BaseController  {
         }
         $news_info['relate'] = $relate_news;
         
+        //记录hot值
+        $M_news -> incHot($news_id);
         
         $this -> succ($news_info);
         
@@ -199,13 +201,29 @@ class NewsController extends BaseController  {
      *
      */
     public function video(){
-        //视频ID
-        $video_id = $_GET['videoId'];
+        $news_id = $_GET['newsId'];
+        
+        $M_news = new NewsModel();
+        $news_info = $M_news -> getNews($news_id);
+        $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $info = $M_story -> getVideo($video_id);
+        $info = $M_story -> getVideo($news_info['storyId']);
         
-        $this -> succ($info);
+        $news_info['videoId'] = $info['videoid'];
+        $news_info['time'] = $info['time'];
+        
+        /*获取相关视频*/
+        $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId']);
+        foreach ($relate_news as &$row){
+            $row = $this -> formatNews($row);
+        }
+        $news_info['relate'] = $relate_news;
+        
+        //记录hot值
+        $M_news -> incHot($news_id);
+        
+        $this -> succ($news_info);
     }
     
     /**

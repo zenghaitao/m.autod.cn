@@ -52,6 +52,16 @@ class NewsModel
     }
     
     /**
+     * 新闻热度值递增
+     *
+     * @param int $news_id
+     * @return array
+     */
+    public function incHot($news_id){
+        return $this -> _db_news_choice -> where("id = '{$news_id}'")->setInc('hot'); 
+    }
+    
+    /**
      * 将指定文章添加到推荐
      *
      * @param int $story_id

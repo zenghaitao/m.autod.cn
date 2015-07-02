@@ -222,9 +222,31 @@ class UserModel
         . "&format=json";
         
         $info = file_get_contents($get_user_info);
-        $arr = json_decode($info, true);
+        $info = json_decode($info, true);
         
-        var_dump($arr);
+        $data = array();
+        if($info['nickname']){
+            $data['open_id'] = $open_id;
+            $data['name'] = $info['nickname'];
+            $data['access_token'] = $token;
+            if($info['gender'] == '男')
+                $data['gender'] = '男';
+            elseif ($info['gender'] == '女')
+                $data['gender'] = '女';
+            else 
+                $data['gender'] = '未知';
+            $data['province'] = $info['province'];
+            $data['city'] = $info['city'];
+            $data['location'] = $info['province']." ".$info['city'];
+            $data['photo'] = $info['figureurl_2'];
+            $data['add_time'] = date('Y-m-d H:i:s');
+            $data['last_login'] = date('Y-m-d H:i:s');
+            $data['platform'] = 'qq';
+            $data['description'] = '';
+            $data['tages'] = '';
+        }
+        
+        return $data;
     }
 
 }
