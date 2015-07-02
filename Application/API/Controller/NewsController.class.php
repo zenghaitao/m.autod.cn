@@ -348,6 +348,36 @@ class NewsController extends BaseController  {
     }
     
     /**
+     * 评论点赞
+     *
+     */
+    public function commentLike(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
+        $uid = $_SESSION['user_id'];
+        
+        $M_news = new NewsModel();
+        $res = $M_news -> commentLike( $_POST['commentId'] , $uid);
+        $this -> succ($res);
+    }
+    
+    /**
+     * 取消评论点赞
+     *
+     */
+    public function commentUnlike(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
+        $uid = $_SESSION['user_id'];
+        
+        $M_news = new NewsModel();
+        $res = $M_news -> commentUnlike( $_POST['commentId'] , $uid);
+        $this -> succ($res);
+    }
+    
+    /**
      * 点赞
      *
      */

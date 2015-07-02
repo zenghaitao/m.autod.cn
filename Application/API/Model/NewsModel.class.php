@@ -11,6 +11,7 @@ class NewsModel
     protected $_db_news_follow;
     protected $_db_news_source;
     protected $_db_news_cate;
+    protected $_db_news_comments_like;
     
     public function __construct(){
         $this -> _db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
@@ -20,6 +21,7 @@ class NewsModel
         $this -> _db_news_follow = M('news_follow' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_cate = M('news_cate' , 'ad_' , 'DB0_CONFIG');
+        $this -> _db_news_comments_like = M('$_db_news_comments_like' , 'ad_' , 'DB0_CONFIG');
     }
     
     /**
@@ -486,5 +488,43 @@ class NewsModel
      */
     public function getCateList(){
         return $this -> _db_news_cate -> select();
+    }
+    
+    /**
+     * 点赞
+     *
+     * @param int $comment_id
+     * @param int $user_id
+     */
+    public function commentLike($comment_id , $user_id){
+        $data = array();
+        $data['comment_id'] = $comment_id;
+        $data['uid'] = $user_id;
+        $data['add_time'] = date('Y-m-d H:i:s');
+        
+        $res = $this -> _db_news_comments_like -> add($data);
+        if($res){
+            $this -> _db_news_comments -> where("id = '{$comment_id}'")->setInc('hot'); 
+        }
+        return $res;
+    }
+    
+    /**
+     * 取消点赞
+     *
+     * @param int $comment_id
+     * @param int $user_id
+     */
+    public function commentUnlike($comment_id , $user_id){
+        $data = array();
+        $data['comment_id'] = $comment_id;
+        $data['uid'] = $user_id;
+        $data['add_time'] = date('Y-m-d H:i:s');
+        
+        $res = $this -> _db_news_comments_like -> where("comment_id = '{$comment_id}' AND uid = '{$user_id}'") -> delete();
+        if($res){
+            $this -> _db_news_comments -> where("id = '{$comment_id}'")->setDec('hot'); 
+        }
+        return $res;
     }
 }
