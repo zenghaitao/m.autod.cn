@@ -391,6 +391,23 @@ class NewsModel
     }
     
     /**
+     * 是否已点赞
+     *
+     * @param int $news_id
+     * @param int $uid
+     * @return bool
+     */
+    public function liked($news_id , $uid){
+        $data = "news_id = '{$news_id}' AND uid = '{$uid}'";
+        $row = $this -> _db_news_like -> where($data) -> find();
+        if($row['id'])
+            return true;
+        else 
+            return false;
+        
+    }
+    
+    /**
      * 添加收藏
      *
      * @param int $news_id
@@ -422,6 +439,23 @@ class NewsModel
             $this -> _db_news_choice -> where("id = '{$news_id}'")->setDec('fav_count'); 
         }
         return $res;
+    }
+    
+    /**
+     * 是否已收藏
+     *
+     * @param int $news_id
+     * @param int $uid
+     * @return bool
+     */
+    public function faved($news_id , $uid){
+        $data = "news_id = '{$news_id}' AND uid = '{$uid}'";
+        $row = $this -> _db_news_fav -> where($data) -> find();
+        if($row['id'])
+            return true;
+        else 
+            return false;
+        
     }
     
     /**
@@ -470,6 +504,22 @@ class NewsModel
             $this -> _db_news_source -> where("id = '{$source_id}'")->setDec('fans'); 
         }
         return $res;
+    }
+    
+    /**
+     * 是否已订阅
+     *
+     * @param int $source_id
+     * @param int $uid
+     * @return bool
+     */
+    public function followed($source_id , $uid){
+        $data = "source_id = '{$source_id}' AND uid = '{$uid}'";
+        $row = $this -> _db_news_follow -> where($data) -> delete();
+        if($row['id'])
+            return true;
+        else 
+            return false;
     }
     
     /**
@@ -548,5 +598,32 @@ class NewsModel
             $this -> _db_news_comments -> where("id = '{$comment_id}'")->setDec('hot'); 
         }
         return $res;
+    }
+    
+    /**
+     * 是否已点赞
+     *
+     * @param unknown_type $comment_ids
+     * @param unknown_type $user_id
+     */
+    public function commentLiked($comment_ids , $user_id){
+        $result = array();
+        $comment_arr = explode(',' , $comment_ids);
+        foreach ($comment_arr as $id){
+            $result[$id] = 'no';
+        }
+        //未登录用户直接返回
+        if(!$user_id)
+            return $result;
+
+        //登录用户在数据库中查询
+        $list = $this -> _db_news_comments_like -> where("comment_id IN ({$comment_ids}) AND uid = '{$user_id}'") -> select();
+        
+        foreach ($list as $row){
+            if(in_array($row['comment_id'] , $comment_arr)){
+                $result[$row['comment_id']] = 'yes';
+            }
+        }
+        return $result;
     }
 }

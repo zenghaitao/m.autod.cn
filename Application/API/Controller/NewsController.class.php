@@ -182,6 +182,30 @@ class NewsController extends BaseController  {
         
         $news_info['page'] = $page_html;
         
+        /* 是否已点赞 */
+        if($_SESSION['user_id']){
+            $liked = $M_news -> liked($news_id , $_SESSION['user_id']);
+            $news_info['liked'] = $liked?'yes':'no';
+        }else{
+            $news_info['liked'] = 'no';
+        }
+        
+        /* 是否已收藏 */
+        if($_SESSION['user_id']){
+            $faved = $M_news -> faved($news_id , $_SESSION['user_id']);
+            $news_info['faved'] = $faved?'yes':'no';
+        }else{
+            $news_info['faved'] = 'no';
+        }
+        
+        /* 是否已订阅 */
+        if($_SESSION['user_id']){
+            $followed = $M_news -> faved($news_info['sourceId'] , $_SESSION['user_id']);
+            $news_info['followed'] = $followed?'yes':'no';
+        }else{
+            $news_info['followed'] = 'no';
+        }
+        
         /*获取相关新闻*/
         $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId']);
         foreach ($relate_news as &$row){
@@ -324,12 +348,20 @@ class NewsController extends BaseController  {
      */
     public function comments(){
         $M_news = new NewsModel();
+        $uid = $_SESSION['user_id'];
         
         if(!$_GET['sinceId']){
             /* 热门评论列表 */
+            $ids = array();
             $hot = $M_news -> commentsHotList((int)$_GET['newsId']);
             foreach ($hot as &$row){
                 $row = $this -> formatComment($row);
+                $ids[] = $row['id'];
+            }
+            $ids = implode(',' , $ids);
+            $liked_list = $M_news -> commentLiked($ids , $uid);
+            foreach ($hot as &$row){
+                $row['liked'] = $liked_list[$row['id']];
             }
         }
         
@@ -337,11 +369,18 @@ class NewsController extends BaseController  {
         /* 评论列表 */
         $list = $M_news -> commentsList((int)$_GET['newsId'] , (int)$_GET['sinceId'] , (int)$_GET['count'] );
         
+        $ids = array();
         foreach ($list as &$row){
             $row = $this -> formatComment($row);
             $since_id = $row['id'];
+            $ids[] = $row['id'];
         }
+        $ids = implode(',' , $ids);
         
+        $liked_list = $M_news -> commentLiked($ids , $uid);
+        foreach ($list as &$row){
+            $row['liked'] = $liked_list[$row['id']];
+        }
         
         $result = array();
         if($hot)
