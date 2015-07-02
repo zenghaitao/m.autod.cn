@@ -301,6 +301,16 @@ class NewsModel
     }
     
     /**
+     * 评论记录信息
+     *
+     * @param int $id
+     * @return array
+     */
+    public function getCommentInfo($id){
+        return $this -> _db_news_comments -> where("id = '{$id}'") -> find();
+    }
+    
+    /**
      * 评论列表
      *
      * @param int $story_id
@@ -314,6 +324,18 @@ class NewsModel
             $where_str .= " AND id < '{$since_id}'";
         
         $list = $this -> _db_news_comments -> where($where_str) -> order("id DESC") -> limit($count) -> select();
+        return $list;
+    }
+    
+    /**
+     * 热门评论
+     *
+     * @param int $news_id
+     */
+    public function commentsHotList($news_id){
+        $where_str = "news_id = '{$news_id}' AND hot > 0";
+        
+        $list = $this -> _db_news_comments -> where($where_str) -> order("hot DESC , id DESC") -> limit(3) -> select();
         return $list;
     }
     
