@@ -283,10 +283,12 @@ class NewsModel
         $data['username'] = $user['name'];
         $data['userphoto'] = $user['photo'];
         $data['reply_id'] = $reply_id;
-        $data['reply_uid'] = $reply['uid'];
-        $data['reply_post'] = $reply['post'];
-        $data['reply_username'] = $reply['username'];
-        $data['reply_userphoto'] = $reply['userphoto'];
+        if($reply_id){
+            $data['reply_uid'] = $reply['uid'];
+            $data['reply_post'] = $reply['post'];
+            $data['reply_username'] = $reply['username'];
+            $data['reply_userphoto'] = $reply['userphoto'];
+        }
         $data['add_time'] = date("Y-m-d H:i:s");
         
         $comment_id = $this -> _db_news_comments -> add($data);
