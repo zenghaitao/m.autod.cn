@@ -279,7 +279,7 @@ class NewsModel
         $data['uid'] = $user_id;
         $data['username'] = $user['name'];
         $data['userphoto'] = $user['photo'];
-        $data['reply_id'] = $reply_id;
+        $data['reply_id'] = (int)$reply_id;
         $data['reply_uid'] = $reply['uid'];
         $data['reply_post'] = $reply['post'];
         $data['reply_username'] = $reply['username'];
