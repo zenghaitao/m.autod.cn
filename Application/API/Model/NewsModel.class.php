@@ -21,7 +21,7 @@ class NewsModel
         $this -> _db_news_follow = M('news_follow' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_cate = M('news_cate' , 'ad_' , 'DB0_CONFIG');
-        $this -> _db_news_comments_like = M('$_db_news_comments_like' , 'ad_' , 'DB0_CONFIG');
+        $this -> _db_news_comments_like = M('news_comments_like' , 'ad_' , 'DB0_CONFIG');
     }
     
     /**
