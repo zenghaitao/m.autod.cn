@@ -326,7 +326,7 @@ class NewsController extends BaseController  {
         $M_news = new NewsModel();
         $list = $M_news -> commentsList((int)$_GET['newsId'] , (int)$_GET['sinceId'] , (int)$_GET['count'] );
         
-        $this -> succ($list);
+        $this -> succ(array('commentList' => $list));
     }
     
     /**
