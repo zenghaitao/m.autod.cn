@@ -442,7 +442,7 @@ class NewsModel
      * @param int $uid
      */
     public function followDel($source_id , $uid){
-        $data = "source_id = '{$news_id}' AND uid = '{$uid}'";
+        $data = "source_id = '{$source_id}' AND uid = '{$uid}'";
         $res = $this -> _db_news_follow -> where($data) -> delete();
         if($res){
             $this -> _db_news_source -> where("id = '{$source_id}'")->setDec('fans'); 
