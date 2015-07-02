@@ -326,7 +326,29 @@ class NewsController extends BaseController  {
         $M_news = new NewsModel();
         $list = $M_news -> commentsList((int)$_GET['newsId'] , (int)$_GET['sinceId'] , (int)$_GET['count'] );
         
+        foreach ($list as &$row){
+            $row = $this -> formatComment($row);
+        }
+        
         $this -> succ(array('commentList' => $list));
+    }
+    
+    /**
+     * 格式化评论信息
+     *
+     * @param array $comment
+     * @return array
+     */
+    public function formatComment($comment){
+        $data = $comment;
+        $data['replyId'] = $comment['reply_id'];
+        $data['replyUid'] = $comment['reply_uid'];
+        $data['replyPost'] = $comment['reply_post'];
+        $data['replyUsername'] = $comment['reply_username'];
+        $data['replyUserphoto'] = $comment['reply_userphoto'];
+        $data['likeCount'] = $comment['like_count'];
+        
+        return $data;
     }
     
     /**
