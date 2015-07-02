@@ -503,7 +503,7 @@ class NewsController extends BaseController  {
         
         $uid = $_SESSION['user_id'];
         
-        if($uid){
+        if($uid && $_POST['sourceId']){
             $M_news = new NewsModel();
             $res = $M_news -> followAdd((int)$_POST['sourceId'] , $uid);
         }
