@@ -348,6 +348,13 @@ class NewsController extends BaseController  {
         $data['replyUserphoto'] = $comment['reply_userphoto'];
         $data['likeCount'] = $comment['like_count'];
         
+        unset($data['reply_id']);
+        unset($data['reply_uid']);
+        unset($data['reply_post']);
+        unset($data['reply_username']);
+        unset($data['reply_userphoto']);
+        unset($data['like_count']);
+        
         return $data;
     }
     
