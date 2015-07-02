@@ -325,16 +325,12 @@ class NewsController extends BaseController  {
     public function comments(){
         $M_news = new NewsModel();
         
-        $res = array();
-        
         if(!$_GET['sinceId']){
             /* 热门评论列表 */
             $hot = $M_news -> commentsHotList((int)$_GET['newsId']);
             foreach ($hot as &$row){
                 $row = $this -> formatComment($row);
             }
-            if($hot)
-                $res['commentHotList'] = $hot;
         }
         
         
@@ -343,12 +339,18 @@ class NewsController extends BaseController  {
         
         foreach ($list as &$row){
             $row = $this -> formatComment($row);
+            $since_id = $row['id'];
         }
         
-        if($list)
-            $res['commentList'] = $list;
         
-        $this -> succ($res);
+        $result = array();
+        if($hot)
+            $result['commentHotList'] = $hot;
+        if($list)
+            $result['commentList'] = $list;
+        $result['sinceId'] = $since_id;
+        $result['updateCount'] = count($list);
+        $this -> succ($result);
     }
     
     /**
