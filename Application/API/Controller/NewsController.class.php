@@ -341,6 +341,7 @@ class NewsController extends BaseController  {
      */
     public function formatComment($comment){
         $data = $comment;
+        $data['newsId'] = $comment['news_id'];
         $data['replyId'] = $comment['reply_id'];
         $data['replyUid'] = $comment['reply_uid'];
         $data['replyPost'] = $comment['reply_post'];
@@ -348,6 +349,7 @@ class NewsController extends BaseController  {
         $data['replyUserphoto'] = $comment['reply_userphoto'];
         $data['likeCount'] = $comment['like_count'];
         
+        unset($data['news_id']);
         unset($data['reply_id']);
         unset($data['reply_uid']);
         unset($data['reply_post']);
