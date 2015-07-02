@@ -603,9 +603,9 @@ class NewsController extends BaseController  {
         
         $list = array();
         foreach ($res as $row){
-            $row['followed'] = 'yes';
             $row = $M_news -> getSource($row['source_id']);
             $row = $this -> formatSource($row);
+            $row['followed'] = 'yes';
             $list[] = $row;
         }
         
@@ -625,7 +625,7 @@ class NewsController extends BaseController  {
         $M_news = new NewsModel();
         $list = $M_news -> getSoureList();
         
-        $follows = $M_news -> favList($uid);
+        $follows = $M_news -> followList($uid);
         $follow_ids = array();
         foreach ($follows as $row){
             $follow_ids[] = $row['source_id'];
@@ -656,6 +656,7 @@ class NewsController extends BaseController  {
         $data['lastTime'] = $info['last_time'];
         $data['photo'] = 'http://autod.b0.upaiyun.com/autod_img/source_logo/face.jpg';
         unset($data['last_news']);
+        unset($data['last_time']);
         return $data;
     }
     

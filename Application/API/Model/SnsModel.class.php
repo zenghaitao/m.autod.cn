@@ -54,13 +54,49 @@ class SnsModel
         return $count;
     }
     
+    /**
+     * 发布帖子
+     *
+     * @param array $data
+     * @return array
+     */
     public function addThreadStatus($data){
         $res = $this -> _db_sns_thread -> add($data);
         return $res;
     }
     
+    /**
+     * 帖子信息
+     *
+     * @param int $id
+     * @return array
+     */
     public function thread($id){
         $res = $this -> _db_sns_thread -> where("id = '{$id}'") -> find();
         return $res;
+    }
+    
+    /**
+     * 精华帖子列表
+     *
+     */
+    public function populr($since_id , $count){
+        $where_str = "is_excellent = 'yes'";
+        if($since_id)
+            $where_str .= "AND id < '{$since_id}'";
+        $list = $this -> _db_sns_thread -> where($where_str) -> order('id DESC') -> limit($count) -> select();
+        return $list;
+    }
+    
+    /**
+     * 最新帖子列表
+     *
+     */
+    public function lasest($since_id , $count){
+        $where_str = "1";
+        if($since_id)
+            $where_str .= "AND id < '{$since_id}'";
+        $list = $this -> _db_sns_thread -> where($where_str) -> order('id DESC') -> limit($count) -> select();
+        return $list;
     }
 }
