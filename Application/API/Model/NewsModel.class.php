@@ -49,7 +49,7 @@ class NewsModel
         if($since_id)
             $where_str = "id < '{$since_id}'";
         if($action !== 'down'){
-            $where_str .= "AND day = '{$today}'";
+            $where_str .= " AND day = '{$today}'";
         }
         $list = $this -> _db_news_choice -> where($where_str) -> order('id DESC') -> limit($count) -> select();
         return $list;

@@ -2193,3 +2193,51 @@ SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0051s ]
 SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0048s ]
 SQL: SELECT * FROM `ad_news_choice` WHERE ( 1 ) ORDER BY id DESC LIMIT 19   [ RunTime:0.0008s ]
 
+[ 2015-07-03T16:45:25+08:00 ] 127.0.0.1 /API/News/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000592s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: page D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 34 行.
+NOTIC: [8] Undefined index: sinceId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 41 行.
+NOTIC: [8] Undefined index: maxId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 43 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.1086s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0084s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0126s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0164s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0121s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0089s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0088s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'day = '2015-07-03' ) ORDER BY id DESC LIMIT 24' at line 1
+
+[ 2015-07-03T16:45:44+08:00 ] 127.0.0.1 /API/News/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000734s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001157s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001237s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: page D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 34 行.
+NOTIC: [8] Undefined index: sinceId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 41 行.
+NOTIC: [8] Undefined index: maxId D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 43 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0261s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0104s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0072s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0135s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0098s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0086s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0365s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0135s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( 1 AND day = '2015-07-03' ) ORDER BY id DESC LIMIT 28   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: end_laest_news D:\var\wwwroot\m.autod.cn\Application\API\Controller\NewsController.class.php 第 87 行.
+SQL: SELECT * FROM `ad_news_choice` WHERE ( 1 ) ORDER BY id DESC LIMIT 18   [ RunTime:0.0011s ]
+
