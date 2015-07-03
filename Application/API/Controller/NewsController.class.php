@@ -383,10 +383,8 @@ class NewsController extends BaseController  {
         }
         
         $result = array();
-        if($hot)
-            $result['commentHotList'] = $hot;
-        if($list)
-            $result['commentList'] = $list;
+        $result['commentHotList'] = $hot;
+        $result['commentList'] = $list;
         $result['sinceId'] = $since_id;
         $result['updateCount'] = count($list);
         $this -> succ($result);

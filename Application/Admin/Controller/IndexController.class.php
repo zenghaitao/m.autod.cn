@@ -47,7 +47,27 @@ class IndexController extends BaseController  {
         
         $this -> assign('list' , $list);
         $this -> assign("action" , 'source');
-        $this -> display('cate');
+        $this -> display('source');
+    }
+    
+    /**
+     * 新闻管理功能
+     *
+     */
+    public function news(){
+        $M_news = new NewsModel();
+        
+        $this -> display('news');
+    }
+    
+    /**
+     * 新闻管理功能
+     *
+     */
+    public function news_push(){
+        $M_news = new NewsModel();
+        
+        $this -> display('news_push');
     }
     
     /**

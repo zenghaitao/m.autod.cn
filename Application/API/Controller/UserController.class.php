@@ -14,11 +14,7 @@ class UserController extends BaseController {
     }
     
     public function index(){
-        $M_user = new UserModel();
-        $token = 'FFAC42D2A9233418386CF435D07EBA6F';
-        $open_id = 'FA4BF3CA310195E3804F67C1552AF365';
-        $info = $M_user -> qq($token , $open_id);
-        var_dump($info);
+
     }
     
     

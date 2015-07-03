@@ -67,7 +67,6 @@
     <li><a href="/Admin/Index/sns_thread_news">图文</a></li>
   </ul>
 </div>
-          
           </h1>
           <div class="table-responsive">
             <table class="table table-striped">
