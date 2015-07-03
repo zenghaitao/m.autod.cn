@@ -350,6 +350,9 @@ class NewsController extends BaseController  {
         $M_news = new NewsModel();
         $uid = $_SESSION['user_id'];
         
+        $hot = array();
+        $since_id = 0;
+        
         if(!$_GET['sinceId']){
             /* 热门评论列表 */
             $ids = array();
