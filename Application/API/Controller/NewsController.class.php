@@ -98,6 +98,9 @@ class NewsController extends BaseController  {
         }
         $since_id = (int)$row['id'];
         
+        if($page == 'none')
+            $refresh = 'yes';
+        
         $result = array();
         $result['statuses'] = $list;
         $result['updateCount'] = count($list);

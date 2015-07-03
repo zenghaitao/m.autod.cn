@@ -1528,3 +1528,47 @@ SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0067s ]
 SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0059s ]
 SQL: SELECT * FROM `ad_news_choice` WHERE ( 1 ) ORDER BY id DESC LIMIT 27   [ RunTime:0.0007s ]
 
+[ 2015-07-03T16:32:48+08:00 ] 127.0.0.1 /API/News/index?maxId=80&sinceId=80&page=up
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000553s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000588s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0163s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0829s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0057s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0099s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0085s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0056s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0104s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ad_news_choice` WHERE ( id > '80' AND day = '2015-07-03' ) LIMIT 1   [ RunTime:0.0024s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id > '80' AND day = '2015-07-03' ) ORDER BY id DESC LIMIT 13   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id < '80'AND day = '2015-07-03' ) ORDER BY id DESC LIMIT 3   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id < '88' ) ORDER BY id DESC LIMIT 3   [ RunTime:0.0003s ]
+
+[ 2015-07-03T16:32:51+08:00 ] 127.0.0.1 /API/News/index?maxId=80&sinceId=80&page=up
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000739s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001143s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001220s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0063s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0050s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0095s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0042s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0068s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0041s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ad_news_choice` WHERE ( id > '80' AND day = '2015-07-03' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ad_news_choice` WHERE ( id > '80' AND day = '2015-07-03' ) ORDER BY id DESC LIMIT 9   [ RunTime:0.0006s ]
+
