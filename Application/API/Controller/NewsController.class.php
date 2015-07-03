@@ -144,8 +144,8 @@ class NewsController extends BaseController  {
         $news['likeCount'] = $row['like_count'];
         $news['commentsCount'] = $row['comments_count'];
         
-        $news['hot'] = rand(1000 , 9999);
-        $news['faved'] = 'no';
+        $news['hot'] = $row['hot'];
+        //$news['faved'] = 'no';
         return $news;
     }
     
