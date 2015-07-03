@@ -25,22 +25,55 @@ class NewsModel
     }
     
     /**
-     * 获取当天新闻池
+     * 获取最新的新闻
+     *
+     * @param int $max_id
+     */
+    public function laestNews($max_id , $count){
+        $today = date('Y-m-d');
+        $sum_count = $this -> _db_news_choice -> where("id > '{$max_id}' AND day = '{$today}'") -> count();
+        $list = $this -> _db_news_choice -> where("id > '{$max_id}' AND day = '{$today}'") -> order('id DESC') -> limit($count) -> select();
+        return array('list' => $list , 'count' => $sum_count);
+    }
+    
+    /**
+     * 获取更多新闻
+     *
+     * @param int $since_id
+     * @param int $count
+     * @param string $action
+     */
+    public function pullNews($since_id , $count , $action){
+        $today = date('Y-m-d');
+        $where_str = "1";
+        if($since_id)
+            $where_str = "id < '{$since_id}'";
+        if($action == 'up'){
+            $where_str .= "AND day = '{$today}'";
+        }
+        $list = $this -> _db_news_choice -> where($where_str) -> order('id DESC') -> limit($count) -> select();
+        return $list;
+    }
+    
+    /**
+     * 自动创建今日数据
      *
      */
-    public function newsPool($use_ids = array()){
-        $list = $this -> _db_news_choice -> order('id DESC') -> limit(100) ->order("rand()") -> select();
-        $res = array();
-        $i = 0;
-        foreach ($list as $row){
-            if(!in_array($row['story_id'] , $use_ids)){
-                $i ++;
-                $res[] = $row;
-                if($i >= 10 )
-                    break;
-            }
+    public function initTodayNews(){
+        $today = date('Y-m-d');
+        
+        if($_SESSION['today'] == $today){
+            return true;
         }
-        return $res;
+        
+        $_SESSION['today'] = $today;
+        $data['day'] = $today;
+        
+        $count = $this -> _db_news_choice -> where("day = '{$today}'") -> count();
+        if($count < 1){
+            $this -> _db_news_choice -> where("1") -> order("id DESC") -> limit(50) -> save($data);
+        }
+        return true;
     }
     
     /**
