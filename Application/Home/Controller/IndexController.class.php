@@ -20,34 +20,82 @@ class IndexController extends BaseController  {
      */
     public function news(){
         
-        $page = (int)$_GET['page'];
-        if(!$page)
-            $_SESSION['uids'] = '';
+        $page = $_GET['page'];
+        if(!isset($_GET['page']))
+            $page = 'none';
+        elseif ($page != 'down')
+            $page = 'up';
+            
+        //最小id
+        $since_id = (int)$_GET['sinceId'];
+        //最大id
+        $max_id = (int)$_GET['maxId'];
+        //返回记录数
+        $count = rand(8 , 14);
+        if($page == 'none')
+            $count = rand(18 , 28);
         
-        $ids = $_SESSION['uids'];
-        $ids = explode(',' , $ids);
-        $uids = $ids;
+        //客户端是否刷新列表
+        $refresh = 'no';
+        //新入新闻行数
+        $laest_news_count = 0;
+        //新入新闻
+        $laest_news = array();
+        //拉取新闻
+        $pull_news = array();
+        //填补新闻
+        $other_news = array();
         
         $M_news = new NewsModel();
-        //从当天数据池中获取推荐新闻
-        $list = $M_news -> newsPool($ids);
         
-        foreach ($list as &$row){
-            $uids[] = $row['story_id'];
-            $row = $this -> formatNews($row);
-
-            if(count($uids) > 80){
-                array_shift($uids);
+        $M_news -> initTodayNews();
+        
+        if($max_id){
+            $result = $M_news -> laestNews($max_id , $count);
+            if($result['count'] > $count)
+                $refresh = 'yes';
+            
+            if($result['list']){
+                $laest_news = $result['list'];
+                $end_laest_news = end($laest_news);
             }
+            $laest_news_count = count($result['list']);
         }
         
-        $_SESSION['uids'] = implode(',' , $uids);
+        //更新客户端新闻行数
+        $count = $count - $laest_news_count;
+        
+        if($refresh != 'yes' && $count > 1){
+            //继续获取新闻
+            $pull_news = $M_news -> pullNews($since_id , $count , $page);
+            $count = $count - count($pull_news);
+        }
+        
+        if($count > 0){
+            //填充新闻
+            $other_news = $M_news -> pullNews((int)$end_laest_news['id'] , $count , 'down');
+        }
+        
+        //合并三份数据
+        $list = array_merge ( $laest_news ,  $pull_news , $other_news);
+        
+        foreach ($list as &$row){
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
+            if($row['id'] > $max_id)
+                $max_id = $row['id'];
+        }
+        $since_id = (int)$row['id'];
+        
+        if($page == 'none')
+            $refresh = 'yes';
         
         $result = array();
         $result['statuses'] = $list;
         $result['updateCount'] = count($list);
-        $result['nextPage'] = $page + 1;
-        $result['prevPage'] = $page - 1;
+        $result['sinceId'] = $since_id;
+        $result['maxId'] = $max_id;
+        $result['refresh'] = $refresh;
 
         $this -> succ($result);
     }

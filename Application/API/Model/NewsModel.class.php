@@ -352,6 +352,8 @@ class NewsModel
      * @param int $count
      */
     public function commentsList($news_id , $since_id , $count = 10){
+        if(!$count)
+            $count = 10;
         $where_str = "news_id = '{$news_id}'";
         if($since_id)
             $where_str .= " AND id < '{$since_id}'";
