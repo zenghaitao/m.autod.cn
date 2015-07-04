@@ -1,0 +1,38 @@
+[ 2015-07-04T09:18:18+08:00 ] 127.0.0.1 /API/User/bind
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000773s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000838s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: platform D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 131 行.
+NOTIC: [8] Undefined index: accessToken D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 132 行.
+NOTIC: [8] Undefined index: openId D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 133 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_user_device` [ RunTime:0.0289s ]
+SQL: SHOW COLUMNS FROM `ad_user` [ RunTime:0.0051s ]
+NOTIC: [8] Undefined index: reg_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 146 行.
+SQL: SELECT * FROM `ad_user` WHERE ( open_id = '5604038314' AND platform = 'weibo' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: idstr D:\var\wwwroot\m.autod.cn\Application\API\Model\UserModel.class.php 第 190 行.
+
+[ 2015-07-04T09:18:39+08:00 ] 127.0.0.1 /API/User/bind
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000655s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000491s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000530s ]
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 14 行.
+NOTIC: [8] Undefined index: ver D:\var\wwwroot\m.autod.cn\Application\API\Controller\BaseController.class.php 第 15 行.
+NOTIC: [8] Undefined index: platform D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 131 行.
+NOTIC: [8] Undefined index: accessToken D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 132 行.
+NOTIC: [8] Undefined index: openId D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 133 行.
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_user_device` [ RunTime:0.0275s ]
+SQL: SHOW COLUMNS FROM `ad_user` [ RunTime:0.0046s ]
+NOTIC: [8] Undefined index: reg_id D:\var\wwwroot\m.autod.cn\Application\API\Controller\UserController.class.php 第 146 行.
+SQL: SELECT * FROM `ad_user` WHERE ( open_id = '5604038314' AND platform = 'weibo' ) LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: idstr D:\var\wwwroot\m.autod.cn\Application\API\Model\UserModel.class.php 第 192 行.
+

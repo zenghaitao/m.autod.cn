@@ -487,7 +487,10 @@ class NewsController extends BaseController  {
             $res = $M_news -> commentsDel((int)$_POST['commentId'] , $uid);
         }
         
-        $this -> succ($res);
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -502,7 +505,11 @@ class NewsController extends BaseController  {
         
         $M_news = new NewsModel();
         $res = $M_news -> commentLike( $_POST['commentId'] , $uid);
-        $this -> succ($res);
+        
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -517,7 +524,11 @@ class NewsController extends BaseController  {
         
         $M_news = new NewsModel();
         $res = $M_news -> commentUnlike( $_POST['commentId'] , $uid);
-        $this -> succ($res);
+        
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -534,7 +545,10 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> likeAdd((int)$_POST['newsId'] , $uid);
         }
-        $this -> succ($res);
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -551,7 +565,10 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> likeDel((int)$_POST['newsId'] , $uid);
         }
-        $this -> succ($res);
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -565,7 +582,10 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> favAdd((int)$_POST['newsId'] , $uid);
         }
-        $this -> succ($res);
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -579,7 +599,10 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> favDel((int)$_POST['newsId'] , $uid);
         }
-        $this -> succ($res);
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -619,7 +642,10 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> followAdd((int)$_POST['sourceId'] , $uid);
         }
-        $this -> succ($res);
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**
@@ -636,7 +662,10 @@ class NewsController extends BaseController  {
             $M_news = new NewsModel();
             $res = $M_news -> followDel((int)$_POST['sourceId'] , $uid);
         }
-        $this -> succ($res);
+        if($res)
+            $this -> succ($res);
+        else 
+            $this -> fail(102);
     }
     
     /**

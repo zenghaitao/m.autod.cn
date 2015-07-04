@@ -142,6 +142,7 @@ class UserModel
             if($platform == 'qq'){
                 $data = $this -> qq($token , $open_id);
             }
+            
             if(!$data)
                 return false;
                 

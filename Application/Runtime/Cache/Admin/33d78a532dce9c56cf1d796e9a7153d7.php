@@ -54,6 +54,7 @@
   </ul><?php endforeach; endif; ?>
 </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <img src="http://p2.pstatp.com/origin/2499/551039989" />
           <h1 class="sub-header">Section title</h1>
           <div class="table-responsive">
             <table class="table table-striped">

@@ -65,4 +65,8 @@ class StoryModel
         $list = $this -> _db_video -> where("`platform` = 'youku' AND `is_private` = 'no' AND `status` = 'published'") -> limit(10) -> select();
         return $list;
     }
+    
+    public function storyAdminList( $is_choice = 'no', $count = 10){
+        $where_str = "is_choice = '{}'";
+    }
 }

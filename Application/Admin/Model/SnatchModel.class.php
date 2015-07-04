@@ -9,6 +9,79 @@ class SnatchModel
         $this -> _url = $url;
     }
     
+    public function toutiaoPageList(){
+        $html = file_get_html($this -> _url);
+        
+        $a_list = $html -> find('#pagebar a');
+        $max_page = 0;
+        foreach ($a_list as $a){
+            $num = (int)($a -> plaintext);
+            if($num > $max_page)
+                $max_page = $num;
+        }
+        
+        $list = array();
+        for ($i = 1 ; $i <= $max_page ; $i ++){
+            if($i == 1){
+                $list[$i] = $this -> _url;
+                continue;
+            }
+            $list[$i] = $this -> _url . "p{$i}/";
+        }
+        
+        return $list;
+        
+    }
+    
+    public function toutiaoPage(){
+        $string = file_get_contents($this -> _url);
+        $html = str_get_html($string);
+        
+        $list = $html -> find('#ColumnContainer .pin');
+        $result = array();
+        
+        foreach ($list as $row){
+            $e = $row -> find('.pin-content',0);
+            @$data['article_id'] = $e -> group_id;
+            @$data['title'] = trim($e -> find('h2',0) -> plaintext);
+            @$data['short_summary'] = trim($e -> find('.text',0) -> plaintext);
+            @$data['url'] = $e -> find('a',0) -> href;
+            @$data['title_pic1'] = trim($e -> find('img',0) -> src);
+            @$data['title_pic2'] = trim($e -> find('img',1) -> src);
+            @$data['title_pic3'] = trim($e -> find('img',2) -> src);
+            @$data['story_date'] = trim($e -> find('.item_info',0) -> find('td',3) -> plaintext);
+            $result[] = $data;
+        }
+        
+        return $result;
+    }
+    
+    public function toutiaoContent(){
+        $content = '';
+        $imgs = array();
+        
+        $string = file_get_contents($this -> _url);
+        if(!$string)
+            return array('content'=>'','images'=>'');
+        
+        $html = str_get_html($string);
+        $content = @$html -> find(".article-content" , 0) -> innertext;
+        if(strpos($content , 'img')){
+            $imgs = @$html -> find(".article-content img");
+            $img_list = array();
+            foreach ($imgs as $img){
+                @$img_list[] = $img -> src;
+            }
+        }
+        $result = array();
+        $result['content'] = trim($content);
+        $result['images'] = implode(';,;' , $img_list);
+        
+        return $result;
+        
+    }
+    
+    
     public function parse(){
         $url_arr = parse_url($this -> _url);
         if($url_arr['host'] == 'news.163.com'){
@@ -37,4 +110,5 @@ class SnatchModel
         }
         return $res;
     }
+    
 }

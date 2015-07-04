@@ -8,10 +8,161 @@ use API\Model\QiniuModel;
 use Admin\Model\SnatchModel;
 use Think\Upload\Driver\Qiniu\QiniuStorage;
 
+set_time_limit(0);
+
 class IndexController extends BaseController  {
     
     public function __construct(){
         parent::__construct();
+    }
+    
+    public function snatch_media_content(){
+        $since_id = $_GET['id'];
+        $_db_story = M('story' , 'ad_' , 'DB0_CONFIG');
+        $_db_story_content = M('story_content' , 'ad_' , 'DB0_CONFIG');
+        
+        $where_str = "plant = 'toutiao'";
+        if($since_id)
+            $where_str .= " AND id > '{$since_id}'";
+            
+        $list = $_db_story -> where($where_str) -> order("id ASC") -> limit(30) -> select();
+        
+        $max_id = 0;
+        foreach ($list as $row){
+            $max_id = $row['id'];
+            
+            $M_snatch = new SnatchModel($row['url']);
+            $result = $M_snatch -> toutiaoContent();
+            
+            $data = array();
+            $data['article_id'] = $row['article_id'];
+            $data['content'] = $result['content'];
+            $data['images'] = $result['images'];
+            $data['image_count'] = count(explode(';,;',$result['images']));
+            $data['add_time'] = date('Y-m-d H:i:s');
+            
+            $_db_story_content -> add($data);
+        }
+        if($max_id){
+            $url = "/Admin/Index/snatch_media_content?id=".$max_id;
+            echo $url;
+            echo "<script language=\"javascript\" type=\"text/javascript\">
+window.location.href=\"{$url}\"; 
+</script>";
+        }else 
+            die('over');
+        
+    }
+    
+    public function init_video(){
+        $_db_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
+        $_db_story = M('story' , 'ad_' , 'DB0_CONFIG');
+        $list = $_db_video -> select();
+        foreach ($list as $row){
+            $data = array();
+            $data['article_id'] = $row['id'];
+            $data['title'] = $row['title'];
+            $data['short_summary'] = $row['shorttitle'];
+            $data['source'] = 'UUTV';
+            $data['source_id'] = '48';
+            $data['story_date'] = $row['publish_time'];
+            $data['column_id'] = '20';
+            $data['img_count'] = '1';
+            $data['title_pic1'] = $row['img'];
+            $data['url'] = "http://auto.tom.com/video/play_{$row['id']}.html";
+            $data['add_date'] = date('Y-m-d H:i:s');
+            $_db_story -> add($data);
+        }
+        var_dump('over');
+    }
+    
+    public function snatch_media_page(){
+        die('over');
+        
+        $_db_soure = M('soure' , 'ad_' , 'DB0_CONFIG');
+        $_db_story = M('story' , 'ad_' , 'DB0_CONFIG');
+        $list = $_db_soure -> select();
+        foreach ($list as $row) {
+            if($row['media_id'] != '3336759531')
+                continue;
+            
+            
+            echo $row['name'];
+            
+        	$path = "/tmp/".$row['media_id'];
+        	$file_list = scandir($path);
+        	$i = 0;
+        	foreach ($file_list as $val){
+        	    if($val != '.' && $val != '..'){
+        	        $file = $path.'/'.$val;
+        	        //echo "\t".$file;
+        	        
+        	        $M_snatch = new SnatchModel($file);
+        	        $result = $M_snatch -> toutiaoPage();
+        	        
+        	        unset($M_snatch);
+        	        
+        	        foreach ($result as $data){
+            	        $data['source'] = $row['name'];
+            	        $data['source_id'] = $row['media_id'];
+            	        $data['column_id'] = 0;
+            	        $data['add_date'] = date('Y-m-d H:i:s');
+            	        
+            	        if(strpos($data['url'],'group') === false){
+            	           @$_db_story -> add($data);
+            	           $i++;
+            	        }
+        	        }
+        	        unset($result);
+        	    }
+        	}
+        	echo "(".$i.")\n";
+        }
+    }
+    
+    public function snatch_media(){
+        $_db_soure = M('soure' , 'ad_' , 'DB0_CONFIG');
+        $list = $_db_soure -> select();
+        foreach ($list as $row) {
+        	$this -> media_page($row['media_id']);
+        	echo ($row['name']);
+        }
+    }
+    
+    private function media_page($id){
+        $path = "/tmp/".$id;
+        $this -> mkDir($path);
+        
+        $url = "http://toutiao.com/m{$id}/";
+        
+        $M_snatch = new SnatchModel($url);
+        
+        $list = $M_snatch -> toutiaoPageList();
+        
+        foreach ($list as $key => $row){
+            $file = $path."/".$key;
+            if(is_file($file))
+                continue;
+            
+            $html = file_get_contents($row);
+            file_put_contents($file , $html);
+        }
+        
+        $num = count($list);
+        echo "({$num})\n";
+    }
+    
+    public function mkDir($path){
+        $path = explode('/',$path);
+        $dir = '';
+        foreach ($path as $row){
+            if(!$row)
+                continue;
+            $dir .= "/".$row;
+            if(!is_dir($dir)){
+                mkdir($dir);
+            }
+        }
     }
     
     /**
@@ -55,7 +206,8 @@ class IndexController extends BaseController  {
      *
      */
     public function news(){
-        $M_news = new NewsModel();
+        $M_story = new StoryModel();
+        $M_story -> 
         
         $this -> display('news');
     }

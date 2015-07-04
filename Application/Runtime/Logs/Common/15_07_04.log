@@ -1,0 +1,6 @@
+[ 2015-07-04T15:26:53+08:00 ] 127.0.0.1 /user/info/?_=1435994813523
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000387s ]
+ERR: 无法加载模块:User
+
