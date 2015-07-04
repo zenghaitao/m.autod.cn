@@ -1,0 +1,122 @@
+[ 2015-07-04T08:48:47+08:00 ] 127.0.0.1 /Admin/Index/cate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000529s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000564s ]
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0426s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0042s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0059s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0081s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0100s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0065s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0061s ]
+SQL: SELECT * FROM `ad_news_cate`  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000031s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000065s ]
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 75 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 76 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 77 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 78 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 79 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 84 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 85 行.
+NOTIC: [8] Undefined index: today_num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 86 行.
+NOTIC: [8] Undefined index: num D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 87 行.
+NOTIC: [8] Undefined index: last_time D:\var\wwwroot\m.autod.cn\Application\Runtime\Cache\Admin\f23a5e8dfa0184365693e80ac7a58636.php 第 88 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.290947s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.291038s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001528s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001639s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002161s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002284s ]
+
+[ 2015-07-04T08:54:04+08:00 ] 127.0.0.1 /Admin/Index/news_push
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000562s ]
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0244s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0158s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0062s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0039s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0039s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0049s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0109s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0043s ]
+ERR: 模板不存在:./Application/Admin/View/Index/news_push.html
+
+[ 2015-07-04T08:54:09+08:00 ] 127.0.0.1 /Admin/Index/news
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000529s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000763s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000815s ]
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'adSlive'@'localhost' (using password: YES)
+SQL: SHOW COLUMNS FROM `ad_news_choice` [ RunTime:0.0166s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments` [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `ad_news_like` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `ad_news_fav` [ RunTime:0.0043s ]
+SQL: SHOW COLUMNS FROM `ad_news_follow` [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `ad_news_source` [ RunTime:0.0037s ]
+SQL: SHOW COLUMNS FROM `ad_news_cate` [ RunTime:0.0081s ]
+SQL: SHOW COLUMNS FROM `ad_news_comments_like` [ RunTime:0.0041s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000033s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000073s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.277351s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.277402s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000438s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000465s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000556s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000581s ]
+

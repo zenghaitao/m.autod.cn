@@ -11,21 +11,6 @@ class NewsController extends BaseController  {
         $this -> checkPermission();
     }
     
-    public function init(){
-        return false;
-        $M_story = new StoryModel();
-        $M_news = new NewsModel();
-        $list = $M_story -> initNews();
-        foreach ($list as $row){
-            $M_news -> addNewsToChoice($row['id']);
-        }
-        
-        $list = $M_story -> initVideo();
-        foreach ($list as $row){
-            $M_news -> addVideoToChoice($row['id']);
-        }
-    }
-    
     /**
      * 推荐新闻列表
      *
@@ -98,6 +83,17 @@ class NewsController extends BaseController  {
         }
         $since_id = (int)$row['id'];
         
+        //获取广告数据
+        $ad['title'] = '沃尔沃XC90全新上市';
+        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad['type'] = 'ad';
+        $ad['openMode'] = 'topic';
+        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad = $this -> formatNews($ad);
+        $ad['displayMode'] = 'C';
+        
+        array_unshift($list , $ad);
+        
         if($page == 'none')
             $refresh = 'yes';
         
@@ -119,32 +115,32 @@ class NewsController extends BaseController  {
      */
     private function formatNews($row){
         
-        $news['id'] = $row['id'];
-        $news['storyId'] = $row['story_id'];
-        $news['cateId'] = $row['cate_id'];
-        $news['title'] = $row['title'];
-        $news['summary'] = $row['summary'];
-        $news['source'] = $row['source'];
-        $news['sourceId'] = $row['source_id'];
+        $news['id'] = (int)$row['id'];
+        $news['storyId'] = (int)$row['story_id'];
+        $news['cateId'] = (int)$row['cate_id'];
+        $news['title'] = (string)$row['title'];
+        $news['summary'] = (string)$row['summary'];
+        $news['source'] = (string)$row['source'];
+        $news['sourceId'] = (int)$row['source_id'];
 
         $images = explode(';,;' , $row['images']);
         $news['imageCount'] = count($images);
-        $news['images'] = $images;
+        $news['images'] = (array)$images;
         
-        $news['postTime'] = $row['story_date'];
+        $news['postTime'] = (string)$row['story_date'];
         if($news['imageCount'] == 3)
             $news['displayMode'] = 'B';
         else 
             $news['displayMode'] = 'A';
-        $news['type'] = $row['type'];
-        $news['openMode'] = $row['open_mode'];
-        $news['gourl'] = '';
+        $news['type'] = (string)$row['type'];
+        $news['openMode'] = (string)$row['open_mode'];
+        $news['gourl'] = (string)$row['gourl'];
         
-        $news['favCount'] = $row['fav_count'];
-        $news['likeCount'] = $row['like_count'];
-        $news['commentsCount'] = $row['comments_count'];
+        $news['favCount'] = (int)$row['fav_count'];
+        $news['likeCount'] = (int)$row['like_count'];
+        $news['commentsCount'] = (int)$row['comments_count'];
         
-        $news['hot'] = $row['hot'];
+        $news['hot'] = (int)$row['hot'];
         //$news['faved'] = 'no';
         return $news;
     }
@@ -258,6 +254,16 @@ class NewsController extends BaseController  {
             $row = $this -> formatNews($row);
         }
         $news_info['relate'] = $relate_news;
+        
+        /* 获取广告数据 */
+        $ad['title'] = '沃尔沃XC90全新上市';
+        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad['type'] = 'ad';
+        $ad['openMode'] = 'topic';
+        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        
+        $news_info['ad'] = $ad;
+        
         
         //记录hot值
         $M_news -> incHot($news_id);
