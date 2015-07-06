@@ -662,12 +662,17 @@ class NewsModel
         foreach ($comment_arr as $id){
             $result[$id] = 'no';
         }
+        
+        if(!count($result))
+            return array();
+        
         //未登录用户直接返回
         if(!$user_id)
             return $result;
 
         //登录用户在数据库中查询
-        $list = $this -> _db_news_comments_like -> where("comment_id IN ({$comment_ids}) AND uid = '{$user_id}'") -> select();
+        $where_str = "comment_id IN ({$comment_ids}) AND uid = '{$user_id}'";
+        $list = $this -> _db_news_comments_like -> where($where_str) -> select();
         
         foreach ($list as $row){
             if(in_array($row['comment_id'] , $comment_arr)){
