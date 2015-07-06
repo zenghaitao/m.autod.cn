@@ -277,14 +277,20 @@ class IndexController extends BaseController  {
         $story = $M_story -> getStoryInfo($info['story_id']);
         $video = $M_story -> getVideo($story['article_id']);
         
+        $this -> assign('info' , $info);
+        $this -> assign('video' , $video);
+        
+        if(isset($_GET['mini'])){
+            $this -> display('video-mini');
+            exit;
+        }
+        
         //热门评论
         $comments = $M_news -> commentsList($news_id , 0 , 50);
         
         //相关新闻
         $relates = $M_news -> getRelatedNews($news_id , 20 , 20);
         
-        $this -> assign('info' , $info);
-        $this -> assign('video' , $video);
         $this -> assign('comments' , $comments);
         $this -> assign('relates' , $relates);
         
