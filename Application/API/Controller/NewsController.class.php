@@ -219,7 +219,10 @@ class NewsController extends BaseController  {
         $M_story = new StoryModel();
         $page_html = $M_story -> getStoryPage($news_info['storyId']);
         
-        $news_info['page'] = $page_html;
+        $this -> assign('html' , $page_html);
+        $html = $this -> fetch('page');
+        
+        $news_info['page'] = $html;
         
         /* 是否已点赞 */
         if($_SESSION['user_id']){
