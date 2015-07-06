@@ -286,7 +286,7 @@ class NewsController extends BaseController  {
         $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $story_info = $M_story -> getStoryInfo($news_info['story_id']);
+        $story_info = $M_story -> getStoryInfo($news_info['storyId']);
         $video_info = $M_story -> getVideo($story_info['article_id']);
         
         $this -> assign('video' , $video_info);
