@@ -100,7 +100,7 @@ $(function(){
                 $('.load_img').css('display','none');
                 dataOff = !dataOff;
                 for(var i=0;i<data.info.statuses.length;i++){
-                    creatNews(data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot)
+                    creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot)
                 }
             }
         })
