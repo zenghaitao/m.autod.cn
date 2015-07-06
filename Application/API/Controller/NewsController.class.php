@@ -283,10 +283,16 @@ class NewsController extends BaseController  {
         $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $info = $M_story -> getVideo($news_info['story_id']);
+        $story_info = $M_story -> getStoryInfo($news_info['story_id']);
+        $video_info = $M_story -> getVideo($story_info['article_id']);
         
-        $news_info['videoId'] = $info['videoid'];
-        $news_info['time'] = $info['time'];
+        $this -> assign('video' , $video_info);
+        $html = $this -> fetch('video');
+        
+        $news_info['videoId'] = $video_info['videoid'];
+        $news_info['time'] = $video_info['time'];
+        $news_info['video_html'] = $html;
+        
         
         /*获取相关视频*/
         $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId']);
