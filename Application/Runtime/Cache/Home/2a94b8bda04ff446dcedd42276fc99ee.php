@@ -36,6 +36,10 @@
 </body>
 
 <script>
+var page = 'init';
+var sinceId = 0;
+var maxId = 0;
+
 //创建新闻列表
 function creatNews(id,displayMode,oBox,imgsrc,title,time,type,hot){
     var oType,aImg;
@@ -70,6 +74,8 @@ $(function(){
             for(var i=0;i<data.info.statuses.length;i++){
                 creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot)
             }
+            sinceId = data.info.sinceId;
+            maxId = data.info.maxId;
         }
     })
     
@@ -93,15 +99,17 @@ $(function(){
         $('.load_img').css('display','block');
         dataOff = !dataOff;
         $.ajax({
-            url:'/Home/Index/news?jsoncallback=?',
+            url:'/Home/Index/news?page=down&sinceId='+sinceId+'&maxId='+maxId+'&jsoncallback=?',
             type:'get',
             dataType:'jsonp',
             success:function(data){
                 $('.load_img').css('display','none');
                 dataOff = !dataOff;
                 for(var i=0;i<data.info.statuses.length;i++){
-                    creatNews(data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot)
+                    creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot)
                 }
+                sinceId = data.info.sinceId;
+                maxId = data.info.maxId;
             }
         })
     }

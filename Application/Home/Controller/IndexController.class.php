@@ -21,10 +21,8 @@ class IndexController extends BaseController  {
     public function news(){
         
         $page = $_GET['page'];
-        if(!isset($_GET['page']))
+        if(!isset($_GET['page']) && $page != 'down' && $page != 'up')
             $page = 'none';
-        elseif ($page != 'down')
-            $page = 'up';
             
         //最小id
         $since_id = (int)$_GET['sinceId'];
