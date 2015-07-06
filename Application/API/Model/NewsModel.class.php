@@ -672,6 +672,7 @@ class NewsModel
 
         //登录用户在数据库中查询
         $where_str = "comment_id IN ({$comment_ids}) AND uid = '{$user_id}'";
+        var_dump($where_str);exit;
         $list = $this -> _db_news_comments_like -> where($where_str) -> select();
         
         foreach ($list as $row){
