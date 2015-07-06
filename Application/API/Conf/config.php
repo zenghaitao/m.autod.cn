@@ -3,7 +3,7 @@ return array(
 	//'配置项'=>'配置值'
 	'SESSION_AUTO_START' => false,
 	'DB0_CONFIG' => array(
-	    'db_name'           => 'autodaily',
+	    'db_name'           => 'autodcn',
         'db_type'           => 'mysql',
         'db_host'           => $_SERVER['AD_DB0_M_HOST'].','.$_SERVER['AD_DB0_S0_HOST'],
         'db_user'           => $_SERVER['AD_DB0_M_USER'].','.$_SERVER['AD_DB0_S0_USER'],

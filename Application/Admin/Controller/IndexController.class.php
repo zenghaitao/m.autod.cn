@@ -16,7 +16,97 @@ class IndexController extends BaseController  {
         parent::__construct();
     }
     
+    public function initNewsChoice(){
+        $_db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        $where_str = "story_date > '2015-01-01' AND img_count > '0' AND is_choice = 'no'";
+        $list = $_db_news_story -> where($where_str) -> order('story_date ASC , id ASC') -> select();
+        foreach ($list as $row){
+            $data = array();
+            $data['story_id'] = $row['id'];
+            $data['cate_id'] = $row['column_id'];
+            $data['title'] = $row['title'];
+            $data['summary'] = $row['short_summary'];
+            $data['source'] = $row['source'];
+            $data['source_id'] = $row['source_id'];
+            
+            $data['images'] = $row['title_pic1'];
+            if($row['title_pic3']){
+                $data['images'] .= ';,;'.$row['title_pic2'];
+                $data['images'] .= ';,;'.$row['title_pic3'];
+            }
+            
+            $data['story_date'] = $row['story_date'];
+            if($row['plant'] == 'UUTV')
+                $data['open_mode'] = 'news';
+            elseif ($row['plant'] == 'toutiao')
+                $data['open_mode'] = 'news';
+            else 
+                $data['open_mode'] = 'news';
+                
+            $data['day'] = $row['story_date'];
+            $data['add_time'] = $row['add_date'];;
+            
+            $_db_news_choice -> add($data);
+            
+            $_db_news_story -> where("id = '{$row['id']}'") -> save(array('is_choice'=>'yes'));
+        }
+        
+        die('over');
+        
+    }
+    
+    public function initNewsCoutent(){
+        exit;
+        
+        $_db_news_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
+        
+        $since_id = $_GET['id'];
+        $max_id = 0;
+        
+        $where_str = '1';
+        if($since_id)
+            $where_str .= " AND id < '{$since_id}'";
+        
+        $list = $_db_news_content -> where($where_str) -> order("id DESC") -> limit(1000) -> select();
+        if(!$list)
+            die('over');
+        foreach ($list as $row){
+            $max_id = $row['id'];
+            if(!$row['image_count'])
+                continue;
+                
+            $array = explode(';,;',$row['images']);
+            $new_imagess = array();
+            
+            foreach ($array as $key => $val){
+                if(strpos($val , 'http://') !== false){
+                    $new_imagess[] = $val;
+                }
+            }
+            
+            $data['images'] = implode(';,;',$new_imagess);
+            $data['image_count'] = count($new_imagess);
+            
+            $_db_news_content -> where("id = '{$row['id']}'") -> save($data);
+        }
+        
+        if($max_id){
+            $url = "/Admin/Index/initNewsCoutent?id=".$max_id;
+            echo $url;
+            echo "<script language=\"javascript\" type=\"text/javascript\">
+window.location.href=\"{$url}\"; 
+</script>";
+        }else 
+            die('over');
+        
+        
+    }
+    
     public function snatch_media_content(){
+        exit;
+        
+        
         $since_id = $_GET['id'];
         $_db_story = M('story' , 'ad_' , 'DB0_CONFIG');
         $_db_story_content = M('story_content' , 'ad_' , 'DB0_CONFIG');
@@ -25,24 +115,41 @@ class IndexController extends BaseController  {
         if($since_id)
             $where_str .= " AND id > '{$since_id}'";
             
-        $list = $_db_story -> where($where_str) -> order("id ASC") -> limit(30) -> select();
+        $list = $_db_story -> where($where_str) -> order("id ASC") -> limit(1) -> select();
+        
+        if(!$list)
+            die('over');
         
         $max_id = 0;
         foreach ($list as $row){
             $max_id = $row['id'];
             
+            $info = $_db_story_content -> where(" id = '{$max_id}' ") -> find();
+            if($info['content'])
+                continue;
+            
             $M_snatch = new SnatchModel($row['url']);
             $result = $M_snatch -> toutiaoContent();
             
+            //var_dump($result);
+            
             $data = array();
+            $data['id'] = $max_id;
             $data['article_id'] = $row['article_id'];
             $data['content'] = $result['content'];
             $data['images'] = $result['images'];
             $data['image_count'] = count(explode(';,;',$result['images']));
+            if(!$data['images'])
+                $data['image_count'] = 0;
+            $data['http'] = $result['http'];
+                
             $data['add_time'] = date('Y-m-d H:i:s');
             
-            $_db_story_content -> add($data);
+            $_db_story_content -> save($data);
         }
+        
+        exit;
+        
         if($max_id){
             $url = "/Admin/Index/snatch_media_content?id=".$max_id;
             echo $url;
@@ -55,8 +162,10 @@ window.location.href=\"{$url}\";
     }
     
     public function init_video(){
+        exit;
+        
         $_db_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
-        $_db_story = M('story' , 'ad_' , 'DB0_CONFIG');
+        $_db_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
         $list = $_db_video -> select();
         foreach ($list as $row){
             $data = array();

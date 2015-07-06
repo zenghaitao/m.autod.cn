@@ -3,7 +3,6 @@ namespace API\Controller;
 use API\Model\NewsModel;
 use API\Model\StoryModel;
 use Admin\Model\SnatchModel;
-
 class NewsController extends BaseController  {
     
     public function __construct(){
@@ -103,7 +102,6 @@ class NewsController extends BaseController  {
         $result['sinceId'] = $since_id;
         $result['maxId'] = $max_id;
         $result['refresh'] = $refresh;
-
         $this -> succ($result);
     }
     
@@ -122,7 +120,6 @@ class NewsController extends BaseController  {
         $news['summary'] = (string)$row['summary'];
         $news['source'] = (string)$row['source'];
         $news['sourceId'] = (int)$row['source_id'];
-
         $images = explode(';,;' , $row['images']);
         $news['imageCount'] = count($images);
         $news['images'] = (array)$images;
@@ -284,7 +281,7 @@ class NewsController extends BaseController  {
         $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $info = $M_story -> getVideo($news_info['storyId']);
+        $info = $M_story -> getVideo($news_info['story_id']);
         
         $news_info['videoId'] = $info['videoid'];
         $news_info['time'] = $info['time'];
@@ -315,14 +312,10 @@ class NewsController extends BaseController  {
         $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $page_html = $M_story -> getStoryPage($news_info['storyId']);
+        $page_info = $M_story -> getStoryPage($news_info['story_id']);
         
-        $images = strip_tags($page_html , "<img>");
-        $M_snatch = new SnatchModel();
-        $res = $M_snatch -> img($images);
-        
-        $news_info['imageCount'] = count($res);
-        $news_info['images'] = $res;
+        $news_info['imageCount'] = $page_info['image_count'];
+        $news_info['images'] = explode(';,;',$page_info['images']);
         
         $this -> succ($news_info);
     }
@@ -392,6 +385,31 @@ class NewsController extends BaseController  {
         }
         
         $this -> succ($comment_id);
+    }
+    
+    /**
+     * 我的评论列表
+     *
+     */
+    public function myCommentList(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
+        $uid = $_SESSION['user_id'];
+        $since_id = (int)$_GET['sinceId'];
+        
+        $M_news = new NewsModel();
+        $list = $M_news -> myCommentList($uid , $since_id);
+        foreach ($list as &$row){
+            $row = $this -> formatComment($row);
+            $since_id = $row['id'];
+        }
+        
+        $result = array();
+        $result['myCommentList'] = $list;
+        $result['sinceId'] = $since_id;
+        $result['updateCount'] = count($list);
+        $this -> succ($result);
     }
     
     /**

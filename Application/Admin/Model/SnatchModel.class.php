@@ -56,9 +56,18 @@ class SnatchModel
         return $result;
     }
     
+    /**
+     * 头条内容分析处理
+     *
+     * @return array
+     */
     public function toutiaoContent(){
         $content = '';
         $imgs = array();
+        
+        if(strpos($this -> _url , 'http://toutiao.com/a') === false){
+            return array('content'=>'','images'=>'');
+        }
         
         $string = file_get_contents($this -> _url);
         if(!$string)
@@ -73,10 +82,32 @@ class SnatchModel
                 @$img_list[] = $img -> src;
             }
         }
-        $result = array();
-        $result['content'] = trim($content);
-        $result['images'] = implode(';,;' , $img_list);
         
+        //去除多余js事件
+        $content = str_replace('onerror="javascript:errorimg.call(this);"' , '' , $content);
+        
+        //去掉script
+        if(strpos($content , '<script') !== false){
+            $tags = @$html -> find("script");
+            foreach ($tags as $tag){
+                $content = str_replace($tag -> outertext , '' , $content);
+            }
+        }
+        
+        //去掉投票部分
+        if(strpos($content , 'mp-vote-box') !== false){
+            $votes = @$html -> find(".mp-vote-box");
+            foreach ($votes as $vote){
+                $vote_html = $vote -> outertext;
+                $content = str_replace($vote_html , '' , $content);
+            }
+        }
+        
+        $result = array();
+        $result['content'] = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
+        //$result['content'] = trim($content);
+        $result['images'] = implode(';,;' , $img_list);
+        $result['http'] = $http_response_header[0];
         return $result;
         
     }

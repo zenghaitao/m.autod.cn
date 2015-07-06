@@ -71,7 +71,7 @@ class NewsModel
         
         $count = $this -> _db_news_choice -> where("day = '{$today}'") -> count();
         if($count < 1){
-            $this -> _db_news_choice -> where("1") -> order("id DESC") -> limit(50) -> save($data);
+            $this -> _db_news_choice -> where("1") -> order("id DESC") -> limit(100) -> save($data);
         }
         return true;
     }
@@ -341,6 +341,21 @@ class NewsModel
      */
     public function getCommentInfo($id){
         return $this -> _db_news_comments -> where("id = '{$id}'") -> find();
+    }
+    
+    /**
+     * 我参与的评论列表
+     *
+     */
+    public function myCommentList($user_id , $since_id = 0 , $count = 10){
+        if(!$count)
+            $count = 10;
+        $where_str = "uid = '{$user_id}' OR reply_uid = '{$user_id}'";
+        if($since_id)
+            $where_str .= " AND id < '{$since_id}'";
+        
+        $list = $this -> _db_news_comments -> where($where_str) -> order("id DESC") -> limit($count) -> select();
+        return $list;
     }
     
     /**

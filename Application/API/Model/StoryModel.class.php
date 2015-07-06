@@ -9,8 +9,8 @@ class StoryModel
     protected $_db_video;
     
     public function __construct(){
-        $this -> _db_story = M('autod_story' , 'cms_' , 'DB0_CONFIG');
-        $this -> _db_story_content = M('autod_story_content' , 'cms_' , 'DB0_CONFIG');
+        $this -> _db_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        $this -> _db_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
     }
     
@@ -36,7 +36,7 @@ class StoryModel
      * @return array
      */
     public function getStoryPage($story_id){
-        $pages = $this -> _db_story_content -> where("storyId = '$story_id'") -> order("page ASC") -> select();
+        $pages = $this -> _db_story_content -> where("story_id = '$story_id'") -> order("page ASC") -> select();
         $html = '';
         foreach ($pages as $row){
             $html .= strip_tags($row['content'] , "<p><img>");;
