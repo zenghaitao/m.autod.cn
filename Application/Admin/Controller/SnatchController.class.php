@@ -154,7 +154,7 @@ class SnatchController extends BaseController  {
 
                         $data['hot'] = rand(321,1999);
                         $data['day'] = date('Y-m-d');
-                        $data['add_date'] = date('Y-m-d H:i:s');
+                        $data['add_time'] = date('Y-m-d H:i:s');
                         $news_id = $_db_news_choice -> add($data);
                         
                         $_db_news_story -> where("id = '{$story_id}'") -> save(array('is_choice'=>'yes'));
