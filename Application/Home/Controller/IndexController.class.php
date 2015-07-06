@@ -131,6 +131,7 @@ class IndexController extends BaseController  {
         $news['favCount'] = $row['fav_count'];
         $news['likeCount'] = $row['like_count'];
         $news['commentsCount'] = $row['comments_count'];
+        $news['hot'] = $row['hot'];
         
         return $news;
     }

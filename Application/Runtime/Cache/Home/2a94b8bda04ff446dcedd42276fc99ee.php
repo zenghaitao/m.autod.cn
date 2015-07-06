@@ -36,7 +36,6 @@
 </body>
 
 <script>
-var page = 'init';
 var sinceId = 0;
 var maxId = 0;
 
