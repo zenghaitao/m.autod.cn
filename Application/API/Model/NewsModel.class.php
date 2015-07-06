@@ -663,7 +663,7 @@ class NewsModel
             $result[$id] = 'no';
         }
         
-        if(!count($result))
+        if(!$comment_ids)
             return array();
         
         //未登录用户直接返回
