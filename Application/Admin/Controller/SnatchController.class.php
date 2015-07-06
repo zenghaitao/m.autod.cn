@@ -75,7 +75,10 @@ class SnatchController extends BaseController  {
                     $row['img_count'] = 0;
                     
                 $row['add_date'] = date('Y-m-d H:i:s');
-                $_db_news_spider_page -> add($row);
+                
+                $one = $_db_news_spider_page -> where("article_id = '{$row['article_id']}'") -> find();
+                if(!$one)
+                    $_db_news_spider_page -> add($row);
             }
             
             echo ($source['name'].':'.count($array)."\n");
@@ -105,6 +108,9 @@ class SnatchController extends BaseController  {
             $M_snatch = new SnatchModel($row['url']);
             //$M_snatch = new SnatchModel('http://toutiao.com/a4639192103/');
             $result = $M_snatch -> toutiaoContent();
+            
+            //更新spider行记录状态
+            $_db_news_spider_page -> where("id = '{$row['id']}'") -> save(array('is_snatch'=>'yes'));
             
             if($result['content']){
                 //移入story表
@@ -158,8 +164,6 @@ class SnatchController extends BaseController  {
                     $i++;
                 }
             }
-            //更新spider行记录状态
-            $_db_news_spider_page -> where("id = '{$row['id']}'") -> save(array('is_snatch'=>'yes'));
         }
         
         var_dump("Update:".$i);

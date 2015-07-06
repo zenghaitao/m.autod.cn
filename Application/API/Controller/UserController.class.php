@@ -132,10 +132,6 @@ class UserController extends BaseController {
         $token          = $_POST['accessToken'];
         $open_id        = $_POST['openId'];
         
-        $platform = 'weibo';
-        $token = '2.00k3yPHG03t9ZI53c06305602yZgqB';
-        $open_id = '5604038314';
-        
         if(empty($token) || empty($platform) || empty($open_id)) {
             $this -> fail(101);
         }
