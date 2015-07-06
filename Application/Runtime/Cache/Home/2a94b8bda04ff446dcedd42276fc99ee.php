@@ -40,17 +40,20 @@ var sinceId = 0;
 var maxId = 0;
 
 //创建新闻列表
-function creatNews(id,displayMode,oBox,imgsrc,title,time,type,hot){
+function creatNews(id,displayMode,oBox,imgsrc,title,time,type,hot,gourl){
     var oType,aImg;
     switch(type){
         case 'default':
             oType='';
             break;
         case 'hot':
-            oType='<span class="type">热点</span>';
+            oType='<span class="type1">热点</span>';
             break;
         case 'head':
-            oType='<span class="type">头条</span>';
+            oType='<span class="type2">头条</span>';
+            break;
+        case 'ad':
+            oType='<span class="type3">推广</span>';
             break;
     }
     if(displayMode=='A'){
@@ -59,7 +62,7 @@ function creatNews(id,displayMode,oBox,imgsrc,title,time,type,hot){
         aImg='<div class="img_cont"><div class="img_box2"><img src="'+imgsrc[0]+'" alt=""></div><div class="img_box2"><img src="'+imgsrc[1]+'" alt=""></div><div class="img_box2"><img src="'+imgsrc[2]+'" alt=""></div></div>';
         oBox.append('<section class="box"><a href="/Home/Index/page?id='+id+'"><h3 class="long_title">'+title+'</h3>'+aImg+'<div class="item_info item_info2"><span class="time">今天</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>');
     }else if(displayMode=='C'){
-        oBox.append('<section class="box"><a href="/Home/Index/page?id='+id+'"><h3 class="long_title">'+title+'</h3><div class="ad_cont"><img src="'+imgsrc+'" alt=""></div><div class="item_info item_info2"><span class="time">'+time+'</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>');
+        oBox.append('<section class="box"><a href="'+gourl+'" target="_blank"><h3 class="long_title">'+title+'</h3><div class="ad_cont"><img src="'+imgsrc+'" alt=""></div><div class="item_info item_info2"><span class="time">今天</span>'+oType+'</div></a></section>');
     }
 }
 $(function(){
@@ -71,7 +74,8 @@ $(function(){
         success:function(data){
             //data.info.statuses.length
             for(var i=0;i<data.info.statuses.length;i++){
-                creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot)
+                
+      creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot,data.info.statuses[i].gourl)
             }
             sinceId = data.info.sinceId;
             maxId = data.info.maxId;
@@ -105,7 +109,7 @@ $(function(){
                 $('.load_img').css('display','none');
                 dataOff = !dataOff;
                 for(var i=0;i<data.info.statuses.length;i++){
-                    creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot)
+                    creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot,data.info.statuses[i].gourl)
                 }
                 sinceId = data.info.sinceId;
                 maxId = data.info.maxId;

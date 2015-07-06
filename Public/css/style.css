@@ -38,7 +38,9 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 .item_info{width: 100%;font-size: 11px;line-height: 12px;color: #999;text-align: right;position: absolute;bottom: 2px;padding-left: 34%;padding-left: -webkit-calc(31.3% + 10px);padding-left: -o-calc(31.3% + 10px);padding-left: -ms-calc(31.3% + 10px);padding-left: -moz-calc(31.3% + 10px);padding-left: calc(31.3% + 10px);-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 .item_info span{display: inline-block;vertical-align: middle;text-align: left;}
 .time{background: url(../images/clock.png) no-repeat left top;background-size: 12px;padding-left: 16px;float: left;height: 12px;max-width: 65px;overflow: hidden;}
-.type{height: 12px;font-size: 10px;background: #ff7d78;color: #fff;text-align: center;border-radius: 6px;padding: 0 2px;margin-left: 10px;}
+.type1{height: 12px;font-size: 10px;background: #ff7d78;color: #fff;text-align: center;border-radius: 6px;padding: 0 2px;margin-left: 10px;}
+.type2{height: 12px;font-size: 10px;background: #2a90d7;color: #fff;text-align: center;border-radius: 6px;padding: 0 2px;margin-left: 10px;}
+.type3{height: 12px;font-size: 10px;background: #aaa;color: #fff;text-align: center;border-radius: 6px;padding: 0 2px;margin-left: 10px;}
 .img_cont{width: 100%;overflow: hidden;}
 .img_box2{width: 33.3%;float: left;overflow: hidden;}
 .img_box2 img{width: 95%;display: block;border-radius: 4px;margin: 0 auto;}
@@ -77,13 +79,18 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 
 
 
+/*视频列表*/
+.video_box{overflow: hidden;border-bottom: 1px solid #d8d8d8;padding: 10px;font-size: 0;}
+.video_l,.video_r{width: 49%;display: inline-block;font-size: 14px;}
+.video_r{float: right;}
+.video_link{display: block;position: relative;}
+.video_link img{width: 100%;border-radius: 4px;display: block;}
+.video_link span img{width: 17%;position: absolute;border-radius: 0;bottom: 10px;left: 10px;}
+.video_l h3,.video_r h3{font-weight: normal;font-size: 14px;color: #666;margin-top: 4px;}
+.item_info2{width: 100%;font-size: 11px;line-height: 12px;color: #999;text-align: right;color: #b7b7b7;}
+.item_info2 .time{float: none;margin-right: 20px;}
 
-
-
-
-
-
-
-
+/*视频详情*/
+.video_con{width: 100%;background: #000;}
 
 

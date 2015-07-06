@@ -85,6 +85,19 @@ class IndexController extends BaseController  {
         }
         $since_id = (int)$row['id'];
         
+        //获取广告数据
+        $ad['title'] = '沃尔沃XC90全新上市';
+        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad['type'] = 'ad';
+        $ad['openMode'] = 'topic';
+        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad = $this -> formatNews($ad);
+        
+        $ad['displayMode'] = 'C';
+        $ad['storyDate'] = date('Y-m-d H:i:s');
+        
+        array_unshift($list , $ad);
+        
         if($page == 'none')
             $refresh = 'yes';
         
@@ -121,7 +134,7 @@ class IndexController extends BaseController  {
         $news['postTime'] = $row['story_date'];
         $news['type'] = $row['type'];
         $news['openMode'] = $row['open_mode'];
-        $news['gourl'] = '';
+        $news['gourl'] = $row['gourl'];
         
         if($news['imageCount'] == 3)
             $news['displayMode'] = 'B';
@@ -197,8 +210,6 @@ class IndexController extends BaseController  {
     public function page(){
         $news_id = (int)$_GET['id'];
         
-        
-        
         //新闻信息
         $M_news = new NewsModel();
         $info = $M_news -> getNews($news_id);
@@ -206,6 +217,35 @@ class IndexController extends BaseController  {
         //记录hot值
         $M_news -> incHot($news_id);
         
+        if($info['open_mode'] == 'video'){
+            $this -> video($info);
+            exit;
+        }
+        
+        if($info['open_mode'] == 'topic'){
+            $this -> topic($info);
+        }
+        
+        if($info['open_mode'] == 'news'){
+            $this -> content($info);
+        }
+        
+        if($info['open_mode'] == 'pic'){
+            $this -> photo($info);
+        }
+        
+        if($info['open_mode'] == 'sns'){
+            $this -> sns($info);
+        }
+    }
+    
+    /**
+     * 新闻内容
+     *
+     */
+    private function content($info){
+        $news_id = $info['id'];
+        $M_news = new NewsModel();
         //页面内容
         $M_story = new StoryModel();
         $page = $M_story -> getStoryPage($info['story_id']);
@@ -228,21 +268,50 @@ class IndexController extends BaseController  {
      * 视频内容
      *
      */
-    public function video(){
-        //视频ID
-        $video_id = $_GET['videoId'];
+    private function video($info){
+        $news_id = $info['id'];
+        $M_news = new NewsModel();
         
+        //页面内容
         $M_story = new StoryModel();
-        $info = $M_story -> getVideo($video_id);
+        $story = $M_story -> getStoryInfo($info['story_id']);
+        $video = $M_story -> getVideo($story['article_id']);
         
-        $this -> succ($info);
+        //热门评论
+        $comments = $M_news -> commentsList($news_id , 0 , 50);
+        
+        //相关新闻
+        $relates = $M_news -> getRelatedNews($news_id , 20 , 20);
+        
+        $this -> assign('info' , $info);
+        $this -> assign('video' , $video);
+        $this -> assign('comments' , $comments);
+        $this -> assign('relates' , $relates);
+        
+        $this -> display('video');
     }
     
     /**
      * 图片新闻内容
      *
      */
-    public function photo(){
+    private function photo(){
+        
+    }
+    
+    /**
+     * 专题内容
+     *
+     */
+    private function topic(){
+        
+    }
+    
+    /**
+     * 社区内容
+     *
+     */
+    private function sns(){
         
     }
     
@@ -261,24 +330,5 @@ class IndexController extends BaseController  {
         $this -> succ($list);
     }
     
-    /**
-     * 搜索关键词推荐
-     *
-     */
-    public function hotWord(){
-        
-    }
-    
-    
-    /**
-     * 评论列表
-     *
-     */
-    public function comments(){
-        $M_news = new NewsModel();
-        $list = $M_news -> commentsList((int)$_GET['newsId'] , (int)$_GET['sinceId'] , (int)$_GET['count'] );
-        
-        $this -> succ($list);
-    }
 
 }

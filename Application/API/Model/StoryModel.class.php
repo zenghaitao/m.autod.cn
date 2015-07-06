@@ -21,8 +21,8 @@ class StoryModel
      * @return array
      */
     public function getStoryInfo($story_id){
-        $info = $this -> _db_story -> where("id = '{$story_id}' AND status = 'published'") -> find();
-        $count = $this -> _db_story_content -> where("storyId = '$story_id'") -> count();
+        $info = $this -> _db_story -> where("id = '{$story_id}' AND is_choice = 'yes'") -> find();
+        $count = $this -> _db_story_content -> where("story_id = '$story_id'") -> count();
         $info['page_num'] = $count;
         
         return $info;
