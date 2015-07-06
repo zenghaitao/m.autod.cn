@@ -242,9 +242,9 @@ class NewsModel
      * @param unknown_type $news_id
      * @param unknown_type $cate_id
      */
-    public function getRelatedNews($news_id , $cate_id = 0){
+    public function getRelatedNews($news_id , $cate_id = 0 , $count = 3){
         $where_str = "cate_id = '{$cate_id}' AND id != '{$news_id}'";
-        $list = $this -> _db_news_choice -> where($where_str) -> order("id DESC") -> limit(3) -> select();
+        $list = $this -> _db_news_choice -> where($where_str) -> order("id DESC") -> limit($count) -> select();
         return $list;
     }
     
@@ -382,10 +382,10 @@ class NewsModel
      *
      * @param int $news_id
      */
-    public function commentsHotList($news_id){
+    public function commentsHotList($news_id , $count = 3){
         $where_str = "news_id = '{$news_id}' AND like_count > 0";
         
-        $list = $this -> _db_news_comments -> where($where_str) -> order("like_count DESC , id DESC") -> limit(3) -> select();
+        $list = $this -> _db_news_comments -> where($where_str) -> order("like_count DESC , id DESC") -> limit($count) -> select();
         return $list;
     }
     

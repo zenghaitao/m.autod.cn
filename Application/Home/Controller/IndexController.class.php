@@ -11,7 +11,7 @@ class IndexController extends BaseController  {
     }
     
     public function index(){
-        return false;
+        $this -> display('index');
     }
     
     /**
@@ -198,16 +198,33 @@ class IndexController extends BaseController  {
      *
      */
     public function page(){
-        //新闻ID
-        $story_id = (int)$_GET['storyId'];
-        //页码
-        $page = (int)$_GET['page'];
+        $news_id = (int)$_GET['id'];
         
+        
+        
+        //新闻信息
+        $M_news = new NewsModel();
+        $info = $M_news -> getNews($news_id);
+        
+        //记录hot值
+        $M_news -> incHot($news_id);
+        
+        //页面内容
         $M_story = new StoryModel();
-        $info = $M_story -> getStoryPage($story_id , $page);
+        $page = $M_story -> getStoryPage($info['story_id']);
         
-        $this -> succ($info);
+        //热门评论
+        $comments = $M_news -> commentsList($news_id , 0 , 50);
         
+        //相关新闻
+        $relates = $M_news -> getRelatedNews($news_id , 0 , 20);
+        
+        $this -> assign('info' , $info);
+        $this -> assign('page' , $page);
+        $this -> assign('comments' , $comments);
+        $this -> assign('relates' , $relates);
+        
+        $this -> display('page');
     }
     
     /**

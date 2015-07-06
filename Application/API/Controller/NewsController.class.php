@@ -245,6 +245,8 @@ class NewsController extends BaseController  {
             $news_info['followed'] = 'no';
         }
         
+        /* 来源详细信息 */
+        
         /*获取相关新闻*/
         $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId']);
         foreach ($relate_news as &$row){
