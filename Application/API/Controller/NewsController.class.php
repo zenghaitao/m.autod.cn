@@ -182,7 +182,7 @@ class NewsController extends BaseController  {
             $count = 10;
         $begin_id = (int)$_GET['sinceId'];
         $M_news = new NewsModel();
-        $list = $M_news -> newsSourceList($cate_id , $begin_id , $count);
+        $list = $M_news -> newsSourceList($source_id , $begin_id , $count);
         $since_id = 0;
         
         foreach ($list as &$row){
