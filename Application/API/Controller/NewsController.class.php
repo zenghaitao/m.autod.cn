@@ -604,6 +604,9 @@ class NewsController extends BaseController  {
      * 
      */
     public function fav(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
@@ -621,6 +624,9 @@ class NewsController extends BaseController  {
      *
      */
     public function unfav(){
+        //此方法需要用户登录后操作
+        $this -> mustLogin();
+        
         $uid = $_SESSION['user_id'];
         
         if($uid){
