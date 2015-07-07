@@ -168,12 +168,9 @@ class IndexController extends BaseController  {
             $since_id = $row['id'];
         }
         
-        $result = array();
-        $result['statuses'] = $list;
-        $result['updateCount'] = count($list);
-        $result['sinceId'] = $since_id;
-        
-        $this -> succ($result);
+        if($cate_id == 20){
+            $this -> display('video_list')
+        }
     }
     
     /**

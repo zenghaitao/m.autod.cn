@@ -667,7 +667,19 @@ class NewsController extends BaseController  {
             $list[] = $M_news -> getNews($row['news_id']);
         }
         
-        $this -> succ($list);
+        foreach ($list as &$row){
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
+            
+            $since_id = $row['id'];
+        }
+        
+        $result = array();
+        $result['statuses'] = $list;
+        $result['updateCount'] = count($list);
+        $result['sinceId'] = $since_id;
+        
+        $this -> succ($result);
     }
     
     /**
