@@ -148,10 +148,10 @@ class IndexController extends BaseController  {
         $ad['displayMode'] = 'C';
         
         //获取广告数据
-        $ad1['title'] = '沃尔沃XC90全新上市';
-        $ad1['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad1['title'] = '爱卡汽车你我的新选择';
+        $ad1['images'] = 'http://p2.pstatp.com/origin/2499/7735513385';
         $ad1['type'] = 'ad';
-        $ad1['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad1['gourl'] = 'http://m.xcar.com.cn';
         $ad1 = $this -> formatNews($ad1);
         
         $ad1['openMode'] = 'topic';

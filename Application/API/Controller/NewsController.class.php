@@ -506,6 +506,7 @@ class NewsController extends BaseController  {
             }
         }
         
+        $news_info = $M_news -> getNews((int)$_GET['newsId']);
         
         /* 评论列表 */
         $list = $M_news -> commentsList((int)$_GET['newsId'] , (int)$_GET['sinceId'] , (int)$_GET['count'] );
@@ -524,6 +525,7 @@ class NewsController extends BaseController  {
         }
         
         $result = array();
+        $result['title'] = $news_info['title'];
         $result['commentHotList'] = $hot;
         $result['commentList'] = $list;
         $result['sinceId'] = $since_id;
