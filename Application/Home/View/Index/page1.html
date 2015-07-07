@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta content=" initial-scale=1, maximum-scale=1" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no"/>
+<meta charset="UTF-8">
+<title>{$_PAGE['title']}</title>
+<link rel="stylesheet" href="/Public/css/style.css">
+<script src="/Public/js/jquery.js"></script>
+</head>
+<body class="pat">
+    <div class="app_banner"></div>
+    <div class="bar_top"> 
+        <a href="/Home/Index/source?id={$source.id}"> 
+            <div class="avatar"> 
+                <img src="{$source.icon}" class="avatar" alt="{$source.name}">
+            </div> 
+            <span class="name">{$source.name}</span> 
+        </a> 
+    </div>
+    <article class="con_box">
+        <h1 class="title">{$info.title}</h1>
+        <div class="subtitle"> 
+            <span>{$source.name}</span>
+            <span>{$source.story_date}</span>
+            <span class="fr">{$info.hot}热度</span>
+        </div>
+        <div class="article_box">
+            <div>
+            {$page}
+            </div>
+        </div>
+        <div class="overflow_show">
+            <a class="text_link">
+                <i>展开</i><i>全文</i>
+            </a>
+        </div>
+    </article>
+    <div class="midd_banner">
+        <img class="banner" src="http://s0.pstatp.com/resource/toutiao_wap/static/image/banner_middle_1bf5188.jpg">
+    </div>
+    <if condition="$ad">
+    <div class="ad_box">
+        <a href="{$ad.gourl}">
+            <div class="ad_title">{$ad.title}</div>
+            <img src="{$ad.images.0}">
+        </a>
+    </div>
+    </if>
+    
+    <if condition="$comments">
+    <div class="com_box">
+        <div class="com_title">
+            <h2>精彩评论</h2>
+        </div>
+        <ul class="com_ul">
+            <foreach name="comments" item="vo">
+            <li>
+                <div class="head_img"><img src="{$vo.userphoto}" alt="{$vo.username}"></div>
+                <div class="com_cont">
+                    <div class="user_name">{$vo.username}</div>
+                    <div class="dianzan">
+                        <span>{$vo.like_count}</span>
+                        <a class="hand" href="#"><img src="/Public/images/hand.png" alt=""></a>
+                        <a class="comment" href="#"><img src="/Public/images/comment.png" alt=""></a>
+                    </div>
+                    <p>{$vo.post}</p>
+                    <if condition="$vo.reply_id">
+                    <div class="bef_com">
+                        <span></span>
+                        <p>原评论：{$vo.reply_username}</p>
+                        <p>{$vo.reply_post}</p>
+                    </div>
+                    </if>
+                </div>
+            </li>
+            </foreach>
+        </ul>
+    </div>
+    <div class="comment_app_download">
+        <a href="">打开汽车日报，查看{$info.comment_count}条评论</a>
+    </div>
+    <else/>
+    <div class="comment-empty comment-share-container">暂时没有评论</div>
+    <div class="comment_app_download">
+        <a href="">进入汽车日报发表评论</a>
+    </div>
+    </if>
+    
+    <div class="news_box">
+        <div class="com_title">
+            <h2>相关阅读</h2>
+        </div>
+        <div class="list_box">
+        <foreach name="relates" item="vo">
+            <if condition="$vo.displayMode eq 'A'">
+            <section class="box">
+                <a href="/Home/Index/page?id={$vo.id}">
+                    <div class="img_box">
+                        <img src="{$vo.images.0}" alt="">
+                    </div>
+                    <h3>{$vo.title}</h3>
+                    <div class="item_info">
+                        <span class="time">今天</span>
+                        <span class="source">{$vo.source}</span>
+                        <span class="type">推广</span>
+                    </div>
+                </a>
+            </section>
+            </if>
+            <if condition="$vo.displayMode eq 'B'">
+            <section class="box">
+                <a href="/Home/Index/page?id={$vo.id}">
+                    <h3 class="long_title">{$vo.title}</h3>
+                    <div class="img_cont">
+                        <div class="img_box2">
+                            <img src="{$vo.images.0}" alt="">
+                        </div>
+                        <div class="img_box2">
+                            <img src="{$vo.images.1}" alt="">
+                        </div>
+                        <div class="img_box2">
+                            <img src="{$vo.images.2}" alt="">
+                        </div>
+                    </div>
+                    <div class="item_info item_info2">
+                        <span class="time">今天</span>
+                        <span class="source">{$vo.source}</span>
+                        <span class="type">推广</span>
+                    </div>
+                </a>
+            </section>
+            </if>
+            </foreach>
+        </div>
+    </div>
+    <div class="comment_app_download">
+        <a href="">都翻到这了，就安装个汽车日报吧</a>
+    </div>
+    <br/>
+</body>
+<script>
+
+</script>
+</html>

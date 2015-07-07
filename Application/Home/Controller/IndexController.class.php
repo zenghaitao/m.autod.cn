@@ -264,6 +264,17 @@ class IndexController extends BaseController  {
         $M_news = new NewsModel();
         $info = $M_news -> getNews($news_id);
         
+        //来源信息
+        $source = $M_news -> getSource($info['source_id']);
+        
+        $this -> assign('source' , $source);
+        
+        //广告信息
+        $ad = $this -> newsAD();
+        shuffle($ad);
+        
+        $this -> assign('ad' , end($ad));
+        
         //记录hot值
         $M_news -> incHot($news_id);
         
@@ -304,14 +315,17 @@ class IndexController extends BaseController  {
         $comments = $M_news -> commentsList($news_id , 0 , 50);
         
         //相关新闻
-        $relates = $M_news -> getRelatedNews($news_id , 0 , 20);
+        $relates = $M_news -> getRelatedNews($news_id , 0 , 10);
+        foreach ($relates as &$row){
+            $row = $this -> formatNews($row);
+        }
         
         $this -> assign('info' , $info);
         $this -> assign('page' , $page);
         $this -> assign('comments' , $comments);
         $this -> assign('relates' , $relates);
         
-        $this -> display('page');
+        $this -> display('page1');
     }
     
     /**
