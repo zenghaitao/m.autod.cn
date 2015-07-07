@@ -11,14 +11,14 @@
 </head>
 <body class="pat">
     <div class="app_banner"></div>
-    <div class="bar_top"> 
+    <?php if(0): ?><div class="bar_top"> 
         <a href="/Home/Index/source?id=<?php echo ($source["id"]); ?>"> 
             <div class="avatar"> 
                 <img src="<?php echo ($source["icon"]); ?>" class="avatar" alt="<?php echo ($source["name"]); ?>">
             </div> 
             <span class="name"><?php echo ($source["name"]); ?></span> 
         </a> 
-    </div>
+    </div><?php endif; ?>
     <article class="con_box">
         <h1 class="title"><?php echo ($info["title"]); ?></h1>
         <div class="subtitle"> 
