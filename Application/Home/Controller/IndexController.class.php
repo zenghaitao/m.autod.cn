@@ -172,7 +172,7 @@ class IndexController extends BaseController  {
         $this -> assign('count' , count($list));
         
         if($cate_id == 20){
-            $this -> display('video_list');
+            $this -> display('list1');
         }
     }
     
