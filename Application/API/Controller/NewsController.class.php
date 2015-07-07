@@ -250,7 +250,7 @@ class NewsController extends BaseController  {
         
         /* 是否已订阅 */
         if($_SESSION['user_id']){
-            $followed = $M_news -> faved($news_info['sourceId'] , $_SESSION['user_id']);
+            $followed = $M_news -> followed($news_info['sourceId'] , $_SESSION['user_id']);
             $news_info['followed'] = $followed?'yes':'no';
         }else{
             $news_info['followed'] = 'no';

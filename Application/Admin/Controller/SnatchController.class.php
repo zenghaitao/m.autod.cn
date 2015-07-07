@@ -13,6 +13,53 @@ class SnatchController extends BaseController  {
     }
     
     /**
+     * 抓取INA的数据进story表
+     *
+     */
+    public function snatchINA(){
+        $_db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
+        
+        $_db_cms_story = M('autod_story' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_story_content = M('autod_story' , 'cms_' , 'DB0_CONFIG');
+        
+        $_db_ina_video = M('ina_video' , 'cms_' , 'DB0_CONFIG');
+        
+        /* 网通社新闻部分 */
+        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("id DESC") -> find();
+        $max_id = $max_id['article_id'];
+        
+        //查找未入库内容
+        $list = $_db_cms_story -> where("id > '{$max_id}' AND source_id = '1' AND status = 'published'") -> order("id ASC") -> limit(100) -> select();
+        foreach ($list as $row){
+            $data = array();
+            $data['article_id'] = $row['id'];
+            $data['plant'] = 'ina';
+            $data['title'] = $row['title'];
+            $data['short_summary'] = $row['shortSummary'];
+            $data['source'] = $row['source'];
+            $data['source_id'] = '49';
+            $data['story_date'] = $row['storyDate'];
+            $data['column_id'] = $this -> column($row['columnId']);
+            $data['img_count'] = $row['shortSummary'];
+            $data['title_pic1'] = $row['shortSummary'];
+            $data['title_pic2'] = $row['shortSummary'];
+            $data['title_pic3'] = $row['shortSummary'];
+            $data['url'] = $row['shortSummary'];
+            $data['add_date'] = $row['shortSummary'];
+        }
+        
+        //新闻类内容入库
+        
+        /* UUTV视频部分 */
+        //视频类内容入库
+        
+        
+        
+    }
+    
+    /**
      * 自动抓取程序
      *
      */

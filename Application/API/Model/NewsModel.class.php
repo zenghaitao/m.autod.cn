@@ -567,7 +567,8 @@ class NewsModel
      */
     public function followed($source_id , $uid){
         $data = "source_id = '{$source_id}' AND uid = '{$uid}'";
-        $row = $this -> _db_news_follow -> where($data) -> delete();
+        $row = $this -> _db_news_follow -> where($data) -> find();
+        
         if($row['id'])
             return true;
         else 
