@@ -41,12 +41,13 @@
                     </div>
                     <h3><?php echo ($row["title"]); ?></h3>
                     <div class="item_info2">
-                        <span class="time">今天</span>
+                        <span class="time">刚刚</span>
                         <span>热度<?php echo ($row["hot"]); ?></span>
                     </div>
                 </a>
             </div>
-        </section><?php endforeach; endif; ?>
+        </section>
+        <div class="video_line"></div><?php endforeach; endif; ?>
     </div>
     <section class="load_img"><img src="images/loading.gif" alt=""></section>
 </div>
