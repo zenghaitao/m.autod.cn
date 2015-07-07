@@ -83,16 +83,10 @@ class NewsController extends BaseController  {
         $since_id = (int)$row['id'];
         
         //获取广告数据
-        $ad['title'] = '沃尔沃XC90全新上市';
-        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
-        $ad['type'] = 'ad';
-        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
-        $ad = $this -> formatNews($ad);
+        $ad = $this -> newsAD();
         
-        $ad['openMode'] = 'topic';
-        $ad['displayMode'] = 'C';
-        
-        array_unshift($list , $ad);
+        //合并新闻和广告
+        $list = $this -> mergeList($list , $ad);
         
         if($page == 'none')
             $refresh = 'yes';
@@ -104,6 +98,61 @@ class NewsController extends BaseController  {
         $result['maxId'] = $max_id;
         $result['refresh'] = $refresh;
         $this -> succ($result);
+    }
+    
+    /**
+     * 合并推荐列表
+     *
+     * @param array $news
+     * @param array $ads
+     * @return array
+     */
+    private function mergeList($news , $ads){
+        $i = 0;
+        $j = 0;
+        $list = array();
+        
+        foreach ($news as $row){
+            $i++;
+            $list[] = $row;
+            if($i % 3 == 0){
+                if(isset($ads[$j])){
+                    $list[] = $ads[$j];
+                    $j ++;
+                }
+            }
+        }
+        
+        return $list;
+    }
+    
+    /**
+     * Enter description here...
+     *
+     * @return unknown
+     */
+    private function newsAD(){
+        //获取广告数据
+        $ad['title'] = '沃尔沃XC90全新上市';
+        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad['type'] = 'ad';
+        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad = $this -> formatNews($ad);
+        
+        $ad['openMode'] = 'topic';
+        $ad['displayMode'] = 'C';
+        
+        //获取广告数据
+        $ad1['title'] = '沃尔沃XC90全新上市';
+        $ad1['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad1['type'] = 'ad';
+        $ad1['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad1 = $this -> formatNews($ad1);
+        
+        $ad1['openMode'] = 'topic';
+        $ad1['displayMode'] = 'C';
+        
+        return array($ad ,$ad1);
     }
     
     /**
