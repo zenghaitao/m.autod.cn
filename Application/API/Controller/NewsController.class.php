@@ -219,7 +219,7 @@ class NewsController extends BaseController  {
         $M_story = new StoryModel();
         $page_html = $M_story -> getStoryPage($news_info['storyId']);
         
-        $this -> assign('html' , $page_html);
+        $this -> assign('page' , $page_html);
         $html = $this -> fetch('page');
         
         $news_info['page'] = $html;
@@ -404,9 +404,8 @@ class NewsController extends BaseController  {
      */
     public function myCommentList(){
         //此方法需要用户登录后操作
-        $this -> mustLogin();
+        //$this -> mustLogin();
         
-        $uid = $_SESSION['user_id'];
         $since_id = (int)$_GET['sinceId'];
         
         $M_news = new NewsModel();

@@ -348,13 +348,15 @@ class NewsModel
      *
      */
     public function myCommentList($user_id , $since_id = 0 , $count = 10){
+        
         if(!$count)
             $count = 10;
-        $where_str = "uid = '{$user_id}' OR reply_uid = '{$user_id}'";
+        $where_str = "(uid = '{$user_id}' OR reply_uid = '{$user_id}')";
         if($since_id)
             $where_str .= " AND id < '{$since_id}'";
         
         $list = $this -> _db_news_comments -> where($where_str) -> order("id DESC") -> limit($count) -> select();
+        
         return $list;
     }
     
