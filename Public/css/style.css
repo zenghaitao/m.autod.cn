@@ -91,7 +91,7 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 .video h3{font-weight: normal;font-size: 16px;color: #303030;margin-top: 10px; margin-left:10px;}
 .video .item_info2{width: 100%;font-size: 12px;line-height: 20px;color: #999;text-align: right;color: #b7b7b7;margin-top:-20px;margin-bottom:10px;background-color:#ffffff;z-index:999}
 .video .item_info2 span{margin-right:10px}
-.item_info2 .time{float: none;margin-right: 20px;}
+.video .item_info2 .time{float: none;margin-right: 20px;}
 .video .time{background: url(../images/clock.png) no-repeat left;background-size: 12px;padding-left: 16px;height: 12px;max-width: 65px;overflow: hidden;}
 
 /*视频详情*/

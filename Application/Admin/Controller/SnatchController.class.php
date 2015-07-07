@@ -329,7 +329,7 @@ class SnatchController extends BaseController  {
         $data['summary'] = $story_info['short_summary'];
         $data['source'] = $story_info['source'];
         $data['source_id'] = $story_info['source_id'];
-        if($row['title_pic3'])
+        if($story_info['title_pic3'])
             $data['images'] = $story_info['title_pic1'].';,;'.$story_info['title_pic2'].';,;'.$story_info['title_pic3'];
         else 
             $data['images'] = $story_info['title_pic1'];
