@@ -609,7 +609,7 @@ class NewsController extends BaseController  {
         
         $uid = $_SESSION['user_id'];
         
-        if($uid){
+        if($uid && (int)$_POST['newsId']){
             $M_news = new NewsModel();
             $res = $M_news -> favAdd((int)$_POST['newsId'] , $uid);
         }
@@ -629,7 +629,7 @@ class NewsController extends BaseController  {
         
         $uid = $_SESSION['user_id'];
         
-        if($uid){
+        if($uid && (int)$_POST['newsId']){
             $M_news = new NewsModel();
             $res = $M_news -> favDel((int)$_POST['newsId'] , $uid);
         }
