@@ -1,4 +1,4 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html lang="en">
 <head>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
@@ -32,41 +32,35 @@
     <div class="list_box">
     
         <section class="video_box">
-        <foreach name="list" item="row" key="key">
-        <if condition="$key % 2 == 0">
-            <div class="video_l">
-                <a href="/Home/Index/page?id={$row.id}">
+        <?php if(is_array($list)): foreach($list as $key=>$row): if($key % 2 == 0): ?><div class="video_l">
+                <a href="/Home/Index/page?id=<?php echo ($row["id"]); ?>">
                     <div class="video_link" href="">
-                        <img src="{$row.images.0}" alt="">
+                        <img src="<?php echo ($row["images"]["0"]); ?>" alt="">
                         <span><img src="/Public/images/player.png" alt=""></span>
                     </div>
-                    <h3>{$row.title}</h3>
+                    <h3><?php echo ($row["title"]); ?></h3>
                     <div class="item_info2">
                         <span class="time">今天</span>
-                        <span>热度{$row.hot}</span>
+                        <span>热度<?php echo ($row["hot"]); ?></span>
                     </div>
                 </a>
             </div>
-            <else/>
+            <?php else: ?>
             <div class="video_r">
-                <a href="/Home/Index/page?id={$row.id}">
+                <a href="/Home/Index/page?id=<?php echo ($row["id"]); ?>">
                     <div class="video_link" href="">
-                        <img src="{$row.images.0}" alt="">
+                        <img src="<?php echo ($row["images"]["0"]); ?>" alt="">
                         <span><img src="/Public/images/player.png" alt=""></span>
                     </div>
-                    <h3>{$row.title}</h3>
+                    <h3><?php echo ($row["title"]); ?></h3>
                     <div class="item_info2">
                         <span class="time">今天</span>
-                        <span>热度{$row.hot}</span>
+                        <span>热度<?php echo ($row["hot"]); ?></span>
                     </div>
                 </a>
             </div>
-            <if condition="$count - 1 lt $key">
-            </section>
-            <section class="video_box">
-            </if>
-            </if>
-        </foreach>
+            <?php if($count - 1 < $key): ?></section>
+            <section class="video_box"><?php endif; endif; endforeach; endif; ?>
         </section>
     </div>
     <section class="load_img"><img src="images/loading.gif" alt=""></section>

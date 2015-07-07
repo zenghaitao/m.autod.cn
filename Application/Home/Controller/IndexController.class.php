@@ -168,8 +168,11 @@ class IndexController extends BaseController  {
             $since_id = $row['id'];
         }
         
+        $this -> assign('list' , $list);
+        $this -> assign('count' , count($list));
+        
         if($cate_id == 20){
-            $this -> display('video_list')
+            $this -> display('video_list');
         }
     }
     
