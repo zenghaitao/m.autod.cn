@@ -118,6 +118,8 @@ class SnatchController extends BaseController  {
                 unset($data['id']);
                 $data['add_date'] = date('Y-m-d H:i:s');
                 $story_id = $_db_news_story -> add($data);
+                $story_info = $data;
+                $story_info['id'] = $story_id;
                 
                 //填充content数据
                 if($story_id){
@@ -134,35 +136,85 @@ class SnatchController extends BaseController  {
                     
                     //自动推荐到前台列表中
                     if($prv_source_id != $row['source_id']){
-                        $data = array();                        
-                        $data['story_id'] = $story_id;
-                        $data['cate_id'] = $row['column_id'];
-                        $data['title'] = $row['title'];
-                        $data['summary'] = $row['short_summary'];
-                        $data['source'] = $row['source'];
-                        $data['source_id'] = $row['source_id'];
-                        if($row['title_pic3'])
-                            $data['images'] = $row['title_pic1'].';,;'.$row['title_pic2'].';,;'.$row['title_pic3'];
-                        else 
-                            $data['images'] = $row['title_pic1'];
-
-                        $data['story_date'] = $row['story_date'];
-                        if($row['plant'] == 'UUTV')
-                            $data['open_mode'] = 'video';
-                        else 
-                            $data['open_mode'] = 'news';
-
-                        $data['hot'] = rand(321,1999);
-                        $data['day'] = date('Y-m-d');
-                        $data['add_time'] = date('Y-m-d H:i:s');
-                        $news_id = $_db_news_choice -> add($data);
-                        
-                        $_db_news_story -> where("id = '{$story_id}'") -> save(array('is_choice'=>'yes'));
-                        
+                        //写入前台列表
+                        $news_id = $this -> intoChoice($story_info);
                         $prv_source_id = $row['source_id'];
                     }
                     $i++;
                 }
+            }
+        }
+        
+        var_dump("Update:".$i);
+        
+    }
+    
+    /**
+     * 推荐到前台列表
+     *
+     * @param 新闻信息 $story_info
+     * @return int
+     */
+    private function intoChoice($story_info){
+        $_db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        
+        $data = array();                        
+        $data['story_id'] = $story_info['id'];
+        $data['cate_id'] = $story_info['column_id'];
+        $data['title'] = $story_info['title'];
+        $data['summary'] = $story_info['short_summary'];
+        $data['source'] = $story_info['source'];
+        $data['source_id'] = $story_info['source_id'];
+        if($row['title_pic3'])
+            $data['images'] = $story_info['title_pic1'].';,;'.$story_info['title_pic2'].';,;'.$story_info['title_pic3'];
+        else 
+            $data['images'] = $story_info['title_pic1'];
+
+        $data['story_date'] = $story_info['story_date'];
+        if($story_info['plant'] == 'UUTV')
+            $data['open_mode'] = 'video';
+        else 
+            $data['open_mode'] = 'news';
+
+        $data['hot'] = rand(321,1999);
+        $data['day'] = date('Y-m-d');
+        $data['add_time'] = date('Y-m-d H:i:s');
+        $news_id = $_db_news_choice -> add($data);
+        
+        $_db_news_story -> where("id = '{$story_info['id']}'") -> save(array('is_choice'=>'yes'));
+        
+        return $news_id;
+    }
+    
+    /**
+     * 自动推荐程序
+     *
+     */
+    public function autoChoice(){
+        $_db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        
+        $i = 0;
+        $prv_source_id = 0;
+        
+        /* 获取最后的栏目id */
+        $info = $_db_news_choice -> where("1") -> order("id DESC") -> find();
+        $prv_source_id = $info['source_id'];
+        
+        /* 获取要处理的新闻 */
+        $today = date('Y-m-d');
+        $list = $_db_news_story -> where("is_choice = 'no' AND img_count > 0 AND story_date > '{$today}'") -> order("story_date ASC , article_id ASC") -> limit(100) -> select();
+        foreach ($list as $row){
+            if($i >= 10)
+                continue;
+            
+            if($prv_source_id != $row['source_id']){
+                //写入前台列表
+                $news_id = $this -> intoChoice($row);
+                $prv_source_id = $row['source_id'];
+                $i++;
             }
         }
         
