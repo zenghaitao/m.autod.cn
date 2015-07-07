@@ -8,6 +8,13 @@
 <title>汽车日报</title>
 <link rel="stylesheet" href="/Public/css/style.css">
 <script src="/Public/js/jquery.js"></script>
+
+<style>
+body{
+background-color:#e7e7e7;
+}
+</style>
+
 </head>
 <body>
 <section class="slider_bar">
@@ -30,9 +37,7 @@
 </header>
 <div class="container">
     <div class="list_box">
-    
-        
-        <?php if(is_array($list)): foreach($list as $key=>$row): ?><section class="video_box"><if condition="$key % 2 == 0">
+        <?php if(is_array($list)): foreach($list as $key=>$row): ?><section class="video_box">
             <div class="video">
                 <a href="/Home/Index/page?id=<?php echo ($row["id"]); ?>">
                     <div class="video_link" href="">
@@ -46,8 +51,7 @@
                     </div>
                 </a>
             </div>
-        </section>
-        <div class="video_line"></div><?php endforeach; endif; ?>
+        </section><?php endforeach; endif; ?>
     </div>
     <section class="load_img"><img src="images/loading.gif" alt=""></section>
 </div>

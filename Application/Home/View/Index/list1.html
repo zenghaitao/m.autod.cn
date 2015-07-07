@@ -8,6 +8,13 @@
 <title>汽车日报</title>
 <link rel="stylesheet" href="/Public/css/style.css">
 <script src="/Public/js/jquery.js"></script>
+<literal>
+<style>
+body{
+background-color:#e7e7e7;
+}
+</style>
+</literal>
 </head>
 <body>
 <section class="slider_bar">
@@ -30,10 +37,8 @@
 </header>
 <div class="container">
     <div class="list_box">
-    
-        
         <foreach name="list" item="row" key="key">
-        <section class="video_box"><if condition="$key % 2 == 0">
+        <section class="video_box">
             <div class="video">
                 <a href="/Home/Index/page?id={$row.id}">
                     <div class="video_link" href="">
@@ -48,7 +53,6 @@
                 </a>
             </div>
         </section>
-        <div class="video_line"></div>
         </foreach>
     </div>
     <section class="load_img"><img src="images/loading.gif" alt=""></section>
