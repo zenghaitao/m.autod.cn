@@ -354,11 +354,14 @@ class IndexController extends BaseController  {
         
         //相关新闻
         $relates = $M_news -> getRelatedNews($news_id , 20 , 20);
+        foreach ($relates as &$row){
+            $row = $this -> formatNews($row);
+        }
         
         $this -> assign('comments' , $comments);
         $this -> assign('relates' , $relates);
         
-        $this -> display('video');
+        $this -> display('video1');
     }
     
     /**

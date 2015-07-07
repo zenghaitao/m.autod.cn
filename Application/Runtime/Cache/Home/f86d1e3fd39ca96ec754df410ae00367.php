@@ -19,6 +19,19 @@
             <span class="name"><?php echo ($source["name"]); ?></span> 
         </a> 
     </div><?php endif; ?>
+    <div class="video_con" id="youkuplayer"></div>
+
+<script type="text/javascript" src="http://player.youku.com/jsapi">
+player = new YKU.Player('youkuplayer',{
+styleid: '1',
+client_id: 'f70ac119a85b248e',
+
+vid: '<?php echo ($video["videoid"]); ?>',
+
+show_related: false
+});
+</script>
+
     <article class="con_box">
         <h1 class="title"><?php echo ($info["title"]); ?></h1>
         <div class="subtitle"> 
@@ -26,26 +39,7 @@
             <span><?php echo ($source["story_date"]); ?></span>
             <span class="fr"><?php echo ($info["hot"]); ?>热度</span>
         </div>
-        <div class="article_box">
-            <div>
-            <?php echo ($page); ?>
-            </div>
-        </div>
-        <div class="overflow_show">
-            <a class="text_link">
-                <i>展开</i><i>全文</i>
-            </a>
-        </div>
     </article>
-    <div class="midd_banner">
-        <img class="banner" src="http://s0.pstatp.com/resource/toutiao_wap/static/image/banner_middle_1bf5188.jpg">
-    </div>
-    <?php if($ad): ?><div class="ad_box">
-        <a href="<?php echo ($ad["gourl"]); ?>">
-            <div class="ad_title"><?php echo ($ad["title"]); ?></div>
-            <img src="<?php echo ($ad["images"]["0"]); ?>">
-        </a>
-    </div><?php endif; ?>
     
     <?php if($comments): ?><div class="com_box">
         <div class="com_title">
@@ -80,11 +74,18 @@
         <a href="">进入汽车日报发表评论</a>
     </div><?php endif; ?>
     
+    <?php if($ad): ?><div class="ad_box">
+        <a href="<?php echo ($ad["gourl"]); ?>">
+            <div class="ad_title"><?php echo ($ad["title"]); ?></div>
+            <img src="<?php echo ($ad["images"]["0"]); ?>">
+        </a>
+    </div><?php endif; ?>
+    
     <div class="news_box">
         <div class="com_title">
-            <h2>相关阅读</h2>
+            <h2>更多视频</h2>
         </div>
-        <div class="list_box">
+        <div class="list_box video_box_list">
         <?php if(is_array($relates)): foreach($relates as $key=>$vo): if($vo["displayMode"] == 'A'): ?><section class="box">
                 <a href="/Home/Index/page?id=<?php echo ($vo["id"]); ?>">
                     <div class="img_box">
@@ -92,9 +93,9 @@
                     </div>
                     <h3><?php echo ($vo["title"]); ?></h3>
                     <div class="item_info">
-                        <span class="time">刚刚</span>
-                        <span class="source"><?php echo ($vo["source"]); ?></span>
-                        <span class="type">热门</span>
+                        <span class="time"><?php echo ($vo["postTime"]); ?></span>
+                        <span class="source">热度</span>
+                        <span class="type"><?php echo ($vo["hot"]); ?></span>
                     </div>
                 </a>
             </section><?php endif; ?>
@@ -113,9 +114,9 @@
                         </div>
                     </div>
                     <div class="item_info item_info2">
-                        <span class="time">刚刚</span>
-                        <span class="source"><?php echo ($vo["source"]); ?></span>
-                        <span class="type">热门</span>
+                        <span class="time"><?php echo ($vo["postTime"]); ?></span>
+                        <span class="source">热度</span>
+                        <span class="type"><?php echo ($vo["hot"]); ?></span>
                     </div>
                 </a>
             </section><?php endif; endforeach; endif; ?>
@@ -126,7 +127,16 @@
     </div>
     <br/>
 </body>
-<script>
 
+<script>
+function boxHeight(){
+    var videoBox=$('.video_con')[0];
+    videoBox.style.height=(videoBox.offsetWidth*10/16)+'px';
+}
+boxHeight();
+window.onresize=function(){
+    boxHeight();
+}
 </script>
+
 </html>
