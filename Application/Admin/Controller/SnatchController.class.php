@@ -16,7 +16,7 @@ class SnatchController extends BaseController  {
      * 抓取INA的数据进story表
      *
      */
-    public function snatchINA(){
+    public function ina(){
         $_db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
         $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
         $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
@@ -112,31 +112,26 @@ class SnatchController extends BaseController  {
             $data['article_id'] = $row['id'];
             $data['plant'] = 'uutv';
             $data['title'] = $row['title'];
-            $data['short_summary'] = $row['shortSummary'];
-            $data['source'] = $row['source'];
-            $data['source_id'] = '49';
-            $data['story_date'] = $row['storyDate'];
-            $data['column_id'] = $this -> column($row['columnId']);
-            if($row['title_pic3']){
-                $data['img_count'] = 3;
-            }elseif ($row['title_pic1']){
-                $data['img_count'] = 1;
-            }else {
-                $data['img_count'] = 0;
-            }
-            $data['title_pic1'] = $row['title_pic1'];
-            $data['title_pic2'] = $row['title_pic2'];
-            $data['title_pic3'] = $row['title_pic3'];
+            $data['short_summary'] = '';
+            $data['source'] = 'UUTV';
+            $data['source_id'] = '48';
+            $data['story_date'] = $row['publish_time'];
+            $data['column_id'] = '20';
+            $data['title_pic1'] = $row['img'];
+            $data['img_count'] = 0;
             
             $data['url'] = $row['url'];
             $data['add_date'] = date('Y-m-d H:i:s');
             
-            //文章信息入库
-            $story_id = $_db_news_story -> add($data);
-            
-            if($story_id)
-                $i++;
+            if($data['img_count'] > 0){
+                //文章信息入库
+                $story_id = $_db_news_story -> add($data);
+                
+                if($story_id)
+                    $i++;
+            }
         }
+        echo "UUTV UPDATE:{$i};\n";
         
         
     }

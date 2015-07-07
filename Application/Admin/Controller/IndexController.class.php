@@ -37,7 +37,7 @@ class IndexController extends BaseController  {
             }
             
             $data['story_date'] = $row['story_date'];
-            if($row['plant'] == 'UUTV')
+            if($row['plant'] == 'uutv')
                 $data['open_mode'] = 'news';
             elseif ($row['plant'] == 'toutiao')
                 $data['open_mode'] = 'news';
@@ -172,7 +172,7 @@ window.location.href=\"{$url}\";
             $data['article_id'] = $row['id'];
             $data['title'] = $row['title'];
             $data['short_summary'] = $row['shorttitle'];
-            $data['source'] = 'UUTV';
+            $data['source'] = 'uutv';
             $data['source_id'] = '48';
             $data['story_date'] = $row['publish_time'];
             $data['column_id'] = '20';
