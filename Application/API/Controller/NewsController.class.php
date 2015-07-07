@@ -472,7 +472,7 @@ class NewsController extends BaseController  {
             $row = $this -> formatComment($row);
             $since_id = $row['id'];
             $news = $M_news -> getNews($row['newsId']);
-            $row['title'] = $news['title'];
+            $row['newsInfo'] = $news;
         }
         
         $result = array();
