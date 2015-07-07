@@ -240,6 +240,14 @@ class NewsController extends BaseController  {
             $news_info['faved'] = 'no';
         }
         
+        /* 来源详细信息 */
+        $source_info = array();
+        if($news_info['sourceId']){
+            $source_info = $M_news -> getSource($news_info['sourceId']);
+            $this -> formatSource($source_info);
+        }
+        $news_info['sourceInfo'] = $source_info;
+        
         /* 是否已订阅 */
         if($_SESSION['user_id']){
             $followed = $M_news -> faved($news_info['sourceId'] , $_SESSION['user_id']);
