@@ -86,9 +86,10 @@ class NewsController extends BaseController  {
         $ad['title'] = '沃尔沃XC90全新上市';
         $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
         $ad['type'] = 'ad';
-        $ad['openMode'] = 'topic';
         $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
         $ad = $this -> formatNews($ad);
+        
+        $ad['openMode'] = 'topic';
         $ad['displayMode'] = 'C';
         
         array_unshift($list , $ad);

@@ -22,16 +22,20 @@ class SnatchController extends BaseController  {
         $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
         
         $_db_cms_story = M('autod_story' , 'cms_' , 'DB0_CONFIG');
-        $_db_cms_story_content = M('autod_story' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB0_CONFIG');
         
-        $_db_ina_video = M('ina_video' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
+        
+        $M_snatch = new SnatchModel('');
         
         /* 网通社新闻部分 */
-        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("id DESC") -> find();
+        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("article_id DESC") -> find();
         $max_id = $max_id['article_id'];
         
+        $i = 0;
+        
         //查找未入库内容
-        $list = $_db_cms_story -> where("id > '{$max_id}' AND source_id = '1' AND status = 'published'") -> order("id ASC") -> limit(100) -> select();
+        $list = $_db_cms_story -> where("id > '{$max_id}' AND sourceId = '1' AND status = 'published'") -> order("id ASC") -> limit(100) -> select();
         foreach ($list as $row){
             $data = array();
             $data['article_id'] = $row['id'];
@@ -42,21 +46,138 @@ class SnatchController extends BaseController  {
             $data['source_id'] = '49';
             $data['story_date'] = $row['storyDate'];
             $data['column_id'] = $this -> column($row['columnId']);
-            $data['img_count'] = $row['shortSummary'];
-            $data['title_pic1'] = $row['shortSummary'];
-            $data['title_pic2'] = $row['shortSummary'];
-            $data['title_pic3'] = $row['shortSummary'];
-            $data['url'] = $row['shortSummary'];
-            $data['add_date'] = $row['shortSummary'];
+            if($row['title_pic3']){
+                $data['img_count'] = 3;
+            }elseif ($row['title_pic1']){
+                $data['img_count'] = 1;
+            }else {
+                $data['img_count'] = 0;
+            }
+            $data['title_pic1'] = $row['title_pic1'];
+            $data['title_pic2'] = $row['title_pic2'];
+            $data['title_pic3'] = $row['title_pic3'];
+            
+            $data['url'] = $row['url'];
+            $data['add_date'] = date('Y-m-d H:i:s');
+            
+            //文章信息入库
+            $story_id = $_db_news_story -> add($data);
+            
+            if($story_id){
+            
+                //获取文章正文
+                $contents = $_db_cms_story_content -> where("storyId = '{$row['id']}'") -> order("page ASC") -> select();
+                $content = '';
+                foreach ($contents as $val){
+                    $content .= $val['content'];
+                }
+                $content = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
+                $images = $M_snatch -> img($content);
+                
+                $images_str = implode(';,;' , $images);
+                $images_count = count($images);
+                
+                $data = array();
+                $data['story_id'] = $story_id;
+                $data['article_id'] = $row['id'];
+                $data['page'] = '1';
+                $data['content'] = $content;
+                $data['images'] = $images_str;
+                $data['image_count'] = $images_count;
+                $data['http'] = '3306';
+                $data['add_time'] = date('Y-m-d H:i:s');
+                
+                //文章正文入库
+                $ins_id = $_db_news_story_content -> add($data);
+                
+                $i++;
+                
+            }
+            
         }
+        echo "INA UPDATE:{$i};\n";
         
-        //新闻类内容入库
         
         /* UUTV视频部分 */
         //视频类内容入库
+        $max_id = $_db_news_story -> where("plant = 'uutv'") ->order("article_id DESC") -> find();
+        $max_id = $max_id['article_id'];
+        
+        $i = 0;
+        
+        //查找未入库内容
+        $list = $_db_cms_video -> where("id > '{$max_id}' AND platform = 'youku' AND status = 'published'") -> order("id ASC") -> limit(100) -> select();
+        foreach ($list as $row){
+            $data = array();
+            $data['article_id'] = $row['id'];
+            $data['plant'] = 'uutv';
+            $data['title'] = $row['title'];
+            $data['short_summary'] = $row['shortSummary'];
+            $data['source'] = $row['source'];
+            $data['source_id'] = '49';
+            $data['story_date'] = $row['storyDate'];
+            $data['column_id'] = $this -> column($row['columnId']);
+            if($row['title_pic3']){
+                $data['img_count'] = 3;
+            }elseif ($row['title_pic1']){
+                $data['img_count'] = 1;
+            }else {
+                $data['img_count'] = 0;
+            }
+            $data['title_pic1'] = $row['title_pic1'];
+            $data['title_pic2'] = $row['title_pic2'];
+            $data['title_pic3'] = $row['title_pic3'];
+            
+            $data['url'] = $row['url'];
+            $data['add_date'] = date('Y-m-d H:i:s');
+            
+            //文章信息入库
+            $story_id = $_db_news_story -> add($data);
+            
+            if($story_id)
+                $i++;
+        }
         
         
-        
+    }
+    
+    private function column($id){
+        switch ($id){
+            case 1://导购
+                return 1;
+                break;
+            case 2://评测
+                return 2;
+                break;
+            case 3://新车
+                return 3;
+                break;
+            case 4://行情
+                return 4;
+                break;
+            case 5://行业
+                return 5;
+                break;
+            case 6://文化
+                return 6;
+                break;
+            case 7://用车
+                return 7;
+                break;
+            case 8://车友
+                return 8;
+                break;
+            case 9://百家
+                return 9;
+                break;
+            case 10://自媒体
+                return 10;
+                break;
+            
+            default:
+                return 0;
+                break;
+        }
     }
     
     /**
