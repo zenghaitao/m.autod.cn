@@ -57,7 +57,7 @@
                 <div class="com_cont">
                     <div class="user_name"><?php echo ($vo["username"]); ?></div>
                     <div class="dianzan">
-                        <span><?php echo ($vo["like_count"]); ?></span>
+                        <?php if($vo["like_count"] != 0): ?><span><?php echo ($vo["like_count"]); ?></span><?php endif; ?>
                         <a class="hand" href="#"><img src="/Public/images/hand.png" alt=""></a>
                         <a class="comment" href="#"><img src="/Public/images/comment.png" alt=""></a>
                     </div>
@@ -72,7 +72,7 @@
         </ul>
     </div>
     <div class="comment_app_download">
-        <a href="">打开汽车日报，查看<?php echo ($info["commentCount"]); ?>条评论</a>
+        <a href="">打开汽车日报，查看<?php echo ($info["comment_count"]); ?>条评论</a>
     </div>
     <?php else: ?>
     <div class="comment-empty comment-share-container">暂时没有评论</div>

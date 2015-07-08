@@ -348,7 +348,6 @@ class NewsModel
      *
      */
     public function myCommentList($user_id , $since_id = 0 , $count = 10){
-        $user_id = 3;
         
         if(!$count)
             $count = 10;
