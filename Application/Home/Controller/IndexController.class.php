@@ -365,42 +365,15 @@ class IndexController extends BaseController  {
     }
     
     /**
-     * 图片新闻内容
+     * APP下载跳转链接
      *
      */
-    private function photo(){
-        
-    }
-    
-    /**
-     * 专题内容
-     *
-     */
-    private function topic(){
-        
-    }
-    
-    /**
-     * 社区内容
-     *
-     */
-    private function sns(){
-        
-    }
-    
-    /**
-     * 搜索结果列表
-     *
-     */
-    public function search(){
-        $keyword    =   $_GET['keyword'];
-        $since_id   = (int)$_GET['sinceId'];
-        $count      = (int)$_GET['count'];
-        
-        $M_news = new NewsModel();
-        $list = $M_news -> search($keyword , $since_id , $count);
-        
-        $this -> succ($list);
+    public function download(){
+       $ios = 'https://itunes.apple.com/cn/app/qi-che-ri-bao/id850404817?mt=8';
+       $android = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.ina.car&g_f=991653';
+       
+       var_dump($_SERVER);
+       
     }
     
 
