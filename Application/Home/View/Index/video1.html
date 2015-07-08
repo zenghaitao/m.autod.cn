@@ -105,7 +105,7 @@ show_related: false
                     </div>
                     <h3>{$vo.title}</h3>
                     <div class="item_info">
-                        <span class="time">{$vo.postTime}</span>
+                        <span class="time">{$vo.postTime|strtotime|date="m-d",###}</span>
                         <span class="source">热度</span>
                         <span class="type">{$vo.hot}</span>
                     </div>
@@ -128,7 +128,7 @@ show_related: false
                         </div>
                     </div>
                     <div class="item_info item_info2">
-                        <span class="time">{$vo.postTime}</span>
+                        <span class="time">{$vo.postTime|strtotime|date="m-d",###}</span>
                         <span class="source">热度</span>
                         <span class="type">{$vo.hot}</span>
                     </div>

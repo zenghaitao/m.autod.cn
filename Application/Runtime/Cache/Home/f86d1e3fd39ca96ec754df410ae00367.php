@@ -66,7 +66,7 @@ show_related: false
         </ul>
     </div>
     <div class="comment_app_download">
-        <a href="">打开汽车日报，查看<?php echo ($info["comment_count"]); ?>条评论</a>
+        <a href="">打开汽车日报，查看<?php echo ($info["comments_count"]); ?>条评论</a>
     </div>
     <?php else: ?>
     <div class="comment-empty comment-share-container">暂时没有评论</div>
@@ -93,7 +93,7 @@ show_related: false
                     </div>
                     <h3><?php echo ($vo["title"]); ?></h3>
                     <div class="item_info">
-                        <span class="time"><?php echo ($vo["postTime"]); ?></span>
+                        <span class="time"><?php echo (date("m-d",strtotime($vo["postTime"]))); ?></span>
                         <span class="source">热度</span>
                         <span class="type"><?php echo ($vo["hot"]); ?></span>
                     </div>
@@ -114,7 +114,7 @@ show_related: false
                         </div>
                     </div>
                     <div class="item_info item_info2">
-                        <span class="time"><?php echo ($vo["postTime"]); ?></span>
+                        <span class="time"><?php echo (date("m-d",strtotime($vo["postTime"]))); ?></span>
                         <span class="source">热度</span>
                         <span class="type"><?php echo ($vo["hot"]); ?></span>
                     </div>
