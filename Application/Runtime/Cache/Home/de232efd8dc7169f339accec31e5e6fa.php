@@ -72,7 +72,7 @@
         </ul>
     </div>
     <div class="comment_app_download">
-        <a href="">打开汽车日报，查看<?php echo ($info["comment_count"]); ?>条评论</a>
+        <a href="">打开汽车日报，查看<?php echo ($info["comments_count"]); ?>条评论</a>
     </div>
     <?php else: ?>
     <div class="comment-empty comment-share-container">暂时没有评论</div>
