@@ -280,6 +280,7 @@ class NewsController extends BaseController  {
         $page_html = $M_story -> getStoryPage($news_info['storyId']);
         
         $this -> assign('page' , $page_html);
+        $this -> assign('host' , 'http://'.$_SERVER['HTTP_HOST']);
         $html = $this -> fetch('page');
         
         if($_GET['show'] == 'page')
@@ -361,6 +362,7 @@ class NewsController extends BaseController  {
         $video_info = $M_story -> getVideo($story_info['article_id']);
         
         $this -> assign('video' , $video_info);
+        $this -> assign('host' , 'http://'.$_SERVER['HTTP_HOST']);
         $html = $this -> fetch('video');
         
         if($_GET['show'] == 'page')
