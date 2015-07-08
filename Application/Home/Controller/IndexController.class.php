@@ -196,9 +196,9 @@ class IndexController extends BaseController  {
         $news['commentsCount'] = $row['comments_count'];
         $news['hot'] = $row['hot'];
         
-        if($news['hot'] > 3000)
+        if($news['hot'] > 1900)
             $news['type'] = 'head';
-        elseif($news['hot'] > 2000)
+        elseif($news['hot'] > 1600)
             $news['type'] = 'recommend';
         elseif($news['hot'] > 1000)
             $news['type'] = 'hot';
