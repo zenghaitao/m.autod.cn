@@ -31,6 +31,7 @@
 <div class="container">
     <div class="list_box">
     </div>
+    <div class="global_tip" id="tips_bar">为您推荐了18条新闻</div>
     <section class="load_img"><img src="/Public/images/loading.gif" alt=""></section>
 </div>
 </body>
@@ -110,6 +111,13 @@ function ajaxAPI(){
             }
             sinceId = data.info.sinceId;
             maxId = data.info.maxId;
+            
+            if(action == 'up' || action == 'init'){
+                $("#tips_bar").html("为您推荐了"+data.info.updateCount+"条新闻").fadeIn(0,function(){
+                    setTimeout('tips_hide()',1000);
+                });
+            }
+            
             if(action == 'up'){
                 $('.list_box').eq(0).prepend(html);
                 $('.list_top').remove();
@@ -122,6 +130,9 @@ function ajaxAPI(){
     })
 }
 
+function tips_hide(){
+    $("#tips_bar").fadeOut(800);
+}
 
 $(function(){
     //获取新闻列表

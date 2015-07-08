@@ -44,7 +44,7 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 .img_cont .img_box2:last-child img{float: right;}
 .item_info2{position: static;padding: 0;margin-top: 10px;}
 .ad_cont{width: 100%;border-radius: 4px;overflow: hidden;}
-.ad_cont img{width: 100%;display: block;min-height: 97px;background: url(../images/img_bg.png) top center #eaeaea;background-size: contain;}
+.ad_cont img{width: 100%;display: block;min-height: 97px;background: url(/Public/images/img_bg.png) top center #eaeaea;background-size: contain;}
 .load_img{text-align: center;padding: 10px 0;display: none;}
 .load_img img{display: inline-block;width: 32px;height: 32px;}
 
@@ -54,6 +54,7 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 .type3{background: #f05b5b;color: #fff;}
 .type4{background: #aaa;color: #fff;}
 
+.global_tip{position:fixed;top:44px;width:100%;padding:3px 0;background:rgba(90,160,230,.9);text-align:center;line-height:1.5em;font-size:14px;color:#fff;display:none}
 
 /*新闻详情*/
 .pat{padding-top: 50px;}
