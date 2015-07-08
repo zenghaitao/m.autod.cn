@@ -862,7 +862,9 @@ class NewsController extends BaseController  {
         $data = $info;
         $data['lastNews'] = $info['last_news'];
         $data['lastTime'] = $info['last_time'];
-        $data['photo'] = 'http://autod.b0.upaiyun.com/autod_img/source_logo/face.jpg';
+        $data['photo'] = $info['icon'];
+        $data['lastNews'] = $info['last_news'];
+        $data['lastTime'] = $info['last_time'];
         unset($data['last_news']);
         unset($data['last_time']);
         return $data;
