@@ -372,8 +372,13 @@ class IndexController extends BaseController  {
        $ios = 'https://itunes.apple.com/cn/app/qi-che-ri-bao/id850404817?mt=8';
        $android = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.ina.car&g_f=991653';
        
-       var_dump($_SERVER);
-       
+       $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+       if(strpos( $user_agent , 'iphone') !== false || strpos( $user_agent , 'ipad') !== false){
+           header("Location:{$ios}");
+       }else{
+           header("Location:{$android}");
+       }
+       exit;
     }
     
 

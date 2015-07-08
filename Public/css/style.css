@@ -157,6 +157,18 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
     .user_name,.com_cont p,.comment_app_download{font-size: 18px;}
 }
 
+.list_top {position: absolute;top: 0;left: 0;width: 100%;text-align: center;padding: 10px 0;z-index: 800;}
+.v2 {width: 40px;height: 40px;overflow: hidden;background-color: #fafafa;border-radius: 40px;box-shadow: 0 4px 10px #bbb;display: inline-block;}
+.v2 img{width: 32px;height: 32px;display: block;margin: 4px auto;}
+@-webkit-keyframes anime{
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
 
 
 

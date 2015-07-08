@@ -38,9 +38,20 @@
 <script>
 var sinceId = 0;
 var maxId = 0;
+var action = 'init';
+var dataOff = true;
 
 //创建新闻列表
-function creatNews(id,displayMode,oBox,imgsrc,title,time,type,hot,gourl){
+function creatNews( info){
+    id = info.id;
+    displayMode = info.displayMode;
+    imgsrc = info['images'];
+    title = info.title;
+    time = info.postTime;
+    type = info['type'];
+    hot = info.hot;
+    gourl = info.gourl;
+    
     var oType,aImg;
     switch(type){
         case 'default':
@@ -56,34 +67,66 @@ function creatNews(id,displayMode,oBox,imgsrc,title,time,type,hot,gourl){
             oType='<span class="type3">推广</span>';
             break;
     }
+    
+    var html = '';
+    
     if(displayMode=='A'){
-        oBox.append('<section class="box"><a href="/Home/Index/page?id='+id+'"><div class="img_box"><img src="'+imgsrc+'" alt=""></div><h3>'+title+'</h3><div class="item_info"><span class="time">'+time+'</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>');
+        html += '<section class="box"><a href="/Home/Index/page?id='+id+'"><div class="img_box"><img src="'+imgsrc+'" alt=""></div><h3>'+title+'</h3><div class="item_info"><span class="time">'+time+'</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>';
     }else if(displayMode=='B'){
         aImg='<div class="img_cont"><div class="img_box2"><img src="'+imgsrc[0]+'" alt=""></div><div class="img_box2"><img src="'+imgsrc[1]+'" alt=""></div><div class="img_box2"><img src="'+imgsrc[2]+'" alt=""></div></div>';
-        oBox.append('<section class="box"><a href="/Home/Index/page?id='+id+'"><h3 class="long_title">'+title+'</h3>'+aImg+'<div class="item_info item_info2"><span class="time">今天</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>');
+        html += '<section class="box"><a href="/Home/Index/page?id='+id+'"><h3 class="long_title">'+title+'</h3>'+aImg+'<div class="item_info item_info2"><span class="time">今天</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>';
     }else if(displayMode=='C'){
-        oBox.append('<section class="box"><a href="'+gourl+'" target="_blank"><h3 class="long_title">'+title+'</h3><div class="ad_cont"><img src="'+imgsrc+'" alt=""></div><div class="item_info item_info2"><span class="time">今天</span>'+oType+'</div></a></section>');
+        html += '<section class="box"><a href="'+gourl+'" target="_blank"><h3 class="long_title">'+title+'</h3><div class="ad_cont"><img src="'+imgsrc+'" alt=""></div><div class="item_info item_info2"><span class="time">今天</span>'+oType+'</div></a></section>';
     }
+    return html;
 }
-$(function(){
-    //获取新闻列表
+
+function ajaxAPI(){
+    if(action != 'up' && action != 'init' && action != 'down'){
+        alert(action);
+        return false;
+    }
+    var async_status = true;
+    if(action == 'up')
+        async_status = false;
+    
     $.ajax({
-        url:'/Home/Index/news?jsoncallback=?',
+        url:'/Home/Index/news?page='+action+'&maxId='+maxId+'&sinceId='+sinceId+'&jsoncallback=?',
         type:'get',
         dataType:'jsonp',
+        async:async_status,  //设置为同步
         success:function(data){
-            //data.info.statuses.length
+            
+            if(action == 'down'){
+                $('.load_img').css('display','none');
+                dataOff = !dataOff;
+            }
+            
+            var html = '';
             for(var i=0;i<data.info.statuses.length;i++){
-                
-      creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot,data.info.statuses[i].gourl)
+                html += creatNews(data.info.statuses[i]);
             }
             sinceId = data.info.sinceId;
             maxId = data.info.maxId;
+            if(action == 'up'){
+                $('.list_box').eq(0).prepend(html);
+                $('.list_top').remove();
+            }else{
+                $('.list_box').eq(0).append(html);
+            }
+            
+            
         }
     })
+}
+
+
+$(function(){
+    //获取新闻列表
+    action = 'init';
+    ajaxAPI();
     
     //上拉刷新
-    var dataOff = true;
     $(window).scroll(function(){
         if(getDataCheck() && dataOff){
             getNewList();
@@ -101,26 +144,9 @@ $(function(){
     function getNewList(){
         $('.load_img').css('display','block');
         dataOff = !dataOff;
-        $.ajax({
-            url:'/Home/Index/news?page=down&sinceId='+sinceId+'&maxId='+maxId+'&jsoncallback=?',
-            type:'get',
-            dataType:'jsonp',
-            success:function(data){
-                $('.load_img').css('display','none');
-                dataOff = !dataOff;
-                for(var i=0;i<data.info.statuses.length;i++){
-                    creatNews(data.info.statuses[i].id,data.info.statuses[i].displayMode,$('.list_box'),data.info.statuses[i]['images'],data.info.statuses[i].title,data.info.statuses[i].postTime,data.info.statuses[i]['type'],data.info.statuses[i].hot,data.info.statuses[i].gourl)
-                }
-                sinceId = data.info.sinceId;
-                maxId = data.info.maxId;
-            }
-        })
+        action = 'down';
+        ajaxAPI();
     }
-
-
-
-
-
 
     //侧边栏
     var bSlider=false;
@@ -137,6 +163,44 @@ $(function(){
     })
 
 })
+
+
+var clientH=document.documentElement.clientHeight||document.body.clientHeight;
+var vendors=['webkitT','mozT','oT','msT'];
+//var endTrue=false;
+if($(document).scrollTop()==0){
+    document.addEventListener('touchstart',function(ev){
+        var downY=ev.targetTouches[0].pageY;
+        document.addEventListener('touchmove',function(ev){
+            var y = ev.targetTouches[0].pageY - downY;
+            $('.list_top').remove();
+            //document.removeEventListener('touchend',touceEnd,false)
+            if(!$('.list_top').length){
+                var oRefresh='<div class="list_top"><div class="v2"><img src="/Public/images/refresh.png" alt=""></div></div>';
+                $('body').append(oRefresh);
+            }
+            if(y>=200)y=200;
+            for(var i=0;i<vendors.length;i++){
+                $('.list_top')[0].style[vendors[i]+'ransform']='translateY('+y*0.5+'px)';
+                $('.v2')[0].style[vendors[i]+'ransform']='rotate('+(Math.abs(y/clientH)*365*5)+'deg)';
+            }
+        },false);
+        function touceEnd(){
+            for(var i=0;i<vendors.length;i++){
+                $('.list_top')[0].style[vendors[i]+'ransition']='all 0.5s';
+                $('.list_top')[0].style[vendors[i]+'ransform']='translateY(60px)';
+            }
+            $('.list_top')[0].addEventListener('webkitTransitionEnd', function () {
+                if(!$('.v2 img')[0])return;
+                $('.v2 img')[0].style.webkitAnimation='anime 1s linear infinite';
+                
+                action = 'up';
+                ajaxAPI();
+            });
+        }
+        document.addEventListener('touchend',touceEnd,false);
+    },false)
+}
 </script>
 
 </html>
