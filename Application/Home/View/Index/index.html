@@ -167,6 +167,7 @@ $(function(){
 
 var clientH=document.documentElement.clientHeight||document.body.clientHeight;
 var vendors=['webkitT','mozT','oT','msT'];
+
 //var endTrue=false;
 window.onscroll=function(){
     if($(document).scrollTop()==0){
@@ -187,6 +188,8 @@ window.onscroll=function(){
                 }
             },false);
             function touceEnd(){
+                return false;
+                
                 for(var i=0;i<vendors.length;i++){
                     $('.list_top')[0].style[vendors[i]+'ransition']='all 0.5s';
                     $('.list_top')[0].style[vendors[i]+'ransform']='translateY(60px)';
