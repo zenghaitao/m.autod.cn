@@ -175,10 +175,13 @@ class NewsController extends BaseController  {
         $news['images'] = (array)$images;
         
         $news['postTime'] = (string)$row['story_date'];
+        $news['type'] = $row['type'];
         if($news['imageCount'] == 3)
             $news['displayMode'] = 'B';
         else 
             $news['displayMode'] = 'A';
+        if($news['type'] == 'ad')
+            $news['displayMode'] = 'C';
         $news['openMode'] = (string)$row['open_mode'];
         $news['gourl'] = (string)$row['gourl'];
         
@@ -196,7 +199,6 @@ class NewsController extends BaseController  {
             elseif($news['hot'] > 1000)
                 $news['type'] = 'hot';
         }
-        //$news['faved'] = 'no';
         return $news;
     }
     

@@ -169,32 +169,33 @@ class IndexController extends BaseController  {
      */
     private function formatNews($row){
         
-        $news['id'] = $row['id'];
-        $news['storyId'] = $row['story_id'];
-        $news['cateId'] = $row['cate_id'];
-        $news['title'] = $row['title'];
-        $news['summary'] = $row['summary'];
-        $news['source'] = $row['source'];
-        $news['sourceId'] = $row['source_id'];
-
+        $news['id'] = (int)$row['id'];
+        $news['storyId'] = (int)$row['story_id'];
+        $news['cateId'] = (int)$row['cate_id'];
+        $news['title'] = (string)$row['title'];
+        $news['summary'] = (string)$row['summary'];
+        $news['source'] = (string)$row['source'];
+        $news['sourceId'] = (int)$row['source_id'];
         $images = explode(';,;' , $row['images']);
         $news['imageCount'] = count($images);
-        $news['images'] = $images;
+        $news['images'] = (array)$images;
         
-        $news['postTime'] = $row['story_date'];
+        $news['postTime'] = (string)$row['story_date'];
         $news['type'] = $row['type'];
-        $news['openMode'] = $row['open_mode'];
-        $news['gourl'] = $row['gourl'];
-        
         if($news['imageCount'] == 3)
             $news['displayMode'] = 'B';
         else 
             $news['displayMode'] = 'A';
+        if($news['type'] == 'ad')
+            $news['displayMode'] = 'C';
+        $news['openMode'] = (string)$row['open_mode'];
+        $news['gourl'] = (string)$row['gourl'];
         
-        $news['favCount'] = $row['fav_count'];
-        $news['likeCount'] = $row['like_count'];
-        $news['commentsCount'] = $row['comments_count'];
-        $news['hot'] = $row['hot'];
+        $news['favCount'] = (int)$row['fav_count'];
+        $news['likeCount'] = (int)$row['like_count'];
+        $news['commentsCount'] = (int)$row['comments_count'];
+        
+        $news['hot'] = (int)$row['hot'];
         
         if($news['type'] == 'default' && $news['type']){
             if($news['hot'] > 1900)
@@ -204,7 +205,6 @@ class IndexController extends BaseController  {
             elseif($news['hot'] > 1000)
                 $news['type'] = 'hot';
         }
-        
         return $news;
     }
     
