@@ -196,7 +196,7 @@ class IndexController extends BaseController  {
         $news['commentsCount'] = $row['comments_count'];
         $news['hot'] = $row['hot'];
         
-        if($news['type'] != 'default'){
+        if($news['type'] == 'default' && $news['type']){
             if($news['hot'] > 1900)
                 $news['type'] = 'head';
             elseif($news['hot'] > 1600)
