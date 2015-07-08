@@ -358,8 +358,6 @@ class NewsModel
         
         $list = $this -> _db_news_comments -> where($where_str) -> order("id DESC") -> limit($count) -> select();
         
-        var_dump($this -> _db_news_comments -> getLastSql());exit;
-        
         return $list;
     }
     
