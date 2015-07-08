@@ -475,6 +475,8 @@ class NewsController extends BaseController  {
             $row['newsInfo'] = $news;
         }
         
+        var_dump($list);exit;
+        
         $result = array();
         $result['myCommentList'] = $list;
         $result['sinceId'] = $since_id;

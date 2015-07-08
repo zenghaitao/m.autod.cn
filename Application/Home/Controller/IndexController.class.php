@@ -320,6 +320,7 @@ class IndexController extends BaseController  {
             $row = $this -> formatNews($row);
         }
         
+        
         $this -> assign('info' , $info);
         $this -> assign('page' , $page);
         $this -> assign('comments' , $comments);

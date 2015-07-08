@@ -62,7 +62,7 @@
                         <a class="comment" href="#"><img src="/Public/images/comment.png" alt=""></a>
                     </div>
                     <p><?php echo ($vo["post"]); ?></p>
-                    <?php if($vo.reply_id): ?><div class="bef_com">
+                    <?php if($vo["reply_id"] != 0): ?><div class="bef_com">
                         <span></span>
                         <p>原评论：<?php echo ($vo["reply_username"]); ?></p>
                         <p><?php echo ($vo["reply_post"]); ?></p>
@@ -72,7 +72,7 @@
         </ul>
     </div>
     <div class="comment_app_download">
-        <a href="">打开汽车日报，查看<?php echo ($info["comment_count"]); ?>条评论</a>
+        <a href="">打开汽车日报，查看<?php echo ($info["commentCount"]); ?>条评论</a>
     </div>
     <?php else: ?>
     <div class="comment-empty comment-share-container">暂时没有评论</div>
