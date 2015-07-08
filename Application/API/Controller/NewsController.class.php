@@ -179,7 +179,6 @@ class NewsController extends BaseController  {
             $news['displayMode'] = 'B';
         else 
             $news['displayMode'] = 'A';
-        $news['type'] = (string)$row['type'];
         $news['openMode'] = (string)$row['open_mode'];
         $news['gourl'] = (string)$row['gourl'];
         
@@ -188,6 +187,15 @@ class NewsController extends BaseController  {
         $news['commentsCount'] = (int)$row['comments_count'];
         
         $news['hot'] = (int)$row['hot'];
+        if($news['hot'] > 3000)
+            $news['type'] = 'head';
+        elseif($news['hot'] > 2000)
+            $news['type'] = 'recommend';
+        elseif($news['hot'] > 1000)
+            $news['type'] = 'hot';
+        else 
+            $news['type'] = 'default';
+            
         //$news['faved'] = 'no';
         return $news;
     }
