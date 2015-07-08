@@ -182,6 +182,9 @@ var clientH=document.documentElement.clientHeight||document.body.clientHeight;
 var vendors=['webkitT','mozT','oT','msT'];
 //var endTrue=false;
 document.addEventListener('touchstart',function(ev){
+    if($('#tips_bar').css('display')!='none')
+        return false;
+    
     var downY=ev.targetTouches[0].pageY;
     var endTrue=false;
     document.addEventListener('touchmove',touchMove,false);
