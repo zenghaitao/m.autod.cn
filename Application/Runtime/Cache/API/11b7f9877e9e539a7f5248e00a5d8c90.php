@@ -1,15 +1,15 @@
 <?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html lang="en">
 <head>
-<!-- <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport"> -->
+<meta content=" initial-scale=1, maximum-scale=1" name="viewport">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no"/>
-<meta name="viewport" content="target-densitydpi=device-dpi,width=750">
 <meta charset="UTF-8">
 <title><?php echo ($_PAGE['title']); ?></title>
-<link rel="stylesheet" href="<?php echo ($host); ?>/Public/css/style.css">
+<link rel="stylesheet" href="/Public/css/style.css">
+<script src="/Public/js/jquery.js"></script>
 </head>
-<body style="font-size:36px;background:#fafafa;">
+<body>
     <div class="video_con" id="youkuplayer"></div>
 
 <script type="text/javascript" src="http://player.youku.com/jsapi">
@@ -23,12 +23,7 @@ show_related: false
 });
 </script>
 
-<div class="news_cont">
-    <div class="news_title">
-        <h1><?php echo ($info["title"]); ?></h1>
-        <p><span><?php echo ($info["source"]); ?></span><span><?php echo ($info["story_date"]); ?></span></p>
-    </div>
-</div>
+</body>
 
 <script>
 function boxHeight(){
@@ -41,5 +36,4 @@ window.onresize=function(){
 }
 </script>
 
-</body>
 </html>

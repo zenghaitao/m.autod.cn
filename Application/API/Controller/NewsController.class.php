@@ -272,6 +272,9 @@ class NewsController extends BaseController  {
         $this -> assign('page' , $page_html);
         $html = $this -> fetch('page');
         
+        if($_GET['show'] == 'page')
+            die($html);
+        
         $news_info['page'] = $html;
         
         /* 是否已点赞 */
@@ -349,6 +352,9 @@ class NewsController extends BaseController  {
         
         $this -> assign('video' , $video_info);
         $html = $this -> fetch('video');
+        
+        if($_GET['show'] == 'page')
+            die($html);
         
         $news_info['videoId'] = $video_info['videoid'];
         $news_info['time'] = $video_info['time'];
