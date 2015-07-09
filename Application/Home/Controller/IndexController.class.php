@@ -182,6 +182,7 @@ class IndexController extends BaseController  {
         $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
         $ad['type'] = 'ad';
         $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad['story_date'] = date('Y-m-d H:i:s');
         $ad = $this -> formatNews($ad);
         
         $ad['openMode'] = 'topic';
@@ -192,6 +193,7 @@ class IndexController extends BaseController  {
         $ad1['images'] = 'http://p2.pstatp.com/origin/2499/7735513385';
         $ad1['type'] = 'ad';
         $ad1['gourl'] = 'http://m.xcar.com.cn';
+        $ad1['story_date'] = date('Y-m-d H:i:s');
         $ad1 = $this -> formatNews($ad1);
         
         $ad1['openMode'] = 'topic';
