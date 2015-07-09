@@ -11,6 +11,12 @@ class IndexController extends BaseController  {
     }
     
     public function index(){
+        
+        $_PAGE['title'] = "《汽车日报》每日汽车新闻播报! - autod.cn";
+        $_PAGE['keywords'] = "汽车,汽车日报网,汽车日报,汽车每日报,汽车每日播报 - autod.cn";
+        $_PAGE['description'] = "《汽车日报》(autod.cn)是一款汇集全网汽车资讯的软件,它每天都会为您推荐不一样的汽车新闻资讯,并且越用越懂你! - autod.cn";
+        $this -> assign('_PAGE',$_PAGE);
+        
         $this -> display('index');
     }
     
