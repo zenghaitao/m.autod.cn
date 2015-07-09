@@ -43,6 +43,7 @@ var sinceId = 0;
 var maxId = 0;
 var action = 'init';
 var dataOff = true;
+var iconShow=true;
 
 //创建新闻列表
 function creatNews( info){
@@ -123,6 +124,8 @@ function ajaxAPI(){
             if(action == 'up'){
                 $('.list_box').eq(0).prepend(html);
                 $('.list_top').remove();
+                iconShow=true;
+                
             }else{
                 $('.list_box').eq(0).append(html);
             }
@@ -183,17 +186,19 @@ $(function(){
 var clientH=document.documentElement.clientHeight||document.body.clientHeight;
 var vendors=['webkitT','mozT','oT','msT'];
 //var endTrue=false;
-document.addEventListener('touchstart',function(ev){
+
+function touchStart(ev){
     if($('#tips_bar').css('display')!='none')
         return false;
     
+    document.removeEventListener('touchstart',touchStart,false);
     var downY=ev.targetTouches[0].pageY;
     var endTrue=false;
+    $('.list_top').remove();
     document.addEventListener('touchmove',touchMove,false);
     function touchMove(ev){
         var y = ev.targetTouches[0].pageY - downY;
-        document.title=downY+'-'+y
-        if(y>0 && $(document).scrollTop()==0){
+        if(y>0 && $(document).scrollTop()==0 && iconShow){
             ev.preventDefault();
             if(!$('.list_top').length){
                 var oRefresh='<div class="list_top"><div class="v2"><img src="/Public/images/refresh.png" alt=""></div></div>';
@@ -210,6 +215,7 @@ document.addEventListener('touchstart',function(ev){
         }
     }
     function touceEnd(){
+        iconShow=false;
         if(endTrue){
             for(var i=0;i<vendors.length;i++){
                 $('.list_top')[0].style[vendors[i]+'ransition']='all 0.5s';
@@ -217,16 +223,30 @@ document.addEventListener('touchstart',function(ev){
             }
             $('.list_top')[0].addEventListener('webkitTransitionEnd', function () {
                 $('.v2 img')[0].style.webkitAnimation='anime 1s linear infinite';
-                action = 'up';
-                ajaxAPI();
+                setTimeout(function(){
+                    action = 'up';
+                    ajaxAPI();
+                    document.addEventListener('touchstart',touchStart,false);
+                },1000)
             });
             endTrue=false;
+        }else{
+            if($('.list_top').length){
+                for(var i=0;i<vendors.length;i++){
+                    $('.list_top')[0].style[vendors[i]+'ransition']='all 0.5s';
+                    $('.list_top')[0].style[vendors[i]+'ransform']='translateY(-20px)';
+                 }
+             }
+             iconShow=true;
+             document.addEventListener('touchstart',touchStart,false);
         }
         document.removeEventListener('touchmove',touchMove,false);
         document.removeEventListener('touchend',touceEnd,false)
     }
     document.addEventListener('touchend',touceEnd,false);
-},false)
+}
+document.addEventListener('touchstart',touchStart,false);
+
 </script>
 
 </html>
