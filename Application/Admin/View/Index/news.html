@@ -31,7 +31,7 @@
               </thead>
               <tbody>
                 <foreach name="list" item="vo">
-                <tr>
+                <tr id="row_{$vo.id}">
                   <td>{$vo.id}</td>
                   <td><if condition="$vo.title_pic1 neq ''"><a href="{$vo.title_pic1}" target="_blank"><img src="{$vo.title_pic1}" height="70px;"/></a></if><if condition="$vo.title_pic2 neq ''">&nbsp;<a href="{$vo.title_pic2}" target="_blank"><img src="{$vo.title_pic2}" height="70px;"/></a></if><if condition="$vo.title_pic3 neq ''">&nbsp;<a href="{$vo.title_pic3}" target="_blank"><img src="{$vo.title_pic3}" height="70px;"/></a></if><br/>{$vo.title}
                   </td>
@@ -77,8 +77,15 @@ $().ready(function(){
             return false;
         }
         
-        
-        
+        $.post("/Admin/Index/saveStoryCate", { story_id: storyid, cate_id: cateid },
+            function(data){
+                var tr_id = 'row_'+storyid;
+                if(data == 'succ'){
+                    $('#'+tr_id).hide();
+                }else{
+                    alert('操作失败！');
+                }
+            });
     });
 });
 </script>

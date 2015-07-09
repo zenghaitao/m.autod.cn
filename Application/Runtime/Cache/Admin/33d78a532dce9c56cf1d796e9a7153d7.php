@@ -68,7 +68,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr>
+                <?php if(is_array($list)): foreach($list as $key=>$vo): ?><tr id="row_<?php echo ($vo["id"]); ?>">
                   <td><?php echo ($vo["id"]); ?></td>
                   <td><?php if($vo["title_pic1"] != ''): ?><a href="<?php echo ($vo["title_pic1"]); ?>" target="_blank"><img src="<?php echo ($vo["title_pic1"]); ?>" height="70px;"/></a><?php endif; if($vo["title_pic2"] != ''): ?>&nbsp;<a href="<?php echo ($vo["title_pic2"]); ?>" target="_blank"><img src="<?php echo ($vo["title_pic2"]); ?>" height="70px;"/></a><?php endif; if($vo["title_pic3"] != ''): ?>&nbsp;<a href="<?php echo ($vo["title_pic3"]); ?>" target="_blank"><img src="<?php echo ($vo["title_pic3"]); ?>" height="70px;"/></a><?php endif; ?><br/><?php echo ($vo["title"]); ?>
                   </td>
@@ -124,7 +124,16 @@ $().ready(function(){
             alert('请选择分类');
             return false;
         }
-        alert(12);
+        
+        $.post("/Admin/Index/saveStoryCate", { story_id: storyid, cate_id: cateid },
+            function(data){
+                var tr_id = 'row_'+storyid;
+                if(data == 'succ'){
+                    $('#'+tr_id).hide();
+                }else{
+                    alert('操作失败！');
+                }
+            });
     });
 });
 </script>

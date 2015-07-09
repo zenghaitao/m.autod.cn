@@ -114,11 +114,21 @@ class IndexController extends BaseController  {
     }
     
     public function saveStoryCate(){
+        $M_story = new StoryModel();
+        $M_news = new NewsModel();
+        
         $story_id = $_POST['story_id'];
         $cate_id = $_POST['cate_id'];
         
+        $data['column_id'] = $cate_id;
+        $result = $M_story -> updateStory($story_id , $data);
         
-        
+        if($result !== false){
+            $data['cate_id'] = $cate_id;
+            $M_news -> updateStory($story_id , $data);
+            die('succ');
+        }
+        die('fail');
     }
     
     /**

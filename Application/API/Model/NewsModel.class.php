@@ -702,4 +702,10 @@ class NewsModel
         }
         return $result;
     }
+    
+    
+    //更新story行记录
+    public function updateStory($id , $data){
+        return $this -> _db_news_choice -> where("story_id = '{$id}'") -> save($data);
+    }
 }
