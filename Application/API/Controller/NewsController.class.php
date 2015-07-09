@@ -376,7 +376,7 @@ class NewsController extends BaseController  {
         
         $news_info['videoId'] = $video_info['videoid'];
         $news_info['time'] = $video_info['time'];
-        $news_info['video_html'] = $html;
+        $news_info['videoHtml'] = $html;
         
         /* 是否已点赞 */
         if($_SESSION['user_id']){
@@ -558,7 +558,7 @@ class NewsController extends BaseController  {
             $row = $this -> formatComment($row);
             $since_id = $row['id'];
             $news = $M_news -> getNews($row['newsId']);
-            $row['newsInfo'] = $news;
+            $row['newsInfo'] = $this -> formatNews($news);
         }
         
         $result = array();
