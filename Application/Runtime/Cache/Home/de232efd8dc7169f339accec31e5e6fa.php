@@ -38,7 +38,7 @@
         </div>
     </article>
     <div class="midd_banner">
-        <img class="banner" src="http://s0.pstatp.com/resource/toutiao_wap/static/image/banner_middle_1bf5188.jpg">
+        <a href="/Home/Index/download"><img class="banner" src="http://s0.pstatp.com/resource/toutiao_wap/static/image/banner_middle_1bf5188.jpg"></a>
     </div>
     <?php if($ad): ?><div class="ad_box">
         <a href="<?php echo ($ad["gourl"]); ?>">
@@ -58,8 +58,8 @@
                     <div class="user_name"><?php echo ($vo["username"]); ?></div>
                     <div class="dianzan">
                         <?php if($vo["like_count"] != 0): ?><span><?php echo ($vo["like_count"]); ?></span><?php endif; ?>
-                        <a class="hand" href="#"><img src="/Public/images/hand.png" alt=""></a>
-                        <a class="comment" href="#"><img src="/Public/images/comment.png" alt=""></a>
+                        <a class="hand" href="/Home/Index/download"><img src="/Public/images/hand.png" alt=""></a>
+                        <a class="comment" href="/Home/Index/download"><img src="/Public/images/comment.png" alt=""></a>
                     </div>
                     <p><?php echo ($vo["post"]); ?></p>
                     <?php if($vo["reply_id"] != 0): ?><div class="bef_com">
@@ -72,12 +72,12 @@
         </ul>
     </div>
     <div class="comment_app_download">
-        <a href="">打开汽车日报，查看<?php echo ($info["comments_count"]); ?>条评论</a>
+        <a href="/Home/Index/download">打开汽车日报，查看<?php echo ($info["comments_count"]); ?>条评论</a>
     </div>
     <?php else: ?>
     <div class="comment-empty comment-share-container">暂时没有评论</div>
     <div class="comment_app_download">
-        <a href="">进入汽车日报发表评论</a>
+        <a href="/Home/Index/download">进入汽车日报发表评论</a>
     </div><?php endif; ?>
     
     <div class="news_box">
@@ -122,7 +122,7 @@
         </div>
     </div>
     <div class="comment_app_download">
-        <a href="">都翻到这了，就安装个汽车日报吧</a>
+        <a href="/Home/Index/download">都翻到这了，就安装个汽车日报吧</a>
     </div>
     <br/>
 </body>
