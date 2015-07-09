@@ -6,6 +6,8 @@
 <meta name="format-detection" content="telephone=no"/>
 <meta charset="UTF-8">
 <title><?php echo ($_PAGE['title']); ?></title>
+<meta name="keywords" content="<?php echo ($_PAGE['keywords']); ?>">
+<meta name="description" content="<?php echo ($_PAGE['description']); ?>">
 <link rel="stylesheet" href="/Public/css/style.css">
 <script src="/Public/js/jquery.js"></script>
 </head>

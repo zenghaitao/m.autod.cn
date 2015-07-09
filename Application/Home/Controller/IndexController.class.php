@@ -334,6 +334,7 @@ class IndexController extends BaseController  {
         $_PAGE['title'] = "{$info['title']} - 汽车日报(autod.cn)";
         $_PAGE['keywords'] = "{$info['title']} - 汽车日报(autod.cn)";
         $_PAGE['description'] = "{$info['summary']} - 汽车日报(autod.cn)";
+        $this -> assign('_PAGE',$_PAGE);
         
         if($info['open_mode'] == 'video'){
             $this -> video($info);
