@@ -45,10 +45,10 @@ class StoryModel
             $images .= $row['images'];
             $image_count += $row['image_count'];
         }
-        if(!$images){
-            $images = explode(';,;' , $images);
-        }else{
+        if($images == ""){
             $images = array();
+        }else{
+            $images = explode(';,;' , $images);
         }
         return array('html' => $html , 'images' => $images , 'image_count' => $image_count);
     }

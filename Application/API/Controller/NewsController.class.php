@@ -378,6 +378,37 @@ class NewsController extends BaseController  {
         $news_info['time'] = $video_info['time'];
         $news_info['video_html'] = $html;
         
+        /* 是否已点赞 */
+        if($_SESSION['user_id']){
+            $liked = $M_news -> liked($news_id , $_SESSION['user_id']);
+            $news_info['liked'] = $liked?'yes':'no';
+        }else{
+            $news_info['liked'] = 'no';
+        }
+        
+        /* 是否已收藏 */
+        if($_SESSION['user_id']){
+            $faved = $M_news -> faved($news_id , $_SESSION['user_id']);
+            $news_info['faved'] = $faved?'yes':'no';
+        }else{
+            $news_info['faved'] = 'no';
+        }
+        
+        /* 来源详细信息 */
+        $source_info = array();
+        if($news_info['sourceId']){
+            $source_info = $M_news -> getSource($news_info['sourceId']);
+            $this -> formatSource($source_info);
+        }
+        $news_info['sourceInfo'] = $source_info;
+        
+        /* 是否已订阅 */
+        if($_SESSION['user_id']){
+            $followed = $M_news -> followed($news_info['sourceId'] , $_SESSION['user_id']);
+            $news_info['followed'] = $followed?'yes':'no';
+        }else{
+            $news_info['followed'] = 'no';
+        }
         
         /*获取相关视频*/
         $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId']);
@@ -408,6 +439,38 @@ class NewsController extends BaseController  {
         $page_info = $M_story -> getStoryPage($news_info['story_id']);
         
         $news_info['imageCount'] = $page_info['image_count'];
+        
+        /* 是否已点赞 */
+        if($_SESSION['user_id']){
+            $liked = $M_news -> liked($news_id , $_SESSION['user_id']);
+            $news_info['liked'] = $liked?'yes':'no';
+        }else{
+            $news_info['liked'] = 'no';
+        }
+        
+        /* 是否已收藏 */
+        if($_SESSION['user_id']){
+            $faved = $M_news -> faved($news_id , $_SESSION['user_id']);
+            $news_info['faved'] = $faved?'yes':'no';
+        }else{
+            $news_info['faved'] = 'no';
+        }
+        
+        /* 来源详细信息 */
+        $source_info = array();
+        if($news_info['sourceId']){
+            $source_info = $M_news -> getSource($news_info['sourceId']);
+            $this -> formatSource($source_info);
+        }
+        $news_info['sourceInfo'] = $source_info;
+        
+        /* 是否已订阅 */
+        if($_SESSION['user_id']){
+            $followed = $M_news -> followed($news_info['sourceId'] , $_SESSION['user_id']);
+            $news_info['followed'] = $followed?'yes':'no';
+        }else{
+            $news_info['followed'] = 'no';
+        }
         
         $this -> succ($news_info);
     }
