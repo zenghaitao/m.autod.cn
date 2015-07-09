@@ -2,7 +2,7 @@
 <foreach name="menu" item="group">
   <ul class="nav nav-sidebar">
 <foreach name="group" item="row">
-  <li>
+  <li <if condition="$action eq $row['action']">class="active"</if>>
     <a href="{$row.url}">{$row.name}</a>
   </li>
 </foreach>

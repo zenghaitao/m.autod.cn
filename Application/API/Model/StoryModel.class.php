@@ -66,7 +66,28 @@ class StoryModel
         return $list;
     }
     
-    public function storyAdminList( $is_choice = 'no', $count = 10){
-        $where_str = "is_choice = '{}'";
+    public function storyAdminList( $is_choice = 'no', $page = 1 , $count = 10){
+        $where_str = "is_choice = '{$is_choice}'";
+        $limit = ($page - 1)*$count . ',' . $count;
+        
+        $count = $this -> _db_story -> where($where_str) -> count();
+        $list = $this -> _db_story -> where($where_str) -> order('story_date DESC') -> limit($limit) -> select();
+        return array('list'=>$list , 'count'=> $count);
+        
+    }
+    
+    public function noCateNewsList($page = 1 , $count = 10){
+        $where_str = "column_id = '0'";
+        $limit = ($page - 1)*$count . ',' . $count;
+        
+        $count = $this -> _db_story -> where($where_str) -> count();
+        $list = $this -> _db_story -> where($where_str) -> order('is_choice ASC , id DESC') -> limit($limit) -> select();
+        
+        return array('list'=>$list , 'count'=> $count);
+    }
+    
+    //更新story行记录
+    public function updateStory($id , $data){
+        return $this -> _db_story -> where("id = '{$id}'") -> save($data);
     }
 }

@@ -227,14 +227,32 @@ class NewsModel
      * @param int $count
      * @return array
      */
-    public function newsCateList($cate_id , $begin_id = 0 , $count = 10){
-        $where_str = "cate_id = '{$cate_id}'";
+    public function newsCateList($cate_id = 0 , $begin_id = 0 , $count = 10){
+        if(!$cate_id)
+            $where_str = '1';
+        else 
+            $where_str = "cate_id = '{$cate_id}'";
         if($begin_id)
             $where_str .= " AND id < '{$begin_id}'";
         
         $list = $this -> _db_news_choice -> where($where_str) -> order("id DESC") -> limit($count) -> select();
         return $list;
     }
+    
+    public function newsList($cate_id , $page = 1 , $count = 10){
+        if(!$cate_id)
+            $where_str = '1';
+        else 
+            $where_str = "cate_id = '{$cate_id}'";
+        
+        $limit_str = ($page - 1)*$count.','.$count;
+            
+        $list = $this -> _db_news_choice -> where($where_str) -> limit($limit_str) -> order("id DESC") -> select();
+        $count = $this -> _db_news_choice -> where($where_str) -> count();
+        
+        return array('list' => $list , 'count' => $count);
+    }
+    
     
     /**
      * 获取相关新闻
@@ -629,7 +647,7 @@ class NewsModel
         
         $res = $this -> _db_news_comments_like -> add($data);
         if($res){
-            $this -> _db_news_comments -> where("id = '{$comment_id}'")->setInc('hot'); 
+            $this -> _db_news_comments -> where("id = '{$comment_id}'")->setInc('like_count'); 
         }
         return $res;
     }
@@ -648,7 +666,7 @@ class NewsModel
         
         $res = $this -> _db_news_comments_like -> where("comment_id = '{$comment_id}' AND uid = '{$user_id}'") -> delete();
         if($res){
-            $this -> _db_news_comments -> where("id = '{$comment_id}'")->setDec('hot'); 
+            $this -> _db_news_comments -> where("id = '{$comment_id}'")->setDec('like_count'); 
         }
         return $res;
     }

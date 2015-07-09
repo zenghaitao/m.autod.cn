@@ -15,7 +15,7 @@
 <section class="slider_bar">
     <ul>
         <li><a href="#">头条</a></li>
-        <li><a href="#">视频</a></li>
+        <li><a href="/Home/Index/cateList?cateId=20">视频</a></li>
         <li><a href="#">新车</a></li>
         <li><a href="#">评测</a></li>
         <li><a href="#">导购</a></li>
