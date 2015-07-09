@@ -148,7 +148,7 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 @media screen and (min-width:360px){
     .box h3{font-size: 19px;max-height: 44px;}
     .box h3.long_title{max-height: 29px;white-space:nowrap;}
-    .img_box img,.img_box2 img{min-height: 84px;}
+    .img_box img,.img_box2 img{min-height: 77px;}
     .ad_cont img{min-height: 114px;}
     .title{font-size: 22px!important;}
     .article_box div,.article_box p{font-size: 18px;}
@@ -157,7 +157,7 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 @media screen and (min-width:400px){
     .box h3{font-size: 21px;max-height: 50px;}
     .box h3.long_title{max-height: 32px;white-space:nowrap;}
-    .img_box img,.img_box2 img{min-height: 93px;}
+    .img_box img,.img_box2 img{min-height: 85px;}
     .ad_cont img{min-height: 127px;}
     .title{font-size: 24px!important;}
     .article_box div,.article_box p{font-size: 20px;}
