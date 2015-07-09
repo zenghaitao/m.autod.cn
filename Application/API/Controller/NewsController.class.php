@@ -292,7 +292,7 @@ class NewsController extends BaseController  {
             die($html);
         
         $news_info['page'] = $html;
-        $news_info['page_images'] = $page_result['images'];
+        $news_info['pageImages'] = $page_result['images'];
         
         /* 是否已点赞 */
         if($_SESSION['user_id']){
