@@ -183,7 +183,7 @@ class NewsController extends BaseController  {
         if($news['type'] == 'ad')
             $news['displayMode'] = 'C';
         $news['openMode'] = (string)$row['open_mode'];
-        if($row['comments_count'] > 1)
+        if($news['imageCount'] > 1)
             $news['openMode'] = 'image';
             
         $news['gourl'] = (string)$row['gourl'];
