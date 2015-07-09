@@ -17,5 +17,17 @@
             </div>
         </div>
     </article>
+    
+    <script>
+    $().ready(function(){
+        $('img').click(function(){
+            var url = $(this).attr('src');
+            alert(url);
+//            window.jscalljava.displayImage(url);
+        });
+    });
+    
+    </script>
+    
 </body>
 </html>

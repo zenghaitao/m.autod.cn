@@ -277,7 +277,9 @@ class NewsController extends BaseController  {
         $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $page_html = $M_story -> getStoryPage($news_info['storyId']);
+        $page_result = $M_story -> getStoryPage($news_info['storyId']);
+        
+        $page_html = $page_result['html'];
         
         $this -> assign('page' , $page_html);
         $this -> assign('host' , 'http://'.$_SERVER['HTTP_HOST']);
@@ -287,6 +289,7 @@ class NewsController extends BaseController  {
             die($html);
         
         $news_info['page'] = $html;
+        $news_info['page_images'] = $page_result['images'];
         
         /* 是否已点赞 */
         if($_SESSION['user_id']){
@@ -402,7 +405,6 @@ class NewsController extends BaseController  {
         $page_info = $M_story -> getStoryPage($news_info['story_id']);
         
         $news_info['imageCount'] = $page_info['image_count'];
-        $news_info['images'] = explode(';,;',$page_info['images']);
         
         $this -> succ($news_info);
     }

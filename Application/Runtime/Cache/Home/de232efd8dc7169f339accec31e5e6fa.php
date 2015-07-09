@@ -12,7 +12,15 @@
 <script src="/Public/js/jquery.js"></script>
 </head>
 <body class="pat">
-    <div class="app_banner"></div>
+    
+    <div class="app_banner">
+        <img src="/Public/images/icon.png" alt="">
+        <p>汽车日报</p>
+        <i>新版上线，快来试试吧</i>
+        <a href="/Home/Index/download">立即打开</a>
+        <img class="close_btn" src="/Public/images/close.png" alt="">
+    </div>
+
     <?php if(0): ?><div class="bar_top"> 
         <a href="/Home/Index/source?id=<?php echo ($source["id"]); ?>"> 
             <div class="avatar"> 
@@ -129,6 +137,45 @@
     <br/>
 </body>
 <script>
+function addCookie(name,value,iDay){
+    var oDate=new Date();
+    oDate.setDate(oDate.getDate()+iDay);
+    document.cookie=name+'='+value+';path=/;expires='+oDate;
+}
+function getCookie(name){
+    var arr=document.cookie.split('; ');
+    for(var i=0; i<arr.length; i++){
+        var arr2=arr[i].split('=');
+        if(arr2[0]==name){
+            return arr2[1]; 
+        }
+    }
+    return '';
+}
+function delCookie(name){
+    addCookie(name,'1',-1);
+}
+$(function(){
+    if($('.article_box')[0].offsetHeight>1200){
+        $('.article_box').css('height','1000px');
+        $('.overflow_show').css('display','block');
+        $('.overflow_show a').click(function(){
+            $('.article_box').css('height','auto');
+            $(this).css('display','none');
+        })
+    }
+    if(getCookie('downApp_cookie')){
+        $('.pat').css({'margin-top':'-50px'})
+        $('.app_banner').hide();
+    }else{
+        $('.pat').css('margin','0')
+    }
+    $('.close_btn').click(function(){
+        $('.app_banner').hide();
+        addCookie('downApp_cookie',1)
+        $('.pat').css({'padding-top':'-0'})
+    })
 
+})
 </script>
 </html>

@@ -38,10 +38,15 @@ class StoryModel
     public function getStoryPage($story_id){
         $pages = $this -> _db_story_content -> where("story_id = '$story_id'") -> order("page ASC") -> select();
         $html = '';
+        $images = '';
+        $image_count = 0;
         foreach ($pages as $row){
-            $html .= strip_tags($row['content'] , "<p><img><table><tr><td><tbody>");;
+            $html .= strip_tags($row['content'] , "<p><img><table><tr><td><tbody>");
+            $images .= $row['images'];
+            $image_count += $row['image_count'];
         }
-        return $html;
+        $images = explode(';,;' , $images);
+        return array('html' => $html , 'images' => $images , 'image_count' => $image_count);
     }
     
     /**

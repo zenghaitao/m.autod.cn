@@ -141,5 +141,4 @@ class SnatchModel
         }
         return $res;
     }
-    
 }

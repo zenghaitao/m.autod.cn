@@ -374,6 +374,7 @@ class IndexController extends BaseController  {
         //页面内容
         $M_story = new StoryModel();
         $page = $M_story -> getStoryPage($info['story_id']);
+        $page = $page['html'];
         
         //热门评论
         $comments = $M_news -> commentsList($news_id , 0 , 50);
