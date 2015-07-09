@@ -48,7 +48,7 @@ function creatNews( info){
     displayMode = info.displayMode;
     imgsrc = info['images'];
     title = info.title;
-    time = info.postTime;
+    time = info.timeString;
     type = info['type'];
     hot = info.hot;
     gourl = info.gourl;

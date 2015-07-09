@@ -48,7 +48,7 @@ header h2{font-size: 2.2rem;text-align: center;color: #d0d0d0;line-height: 44px;
 .load_img{text-align: center;padding: 10px 0;display: none;}
 .load_img img{display: inline-block;width: 32px;height: 32px;}
 
-.box span{height: 12px;font-size: 10px;text-align: center;border-radius: 6px;padding: 0 2px;margin-left: 10px;}
+.box .type1,.box .type2,.box .type3,.box .type4{height: 12px;font-size: 10px;text-align: center;border-radius: 6px;padding: 0 2px;margin-left: 10px;}
 .type1{background: #2a90d7;color: #fff;}
 .type2{background: #2a90d7;color: #fff;}
 .type3{background: #f05b5b;color: #fff;}

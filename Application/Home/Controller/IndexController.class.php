@@ -80,6 +80,7 @@ class IndexController extends BaseController  {
         foreach ($list as &$row){
             //格式化新闻行记录
             $row = $this -> formatNews($row);
+            
             if($row['id'] > $max_id)
                 $max_id = $row['id'];
         }
@@ -102,6 +103,45 @@ class IndexController extends BaseController  {
         $result['refresh'] = $refresh;
 
         $this -> succ($result);
+    }
+    
+    /**
+     * 格式化时间字符串
+     *
+     * @param string $date
+     * @return string
+     */
+    private function formatTime($date){
+        $time = strtotime($date);
+        $now = time();
+        
+        $day = date('m-d' , $time);
+        $today = date('m-d');
+        
+        $diff = $now - $time;
+        
+        $diff_min = ceil($diff / 60);
+        $diff_5min = ceil($diff / 60 / 5) * 5;
+        $diff_15min = ceil($diff / 60 / 15) * 15;
+        $diff_hor = round($diff / 3600);
+        
+        if($diff < 60)
+            return '刚刚';
+        if($diff_min <= 5)
+            return $diff_min.'分钟前';
+        if($diff_min <= 30)
+            return $diff_5min.'分钟前';
+        
+        if($diff_min <= 60)
+            return $diff_15min.'分钟前';
+            
+        if($diff_min < 60 * 6)
+            return $diff_hor.'小时前';
+        
+        if($day == $today)
+            return date('H:i' , $time);
+        
+        return $day;
     }
     
     /**
@@ -181,6 +221,8 @@ class IndexController extends BaseController  {
         $news['images'] = (array)$images;
         
         $news['postTime'] = (string)$row['story_date'];
+        $news['timeString'] = $this -> formatTime($row['story_date']);
+        
         $news['type'] = $row['type'];
         if($news['imageCount'] == 3)
             $news['displayMode'] = 'B';

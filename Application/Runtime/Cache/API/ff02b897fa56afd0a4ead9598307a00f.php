@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title><?php echo ($_PAGE['title']); ?></title>
 <link rel="stylesheet" href="<?php echo ($host); ?>/Public/css/style.css">
+<script src="<?php echo ($host); ?>/Public/js/jquery.js"></script>
 </head>
 <body>
     <article class="con_box">
