@@ -331,6 +331,10 @@ class IndexController extends BaseController  {
         //记录hot值
         $M_news -> incHot($news_id);
         
+        $_PAGE['title'] = "{$info['title']} - 汽车日报(autod.cn)";
+        $_PAGE['keywords'] = "{$info['title']} - 汽车日报(autod.cn)";
+        $_PAGE['description'] = "{$info['summary']} - 汽车日报(autod.cn)";
+        
         if($info['open_mode'] == 'video'){
             $this -> video($info);
             exit;
