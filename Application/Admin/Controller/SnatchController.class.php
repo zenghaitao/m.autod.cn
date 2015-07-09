@@ -12,6 +12,24 @@ class SnatchController extends BaseController  {
         parent::__construct();
     }
     
+    public function zhengli_content(){
+        $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
+        
+        $M_snatch = new SnatchModel();
+        
+        $list = $_db_news_story_content -> where("images = '1'") -> select();
+        foreach ($list as $row){
+            $images = $M_snatch -> img($row['content']);
+            
+            $date['images'] = implode(';,;' , $images);
+            $date['image_count'] = count($date['images']);
+            
+            $_db_news_story_content -> where("id = '{$row['id']}'") -> save($date);
+        }
+        
+        var_dump(count($list).'over');
+    }
+    
     /**
      * 抓取INA的数据进story表
      *
@@ -292,7 +310,7 @@ class SnatchController extends BaseController  {
                     $data['page'] = 1;
                     $data['content'] = $result['content'];
                     $data['images'] = implode(';,;' , $result['images']);
-                    $data['images'] = count($result['images']);
+                    $data['image_count'] = count($result['images']);
                     $data['http'] = $result['http'];
                     $data['add_time'] = date('Y-m-d H:i:s');
                     $_db_news_story_content -> add($data);
