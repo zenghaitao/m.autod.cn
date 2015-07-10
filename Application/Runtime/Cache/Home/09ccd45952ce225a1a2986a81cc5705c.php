@@ -1,0 +1,23 @@
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>关于我们</title>
+    <style>
+        body,p {margin:0; padding:0;}
+        .about-head {width:100%; overflow:hidden;}
+        .about-head img {width:100%; display:block;}
+        .about-content {padding:10px 0;}
+        .about-content p {padding:10px; font-size:12px; line-height:20px;}
+    </style>
+</head>
+<body>
+    <div class="about-head"><img src="http://autod.b0.upaiyun.com/autod_img/source_logo/about.png" alt="" /></div>
+    <div class="about-content">
+        <p>汽车日报励志成为全球最大的汽车新闻聚合网站，目前我们主要采取网络爬虫技术定时收录各家网站的新闻内容。如果想更即时的获得更新可以将rss订阅地址或者其他格式的信息流推送给我们，这样您会获得更即时的信息更新。</p>
+        <p>另外如果有文章需要删除或者终止合作也请联系我们，我们将尽快处理，谢谢！</p>
+        <p>商务合作请联系邮箱：autodaily@qq.com</p>
+    </div>
+</body>
+</html>
