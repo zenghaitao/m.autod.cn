@@ -187,6 +187,8 @@ class NewsController extends BaseController  {
             $news['openMode'] = 'image';
             
         $news['gourl'] = (string)$row['gourl'];
+        if(!$news['gourl'])
+            $news['gourl'] = "http://{$_SERVER['HTTP_HOST']}/Home/Index/page?id={$news['id']}";
         
         $news['favCount'] = (int)$row['fav_count'];
         $news['likeCount'] = (int)$row['like_count'];
