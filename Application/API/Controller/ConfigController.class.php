@@ -17,4 +17,32 @@ class ConfigController extends BaseController {
         
         $this -> succ(array('photos'=>$imgs));
     }
+    
+    /**
+     * 检查版本更新
+     *
+     */
+    public function version(){
+        $result = array();
+        $result['version'] = '2.0.0';
+        $result['url'] = 'http://'.$_SERVER['HTTP_HOST']."/Home/Index/download";
+        
+        $version = $_GET['ver'];
+        if(strpos($version , 'iphone') !== false){
+            $n_version = C("IPHONE_VERSION");
+            $version = str_replace('iphone' , '' , $version);
+        }
+        if(strpos($version , 'android') !== false){
+            $n_version = C("ANDROID_VERSION");
+            $version = str_replace('android' , '' , $version);
+        }
+        
+        if($version >= $n_version){
+            $result['update'] = 'no';
+        }else{
+            $result['update'] = 'yes';
+        }
+            
+        $this -> succ($result);
+    }
 }

@@ -1,6 +1,8 @@
 <?php
 return array(
 	//'配置项'=>'配置值'
+	'IPHONE_VERSION' => '2.0.0',
+	'ANDROID_VERSION' => '2.0.0',
 	'SESSION_AUTO_START' => false,
 	'DB0_CONFIG' => array(
 	    'db_name'           => $_SERVER['AD_DB0_M_NAME'],
