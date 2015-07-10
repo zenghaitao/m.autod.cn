@@ -4,12 +4,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta name="description" content="">
     <meta name="author" content="">
     <title>意见反馈</title>
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <style>
+.container{width:90%;}
 ul{margin:0px;padding:0px;}
 li{list-style:none; margin-top:20px;text-align:center}
 .tips{line-height:40px;color:#666;font-size:12px;display:none}
