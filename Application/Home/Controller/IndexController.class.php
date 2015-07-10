@@ -2,6 +2,7 @@
 namespace Home\Controller;
 use API\Model\NewsModel;
 use API\Model\StoryModel;
+use API\Model\UserModel;
 use Home\Model\SnatchModel;
 
 class IndexController extends BaseController  {
@@ -451,12 +452,48 @@ class IndexController extends BaseController  {
        exit;
     }
     
+    /**
+     * 使用帮助
+     *
+     */
     public function help(){
         $this -> display('help');
     }
     
+    /**
+     * 关于我们
+     *
+     */
     public function about(){
         $this -> display('about');
+    }
+    
+    /**
+     * 意见反馈
+     *
+     */
+    public function feedback(){
+        $status = 'init';
+        
+        if($_POST){
+            //记录反馈信息
+            $data = array();
+            $data['reg_id'] =  $_SESSION['reg_id'];
+            $data['feedback'] =  htmlspecialchars($_POST['feedback']);
+            $data['contacts'] =  htmlspecialchars($_POST['contacts']);
+            $data['add_time'] = date('Y-m-d H:i:s');
+            
+            $M_user = new UserModel();
+            if($M_user -> feedback($data)){
+                $status = 'succ';
+            }else{
+                $status = 'fail';
+            }
+            die($status);
+        }
+        
+        
+        $this -> display('feedback');
     }
 
 }

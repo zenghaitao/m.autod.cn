@@ -6,10 +6,12 @@ class UserModel
 
     protected $_db_user;
     protected $_db_user_device;
+    protected $_db_user_feedback;
     
     public function __construct(){
         $this -> _db_user_device = M('User_device' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_user = M('User' , 'ad_' , 'DB0_CONFIG');
+        $this -> _db_user_feedback = M('User_feedback' , 'ad_' , 'DB0_CONFIG');
     }
     
     /**
@@ -250,4 +252,13 @@ class UserModel
         return $data;
     }
 
+    /**
+     * 意见反馈
+     *
+     * @param array $data
+     * @return bool
+     */
+    public function feedback($data){
+        return $this -> _db_user_feedback -> add($data);
+    }
 }

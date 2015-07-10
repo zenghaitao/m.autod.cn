@@ -55,4 +55,18 @@ class BaseController extends Controller{
             return json_encode($data);
     }
     
+    /**
+     * 设置session
+     *
+     */
+    private function setSession(){
+        if(isset($_GET['sessionId'])){
+            session_id($_GET['sessionId']);
+            session_start();
+        }else{
+            session_start();
+        }
+        session(array('expire'=>3600*24));
+    }
+    
 }
