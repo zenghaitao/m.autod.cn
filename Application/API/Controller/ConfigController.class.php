@@ -9,11 +9,12 @@ class ConfigController extends BaseController {
     }
     
     public function screenPhoto(){
+        $imgs = array();
+        
         $imgs[] = 'http://7xjrkc.com1.z0.glb.clouddn.com/IMG_0640.jpg';
         $imgs[] = 'http://7xjrkc.com1.z0.glb.clouddn.com/IMG_0670.jpg';
         
         
         $this -> succ(array('photos'=>$imgs));
     }
-    
 }
