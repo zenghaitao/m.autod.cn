@@ -296,6 +296,9 @@ class NewsModel
         if($begin_id)
             $where_str .= " AND id < '{$begin_id}'";
         
+        if($count < 1)
+            $count = 10;
+            
         $list = $this -> _db_news_choice -> where($where_str) -> order("id DESC") -> limit($count) -> select();
         return $list;
     }
