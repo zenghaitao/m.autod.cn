@@ -449,5 +449,12 @@ class IndexController extends BaseController  {
        exit;
     }
     
+    public function help(){
+        $this -> display('help');
+    }
+    
+    public function about(){
+        $this -> display('about');
+    }
 
 }
