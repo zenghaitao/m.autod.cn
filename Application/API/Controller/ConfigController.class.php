@@ -12,9 +12,9 @@ class ConfigController extends BaseController {
         $imgs = array();
         
 //        $imgs[] = 'http://7xjrkc.com1.z0.glb.clouddn.com/IMG_0640.jpg';
-        $imgs[] = 'http://7xjrkc.com1.z0.glb.clouddn.com/IMG_0670.jpg';
+//        $imgs[] = 'http://7xjrkc.com1.z0.glb.clouddn.com/IMG_0670.jpg';
         
-        $imgs[] = 'http://pic.58pic.com/58pic/14/76/74/40b58PICiS9_1024.jpg';
+//        $imgs[] = 'http://pic.58pic.com/58pic/14/76/74/40b58PICiS9_1024.jpg';
 //        $imgs[] = 'http://pic21.nipic.com/20120613/9507361_164919714197_2.jpg';
 //        $imgs[] = 'http://pic2.ooopic.com/12/17/43/46bOOOPIC69_1024.jpg';
         
