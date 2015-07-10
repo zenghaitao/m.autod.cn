@@ -273,16 +273,18 @@ class IndexController extends BaseController  {
         $since_id = 0;
         
         foreach ($list as &$row){
+            //格式化新闻行记录
             $row = $this -> formatNews($row);
+            
             $since_id = $row['id'];
         }
         
-        $this -> assign('list' , $list);
-        $this -> assign('count' , count($list));
+        $result = array();
+        $result['statuses'] = $list;
+        $result['updateCount'] = count($list);
+        $result['sinceId'] = $since_id;
         
-        if($cate_id == 20){
-            $this -> display('list1');
-        }
+        $this -> succ($result);
     }
     
     /**
