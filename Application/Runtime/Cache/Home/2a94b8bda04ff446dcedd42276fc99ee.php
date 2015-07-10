@@ -11,24 +11,25 @@
 <link rel="stylesheet" href="/Public/css/style.css">
 <script src="/Public/js/jquery.js"></script>
 </head>
-<body>
-<section class="slider_bar">
-    <ul>
-        <li><a href="#">头条</a></li>
-        <li><a href="/Home/Index/cateList?cateId=20">视频</a></li>
-        <li><a href="#">新车</a></li>
-        <li><a href="#">评测</a></li>
-        <li><a href="#">导购</a></li>
-        <li><a href="#">行业</a></li>
-        <li><a href="#">新闻</a></li>
-        <li><a href="#">找车</a></li>
-    </ul>
-</section>
-<header data-role="header">
-    <h2>汽车日报</h2>
-    <a class="head_menu" href="javascript:void(0);">
-        <div></div><div></div><div></div>
-    </a>
+<body class="index_pat">
+<header>
+    <div class="header">
+        <a class="head_icon" href="/Home/Index/download"><img src="/Public/images/head_icon.png" alt=""></a>
+        <img class="logo" src="/Public/images/logo.png" alt="">
+        <a class="search_icon" href="http://auto.news18a.com/init.php?m=price&c=index&a=index&from=autod"><img src="/Public/images/search.png" alt=""></a>
+    </div>
+    <div class="top_menu_box">
+        <div class="top_menu">
+            <div class="menu_list">
+                <a class="cur" href="">推荐</a>
+                <a href="">视频</a>
+                <a href="">新车</a>
+                <a href="">评测</a>
+                <a href="">导购</a>
+                <a href="">行业</a>
+            </div>
+        </div>
+    </div>
 </header>
 <div class="container">
     <div class="list_box">
@@ -165,20 +166,6 @@ $(function(){
         action = 'down';
         ajaxAPI();
     }
-
-    //侧边栏
-    var bSlider=false;
-    $('.head_menu').click(function(){
-        if(bSlider){$('.slider_bar').stop().animate({'left':'-100%'})
-        }else{
-            $('.slider_bar').stop().animate({'left':'0px'})
-        }
-        bSlider=!bSlider;
-    })
-    $('.slider_bar').click(function(){
-        $(this).stop().animate({'left':'-100%'})
-        bSlider=!bSlider;
-    })
 
 })
 
