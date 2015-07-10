@@ -191,9 +191,9 @@ function touchStart(ev){
                 var oRefresh='<div class="list_top"><div class="v2"><img src="/Public/images/refresh.png" alt=""></div></div>';
                 $('body').append(oRefresh);
             }
-            if(y>=200){
+            if(y>=220){
                 endTrue=true;
-                y=200;
+                y=220;
             }
             for(var i=0;i<vendors.length;i++){
                 $('.list_top')[0].style[vendors[i]+'ransform']='translateY('+y*0.5+'px)';
@@ -206,7 +206,7 @@ function touchStart(ev){
         if(endTrue){
             for(var i=0;i<vendors.length;i++){
                 $('.list_top')[0].style[vendors[i]+'ransition']='all 0.5s';
-                $('.list_top')[0].style[vendors[i]+'ransform']='translateY(60px)';
+                $('.list_top')[0].style[vendors[i]+'ransform']='translateY(80px)';
             }
             $('.list_top')[0].addEventListener('webkitTransitionEnd', function () {
                 $('.v2 img')[0].style.webkitAnimation='anime 1s linear infinite';
