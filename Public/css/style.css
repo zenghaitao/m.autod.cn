@@ -142,8 +142,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 }
 
 /*视频列表*/
-.video_box{overflow: hidden;border-bottom: 1px solid #d9d9d9;font-size: 0;margin-bottom:6px;}
-.video{width: 100%;display: inline-block;font-size: 14px;background: #fff;}
+/*.video{width: 100%;display: inline-block;font-size: 14px;background: #fff;}
 .video_l,.video_r{width: 49%;display: inline-block;font-size: 14px;}
 .video_r{float: right;}
 .video_link{display: block;position: relative;}
@@ -155,14 +154,27 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 .video .item_info2 span{margin-right:10px}
 .video .item_info2 .time{float: none;margin-right: 20px;}
 .video .time{background: url(/Public/images/clock.png) no-repeat left;background-size: 12px;padding-left: 16px;height: 12px;max-width: 65px;overflow: hidden;}
-
 .video_box_list .img_box img{min-height: 0px;}
+*/
+
+.video_box{overflow: hidden;border-bottom: 1px solid #d9d9d9;font-size: 0;margin-bottom:10px;}
+.video{padding: 0 10px;font-size: 14px;background: #fff;-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
+.video_link{width: 100%;position: relative;}
+.video_link img{width: 100%;display: block;margin: 0 auto}
+.video_link span img{width: 17%;position: absolute;border-radius: 0;bottom: 20px;left: 20px;}
+.video h3{font-weight: normal;font-size: 16px;color: #303030;margin-top: 10px;}
+.video .item_info2{font-size: 12px;line-height: 20px;color: #999;text-align: right;color: #b7b7b7;margin-bottom:10px;background-color:#ffffff;z-index:999;margin-top: 4px;}
+.video .item_info2 span{margin-right:10px}
+.video .item_info2 span.type3{border-radius: 6px;padding: 0 4px;margin-left: 10px;}
+.video .item_info2 .time{height: 20px;line-height: 20px;}
+.video .time{background: url(/Public/images/clock.png) no-repeat left;background-size: 12px;padding-left: 16px;height: 12px;max-width: 65px;overflow: hidden;}
 
 /*视频详情*/
 .video_con{width: 100%;background: #000;}
 
 @media screen and (min-width:360px){
     .box h3{font-size: 19px;max-height: 44px;}
+    .video h3{font-size: 18px;}
     .box h3.long_title{max-height: 29px;white-space:nowrap;}
     .img_box img,.img_box2 img{min-height: 78px;}
     .ad_cont img{min-height: 114px;}
@@ -175,6 +187,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
     .header a.head_icon{width: 31px;height: 30px;left: 10px;top: 7px;}
     .header a.search_icon{width: 30px;height: 30px;right: 10px;top: 7px;}
     .box h3{font-size: 21px;max-height: 50px;}
+    .video h3{font-size: 20px;}
     .box h3.long_title{max-height: 32px;white-space:nowrap;}
     .img_box img,.img_box2 img{min-height: 87px;}
     .ad_cont img{min-height: 127px;}
