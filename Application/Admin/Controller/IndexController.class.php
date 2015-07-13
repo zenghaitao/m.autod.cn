@@ -16,6 +16,18 @@ class IndexController extends BaseController  {
         parent::__construct();
     }
     
+    public function login(){
+        if($_POST){
+            
+        }
+        
+        $this -> display('login');
+    }
+    
+    public function logout(){
+        
+    }
+    
     /**
      * 控制台
      *

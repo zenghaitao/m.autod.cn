@@ -39,10 +39,10 @@ class SnatchController extends BaseController  {
         $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
         $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
         
-        $_db_cms_story = M('autod_story' , 'cms_' , 'DB0_CONFIG');
-        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_story = M('autod_story' , 'cms_' , 'DB_CMS_CONFIG');
+        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB_CMS_CONFIG');
         
-        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB_CMS_CONFIG');
         
         $M_snatch = new SnatchModel('');
         

@@ -542,6 +542,7 @@ class NewsModel
             $data .= " AND id < '{$since_id}'";
         }
         $list = $this -> _db_news_fav -> where($data) -> order("id DESC") -> limit($count) -> select();
+        
         return $list;
     }
     

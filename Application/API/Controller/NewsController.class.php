@@ -166,7 +166,7 @@ class NewsController extends BaseController  {
         $news['id'] = (int)$row['id'];
         $news['storyId'] = (int)$row['story_id'];
         $news['cateId'] = (int)$row['cate_id'];
-        $news['title'] = (string)$row['title'];
+        $news['title'] = htmlspecialchars_decode((string)$row['title']);
         $news['summary'] = (string)$row['summary'];
         $news['source'] = (string)$row['source'];
         $news['sourceId'] = (int)$row['source_id'];
@@ -176,12 +176,14 @@ class NewsController extends BaseController  {
         
         $news['postTime'] = (string)$row['story_date'];
         $news['type'] = $row['type'];
+        
         if($news['imageCount'] == 3)
             $news['displayMode'] = 'B';
         else 
             $news['displayMode'] = 'A';
         if($news['type'] == 'ad')
             $news['displayMode'] = 'C';
+            
         $news['openMode'] = (string)$row['open_mode'];
         if($news['imageCount'] > 1)
             $news['openMode'] = 'image';
@@ -806,14 +808,13 @@ class NewsController extends BaseController  {
         
         $list = array();
         foreach ($res as $row){
+            $since_id = $row['id'];
             $list[] = $M_news -> getNews($row['news_id']);
         }
         
         foreach ($list as &$row){
             //格式化新闻行记录
             $row = $this -> formatNews($row);
-            
-            $since_id = $row['id'];
         }
         
         $result = array();

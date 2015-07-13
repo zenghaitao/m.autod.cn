@@ -23,7 +23,7 @@ class ConfigController extends BaseController {
         $this -> succ(array('photos'=>$imgs));
     }
     
-    /**
+    /**  
      * 检查版本更新
      *
      */
@@ -44,8 +44,16 @@ class ConfigController extends BaseController {
         
         if($version >= $n_version){
             $result['update'] = 'no';
+            $result['msg'] = 'no';
         }else{
             $result['update'] = 'yes';
+            $result['msg'] = '有新版本发布了，快快升级吧！';
+            
+            if($result['version'] == '3.0.0'){
+                $result['update'] = 'must';
+                $result['msg'] = '有新版本发布了，快快升级吧！';
+            }
+            
         }
             
         $this -> succ($result);
