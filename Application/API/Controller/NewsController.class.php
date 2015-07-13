@@ -367,9 +367,14 @@ class NewsController extends BaseController  {
         $news_info = $M_news -> getNews($news_id);
         $news_info = $this -> formatNews($news_info);
         
+        var_dump($news_info);
+        
         $M_story = new StoryModel();
         $story_info = $M_story -> getStoryInfo($news_info['storyId']);
+        var_dump($story_info);
         $video_info = $M_story -> getVideo($story_info['article_id']);
+        var_dump($video_info);
+        exit;
         
         $this -> assign('video' , $video_info);
         $this -> assign('host' , 'http://'.$_SERVER['HTTP_HOST']);
