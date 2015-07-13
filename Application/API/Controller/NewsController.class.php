@@ -415,7 +415,7 @@ class NewsController extends BaseController  {
         }
         
         /*获取相关视频*/
-        $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId']);
+        $relate_news = $M_news -> getRelatedNews( $news_id , $news_info['cateId'] , 6);
         foreach ($relate_news as &$row){
             $row = $this -> formatNews($row);
         }
