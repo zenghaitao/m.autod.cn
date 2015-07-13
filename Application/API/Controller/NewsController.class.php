@@ -440,7 +440,7 @@ class NewsController extends BaseController  {
         $news_info = $this -> formatNews($news_info);
         
         $M_story = new StoryModel();
-        $page_info = $M_story -> getStoryPage($news_info['story_id']);
+        $page_info = $M_story -> getStoryPage($news_info['storyId']);
         
         $news_info['images'] = $page_info['images'];
         $news_info['imageCount'] = $page_info['image_count'];
