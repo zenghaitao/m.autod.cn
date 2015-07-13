@@ -806,6 +806,7 @@ class NewsController extends BaseController  {
             $res = $M_news -> favList($uid , (int)$_GET['sinceId'] , (int)$_GET['count']);
         }
         
+        $since_id = 0;
         $list = array();
         foreach ($res as $row){
             $since_id = $row['id'];
