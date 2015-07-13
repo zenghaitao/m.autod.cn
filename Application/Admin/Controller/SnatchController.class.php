@@ -16,6 +16,7 @@ class SnatchController extends BaseController  {
         $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
         
         $M_snatch = new SnatchModel();
+        $i = 0;
         
         $list = $_db_news_story_content -> where("images is null") -> select();
         foreach ($list as $row){
@@ -23,11 +24,14 @@ class SnatchController extends BaseController  {
             
             $date['image_count'] = count($images);
             $date['images'] = implode(';,;' , $images);
-            
-            $_db_news_story_content -> where("id = '{$row['id']}'") -> save($date);
+            if($date['image_count']){
+                $_db_news_story_content -> where("id = '{$row['id']}'") -> save($date);
+                var_dump($_db_news_story_content -> getLastSql());
+                $i++;
+            }
         }
         
-        var_dump(count($list).'over');
+        var_dump($i.'over');
     }
     
     /**
