@@ -26,6 +26,7 @@ class SnatchController extends BaseController  {
             $data['images'] = implode(';,;' , $images);
             if($data['image_count']){
                 var_dump($_db_news_story_content -> where("id = '{$row['id']}'") -> save($data));
+                var_dump($_db_news_story_content -> getLastSql());
                 $i++;
             }
         }
