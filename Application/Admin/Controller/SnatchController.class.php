@@ -23,7 +23,6 @@ class SnatchController extends BaseController  {
             
             $date['image_count'] = count($images);
             $date['images'] = implode(';,;' , $images);
-            var_dump($date);exit;
             
             $_db_news_story_content -> where("id = '{$row['id']}'") -> save($date);
         }
