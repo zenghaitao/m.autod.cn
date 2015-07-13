@@ -20,11 +20,11 @@ class SnatchController extends BaseController  {
         $list = $_db_news_story_content -> where("images is null") -> select();
         foreach ($list as $row){
             $images = $M_snatch -> img($row['content']);
-            var_dump($row);
-            var_dump($images);exit;
             
             $date['images'] = implode(';,;' , $images);
             $date['image_count'] = count($date['images']);
+            
+            var_dump($date);exit;
             
             $_db_news_story_content -> where("id = '{$row['id']}'") -> save($date);
         }
