@@ -365,9 +365,12 @@ class NewsController extends BaseController  {
         
         $M_news = new NewsModel();
         $news_info = $M_news -> getNews($news_id);
+        var_dump($news_id);
+        var_dump($news_info);
+        
         $news_info = $this -> formatNews($news_info);
         
-        var_dump($news_info);
+        
         
         $M_story = new StoryModel();
         $story_info = $M_story -> getStoryInfo($news_info['storyId']);
