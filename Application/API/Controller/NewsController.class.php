@@ -442,6 +442,7 @@ class NewsController extends BaseController  {
         $M_story = new StoryModel();
         $page_info = $M_story -> getStoryPage($news_info['story_id']);
         
+        $news_info['images'] = $page_info['images'];
         $news_info['imageCount'] = $page_info['image_count'];
         
         /* 是否已点赞 */
