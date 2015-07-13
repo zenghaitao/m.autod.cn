@@ -17,7 +17,7 @@ class SnatchController extends BaseController  {
         
         $M_snatch = new SnatchModel();
         
-        $list = $_db_news_story_content -> where("images = '1'") -> select();
+        $list = $_db_news_story_content -> where("images is null") -> select();
         foreach ($list as $row){
             $images = $M_snatch -> img($row['content']);
             
