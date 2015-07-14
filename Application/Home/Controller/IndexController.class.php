@@ -163,6 +163,9 @@ class IndexController extends BaseController  {
         $j = 0;
         $list = array();
         
+        shuffle($ads);
+        $ads = array_slice($ads , 0 , 3);
+        
         foreach ($news as $row){
             $i++;
             $list[] = $row;
@@ -184,29 +187,58 @@ class IndexController extends BaseController  {
      * @return unknown
      */
     private function newsAD(){
+        $adlist = array();
+        
+        $i = 0;
         //获取广告数据
-        $ad['title'] = '沃尔沃XC90全新上市';
-        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad['title'] = '2015款雷诺风景 全新上市 莅临试驾';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/01.jpg';
         $ad['type'] = 'ad';
-        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad['gourl'] = 'http://www.dongfeng-renault.com.cn/';
         $ad['story_date'] = date('Y-m-d H:i:s');
         $ad = $this -> formatNews($ad);
         
         $ad['openMode'] = 'topic';
         $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
         
         //获取广告数据
-        $ad1['title'] = '爱卡汽车你我的新选择';
-        $ad1['images'] = 'http://p2.pstatp.com/origin/2499/7735513385';
-        $ad1['type'] = 'ad';
-        $ad1['gourl'] = 'http://m.xcar.com.cn';
-        $ad1['story_date'] = date('Y-m-d H:i:s');
-        $ad1 = $this -> formatNews($ad1);
+        $ad['title'] = 'BMW宝马金融服务 助您轻松拥有宝马';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/03.jpg';
+        $ad['type'] = 'ad';
+        $ad['gourl'] = 'http://www.bmw.com.cn';
+        $ad['story_date'] = date('Y-m-d H:i:s');
+        $ad = $this -> formatNews($ad);
         
-        $ad1['openMode'] = 'topic';
-        $ad1['displayMode'] = 'C';
+        $ad['openMode'] = 'topic';
+        $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
         
-        return array($ad ,$ad1);
+        //获取广告数据
+        $ad['title'] = 'BMW宝马金融服务 助您轻松拥有宝马';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/04.jpg';
+        $ad['type'] = 'ad';
+        $ad['gourl'] = 'http://www.bmw.com.cn';
+        $ad['story_date'] = date('Y-m-d H:i:s');
+        $ad = $this -> formatNews($ad);
+        
+        $ad['openMode'] = 'topic';
+        $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
+        
+        //获取广告数据
+        $ad['title'] = 'BMW宝马金融服务 助您轻松拥有宝马';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/05.jpg';
+        $ad['type'] = 'ad';
+        $ad['gourl'] = 'http://www.bmw.com.cn';
+        $ad['story_date'] = date('Y-m-d H:i:s');
+        $ad = $this -> formatNews($ad);
+        
+        $ad['openMode'] = 'topic';
+        $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
+        
+        return $adlist;
     }
     
     
@@ -277,33 +309,6 @@ class IndexController extends BaseController  {
             //格式化新闻行记录
             $row = $this -> formatNews($row);
             
-            $since_id = $row['id'];
-        }
-        
-        $result = array();
-        $result['statuses'] = $list;
-        $result['updateCount'] = count($list);
-        $result['sinceId'] = $since_id;
-        
-        $this -> succ($result);
-    }
-    
-    /**
-     * 媒体新闻列表
-     *
-     */
-    public function sourceList(){  
-        $source_id = $_GET['sourceId'];
-        $count = (int)$_GET['count'];
-        if(!$count)
-            $count = 10;
-        $begin_id = (int)$_GET['sinceId'];
-        $M_news = new NewsModel();
-        $list = $M_news -> newsSourceList($cate_id , $begin_id , $count);
-        $since_id = 0;
-        
-        foreach ($list as &$row){
-            $row = $this -> formatNews($row);
             $since_id = $row['id'];
         }
         
@@ -494,6 +499,139 @@ class IndexController extends BaseController  {
         
         
         $this -> display('feedback');
+    }
+    
+    /**
+     * 评论列表
+     *
+     */
+    public function comments(){
+        $news_id = (int)$_GET['id'];
+        $session_id = (int)$_GET['sessionId'];
+        
+        $_PAGE['title'] = "评论列表";
+        $this -> assign('_PAGE',$_PAGE);
+        
+        $M_news = new NewsModel();
+        
+        //热门评论
+        $comments = $M_news -> commentsList($news_id , 0 , 10);
+        
+        $hot_comments = $M_news -> commentsHotList($news_id);
+        
+        
+        
+        $this -> assign('news_id' , $news_id);
+        $this -> assign('hot_comments' , $hot_comments);
+        $this -> assign('comments' , $comments);
+        
+        $this -> display('comments');
+    }
+    
+    /**
+     * 我的评论
+     *
+     */
+    public function myComment(){
+        $session_id = (int)$_GET['sessionId'];
+        $uid = $_SESSION['user_id'];
+        
+        $_PAGE['title'] = "我的评论";
+        $this -> assign('_PAGE',$_PAGE);
+        
+        $M_news = new NewsModel();
+        
+        //热门评论
+        $comments = $M_news -> myCommentList($uid , 0 , 10);
+        
+        $this -> assign('news_id' , $news_id);
+        $this -> assign('comments' , $comments);
+        
+        $this -> display('my_comments');
+    }
+    
+    /**
+     * 我的订阅
+     *
+     */
+    public function followList(){
+        $session_id = (int)$_GET['sessionId'];
+        $uid = $_SESSION['user_id'] = 1;
+        
+        $M_news = new NewsModel();
+        $res = $M_news -> followList($uid);
+        
+        $list = array();
+        foreach ($res as $row){
+            $row = $M_news -> getSource($row['source_id']);
+            $row['last_time'] = date('Y-m-d',strtotime($row['last_time']));
+            $row['followed'] = 'yes';
+            $list[] = $row;
+        }
+        
+        $this -> assign('list' , $list);
+        
+        $this -> display('follow_list');
+    }
+    
+    /**
+     * 可订阅列表
+     *
+     */
+    public function sourceList(){
+        $session_id = (int)$_GET['sessionId'];
+        $uid = $_SESSION['user_id'] = 1;
+        
+        $M_news = new NewsModel();
+        $list = $M_news -> getSoureList();
+        
+        $follows = $M_news -> followList($uid);
+        $follow_ids = array();
+        foreach ($follows as $row){
+            $follow_ids[] = $row['source_id'];
+        }
+        
+        foreach ($list as &$row){
+            $row['last_time'] = date('Y-m-d',strtotime($row['last_time']));
+            
+            if(in_array($row['id'] , $follow_ids)){
+                $row['followed'] = 'yes';
+            }else{
+                $row['followed'] = 'no';
+            }
+        }
+        
+        $this -> assign('list' , $list);
+        
+        $this -> display('source_list');
+    }
+    
+    /**
+     * 媒体新闻列表
+     *
+     */
+    public function source(){
+        $session_id = (int)$_GET['sessionId'];
+        $source_id = $_GET['sourceId'];
+        $begin_id = (int)$_GET['sinceId'];
+        
+        $M_news = new NewsModel();
+        $list = $M_news -> newsSourceList($source_id , $begin_id);
+        $since_id = 0;
+        
+        foreach ($list as &$row){
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
+            
+            $since_id = $row['id'];
+        }
+        
+        $info = $M_news -> getSource($source_id);
+        
+        $this -> assign('list' , $list);
+        $this -> assign('info' , $info);
+        
+        $this -> display('source');
     }
 
 }

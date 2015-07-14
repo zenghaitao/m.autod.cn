@@ -290,7 +290,80 @@ function ajaxAPI(){
         }
     })
 }
-
+function urlChangeNormal(){
+    switch (location.hash.split('#')[1]){
+        case 'channel_video' :
+            oUrl=face.channel_video+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_newcar' :
+            oUrl=face.channel_newcar+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_Evaluation' :
+            oUrl=face.channel_Evaluation+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_guide' :
+            oUrl=face.channel_guide+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_Industry' :
+            oUrl=face.channel_Industry+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+    }
+}
+function ajaxSuccNormal(data){     //ajax成功调用
+    var html = '';
+    for(var i=0;i<data.info.statuses.length;i++){
+        html += creatNews(data.info.statuses[i]);
+    }
+    switch(location.hash.split('#')[1]){
+        case 'channel_video' :
+            if(data.info.sinceId>0) channelSinceId.channel_video=data.info.sinceId;
+            break;
+        case 'channel_newcar' :
+            if(data.info.sinceId>0) channelSinceId.channel_newcar=data.info.sinceId;
+            break;
+        case 'channel_Evaluation' :
+            if(data.info.sinceId>0) channelSinceId.channel_Evaluation=data.info.sinceId;
+            break;
+        case 'channel_guide' :
+            if(data.info.sinceId>0) channelSinceId.channel_guide=data.info.sinceId;
+            break;
+        case 'channel_Industry' :
+            if(data.info.sinceId>0) channelSinceId.channel_Industry=data.info.sinceId;
+            break;
+    }
+    if(data.info.maxId > 0)
+        maxId = data.info.maxId;
+    
+    if(action == 'up' || action == 'init'){
+        $("#tips_bar").html("刷新成功").fadeIn(0,function(){
+            setTimeout('tips_hide()',1000);
+        });
+    }
+    if(action == 'up'){
+        $('.list_box').eq(0).html(html);
+        $('.list_top').remove();
+        iconShow=true;
+        
+    }
+    htmlStorage($('.list_box').html());
+}
+function ajaxAPInormal(){
+    if(action != 'up' && action != 'init' && action != 'down'){
+        return false;
+    }
+    var async_status = true;
+    if(action == 'up') async_status = false;
+    urlChangeNormal();
+    $.ajax({
+        url:oUrl,
+        type:'get',
+        dataType:'jsonp',
+        async:async_status,  //设置为同步
+        success:function(data){
+            ajaxSuccNormal(data);
+        }
+    })
+}
 function tips_hide(){
     $("#tips_bar").fadeOut(800);
 }
@@ -367,7 +440,12 @@ function touchStart(ev){
                 $('.v2 img')[0].style.webkitAnimation='anime 1s linear infinite';
                 setTimeout(function(){
                     action = 'up';
-                    ajaxAPI();
+                    if(location.hash.split('#')[1]=='channel_all' || location.hash==''){
+                        ajaxAPI();
+                    }else{
+                        ajaxAPInormal();
+                    }
+                    
                     document.addEventListener('touchstart',touchStart,false);
                 },1000)
             });

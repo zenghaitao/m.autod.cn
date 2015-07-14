@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta content=" initial-scale=1, maximum-scale=1" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no"/>
+<meta charset="UTF-8">
+<title>{$_PAGE['title']}</title>
+<meta name="keywords" content="{$_PAGE['keywords']}">
+<meta name="description" content="{$_PAGE['description']}">
+<link rel="stylesheet" href="/Public/css/style.css">
+<script src="/Public/js/jquery.js"></script>
+</head>
+<body>
+    <if condition="$comments">
+    <div class="com_box">
+        <ul class="com_ul">
+            <foreach name="comments" item="vo">
+            <li>
+                <div class="head_img"><img src="{$vo.userphoto}" alt="{$vo.username}"></div>
+                <div class="com_cont">
+                    <div class="user_name">{$vo.username}</div>
+                    <div class="dianzan">
+                        <if condition="$vo.like_count neq 0">
+                        <span>{$vo.like_count}</span>
+                        </if>
+                        <a class="comment" href="autod://com.auto/comments/?newsId={$vo.news_id}&replyId={$vo.id}"><img src="/Public/images/comment.png" alt=""></a>
+                    </div>
+                    <p>{$vo.post}</p>
+                    <if condition="$vo.reply_id neq 0">
+                    <div class="bef_com">
+                        <span></span>
+                        <p>原评论：{$vo.reply_username}</p>
+                        <p>{$vo.reply_post}</p>
+                    </div>
+                    </if>
+                </div>
+            </li>
+            </foreach>
+        </ul>
+    </div>
+    <else/>
+
+    </if>
+</body>
+<script>
+
+</script>
+</html>

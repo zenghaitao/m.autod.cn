@@ -132,27 +132,54 @@ class NewsController extends BaseController  {
      * @return unknown
      */
     private function newsAD(){
+        $adlist = array();
+        
+        $i = 0;
         //获取广告数据
-        $ad['title'] = '沃尔沃XC90全新上市';
-        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
+        $ad['title'] = '2015款雷诺风景 全新上市 莅临试驾';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/01.jpg';
         $ad['type'] = 'ad';
-        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad['gourl'] = 'http://www.dongfeng-renault.com.cn/';
         $ad = $this -> formatNews($ad);
         
         $ad['openMode'] = 'topic';
         $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
         
         //获取广告数据
-        $ad1['title'] = '爱卡汽车你我的新选择';
-        $ad1['images'] = 'http://p2.pstatp.com/origin/2499/7735513385';
-        $ad1['type'] = 'ad';
-        $ad1['gourl'] = 'http://m.xcar.com.cn';
-        $ad1 = $this -> formatNews($ad1);
+        $ad['title'] = 'BMW宝马金融服务 助您轻松拥有宝马';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/03.jpg';
+        $ad['type'] = 'ad';
+        $ad['gourl'] = 'http://www.bmw.com.cn';
+        $ad = $this -> formatNews($ad);
         
-        $ad1['openMode'] = 'topic';
-        $ad1['displayMode'] = 'C';
+        $ad['openMode'] = 'topic';
+        $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
         
-        return array($ad ,$ad1);
+        //获取广告数据
+        $ad['title'] = 'BMW宝马金融服务 助您轻松拥有宝马';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/04.jpg';
+        $ad['type'] = 'ad';
+        $ad['gourl'] = 'http://www.bmw.com.cn';
+        $ad = $this -> formatNews($ad);
+        
+        $ad['openMode'] = 'topic';
+        $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
+        
+        //获取广告数据
+        $ad['title'] = 'BMW宝马金融服务 助您轻松拥有宝马';
+        $ad['images'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/05.jpg';
+        $ad['type'] = 'ad';
+        $ad['gourl'] = 'http://www.bmw.com.cn';
+        $ad = $this -> formatNews($ad);
+        
+        $ad['openMode'] = 'topic';
+        $ad['displayMode'] = 'C';
+        $adlist[$i++] = $ad;
+        
+        return $adlist;
     }
     
     /**
