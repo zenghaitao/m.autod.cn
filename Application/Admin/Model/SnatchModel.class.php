@@ -43,7 +43,7 @@ class SnatchModel
         foreach ($list as $row){
             $e = $row -> find('.pin-content',0);
             @$data['article_id'] = $e -> group_id;
-            @$data['title'] = trim($e -> find('h2',0) -> plaintext);
+            @$data['title'] = trim($e -> find('h3',0) -> plaintext);
             @$data['short_summary'] = trim($e -> find('.text',0) -> plaintext);
             @$data['url'] = $e -> find('a',0) -> href;
             @$data['title_pic1'] = trim($e -> find('img',0) -> src);
