@@ -89,7 +89,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 .subtitle{padding: 10px 0 5px;color: #AAA;font-size: 12px;}
 .subtitle span:first-child {padding-right: 6px;}
 .article_box{margin-bottom: 20px;position: relative;overflow: hidden;clear: both;}
-.article_box div,.article_box p{word-wrap: break-word;font-size: 17px;line-height: 1.5em;color: #333;}
+.article_box div,.article_box p{word-wrap: break-word;font-size: 17px;line-height: 1.5em;color: #2b2b2b;}
 .article_box p{margin-top: 1em;}
 .article_box table{border-collapse: collapse;width: 100%;}
 .article_box table td{padding: 5px 3px;border: 1px solid #ddd;text-align: center;font-size: 12px;color: #444;line-height: 1.5em;}

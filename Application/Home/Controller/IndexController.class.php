@@ -633,5 +633,68 @@ class IndexController extends BaseController  {
         
         $this -> display('source');
     }
+    
+    public function appStore(){
+        $list = array();
+        
+        $row = array();
+        $row['name'] = '微用';
+        $row['url'] = 'http://www.weyoo.com.cn/';
+        $row['icon'] = 'http://7xjrkc.com1.z0.glb.clouddn.com/icon68.png';
+        $row['intro'] = '一秒下载安装获得3000+优质应用，微用引领H5新潮流，是手机必备的应用聚合工具';
+        $row['size'] = '2.2';
+        $list[] = $row;
+        
+        $row = array();
+        $row['name'] = '网尚实用查询';
+        $row['url'] = 'http://m.46644.com/appstore/down.php';
+        $row['icon'] = 'http://img2.autod.cn/autod_img/index_link/icon68.jpg';
+        $row['intro'] = '网尚实用查询为用户提供实用便民工具，涵盖生活中的各个方面，方便快捷。工具包括：天气、万年历、公交、违章、火车、长途汽车、快递、空气指数、彩票开奖、航班查询、翻译、新华字典、国学经典、算命等。';
+        $row['size'] = '2.49';
+        $list[] = $row;
+        
+        $row = array();
+        $row['name'] = '火速轻应用';
+        $row['url'] = 'http://www.huosu.com/phone_download.php';
+        $row['icon'] = 'http://img2.autod.cn/autod_img/index_link/icon68_huosuqingyingyong.png';
+        $row['intro'] = '火速轻应用，在这里数千款Html5轻应用/游戏一触即玩，无需下载及更新。';
+        $row['size'] = '1.82';
+        $list[] = $row;
+        
+        $row = array();
+        $row['name'] = '微信';
+        $row['url'] = 'http://www.wandoujia.com/apps/com.tencent.mm';
+        $row['icon'] = 'http://img.wdjimg.com/mms/icon/v1/3/bd/5295ac6a9c6d51e8285690bdbe1b1bd3_68_68.png';
+        $row['intro'] = '可以发语音、文字消息、表情、图片、视频。30M 流量可以收发上千条语音，省电省流量。';
+        $row['size'] = '22.62';
+        $list[] = $row;
+        
+        $row = array();
+        $row['name'] = 'QQ';
+        $row['url'] = 'http://www.wandoujia.com/apps/com.tencent.mobileqq';
+        $row['icon'] = 'http://img.wdjimg.com/mms/icon/v1/4/38/f7210e10b4e624d71611d972f9a66384_68_68.png';
+        $row['intro'] = 'QQ 4.5 带来了全新的阅读中心、表情签到、空间挂件、阅后即焚等多项功能。';
+        $row['size'] = '23.35';
+        $list[] = $row;
+        
+        $row = array();
+        $row['name'] = '微博';
+        $row['url'] = 'http://www.wandoujia.com/apps/com.sina.weibo';
+        $row['icon'] = 'http://img.wdjimg.com/mms/icon/v1/e/49/b91822e4adc0540a15b321ed7587d49e_68_68.png';
+        $row['intro'] = '官方客户端更新，拥有全新的界面，主页新增高清头图，支持二维码扫描并在正文直接评论转发微博。';
+        $row['size'] = '21.28';
+        $list[] = $row;
+        
+        $row = array();
+        $row['name'] = '优酷';
+        $row['url'] = 'http://www.wandoujia.com/apps/com.youku.phone';
+        $row['icon'] = 'http://img.wdjimg.com/mms/icon/v1/3/2d/dc14dd1e40b8e561eae91584432262d3_68_68.png';
+        $row['intro'] = '活动内详：23 日前在优酷应用内的“用户反馈”中提交使用感受，有机会赢得三星 Note 2 等豪礼！';
+        $row['size'] = '18.67';
+        $list[] = $row;
+        
+        $this -> assign('list' , $list);
+        $this -> display('appstore');
+    }
 
 }
