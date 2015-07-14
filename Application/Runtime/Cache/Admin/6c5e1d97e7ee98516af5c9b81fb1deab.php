@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8">
@@ -9,10 +9,15 @@
     <meta name="author" content="">
     <title>新闻页</title>
     <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+body{background-color:#2b2b2b;width:100%}
+iframe{background-color:#fff;}
+div{width:360px;margin:auto}
+</style>
   </head>
   <body>
 <div>
-<iframe width="360" align="center" height="auto" id="win" name="win" frameborder="0" scrolling="auto" src="/Home/Index/page?id={$news_id}"></iframe> 
+<iframe width="360" align="center" height="auto" id="win" name="win" frameborder="0" scrolling="auto" src="/Home/Index/page?id=<?php echo ($news_id); ?>"></iframe> 
 </div>
 <script>
 $().ready(function(){
@@ -22,5 +27,3 @@ $().ready(function(){
 </script>
   </body>
 </html>
-
-
