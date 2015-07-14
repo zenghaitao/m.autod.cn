@@ -635,6 +635,7 @@ class IndexController extends BaseController  {
     }
     
     public function search(){
+        $session_id = (int)$_GET['sessionId'];
         $keyword    =   $_GET['keyword'];
         $since_id   = (int)$_GET['sinceId'];
         $count      = 10;
@@ -652,6 +653,30 @@ class IndexController extends BaseController  {
         $this -> assign('list' , $list);
         
         $this -> display('search');
+    }
+    
+    public function favList(){
+        $session_id = (int)$_GET['sessionId'];
+        $uid = $_SESSION['user_id'];
+        
+        $M_news = new NewsModel();
+        $res = $M_news -> favList($uid , 0 , 10);
+    
+        $since_id = 0;
+        $list = array();
+        foreach ($res as $row){
+            $since_id = $row['id'];
+            $list[] = $M_news -> getNews($row['news_id']);
+        }
+        
+        foreach ($list as &$row){
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
+        }
+        
+        $this -> assign('list' , $list);
+        
+        $this -> display('fav_list');
     }
     
     public function appStore(){
