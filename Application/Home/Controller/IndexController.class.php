@@ -634,6 +634,26 @@ class IndexController extends BaseController  {
         $this -> display('source');
     }
     
+    public function search(){
+        $keyword    =   $_GET['keyword'];
+        $since_id   = (int)$_GET['sinceId'];
+        $count      = 10;
+        
+        $M_news = new NewsModel();
+        $list = $M_news -> search($keyword , $since_id , $count);
+        foreach ($list as &$row){
+            //格式化新闻行记录
+            $row = $this -> formatNews($row);
+            
+            $since_id = $row['id'];
+        }
+        
+        $this -> assign('since_id' , $since_id);
+        $this -> assign('list' , $list);
+        
+        $this -> display('search');
+    }
+    
     public function appStore(){
         $list = array();
         
