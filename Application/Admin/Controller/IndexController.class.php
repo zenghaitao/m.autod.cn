@@ -28,11 +28,11 @@ class IndexController extends BaseController  {
         
     }
     
-    public function page(){
+    public function frame(){
         
         $this -> assign('news_id' , $_GET['id']);
         
-        $this -> display('news_page');
+        $this -> display('frame');
     }
     /**
      * 控制台
