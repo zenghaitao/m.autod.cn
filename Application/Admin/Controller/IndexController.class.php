@@ -28,6 +28,9 @@ class IndexController extends BaseController  {
         
     }
     
+    public function page(){
+        $this -> display('page');
+    }
     /**
      * 控制台
      *
