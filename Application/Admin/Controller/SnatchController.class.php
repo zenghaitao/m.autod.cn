@@ -92,8 +92,8 @@ class SnatchController extends BaseController  {
                 foreach ($contents as $val){
                     $content .= $val['content'];
                 }
-                $content = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
                 $images = $M_snatch -> img($content);
+                $content = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
                 
                 $images_str = implode(';,;' , $images);
                 $images_count = count($images);

@@ -76,11 +76,7 @@ class SnatchModel
         $html = str_get_html($string);
         $content = @$html -> find(".article-content" , 0) -> innertext;
         if(strpos($content , 'img')){
-            $imgs = @$html -> find(".article-content img");
-            $img_list = array();
-            foreach ($imgs as $img){
-                @$img_list[] = $img -> src;
-            }
+            $img_list = $this -> img($content);
         }
         
         //去除多余js事件
@@ -106,7 +102,7 @@ class SnatchModel
         $result = array();
         $result['content'] = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
         //$result['content'] = trim($content);
-        $result['images'] = implode(';,;' , $img_list);
+        $result['images'] = $img_list;
         $result['http'] = $http_response_header[0];
         return $result;
         
