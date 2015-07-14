@@ -29,7 +29,10 @@ class IndexController extends BaseController  {
     }
     
     public function page(){
-        $this -> display('page');
+        
+        $this -> assign('news_id' , $_GET['id']);
+        
+        $this -> display('news_page');
     }
     /**
      * 控制台

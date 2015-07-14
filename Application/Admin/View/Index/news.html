@@ -33,7 +33,7 @@
                 <foreach name="list" item="vo">
                 <tr id="row_{$vo.id}">
                   <td>{$vo.id}</td>
-                  <td><if condition="$vo.title_pic1 neq ''"><a href="{$vo.title_pic1}" target="_blank"><img src="{$vo.title_pic1}" height="70px;"/></a></if><if condition="$vo.title_pic2 neq ''">&nbsp;<a href="{$vo.title_pic2}" target="_blank"><img src="{$vo.title_pic2}" height="70px;"/></a></if><if condition="$vo.title_pic3 neq ''">&nbsp;<a href="{$vo.title_pic3}" target="_blank"><img src="{$vo.title_pic3}" height="70px;"/></a></if><br/>{$vo.title}
+                  <td><if condition="$vo.title_pic1 neq ''"><a href="/Admin/Index/page?id={$vo.id}" target="_blank"><img src="{$vo.title_pic1}" height="70px;"/></a></if><if condition="$vo.title_pic2 neq ''">&nbsp;<a href="/Admin/Index/page?id={$vo.id}" target="_blank"><img src="{$vo.title_pic2}" height="70px;"/></a></if><if condition="$vo.title_pic3 neq ''">&nbsp;<a href="/Admin/Index/page?id={$vo.id}" target="_blank"><img src="{$vo.title_pic3}" height="70px;"/></a></if><br/><a href="/Admin/Index/page?id={$vo.id}" target="_blank">{$vo.title}</a>
                   </td>
                   <td>{$vo.story_date}</td>
                   <td>{$vo.source}</td>
