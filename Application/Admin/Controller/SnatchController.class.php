@@ -5,11 +5,176 @@ use API\Model\StoryModel;
 use Admin\Model\SnatchModel;
 
 set_time_limit(0);
+ini_set('memory_limit', '1024M');
 
 class SnatchController extends BaseController  {
     
     public function __construct(){
         parent::__construct();
+    }
+    
+    public function init(){
+        /* 清除 news_choice */
+        $_db_table = M('news_choice' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 清除 news_comments */
+        $_db_table = M('news_comments' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 清除 news_comments_like */
+        $_db_table = M('news_comments_like' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 清除 news_fav */
+        $_db_table = M('news_fav' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 清除 news_like */
+        $_db_table = M('news_like' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 清除 user */
+        $_db_table = M('user' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 清除 user_device */
+        $_db_table = M('user_device' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 清除 user_feedback */
+        $_db_table = M('user_feedback' , 'ad_' , 'DB0_CONFIG');
+        $_db_table -> where('1') -> delete();
+        
+        /* 初始化 ina 新闻数据 */
+        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
+        $_db_cms_story = M('autod_story' , 'cms_' , 'DB_CMS_CONFIG');
+        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB_CMS_CONFIG');
+        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB_INA_CONFIG');
+        
+        /* 删除网通社新闻内容 */
+        $_db_news_story -> where("plant = 'ina'") -> delete();
+        $_db_news_story -> where("plant = 'uutv'") -> delete();
+        
+        /* 网通社新闻部分 */
+        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("article_id DESC") -> find();
+        $max_id = (int)$max_id['article_id'];
+        
+        $M_snatch = new SnatchModel();
+        
+        $list = $_db_cms_story -> where("sourceId='1' AND status = 'published' AND storyDate > '2015' AND id > '{$max_id}'") -> order("storyDate ASC") -> select();
+        foreach ($list as $row){
+            /* 写入news_story表 */
+            $data = array();
+            $data['article_id'] = $row['id'];
+            $data['plant'] = 'ina';
+            $data['title'] = $row['title'];
+            $data['short_summary'] = $row['shortSummary'];
+            $data['source'] = $row['source'];
+            $data['source_id'] = '49';
+            $data['story_date'] = $row['storyDate']?$row['storyDate']:'2015-01-01';
+            $data['column_id'] = $this -> column($row['columnId']);
+            if($row['title_pic3']){
+                $data['img_count'] = 3;
+            }elseif ($row['title_pic1']){
+                $data['img_count'] = 1;
+            }else {
+                $data['img_count'] = 0;
+            }
+            $data['title_pic1'] = $row['title_pic1'];
+            $data['title_pic2'] = $row['title_pic2'];
+            $data['title_pic3'] = $row['title_pic3'];
+            
+            $data['url'] = $row['url'];
+            $data['add_date'] = date('Y-m-d H:i:s');
+            
+            //文章信息入库
+            $story_id = $_db_news_story -> add($data);
+            
+            if($story_id){
+                //获取文章正文
+                $contents = $_db_cms_story_content -> where("storyId = '{$row['id']}'") -> order("page ASC") -> select();
+                $content = '';
+                foreach ($contents as $val){
+                    $content .= $val['content'];
+                }
+
+                /* 写入news_story_content表 */
+                $images = $M_snatch -> img($content);
+                $content = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
+                
+                $images_str = implode(';,;' , $images);
+                $images_count = count($images);
+                
+                $data = array();
+                $data['story_id'] = $story_id;
+                $data['article_id'] = $row['id'];
+                $data['page'] = '1';
+                $data['content'] = $content;
+                $data['images'] = $images_str;
+                $data['image_count'] = $images_count;
+                $data['http'] = '3306';
+                $data['add_time'] = date('Y-m-d H:i:s');
+                
+                //文章正文入库
+                $ins_id = $_db_news_story_content -> add($data);
+                
+                $i++;
+            }
+        }
+        echo ("INA NEWS:{$i}\n");
+        
+        /* 初始化 uutv 视频数据 */
+        //视频类内容入库
+        $max_id = $_db_news_story -> where("plant = 'uutv'") ->order("article_id DESC") -> find();
+        $max_id = (int)$max_id['article_id'];
+        
+        $i = 0;
+        
+        //查找未入库内容
+        $list = $_db_cms_video -> where("id > '{$max_id}' AND platform = 'youku' AND status = 'published'") -> order("id ASC") -> select();
+        foreach ($list as $row){
+            $data = array();
+            $data['article_id'] = $row['id'];
+            $data['plant'] = 'uutv';
+            $data['title'] = $row['title'];
+            $data['short_summary'] = '';
+            $data['source'] = 'UUTV';
+            $data['source_id'] = '48';
+            $data['story_date'] = $row['publish_time']?$row['publish_time']:'2015-01-01';;
+            $data['column_id'] = '20';
+            $data['title_pic1'] = $row['img'];
+            $data['img_count'] = 0;
+            
+            $data['url'] = $row['url'];
+            $data['add_date'] = date('Y-m-d H:i:s');
+            
+            //文章信息入库
+            $story_id = $_db_news_story -> add($data);
+            
+            if($story_id)
+                $i++;
+        }
+        echo ("UUTV VIDEO:{$i}\n");
+        
+        /* 初始化story表choice状态 */
+        $_db_news_story -> where('1') -> save(array('is_choice'=>'no'));
+        
+        /* 初始化chioce数据 */
+        $_db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
+        
+        $i = 0;
+        
+        /* 获取要处理的新闻 */
+        $today = date('Y-m-d');
+        $list = $_db_news_story -> where("is_choice = 'no' AND img_count > 0") -> order("story_date ASC , article_id ASC") -> select();
+        foreach ($list as $row){
+            //写入前台列表
+            $news_id = $this -> intoChoice($row);
+            $i++;
+        }
+        echo ("CHOICE NEWS:{$i}\n");
     }
     
     public function zhengli_content(){
@@ -139,18 +304,17 @@ class SnatchController extends BaseController  {
             $data['story_date'] = $row['publish_time'];
             $data['column_id'] = '20';
             $data['title_pic1'] = $row['img'];
-            $data['img_count'] = 0;
+            $data['img_count'] = 1;
             
             $data['url'] = $row['url'];
             $data['add_date'] = date('Y-m-d H:i:s');
             
-            if($data['img_count'] > 0){
-                //文章信息入库
-                $story_id = $_db_news_story -> add($data);
-                
-                if($story_id)
-                    $i++;
-            }
+            //文章信息入库
+            $story_id = $_db_news_story -> add($data);
+            
+            if($story_id)
+                $i++;
+
         }
         echo "UUTV UPDATE:{$i};\n";
         
