@@ -657,7 +657,7 @@ class IndexController extends BaseController  {
     
     public function favList(){
         $session_id = (int)$_GET['sessionId'];
-        $uid = $_SESSION['user_id'] = 4;
+        $uid = $_SESSION['user_id'];
         
         $M_news = new NewsModel();
         $res = $M_news -> favList($uid , 0 , 10);
