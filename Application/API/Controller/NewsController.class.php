@@ -132,6 +132,8 @@ class NewsController extends BaseController  {
      * @return unknown
      */
     private function newsAD(){
+        if($_SERVER['IS_DEBUG'] != 'yes')
+            return array();
         $adlist = array();
         
         $i = 0;
@@ -367,11 +369,13 @@ class NewsController extends BaseController  {
         $news_info['relate'] = $relate_news;
         
         /* 获取广告数据 */
-        $ad['title'] = '沃尔沃XC90全新上市';
-        $ad['images'] = 'http://img1.126.net/channel12/020138/60095_0629.jpg';
-        $ad['type'] = 'ad';
-        $ad['openMode'] = 'topic';
-        $ad['gourl'] = 'http://m.xc90.volvocars.com.cn';
+        $ad = $this -> newsAD();
+        if($ad){
+            shuffle($ad);
+            $ad = end($ad);
+        }else{
+            $ad = array();
+        }
         
         $news_info['ad'] = $ad;
         

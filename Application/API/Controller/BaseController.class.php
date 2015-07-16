@@ -1,7 +1,6 @@
 <?php
 namespace API\Controller;
 use Think\Controller;
-
 class BaseController extends Controller{
     
     public function __construct(){

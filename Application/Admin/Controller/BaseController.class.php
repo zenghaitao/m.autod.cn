@@ -6,9 +6,26 @@ class BaseController extends Controller{
     
     public function __construct(){
         parent::__construct();
+        session_start();
+        session(array('expire'=>3600*24));
         
         $this -> setMenu();
         
+        $this -> assign('user' , $_SESSION['admin_user']);
+        
+    }
+    
+    /**
+     * 处理用户是否有权限请求
+     *
+     * @return bool
+     */
+    protected function checkLogin(){
+        if($_SESSION['admin_uid'] < 1){
+            $url = "/Admin/Index/login";
+            header("Location:{$url}");
+            exit;
+        }
     }
     
     /**

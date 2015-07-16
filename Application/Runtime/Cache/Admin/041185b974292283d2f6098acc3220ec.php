@@ -1,4 +1,4 @@
-
+<?php if (!defined('THINK_PATH')) exit();?>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -36,7 +36,7 @@
       <form class="form-signin" action="" method="POST">
         <h2 class="form-signin-heading">《汽车日报》管理后台</h2>
         <label for="inputEmail" class="sr-only">用户名</label>
-        <input type="email" id="inputEmail" name="name" class="form-control" placeholder="请输入用户名" required autofocus value="{$name}">
+        <input type="email" id="inputEmail" name="name" class="form-control" placeholder="请输入用户名" required autofocus value="<?php echo ($name); ?>">
         
         <br/>
         
@@ -48,7 +48,7 @@
           </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-        <if condition="$msg"><div class="alert alert-warning" role="alert">{$msg}</div></if>
+        <?php if($msg): ?><div class="alert alert-warning" role="alert"><?php echo ($msg); ?></div><?php endif; ?>
       </form>
 
     </div> <!-- /container -->

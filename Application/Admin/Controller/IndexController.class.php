@@ -6,6 +6,7 @@ use API\Model\SnsModel;
 use API\Model\UserModel;
 use API\Model\QiniuModel;
 use Admin\Model\SnatchModel;
+use Admin\Model\AdminModel;
 use Think\Upload\Driver\Qiniu\QiniuStorage;
 
 set_time_limit(0);
@@ -14,18 +15,48 @@ class IndexController extends BaseController  {
     
     public function __construct(){
         parent::__construct();
+        
+        //是否为合法访问
+        if(!in_array($_SERVER['REDIRECT_URL'] , array('/Admin/Index/login','/Admin/Index/logout'))){
+            $this -> checkLogin();
+        }
     }
     
     public function login(){
         if($_POST){
+            $name = $_POST['name'];
+            $pwd = $_POST['pwd'];
             
+            $M_admin = new AdminModel();
+            if($M_admin -> login($name , $pwd)){
+                //登录成功
+                if($_POST['remenber'] == 'yes'){
+                    cookie('admin_name',$name,3600*24*30);
+                }
+                $url = "/Admin/";
+                header("Location:{$url}");
+                exit;
+            }else{
+                $msg = '登录失败，请重试！';
+                $url = "/Admin/Index/login?msg=".urlencode($msg);
+                header("Location:{$url}");
+                exit;
+            }
         }
+        
+        $this -> assign('name' , $_COOKIE['admin_name']);
+        $this -> assign('msg' , $_GET['msg']);
         
         $this -> display('login');
     }
     
     public function logout(){
+        unset($_SESSION['admin_uid']);
+        unset($_SESSION['admin_user']);
         
+        $url = "/Admin/Index/login";
+        header("Location:{$url}");
+        exit;
     }
     
     public function frame(){

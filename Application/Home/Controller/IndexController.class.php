@@ -18,7 +18,7 @@ class IndexController extends BaseController  {
         $_PAGE['description'] = "《汽车日报》(autod.cn)是一款汇集全网汽车资讯的软件,它每天都会为您推荐不一样的汽车新闻资讯,并且越用越懂你! - autod.cn";
         $this -> assign('_PAGE',$_PAGE);
         
-        $this -> display('index');
+        //$this -> display('index');
     }
     
     /**
