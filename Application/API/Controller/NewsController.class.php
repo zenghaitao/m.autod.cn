@@ -320,7 +320,11 @@ class NewsController extends BaseController  {
         
         $page_html = $page_result['html'];
         
+        if($_GET['type']=='iphone'){
+            $this -> assign('type' , 'iphone');
+        }
         $this -> assign('page' , $page_html);
+        $this -> assign('news_id' , $news_id);
         $this -> assign('host' , 'http://'.$_SERVER['HTTP_HOST']);
         $html = $this -> fetch('page');
         
