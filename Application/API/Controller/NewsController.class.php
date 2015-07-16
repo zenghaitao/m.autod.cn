@@ -204,6 +204,9 @@ class NewsController extends BaseController  {
         $news['images'] = (array)$images;
         
         $news['postTime'] = (string)$row['story_date'];
+        if(!$news['postTime'])
+            $news['postTime'] = date('Y-m-d H:i:s');
+            
         $news['type'] = $row['type'];
         
         if($news['imageCount'] == 3)
