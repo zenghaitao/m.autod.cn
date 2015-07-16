@@ -49,12 +49,13 @@ input{-webkit-appearance:none;border-radius: 0;}
 }
 </style>
 </literal>
+<script src="{$host}/Public/js/jquery.js"></script>
 </head>
 <body>
     <div class="takebox">
         <ul class="dylist">
             <foreach name="list" item="vo">
-            <li>
+            <li sid="{$vo.id}">
                 <div class="imgbox">
                     <img src="{$vo.icon}" alt="">
                 </div>
@@ -72,5 +73,30 @@ input{-webkit-appearance:none;border-radius: 0;}
             </foreach>
         </ul>
     </div>
+<script>
+$().ready(function(){
+    $('.imgbox img').click(function(){
+        var url="autod://com.auto/subscribe/action=showSubscribe&sourceId="+$(this).attr('sid');
+        window.location.href=url;
+    });
+    
+    $('.imgbox img').click(function(){
+        var url="autod://com.auto/subscribe/action=showSubscribe&sourceId="+$(this).parent().parent().attr('sid');
+        window.location.href=url;
+    });
+    
+    $('.dylist li span').click(function(){
+        if($(this).text()=='订阅'){
+           $(this).text('取消订阅'); 
+           var url = "autod://com.auto/subscribe/action=cancelSubscribe&sourceId="+$(this).parent().attr('sid');
+        }else{
+           $(this).text('订阅');
+           var url = "autod://com.auto/subscribe/action=addSubscribe&sourceId="+$(this).parent().attr('sid');
+        }
+        window.location.href=url;
+        $(this).toggleClass("dy");
+    });
+});
+</script>
 </body>
 </html>

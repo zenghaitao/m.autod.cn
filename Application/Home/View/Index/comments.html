@@ -27,8 +27,8 @@
                         <if condition="$vo.like_count neq 0">
                         <span>{$vo.like_count}</span>
                         </if>
-                        <a class="hand" href="/Home/Index/download"><img src="/Public/images/hand.png" alt=""></a>
-                        <a class="comment" href="autod://com.auto/comments/?newsId={$news_id}&replyId={$row.id}"><img src="/Public/images/comment.png" alt=""></a>
+                        <a class="hand" href="autod://com.auto/ding/?newsId={$vo.news_id}&replyId={$vo.id}"><img src="/Public/images/hand.png" alt=""></a>
+                        <a class="comment" href="autod://com.auto/comments/?newsId={$vo.news_id}&replyId={$vo.id}"><img src="/Public/images/comment.png" alt=""></a>
                     </div>
                     <p>{$vo.post}</p>
                     <if condition="$vo.reply_id neq 0">
@@ -59,8 +59,8 @@
                         <if condition="$vo.like_count neq 0">
                         <span>{$vo.like_count}</span>
                         </if>
-                        <a class="hand" href="/Home/Index/download"><img src="/Public/images/hand.png" alt=""></a>
-                        <a class="comment" href="autod://com.auto/comments/?newsId={$news_id}&replyId={$row.id}"><img src="/Public/images/comment.png" alt=""></a>
+                        <a class="hand" href="autod://com.auto/ding/?newsId={$vo.news_id}&replyId={$vo.id}"><img src="/Public/images/hand.png" alt=""></a>
+                        <a class="comment" href="autod://com.auto/comments/?newsId={$vo.news_id}&replyId={$vo.id}"><img src="/Public/images/comment.png" alt=""></a>
                     </div>
                     <p>{$vo.post}</p>
                     <if condition="$vo.reply_id neq 0">
@@ -79,7 +79,4 @@
 
     </if>
 </body>
-<script>
-
-</script>
 </html>
