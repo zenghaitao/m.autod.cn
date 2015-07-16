@@ -506,7 +506,7 @@ class IndexController extends BaseController  {
      *
      */
     public function comments(){
-        $news_id = (int)$_GET['id'];
+        $news_id = (int)$_GET['newsId'];
         $session_id = (int)$_GET['sessionId'];
         
         $_PAGE['title'] = "评论列表";
@@ -534,7 +534,6 @@ class IndexController extends BaseController  {
      */
     public function myComment(){
         $session_id = (int)$_GET['sessionId'];
-        $news_id = (int)$_GET['newsId'];
         $uid = $_SESSION['user_id'];
         
         $_PAGE['title'] = "我的评论";
@@ -543,7 +542,7 @@ class IndexController extends BaseController  {
         $M_news = new NewsModel();
         
         //热门评论
-        $comments = $M_news -> myCommentList($uid , $news_id , 10);
+        $comments = $M_news -> myCommentList($uid , 0 , 10);
         
         $this -> assign('news_id' , $news_id);
         $this -> assign('comments' , $comments);
