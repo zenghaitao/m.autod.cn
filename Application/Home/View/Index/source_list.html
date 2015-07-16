@@ -49,7 +49,7 @@ input{-webkit-appearance:none;border-radius: 0;}
 }
 </style>
 </literal>
-<script src="{$host}/Public/js/jquery.js"></script>
+<script src="/Public/js/jquery.js"></script>
 </head>
 <body>
     <div class="takebox">
@@ -93,7 +93,6 @@ $().ready(function(){
            $(this).text('订阅');
            var url = "autod://com.auto/subscribe/action=addSubscribe&sourceId="+$(this).parent().attr('sid');
         }
-        window.location.href=url;
         $(this).toggleClass("dy");
     });
 });
