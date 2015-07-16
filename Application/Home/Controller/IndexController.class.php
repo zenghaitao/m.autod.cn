@@ -645,7 +645,8 @@ class IndexController extends BaseController  {
         foreach ($list as &$row){
             //格式化新闻行记录
             $row = $this -> formatNews($row);
-            
+            if($row['imageCount'] > 1)
+                $row['openMode'] = 'image';
             $since_id = $row['id'];
         }
         
