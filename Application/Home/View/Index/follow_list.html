@@ -79,21 +79,21 @@ input{-webkit-appearance:none;border-radius: 0;}
 <script>
 $().ready(function(){
     $('.dybtn').click(function(){
-        var url="autod://com.auto/subscribe/action=addMore";
+        var url="autod://com.auto/subscribe/?action=addMore";
         window.location.href=url;
     });
     $('.imgbox img').click(function(){
-        var url="autod://com.auto/subscribe/action=showSubscribe&sourceId="+$(this).parent().parent().attr('sid');
+        var url="autod://com.auto/subscribe/?action=showSubscribe&sourceId="+$(this).parent().parent().attr('sid');
         window.location.href=url;
     });
     
     $('.dylist li span').click(function(){
         if($(this).text()=='订阅'){
            $(this).text('取消订阅'); 
-           var url = "autod://com.auto/subscribe/action=cancelSubscribe&sourceId="+$(this).parent().attr('sid');
+           var url = "autod://com.auto/subscribe/?action=cancelSubscribe&sourceId="+$(this).parent().attr('sid');
         }else{
            $(this).text('订阅');
-           var url = "autod://com.auto/subscribe/action=addSubscribe&sourceId="+$(this).parent().attr('sid');
+           var url = "autod://com.auto/subscribe/?action=addSubscribe&sourceId="+$(this).parent().attr('sid');
         }
         $(this).toggleClass("dy");
 //        window.location.href=url;
