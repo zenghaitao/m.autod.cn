@@ -231,11 +231,11 @@ class NewsController extends BaseController  {
         $news['hot'] = (int)$row['hot'];
         
         if($news['type'] == 'default' && $news['type']){
-            if($news['hot'] > 1900)
+            if($news['hot'] > 1200)
                 $news['type'] = 'head';
-            elseif($news['hot'] > 1600)
-                $news['type'] = 'recommend';
             elseif($news['hot'] > 1000)
+                $news['type'] = 'recommend';
+            elseif($news['hot'] > 800)
                 $news['type'] = 'hot';
         }
         return $news;
