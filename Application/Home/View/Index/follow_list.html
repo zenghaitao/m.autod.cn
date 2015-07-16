@@ -80,10 +80,12 @@ input{-webkit-appearance:none;border-radius: 0;}
 $().ready(function(){
     $('.dybtn span').click(function(){
         var url="autod://com.auto/subscribe/action=addMore";
+        alert(url);
         window.location.href=url;
     });
     $('.imgbox img').click(function(){
         var url="autod://com.auto/subscribe/action=showSubscribe&sourceId="+$(this).parent().parent().attr('sid');
+        alert(url);
         window.location.href=url;
     });
     
@@ -95,6 +97,7 @@ $().ready(function(){
            $(this).text('订阅');
            var url = "autod://com.auto/subscribe/action=addSubscribe&sourceId="+$(this).parent().attr('sid');
         }
+        alert(url);
         window.location.href=url;
         $(this).toggleClass("dy");
     });
