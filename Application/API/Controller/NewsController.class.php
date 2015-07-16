@@ -588,6 +588,7 @@ class NewsController extends BaseController  {
     public function myCommentList(){
         //此方法需要用户登录后操作
         $this -> mustLogin();
+        $uid = $_SESSION['user_id'];
         
         $since_id = (int)$_GET['sinceId'];
         
