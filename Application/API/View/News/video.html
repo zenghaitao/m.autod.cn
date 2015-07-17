@@ -32,11 +32,9 @@ function onSwitchFullScreen(){
     if(full == 'no'){
         window.jscalljava.fullScreen(1);
         onMaxScreen();
-        full = 'yes';
     }else{
         window.jscalljava.fullScreen(0);
         NormalScreen();
-        full = 'no';
     }
 }
 
@@ -48,22 +46,21 @@ function onPlayEnd(){
 //客户端回调
 function onMaxScreen() {
 //    ChangeAccessor(0);
-alert('max');
-console.log('max');
     var box = document.getElementById('youkuplayer');
     box.style.width = '100%';
     box.style.height = '100%';
     document.body.style.margin = 0;
+    full = 'yes';
 }
 //客户端回调
 function NormalScreen()
 {
     //alert('normal');
-    console.log('normal');
     var box = document.getElementById('youkuplayer');
 //    ChangeAccessor(1);
     box.style.width = '100%';
     box.style.height=(box.offsetWidth*10/16)+'px';
+    full = 'no';
 }  
 
 </script>
