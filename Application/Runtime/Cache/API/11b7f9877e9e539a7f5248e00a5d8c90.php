@@ -21,12 +21,38 @@ vid: '<?php echo ($video["videoid"]); ?>',
 
 show_related: false,
     events:{
-        onPlayStart: function(){
-            alert('start');
-//            window.jscalljava.fullScreen();
-        }
+        'onSwitchFullScreen': onSwitchFullScreen,
+        'onPlayEnd': onPlayEnd,    
     }
 });
+
+function onSwitchFullScreen(){
+    window.jscalljava.fullScreen(1);
+}
+
+function onPlayEnd(){
+    window.jscalljava.fullScreen(0);
+}
+
+//客户端回调
+function onMaxScreen() {
+//    ChangeAccessor(0);
+alert('max');
+    var box = document.getElementById('youkuplayer');
+    box.style.width = '100%';
+    box.style.height = '100%';
+    document.body.style.margin = 0;
+}
+//客户端回调
+function NormalScreen()
+{
+    alert('normal');
+    var box = document.getElementById('youkuplayer');
+//    ChangeAccessor(1);
+    box.style.width = '100%';
+    box.style.height=(box.offsetWidth*10/16)+'px';
+}  
+
 </script>
 
 </body>
