@@ -1,13 +1,13 @@
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
 <html lang="en">
 <head>
 <meta content=" initial-scale=1, maximum-scale=1" name="viewport">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no"/>
 <meta charset="UTF-8">
-<title>{$_PAGE['title']}</title>
+<title><?php echo ($_PAGE['title']); ?></title>
 <link rel="stylesheet" href="/Public/css/style.css">
-<literal>
+
 <style>
 *{/*-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;*/margin: 0;padding: 0;}
 html{-ms-touch-action: none;font-size: 62.5%;}
@@ -48,42 +48,36 @@ input{-webkit-appearance:none;border-radius: 0;}
     .dylist li span{font-size: 14px;border-radius: 20px;}
 }
 </style>
-</literal>
+
 <script src="/Public/js/jquery.js"></script>
 </head>
 <body>
     <div class="takebox">
-        <div class="dybtn">
-            <span>+</span>订阅更多媒体
-        </div>
         <ul class="dylist">
-            <foreach name="list" item="vo">
-            <li sid="{$vo.id}">
+            <?php if(is_array($list)): foreach($list as $key=>$vo): ?><li sid="<?php echo ($vo["id"]); ?>">
                 <div class="imgbox">
-                    <img src="{$vo.icon}" alt="">
+                    <img src="<?php echo ($vo["icon"]); ?>" alt="">
                 </div>
                 <div class="nr">
-                    <h3><b>{$vo.name}</b><i>{$vo.last_time}</i></h3>
-                    <p>{$vo.last_news}</p>
+                    <h3><b><?php echo ($vo["name"]); ?></b><i><?php echo ($vo["last_time"]); ?></i></h3>
+                    <p><?php echo ($vo["last_news"]); ?></p>
                 </div>
-                <if condition="$vo.followed eq 'yes'">
-                <span>取消订阅</span>
-                <else/>
-                <span class="dy">订阅</span>
-                </if>
+                <?php if($vo["followed"] == 'yes'): ?><span>取消订阅</span>
+                <?php else: ?>
+                <span class="dy">订阅</span><?php endif; ?>
                 
-            </li>
-            </foreach>
+            </li><?php endforeach; endif; ?>
         </ul>
     </div>
 <script>
-var sessionId = '{$session_id}';
-<literal>
+var sessionId = '<?php echo ($session_id); ?>';
+
 $().ready(function(){
-    $('.dybtn').click(function(){
-        var url="autod://com.auto/subscribe/?action=addMore";
+    $('.imgbox img').click(function(){
+        var url="autod://com.auto/subscribe/?action=showSubscribe&sourceId="+$(this).attr('sid');
         window.location.href=url;
     });
+    
     $('.imgbox img').click(function(){
         var url="autod://com.auto/subscribe/?action=showSubscribe&sourceId="+$(this).parent().parent().attr('sid');
         window.location.href=url;
@@ -92,10 +86,12 @@ $().ready(function(){
     $('.dylist li span').click(function(){
         if($(this).text()=='订阅'){
            $(this).text('取消订阅'); 
-           var url = "/API/News/follow";
+           //var url = "autod://com.auto/subscribe/?action=cancelSubscribe&sourceId="+$(this).parent().attr('sid');
+           var url = "/API/News/unfollow";
         }else{
            $(this).text('订阅');
-           var url = "/API/News/unfollow";
+           //var url = "autod://com.auto/subscribe/?action=addSubscribe&sourceId="+$(this).parent().attr('sid');
+           var url = "/API/News/follow";
         }
         
         var pamra = "sessionId="+sessionId+"&sourceId="+$(this).parent().attr('sid');
@@ -112,7 +108,7 @@ $().ready(function(){
         $(this).toggleClass("dy");
     });
 });
-</literal>
+
 </script>
 </body>
 </html>

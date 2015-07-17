@@ -507,7 +507,8 @@ class IndexController extends BaseController  {
      */
     public function comments(){
         $news_id = (int)$_GET['newsId'];
-        $session_id = (int)$_GET['sessionId'];
+        $session_id = $_GET['sessionId'];
+        $since_id = (int)$_GET['sinceId'];
         
         $_PAGE['title'] = "评论列表";
         $this -> assign('_PAGE',$_PAGE);
@@ -515,15 +516,28 @@ class IndexController extends BaseController  {
         $M_news = new NewsModel();
         
         //热门评论
-        $comments = $M_news -> commentsList($news_id , 0 , 10);
+        $comments = $M_news -> commentsList($news_id , $since_id , 10);
+        $since_id = end($comments);
+        $since_id = $since_id['id'];
         
-        $hot_comments = $M_news -> commentsHotList($news_id);
-        
-        
+        if(!$_GET['sinceId']){
+            $hot_comments = $M_news -> commentsHotList($news_id);
+        }
         
         $this -> assign('news_id' , $news_id);
+        $this -> assign('session_id' , $session_id);
+        $this -> assign('since_id' , $since_id);
         $this -> assign('hot_comments' , $hot_comments);
         $this -> assign('comments' , $comments);
+        
+        
+        if($_GET['sinceId']){
+            $this -> assign('type' , 'list');
+            $html = $this -> fetch('comments');
+            echo json_encode(array('sinceId'=>$since_id,'html'=>$html,'count'=>count($comments)));
+            exit;
+        }
+        
         
         $this -> display('comments');
     }
@@ -533,8 +547,9 @@ class IndexController extends BaseController  {
      *
      */
     public function myComment(){
-        $session_id = (int)$_GET['sessionId'];
+        $session_id = $_GET['sessionId'];
         $uid = $_SESSION['user_id'];
+        $since_id = (int)$_GET['sinceId'];
         
         $_PAGE['title'] = "我的评论";
         $this -> assign('_PAGE',$_PAGE);
@@ -542,10 +557,21 @@ class IndexController extends BaseController  {
         $M_news = new NewsModel();
         
         //热门评论
-        $comments = $M_news -> myCommentList($uid , 0 , 10);
+        $comments = $M_news -> myCommentList($uid , $since_id , 10);
+        $since_id = end($comments);
+        $since_id = $since_id['id'];
         
+        $this -> assign('session_id' , $session_id);
+        $this -> assign('since_id' , $since_id);
         $this -> assign('news_id' , $news_id);
         $this -> assign('comments' , $comments);
+        
+        if($_GET['sinceId']){
+            $this -> assign('type' , 'list');
+            $html = $this -> fetch('comments');
+            echo json_encode(array('sinceId'=>$since_id,'html'=>$html,'count'=>count($comments)));
+            exit;
+        }
         
         $this -> display('my_comments');
     }
@@ -555,7 +581,7 @@ class IndexController extends BaseController  {
      *
      */
     public function followList(){
-        $session_id = (int)$_GET['sessionId'];
+        $session_id = $_GET['sessionId'];
         $uid = $_SESSION['user_id'] = 1;
         
         $M_news = new NewsModel();
@@ -570,6 +596,7 @@ class IndexController extends BaseController  {
         }
         
         $this -> assign('list' , $list);
+        $this -> assign('session_id' , $session_id);
         
         $this -> display('follow_list');
     }
@@ -579,7 +606,7 @@ class IndexController extends BaseController  {
      *
      */
     public function sourceList(){
-        $session_id = (int)$_GET['sessionId'];
+        $session_id = $_GET['sessionId'];
         $uid = $_SESSION['user_id'] = 1;
         
         $M_news = new NewsModel();
@@ -602,6 +629,7 @@ class IndexController extends BaseController  {
         }
         
         $this -> assign('list' , $list);
+        $this -> assign('session_id' , $session_id);
         
         $this -> display('source_list');
     }
@@ -611,7 +639,7 @@ class IndexController extends BaseController  {
      *
      */
     public function source(){
-        $session_id = (int)$_GET['sessionId'];
+        $session_id = $_GET['sessionId'];
         $source_id = $_GET['sourceId'];
         $begin_id = (int)$_GET['sinceId'];
         
@@ -651,7 +679,18 @@ class IndexController extends BaseController  {
         }
         
         $this -> assign('since_id' , $since_id);
+        $this -> assign('keyword' , $keyword);
+        $this -> assign('session_id' , $session_id);
         $this -> assign('list' , $list);
+        
+        if($_GET['sinceId']){
+            $this -> assign('type' , 'list');
+            $html = $this -> fetch('search');
+            
+            echo json_encode(array('sinceId'=>$since_id,'html'=>$html,'count'=>count($list)));
+            
+            exit;
+        }
         
         $this -> display('search');
     }
@@ -659,9 +698,10 @@ class IndexController extends BaseController  {
     public function favList(){
         $session_id = (int)$_GET['sessionId'];
         $uid = $_SESSION['user_id'];
+        $since_id = (int)$_GET['sinceId'];
         
         $M_news = new NewsModel();
-        $res = $M_news -> favList($uid , 0 , 10);
+        $res = $M_news -> favList($uid , $since_id , 10);
     
         $since_id = 0;
         $list = array();
@@ -675,7 +715,19 @@ class IndexController extends BaseController  {
             $row = $this -> formatNews($row);
         }
         
+        
+        $this -> assign('session_id' , $session_id);
+        $this -> assign('since_id' , $since_id);
+        
         $this -> assign('list' , $list);
+        
+        if($_GET['sinceId']){
+            $this -> assign('type' , 'list');
+            $html = $this -> fetch('fav_list');
+            echo json_encode(array('sinceId'=>$since_id,'html'=>$html,'count'=>count($list)));
+            exit;
+        }
+       
         
         $this -> display('fav_list');
     }

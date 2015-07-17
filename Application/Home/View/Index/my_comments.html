@@ -1,3 +1,4 @@
+<if condition="$type neq 'list'">
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,6 +45,67 @@
     </if>
 </body>
 <script>
-
+var sinceId = '{$since_id}';
+var sessionId = '{$session_id}';
+<literal>
+//上拉刷新
+    var dataOff = true;
+    $(window).scroll(function(){
+        if(getDataCheck() && dataOff){
+            getNewList();
+        }
+    })
+    function getDataCheck(){
+        var oBox = $('.com_ul');
+        var aList =oBox.find('li');
+        if(!aList.length) return false;
+        var lastboxHeight = $(aList[aList.length-1]).offset().top+Math.floor($(aList[aList.length-1]).outerHeight()/2);
+        var documentHeight = $(window).height();
+        var scrollTop = $(document).scrollTop();
+        //if(box.length>=200){return false;}
+        return lastboxHeight<documentHeight+scrollTop?true:false;
+    }
+    function getNewList(){
+        $('.load_img').css('display','block');
+        var url = "/Home/Index/myComment?sinceId="+sinceId+"&sessionId="+sessionId;
+        dataOff = !dataOff;
+        $.ajax({
+            url:url,
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                sinceId = data.sinceId;
+                $('.com_ul').append(data.html);
+                $('.load_img').css('display','none');
+                if(data.count > 0)
+                    dataOff = !dataOff;
+            }
+        })
+    }
+</literal>
 </script>
 </html>
+<else/>
+<foreach name="comments" item="vo">
+<li>
+    <div class="head_img"><img src="{$vo.userphoto}" alt="{$vo.username}"></div>
+    <div class="com_cont">
+        <div class="user_name">{$vo.username}</div>
+        <div class="dianzan">
+            <if condition="$vo.like_count neq 0">
+            <span>{$vo.like_count}</span>
+            </if>
+            <a class="comment" href="autod://com.auto/comments/?newsId={$vo.news_id}&replyId={$vo.id}"><img src="/Public/images/comment.png" alt=""></a>
+        </div>
+        <p>{$vo.post}</p>
+        <if condition="$vo.reply_id neq 0">
+        <div class="bef_com">
+            <span></span>
+            <p>原评论：{$vo.reply_username}</p>
+            <p>{$vo.reply_post}</p>
+        </div>
+        </if>
+    </div>
+</li>
+</foreach>
+</if>

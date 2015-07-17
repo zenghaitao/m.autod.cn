@@ -1,3 +1,4 @@
+<if condition="$type neq 'list'">
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,10 +23,12 @@
     .mthead p{font-size: 14px;}
 }
 </style>
+<script src="/Public/js/jquery.js"></script>
 </head>
 <body>
 <div class="container" style="padding-top:0px">
     <div class="list_box">
+    </if>
         <foreach name="list" item="vo">
         <if condition="$vo.displayMode eq 'A'">
         <section class="box">
@@ -58,7 +61,50 @@
         </section>
         </if>
         </foreach>
+        <if condition="$type neq 'list'">
     </div>
+    <section class="load_img"><img src="/Public/images/loading.gif" alt=""></section>
 </div>
+<script>
+var sinceId = '{$since_id}';
+var keyword = '{$keyword}';
+<literal>
+//上拉刷新
+    var dataOff = true;
+    $(window).scroll(function(){
+        if(getDataCheck() && dataOff){
+            getNewList();
+        }
+    })
+    function getDataCheck(){
+        var oBox = $('.list_box');
+        var aList =oBox.find('section');
+        if(!aList.length) return false;
+        var lastboxHeight = $(aList[aList.length-1]).offset().top+Math.floor($(aList[aList.length-1]).outerHeight()/2);
+        var documentHeight = $(window).height();
+        var scrollTop = $(document).scrollTop();
+        //if(box.length>=200){return false;}
+        return lastboxHeight<documentHeight+scrollTop?true:false;
+    }
+    function getNewList(){
+        $('.load_img').css('display','block');
+        var url = "/Home/Index/search?keyword="+keyword+"&sinceId="+sinceId;
+        dataOff = !dataOff;
+        $.ajax({
+            url:url,
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                sinceId = data.sinceId;
+                $('.list_box').append(data.html);
+                $('.load_img').css('display','none');
+                if(data.count > 0)
+                    dataOff = !dataOff;
+            }
+        })
+    }
+</literal>
+</script>
 </body>
 </html>
+</if>

@@ -198,6 +198,47 @@ class SnatchController extends BaseController  {
         var_dump($i.'over');
     }
     
+    public function syncIna(){
+        $url = 'http://api.news18a.com/auto/data/ina_news_dujia_list.js';
+        $json = json_decode(file_get_contents($url),1);
+        
+        foreach ($json as $row){
+            var_dump($row);exit;
+            
+            $data = array();
+            $data['title'] = $row['title'];
+            $data['shortTitle'] = $row['shorttitle'];
+            $data['shortSummary'] = $row['short_summary'];
+            $data['author'] = $row['writer'];
+            $data['source'] = $row['source'];
+            $data['sourceId'] = '1';
+            $data['storyDate'] = $row['story_date'];
+            $data['keyWord'] = $row['keyword'];
+            $data['columnId'] = $row['columnId'];
+            $data['logoId'] = $row['columnId'];
+            $data['bseriesId'] = $row['columnId'];
+            $data['title_pic1'] = $row['columnId'];
+            $data['title_pic2'] = $row['columnId'];
+            $data['title_pic3'] = $row['columnId'];
+            $data['position'] = $row['columnId'];
+            $data['url'] = $row['columnId'];
+            $data['status'] = 'published';
+            $data['modiDate'] = date('Y-m-d H:i:s');
+            $data['addDate'] = date('Y-m-d H:i:s');
+            $data['is_top'] = date('Y-m-d H:i:s');
+            $data['is_hot'] = date('Y-m-d H:i:s');
+            $data['is_rec'] = date('Y-m-d H:i:s');
+            $data['is_img_pick'] = date('Y-m-d H:i:s');
+            $data['weight'] = date('Y-m-d H:i:s');
+            
+            //文章信息入库
+            $story_id = $_db_news_story -> add($data);
+            
+        }
+        
+        var_dump($json);exit;
+    }
+    
     /**
      * 抓取INA的数据进story表
      *
