@@ -551,6 +551,9 @@ class IndexController extends BaseController  {
         $uid = $_SESSION['user_id'];
         $since_id = (int)$_GET['sinceId'];
         
+        if(!uid)
+            die('need login!');
+        
         $_PAGE['title'] = "我的评论";
         $this -> assign('_PAGE',$_PAGE);
         
@@ -582,7 +585,7 @@ class IndexController extends BaseController  {
      */
     public function followList(){
         $session_id = $_GET['sessionId'];
-        $uid = $_SESSION['user_id'] = 1;
+        $uid = $_SESSION['user_id'];
         
         $M_news = new NewsModel();
         $res = $M_news -> followList($uid);
@@ -607,7 +610,7 @@ class IndexController extends BaseController  {
      */
     public function sourceList(){
         $session_id = $_GET['sessionId'];
-        $uid = $_SESSION['user_id'] = 1;
+        $uid = $_SESSION['user_id'];
         
         $M_news = new NewsModel();
         $list = $M_news -> getSoureList();
