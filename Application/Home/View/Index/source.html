@@ -1,3 +1,4 @@
+<if condition="$type neq 'list'">
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
 <title>{$_PAGE['title']}</title>
 <link rel="stylesheet" href="/Public/css/style.css">
 <style>
+<literal>
 .mthead{padding: 30px 10px 20px 10px;background: #87b6d4;text-align: center;}
 .headbox{width: 16%;overflow: hidden;border-radius: 50%;margin: 0 auto;}
 .headbox img{width: 100%;border-radius: 50%;}
@@ -21,7 +23,9 @@
     .mthead h3{font-size: 18px;}
     .mthead p{font-size: 14px;}
 }
+</literal>
 </style>
+<script src="/Public/js/jquery.js"></script>
 </head>
 <body>
 <div class="container" style="padding-top:0px">
@@ -31,6 +35,7 @@
         <p>{$info.intro}</p>
     </div>
     <div class="list_box">
+</if>
         <foreach name="list" item="vo">
         <if condition="$vo.displayMode eq 'A'">
         <section class="box">
@@ -63,7 +68,50 @@
         </section>
         </if>
         </foreach>
+<if condition="$type neq 'list'">
     </div>
 </div>
+<script>
+var sourceId = '{$source_id}';
+var sinceId = '{$since_id}';
+var sessionId = '{$session_id}';
+<literal>
+//上拉刷新
+    var dataOff = true;
+    $(window).scroll(function(){
+        if(getDataCheck() && dataOff){
+            getNewList();
+        }
+    })
+    function getDataCheck(){
+        var oBox = $('.list_box');
+        var aList =oBox.find('section');
+        if(!aList.length) return false;
+        var lastboxHeight = $(aList[aList.length-1]).offset().top+Math.floor($(aList[aList.length-1]).outerHeight()/2);
+        var documentHeight = $(window).height();
+        var scrollTop = $(document).scrollTop();
+        //if(box.length>=200){return false;}
+        return lastboxHeight<documentHeight+scrollTop?true:false;
+    }
+    function getNewList(){
+        $('.load_img').css('display','block');
+        var url = "/Home/Index/source?sourceId="+sourceId+"&sinceId="+sinceId+"&sessionId="+sessionId;
+        dataOff = !dataOff;
+        $.ajax({
+            url:url,
+            type:'get',
+            dataType:'json',
+            success:function(data){
+                sinceId = data.sinceId;
+                $('.list_box').append(data.html);
+                $('.load_img').css('display','none');
+                if(data.count > 0)
+                    dataOff = !dataOff;
+            }
+        })
+    }
+</literal>
+</script>
 </body>
 </html>
+</if>

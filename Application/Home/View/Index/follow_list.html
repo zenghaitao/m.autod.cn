@@ -56,6 +56,7 @@ input{-webkit-appearance:none;border-radius: 0;}
         <div class="dybtn">
             <span>+</span>订阅更多媒体
         </div>
+        <if condition="$list">
         <ul class="dylist">
             <foreach name="list" item="vo">
             <li sid="{$vo.id}">
@@ -75,6 +76,12 @@ input{-webkit-appearance:none;border-radius: 0;}
             </li>
             </foreach>
         </ul>
+        <else/>
+<div style="text-align:center;">
+    <img src="/Public/images/subscription.png" alt="" style="width:66px;">
+    <p style="font-size:14px;margin-top:20px;text-align:center;color:#979797;">目前没有订阅</p>
+</div>
+        </if>
     </div>
 <script>
 var sessionId = '{$session_id}';

@@ -659,8 +659,18 @@ class IndexController extends BaseController  {
         
         $info = $M_news -> getSource($source_id);
         
+        $this -> assign('session_id' , $session_id);
+        $this -> assign('source_id' , $source_id);
+        $this -> assign('since_id' , $since_id);
         $this -> assign('list' , $list);
         $this -> assign('info' , $info);
+        
+        if($begin_id){
+            $this -> assign('type' , 'list');
+            $html = $this -> fetch('source');
+            echo json_encode(array('sinceId'=>$since_id,'html'=>$html,'count'=>count($list)));
+            exit;
+        }
         
         $this -> display('source');
     }

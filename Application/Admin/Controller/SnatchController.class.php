@@ -241,7 +241,7 @@ class SnatchController extends BaseController  {
             
             //文章信息入库
             $story_id = $_db_cms_story -> add($data);
-            
+            if($story_id)
         }
         
         var_dump($json);exit;
