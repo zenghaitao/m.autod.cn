@@ -39,7 +39,7 @@
         <foreach name="list" item="vo">
         <if condition="$vo.displayMode eq 'A'">
         <section class="box">
-            <a href="/Home/Index/page?id=24524">
+            <a href="autod://com.auto/news/?newsId={$vo.id}&newsType={$vo.openMode}">
                 <div class="img_box">
                     <img src="{$vo.images.0}" alt="">
                 </div>
@@ -53,7 +53,7 @@
         </if>
         <if condition="$vo.displayMode eq 'B'">
         <section class="box">
-            <a href="/Home/Index/page?id=24517">
+            <a href="autod://com.auto/news/?newsId={$vo.id}&newsType={$vo.openMode}">
                 <h3 class="long_title">{$vo.title}</h3>
                 <div class="img_cont">
                     <div class="img_box2"><img src="{$vo.images.0}" alt=""></div>
