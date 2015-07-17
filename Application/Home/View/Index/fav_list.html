@@ -29,6 +29,7 @@
 <div class="container" style="padding-top:0px">
     <div class="list_box">
 </if>
+<if condition="$list">
         <foreach name="list" item="vo">
         <if condition="$vo.displayMode eq 'A'">
         <section class="box">
@@ -61,6 +62,12 @@
         </section>
         </if>
         </foreach>
+<else/>
+<div style="text-align:center;">
+    <img src="/Public/images/shoucang.png" alt="" style="width:66px;">
+    <p style="font-size:14px;margin-top:20px;text-align:center;color:#979797;">目前没有收藏</p>
+</div>
+</if>
 <if condition="$type neq 'list'">
     </div>
 </div>
