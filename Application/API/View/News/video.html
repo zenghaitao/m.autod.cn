@@ -28,16 +28,18 @@ show_related: false,
 
 function onSwitchFullScreen(){
     window.jscalljava.fullScreen(1);
+    onMaxScreen();
 }
 
 function onPlayEnd(){
     window.jscalljava.fullScreen(0);
+    NormalScreen();
 }
 
 //客户端回调
 function onMaxScreen() {
 //    ChangeAccessor(0);
-//alert('max');
+alert('max');
 console.log('max');
     var box = document.getElementById('youkuplayer');
     box.style.width = '100%';

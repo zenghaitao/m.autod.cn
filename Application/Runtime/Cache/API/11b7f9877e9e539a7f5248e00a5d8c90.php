@@ -38,6 +38,7 @@ function onPlayEnd(){
 function onMaxScreen() {
 //    ChangeAccessor(0);
 alert('max');
+console.log('max');
     var box = document.getElementById('youkuplayer');
     box.style.width = '100%';
     box.style.height = '100%';
@@ -46,13 +47,14 @@ alert('max');
 //客户端回调
 function NormalScreen()
 {
-    alert('normal');
+    //alert('normal');
+    console.log('normal');
     var box = document.getElementById('youkuplayer');
 //    ChangeAccessor(1);
     box.style.width = '100%';
     box.style.height=(box.offsetWidth*10/16)+'px';
 }  
-
+onMaxScreen();
 </script>
 
 </body>
