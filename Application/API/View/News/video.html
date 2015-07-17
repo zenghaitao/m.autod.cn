@@ -12,7 +12,8 @@
 <body style="background-color:#000"">
     <div class="video_con" id="youkuplayer"></div>
 <literal>
-<script type="text/javascript" src="http://player.youku.com/jsapi">
+<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+<script type="text/javascript">
 var full = 'no';
 
 player = new YKU.Player('youkuplayer',{
@@ -46,14 +47,11 @@ function onPlayEnd(){
 //客户端回调
 function onMaxScreen() {
 //    ChangeAccessor(0);
-    window.onresize=function(){
-        var box = document.getElementById('youkuplayer');
-        box.style.width = '100%';
-        box.style.height = '100%';
-        document.body.style.margin = 0;
-        full = 'yes';
-    }
-    
+    var box = document.getElementById('youkuplayer');
+    box.style.width = '100%';
+    box.style.height = '100%';
+    document.body.style.margin = 0;
+    full = 'yes';
 }
 //客户端回调
 function NormalScreen()
