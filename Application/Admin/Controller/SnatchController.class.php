@@ -202,6 +202,10 @@ class SnatchController extends BaseController  {
         $url = 'http://api.news18a.com/auto/data/ina_news_dujia_list.js';
         $json = json_decode(file_get_contents($url),1);
         
+        $_db_cms_story = M('autod_story' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
+        
         foreach ($json as $row){
             var_dump($row);exit;
             
@@ -214,25 +218,29 @@ class SnatchController extends BaseController  {
             $data['sourceId'] = '1';
             $data['storyDate'] = $row['story_date'];
             $data['keyWord'] = $row['keyword'];
-            $data['columnId'] = $row['columnId'];
-            $data['logoId'] = $row['columnId'];
-            $data['bseriesId'] = $row['columnId'];
-            $data['title_pic1'] = $row['columnId'];
-            $data['title_pic2'] = $row['columnId'];
-            $data['title_pic3'] = $row['columnId'];
-            $data['position'] = $row['columnId'];
-            $data['url'] = $row['columnId'];
+            $data['columnId'] = 0;
+            $data['logoId'] = $row['logo_id'];
+            $data['bseriesId'] = $row['series_id'];
+            $data['title_pic1'] = $row['pic1'];
+            if($row['pic2']){
+                $data['title_pic1'] = $row['pic1'];
+            }
+            $data['title_pic2'] = '';
+            $data['title_pic3'] = '';
+            
+            $data['position'] = 0;
+            $data['url'] = $row['url'];
             $data['status'] = 'published';
             $data['modiDate'] = date('Y-m-d H:i:s');
             $data['addDate'] = date('Y-m-d H:i:s');
-            $data['is_top'] = date('Y-m-d H:i:s');
-            $data['is_hot'] = date('Y-m-d H:i:s');
-            $data['is_rec'] = date('Y-m-d H:i:s');
-            $data['is_img_pick'] = date('Y-m-d H:i:s');
-            $data['weight'] = date('Y-m-d H:i:s');
+            $data['is_top'] = 'no';
+            $data['is_hot'] = 'no';
+            $data['is_rec'] = 'no';
+            $data['is_img_pick'] = 'no';
+            $data['weight'] = 0;
             
             //文章信息入库
-            $story_id = $_db_news_story -> add($data);
+            $story_id = $_db_cms_story -> add($data);
             
         }
         

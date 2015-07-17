@@ -19,7 +19,12 @@ client_id: 'f70ac119a85b248e',
 </literal>
 vid: '{$video.videoid}',
 <literal>
-show_related: false
+show_related: false,
+    events:{
+        onPlayStart: function(){
+            window.jscalljava.fullScreen;
+        }
+    }
 });
 </script>
 </literal>
