@@ -46,11 +46,14 @@ function onPlayEnd(){
 //客户端回调
 function onMaxScreen() {
 //    ChangeAccessor(0);
-    var box = document.getElementById('youkuplayer');
-    box.style.width = '100%';
-    box.style.height = '100%';
-    document.body.style.margin = 0;
-    full = 'yes';
+    window.onresize=function(){
+        var box = document.getElementById('youkuplayer');
+        box.style.width = '100%';
+        box.style.height = '100%';
+        document.body.style.margin = 0;
+        full = 'yes';
+    }
+    
 }
 //客户端回调
 function NormalScreen()
