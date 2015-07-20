@@ -5,7 +5,10 @@ class ConfigController extends BaseController {
     
     public function __construct(){
         parent::__construct();
-        $this -> checkPermission();
+        //是否为合法访问
+        if(!in_array($_SERVER['REDIRECT_URL'] , array('/API/Config/version'))){
+            $this -> checkPermission();
+        }
     }
     
     public function screenPhoto(){
