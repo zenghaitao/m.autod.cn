@@ -379,7 +379,7 @@ class NewsController extends BaseController  {
             shuffle($ad);
             $ad = end($ad);
         }else{
-            $ad = array();
+            $ad = (object)array();
         }
         
         $news_info['ad'] = $ad;
