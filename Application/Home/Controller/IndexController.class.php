@@ -187,6 +187,8 @@ class IndexController extends BaseController  {
      * @return unknown
      */
     private function newsAD(){
+        if($_SERVER['IS_DEBUG'] != 'yes')
+            return array();
         $adlist = array();
         
         $i = 0;
