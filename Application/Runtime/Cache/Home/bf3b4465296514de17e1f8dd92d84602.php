@@ -1,12 +1,11 @@
-<if condition="$type neq 'list'">
-<!doctype html>
+<?php if (!defined('THINK_PATH')) exit(); if($type != 'list'): ?><!doctype html>
 <html lang="en">
 <head>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no"/>
 <meta charset="UTF-8">
-<title>{$_PAGE['title']}</title>
+<title><?php echo ($_PAGE['title']); ?></title>
 <link rel="stylesheet" href="/Public/css/style.css">
 <style>
 .mthead{padding: 30px 10px 20px 10px;background: #87b6d4;text-align: center;}
@@ -27,55 +26,45 @@
 </head>
 <body>
 <div class="container" style="padding-top:0px">
-    <div class="list_box">
-    </if>
-    <if condition="$list">
-        <foreach name="list" item="vo">
-        <if condition="$vo.displayMode eq 'A'">
-        <section class="box">
-            <a href="autod://com.auto/news/?newsId={$vo.id}&newsType={$vo.openMode}">
+    <div class="list_box"><?php endif; ?>
+    <?php if($list): if(is_array($list)): foreach($list as $key=>$vo): if($vo["displayMode"] == 'A'): ?><section class="box">
+            <a href="autod://com.auto/news/?newsId=<?php echo ($vo["id"]); ?>&newsType=<?php echo ($vo["openMode"]); ?>">
                 <div class="img_box">
-                    <img src="{$vo.images.0}" alt="">
+                    <img src="<?php echo ($vo["images"]["0"]); ?>" alt="">
                 </div>
-                <h3>{$vo.title}</h3>
+                <h3><?php echo ($vo["title"]); ?></h3>
                 <div class="item_info">
-                    <span class="time">{$vo.timeString}</span>
-                    <span class="source">热度{$vo.hot}</span>
+                    <span class="time"><?php echo ($vo["timeString"]); ?></span>
+                    <span class="source">热度<?php echo ($vo["hot"]); ?></span>
                 </div>
             </a>
-        </section>
-        </if>
-        <if condition="$vo.displayMode eq 'B'">
-        <section class="box">
-            <a href="autod://com.auto/news/?newsId={$vo.id}&newsType={$vo.openMode}">
-                <h3 class="long_title">{$vo.title}</h3>
+        </section><?php endif; ?>
+        <?php if($vo["displayMode"] == 'B'): ?><section class="box">
+            <a href="autod://com.auto/news/?newsId=<?php echo ($vo["id"]); ?>&newsType=<?php echo ($vo["openMode"]); ?>">
+                <h3 class="long_title"><?php echo ($vo["title"]); ?></h3>
                 <div class="img_cont">
-                    <div class="img_box2"><img src="{$vo.images.0}" alt=""></div>
-                    <div class="img_box2"><img src="{$vo.images.1}" alt=""></div>
-                    <div class="img_box2"><img src="{$vo.images.2}" alt=""></div>
+                    <div class="img_box2"><img src="<?php echo ($vo["images"]["0"]); ?>" alt=""></div>
+                    <div class="img_box2"><img src="<?php echo ($vo["images"]["1"]); ?>" alt=""></div>
+                    <div class="img_box2"><img src="<?php echo ($vo["images"]["2"]); ?>" alt=""></div>
                 </div>
                 <div class="item_info item_info2">
-                    <span class="time">{$vo.timeString}</span>
-                    <span class="source">热度{$vo.hot}</span>
+                    <span class="time"><?php echo ($vo["timeString"]); ?></span>
+                    <span class="source">热度<?php echo ($vo["hot"]); ?></span>
                 </div>
             </a>
-        </section>
-        </if>
-        </foreach>
-        <else/>
+        </section><?php endif; endforeach; endif; ?>
+        <?php else: ?>
         <div style="text-align:center;margin-top:80px;">
             <img src="/Public/images/search1.png" alt="" style="width:66px;">
             <p style="font-size:14px;margin-top:20px;text-align:center;color:#979797;">暂无搜索结果</p>
-        </div>
-        </if>
-        <if condition="$type neq 'list'">
-    </div>
+        </div><?php endif; ?>
+        <?php if($type != 'list'): ?></div>
     <section class="load_img"><img src="/Public/images/loading.gif" alt=""></section>
 </div>
 <script>
-var sinceId = '{$since_id}';
-var keyword = '{$keyword}';
-<literal>
+var sinceId = '<?php echo ($since_id); ?>';
+var keyword = '<?php echo ($keyword); ?>';
+
 //上拉刷新
     var dataOff = true;
     $(window).scroll(function(){
@@ -110,8 +99,7 @@ var keyword = '{$keyword}';
             }
         })
     }
-</literal>
+
 </script>
 </body>
-</html>
-</if>
+</html><?php endif; ?>
