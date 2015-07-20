@@ -11,6 +11,12 @@ class IndexController extends BaseController  {
         parent::__construct();
     }
     
+    public function test(){
+        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        
+        var_dump($_db_news_story -> where(1) -> limit(10) -> select(););
+    }
+    
     public function index(){
         
         $_PAGE['title'] = "《汽车日报》每日汽车新闻播报! - autod.cn";
