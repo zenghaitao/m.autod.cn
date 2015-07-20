@@ -49,9 +49,9 @@ class SnatchController extends BaseController  {
         /* 初始化 ina 新闻数据 */
         $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
         $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
-        $_db_cms_story = M('autod_story' , 'cms_' , 'DB_CMS_CONFIG');
-        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB_CMS_CONFIG');
-        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB_INA_CONFIG');
+        $_db_cms_story = M('ina_story' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_story_content = M('ina_story_content' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
         
         /* 删除网通社新闻内容 */
         $_db_news_story -> where("plant = 'ina'") -> delete();
@@ -63,28 +63,24 @@ class SnatchController extends BaseController  {
         
         $M_snatch = new SnatchModel();
         
-        $list = $_db_cms_story -> where("sourceId='1' AND status = 'published' AND storyDate > '2015' AND id > '{$max_id}'") -> order("storyDate ASC") -> select();
+        $list = $_db_cms_story -> where("status = 'published' AND id > '{$max_id}'") -> order("story_date ASC") -> select();
         foreach ($list as $row){
             /* 写入news_story表 */
             $data = array();
             $data['article_id'] = $row['id'];
             $data['plant'] = 'ina';
             $data['title'] = $row['title'];
-            $data['short_summary'] = $row['shortSummary'];
+            $data['short_summary'] = $row['short_summary'];
             $data['source'] = $row['source'];
             $data['source_id'] = '49';
-            $data['story_date'] = $row['storyDate']?$row['storyDate']:'2015-01-01';
-            $data['column_id'] = $this -> column($row['columnId']);
-            if($row['title_pic3']){
-                $data['img_count'] = 3;
-            }elseif ($row['title_pic1']){
-                $data['img_count'] = 1;
+            $data['story_date'] = $row['story_date']?$row['story_date']:'2015-01-01';
+            $data['column_id'] = $this -> column($row['column']);
+            if($row['title_pic2']){
+                $data['title_pic1'] = $row['title_pic2'];
             }else {
-                $data['img_count'] = 0;
+                $data['title_pic1'] = $row['title_pic1'];
             }
-            $data['title_pic1'] = $row['title_pic1'];
-            $data['title_pic2'] = $row['title_pic2'];
-            $data['title_pic3'] = $row['title_pic3'];
+            $data['img_count'] = 1;
             
             $data['url'] = $row['url'];
             $data['add_date'] = date('Y-m-d H:i:s');
@@ -94,12 +90,14 @@ class SnatchController extends BaseController  {
             
             if($story_id){
                 //获取文章正文
-                $contents = $_db_cms_story_content -> where("storyId = '{$row['id']}'") -> order("page ASC") -> select();
+                $contents = $_db_cms_story_content -> where("story_id = '{$row['id']}'") -> order("id ASC") -> select();
                 $content = '';
                 foreach ($contents as $val){
                     $content .= $val['content'];
                 }
-
+                if(!$content){
+                    continue;
+                }
                 /* 写入news_story_content表 */
                 $images = $M_snatch -> img($content);
                 $content = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
@@ -145,7 +143,7 @@ class SnatchController extends BaseController  {
             $data['story_date'] = $row['publish_time']?$row['publish_time']:'2015-01-01';;
             $data['column_id'] = '20';
             $data['title_pic1'] = $row['img'];
-            $data['img_count'] = 0;
+            $data['img_count'] = 1;
             
             $data['url'] = $row['url'];
             $data['add_date'] = date('Y-m-d H:i:s');
@@ -199,52 +197,76 @@ class SnatchController extends BaseController  {
     }
     
     public function syncIna(){
+        $_db_ina_story = M('ina_story' , 'cms_' , 'DB0_CONFIG');
+        $_db_ina_story_content = M('ina_story_content' , 'cms_' , 'DB0_CONFIG');
+        $_db_ina_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
+        
         $url = 'http://api.news18a.com/auto/data/ina_news_dujia_list.js';
         $json = json_decode(file_get_contents($url),1);
         
-        $_db_cms_story = M('autod_story' , 'cms_' , 'DB0_CONFIG');
-        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB0_CONFIG');
-        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
-        
-        foreach ($json as $row){
-            var_dump($row);exit;
-            
-            $data = array();
-            $data['title'] = $row['title'];
-            $data['shortTitle'] = $row['shorttitle'];
-            $data['shortSummary'] = $row['short_summary'];
-            $data['author'] = $row['writer'];
-            $data['source'] = $row['source'];
-            $data['sourceId'] = '1';
-            $data['storyDate'] = $row['story_date'];
-            $data['keyWord'] = $row['keyword'];
-            $data['columnId'] = 0;
-            $data['logoId'] = $row['logo_id'];
-            $data['bseriesId'] = $row['series_id'];
-            $data['title_pic1'] = $row['pic1'];
-            if($row['pic2']){
+        $i = 0;
+        $j = 0;
+        if(!$json['error']){
+        //if(0){
+            foreach ($json as $row){
+                $data = array();
+                $data['iid'] = $row['iid'];
+                $data['title'] = $row['title'];
+                $data['shorttitle'] = $row['shorttitle'];
+                $data['keyword'] = $row['keyword'];
+                $data['column'] = $row['column'];
+                $data['logo_id'] = $row['logo_id'];
+                $data['series_id'] = $row['series_id'];
+                $data['author'] = $row['writer'];
+                $data['editor'] = $row['editor'];
+                $data['source'] = $row['source'];
+                $data['story_date'] = $row['story_date'];
                 $data['title_pic1'] = $row['pic1'];
+                $data['title_pic1'] = $row['pic1'];
+                $data['short_summary'] = $row['short_summary'];
+                $data['url'] = $row['url'];
+                $data['status'] = 'published';
+                $data['add_date'] = date('Y-m-d H:i:s');
+                $data['modi_date'] = date('Y-m-d H:i:s');
+                
+                $info = $_db_ina_story -> where("iid = '{$row['iid']}'") -> find();
+                $j++;
+                if(!$info){
+                    //文章信息入库
+                    $story_id = $_db_ina_story -> add($data);
+                    if($story_id){
+                        //写入content库
+                        foreach ($row['page'] as $page){
+                            $data = array();
+                            $data['story_id'] = $story_id;
+                            $data['sub_title'] = $page['sub_title'];
+                            $data['content'] = $page['content'];
+                            $data['dt'] = date('Y-m-d H:i:s');
+                            $_db_ina_story_content -> add($data);
+                        }
+                    }
+                    $i++;
+                }
             }
-            $data['title_pic2'] = '';
-            $data['title_pic3'] = '';
-            
-            $data['position'] = 0;
-            $data['url'] = $row['url'];
-            $data['status'] = 'published';
-            $data['modiDate'] = date('Y-m-d H:i:s');
-            $data['addDate'] = date('Y-m-d H:i:s');
-            $data['is_top'] = 'no';
-            $data['is_hot'] = 'no';
-            $data['is_rec'] = 'no';
-            $data['is_img_pick'] = 'no';
-            $data['weight'] = 0;
-            
-            //文章信息入库
-            $story_id = $_db_cms_story -> add($data);
-            if($story_id)
         }
+        echo "add news:{$i}/{$j}";
         
-        var_dump($json);exit;
+        $i = 0;$j=0;
+        $url = 'http://api.news18a.com/auto/data/ina_uutv_list.js';
+        $json = json_decode(file_get_contents($url),1);
+        if(!$json['error']){
+            foreach ($json as $row){
+                $info = $_db_ina_video -> where("iid = '{$row['iid']}'") -> find();
+                $j++;
+                if(!$info){
+                    $data = array();
+                    $data = $row;
+                    $_db_ina_video -> add($data);
+                    $i++;
+                }
+            }
+        }
+        echo "add video:{$i}/{$j}";
     }
     
     /**
@@ -256,10 +278,10 @@ class SnatchController extends BaseController  {
         $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
         $_db_news_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
         
-        $_db_cms_story = M('autod_story' , 'cms_' , 'DB_CMS_CONFIG');
-        $_db_cms_story_content = M('autod_story_content' , 'cms_' , 'DB_CMS_CONFIG');
+        $_db_cms_story = M('ina_story' , 'cms_' , 'DB0_CONFIG');
+        $_db_cms_story_content = M('ina_story_content' , 'cms_' , 'DB0_CONFIG');
         
-        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB_CMS_CONFIG');
+        $_db_cms_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
         
         $M_snatch = new SnatchModel('');
         
@@ -270,27 +292,23 @@ class SnatchController extends BaseController  {
         $i = 0;
         
         //查找未入库内容
-        $list = $_db_cms_story -> where("id > '{$max_id}' AND sourceId = '1' AND status = 'published'") -> order("id ASC") -> limit(100) -> select();
+        $list = $_db_cms_story -> where("id > '{$max_id}' AND status = 'published'") -> order("id ASC") -> limit(100) -> select();
         foreach ($list as $row){
             $data = array();
             $data['article_id'] = $row['id'];
             $data['plant'] = 'ina';
             $data['title'] = $row['title'];
-            $data['short_summary'] = $row['shortSummary'];
+            $data['short_summary'] = $row['short_summary'];
             $data['source'] = $row['source'];
             $data['source_id'] = '49';
-            $data['story_date'] = $row['storyDate'];
-            $data['column_id'] = $this -> column($row['columnId']);
-            if($row['title_pic3']){
-                $data['img_count'] = 3;
-            }elseif ($row['title_pic1']){
-                $data['img_count'] = 1;
+            $data['story_date'] = $row['story_date'];
+            $data['column_id'] = $this -> column($row['column']);
+            if($row['title_pic2']){
+                $data['title_pic1'] = $row['title_pic2'];
             }else {
-                $data['img_count'] = 0;
+                $data['title_pic1'] = $row['title_pic1'];
             }
-            $data['title_pic1'] = $row['title_pic1'];
-            $data['title_pic2'] = $row['title_pic2'];
-            $data['title_pic3'] = $row['title_pic3'];
+            $data['img_count'] = 1;
             
             $data['url'] = $row['url'];
             $data['add_date'] = date('Y-m-d H:i:s');
@@ -301,7 +319,7 @@ class SnatchController extends BaseController  {
             if($story_id){
             
                 //获取文章正文
-                $contents = $_db_cms_story_content -> where("storyId = '{$row['id']}'") -> order("page ASC") -> select();
+                $contents = $_db_cms_story_content -> where("story_id = '{$row['id']}'") -> order("id ASC") -> select();
                 $content = '';
                 foreach ($contents as $val){
                     $content .= $val['content'];
@@ -370,43 +388,20 @@ class SnatchController extends BaseController  {
         
     }
     
-    private function column($id){
-        switch ($id){
-            case 1://导购
-                return 1;
-                break;
-            case 2://评测
-                return 2;
-                break;
-            case 3://新车
-                return 3;
-                break;
-            case 4://行情
-                return 4;
-                break;
-            case 5://行业
-                return 5;
-                break;
-            case 6://文化
-                return 6;
-                break;
-            case 7://用车
-                return 7;
-                break;
-            case 8://车友
-                return 8;
-                break;
-            case 9://百家
-                return 9;
-                break;
-            case 10://自媒体
-                return 10;
-                break;
-            
-            default:
-                return 0;
-                break;
+    private function column($column){
+        if(in_array($column , array('进口新车','国产新车','SUV-新车','新车资讯','国产电动车','安全测试','SUV-新闻','图说新车','suv','车界娱乐','汽车IT技术','无人驾驶'))){
+            return 3;
         }
+        if(in_array($column , array('进口车测试','国产车测试','车型对比'))){
+            return 2;
+        }
+        if(in_array($column , array('导购信息','加价/降价','维修保养'))){
+            return 1;
+        }
+        if(in_array($column , array('行业新闻','高端采访','环保科技','召回预警','明星人物','人事变动','行业研究','行业分析','厂商要闻','人物百科','工厂探秘','车展专题'))){
+            return 5;
+        }
+        return 0;
     }
     
     /**
