@@ -378,12 +378,8 @@ class NewsController extends BaseController  {
         if($ad){
             shuffle($ad);
             $ad = end($ad);
-        }else{
-            $ad = (object)array();
+            $news_info['ad'] = $ad;
         }
-        
-        $news_info['ad'] = $ad;
-        
         
         //记录hot值
         $M_news -> incHot($news_id);
