@@ -217,8 +217,6 @@ class NewsController extends BaseController  {
             $news['displayMode'] = 'C';
             
         $news['openMode'] = (string)$row['open_mode'];
-        if($news['imageCount'] > 1)
-            $news['openMode'] = 'image';
             
         $news['gourl'] = (string)$row['gourl'];
         if(!$news['gourl'])

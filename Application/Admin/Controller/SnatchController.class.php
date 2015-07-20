@@ -14,6 +14,8 @@ class SnatchController extends BaseController  {
     }
     
     public function init(){
+        die('none');
+        
         /* 清除 news_choice */
         $_db_table = M('news_choice' , 'ad_' , 'DB0_CONFIG');
         $_db_table -> where('1') -> delete();
@@ -564,7 +566,7 @@ class SnatchController extends BaseController  {
             $data['images'] = $story_info['title_pic1'];
 
         $data['story_date'] = $story_info['story_date'];
-        if($story_info['plant'] == 'UUTV')
+        if($story_info['plant'] == 'uutv')
             $data['open_mode'] = 'video';
         else 
             $data['open_mode'] = 'news';

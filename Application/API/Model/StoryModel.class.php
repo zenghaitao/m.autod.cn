@@ -11,7 +11,7 @@ class StoryModel
     public function __construct(){
         $this -> _db_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
-        $this -> _db_video = M('ina_vedio' , 'cms_' , 'DB_INA_CONFIG');
+        $this -> _db_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
     }
     
     /**

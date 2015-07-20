@@ -1,0 +1,529 @@
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html lang="en">
+<head>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no"/>
+<meta charset="UTF-8">
+<title><?php echo ($_PAGE['title']); ?></title>
+<meta name="keywords" content="<?php echo ($_PAGE['keywords']); ?>">
+<meta name="description" content="<?php echo ($_PAGE['description']); ?>">
+<link rel="stylesheet" href="/Public/css/style.css">
+<script src="/Public/js/jquery.js"></script>
+</head>
+<body class="index_pat">
+<header>
+    <div class="header">
+        <a class="head_icon" href="/Home/Index/download"><img src="/Public/images/head_icon.png" alt=""></a>
+        <img class="logo" src="/Public/images/logo.png" alt="">
+        <a class="search_icon" href="http://auto.news18a.com/init.php?m=price&c=index&a=index&from=autod"><img src="/Public/images/search.png" alt=""></a>
+    </div>
+    <div class="top_menu_box">
+        <div class="top_menu">
+            <div class="menu_list">
+                <a href="#channel_all">推荐</a>
+                <a href="#channel_video">视频</a>
+                <a href="#channel_newcar">新车</a>
+                <a href="#channel_Evaluation">评测</a>
+                <a href="#channel_guide">导购</a>
+                <a href="#channel_Industry">行业</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="list_box">
+    </div>
+    <div class="global_tip" id="tips_bar">为您推荐了18条新闻</div>
+    <section class="load_img"><img src="/Public/images/loading.gif" alt=""></section>
+</div>
+</body>
+
+<script>
+var sinceId = 0;
+var maxId = 0;
+var action = 'init';
+var dataOff = true;
+var iconShow=true;
+var face={
+    'channel_all':'/Home/Index/news?page=',
+    'channel_video':'/Home/Index/cateList?cateId=20?page=',
+    'channel_newcar':'/Home/Index/cateList?cateId=3?page=',
+    'channel_Evaluation':'/Home/Index/cateList?cateId=2?page=',
+    'channel_guide':'/Home/Index/cateList?cateId=1?page=',
+    'channel_Industry':'/Home/Index/cateList?cateId=5?page='
+}
+var channelSinceId={
+    'channel_all':'0',
+    'channel_video':'0',
+    'channel_newcar':'0',
+    'channel_Evaluation':'0',
+    'channel_guide':'0',
+    'channel_Industry':'0',
+}
+var oUrl='';
+var aChannel=document.querySelectorAll('.menu_list a');
+for(var i=0;i<aChannel.length;i++){
+    aChannel[i].onclick=function(){
+        $('.menu_list a').removeClass('cur')
+        this.className='cur';
+    }
+}
+curChannel();
+function curChannel(){
+    if(!location.hash.split('#')[1]){
+        aChannel[0].className='cur';
+    }
+    switch(location.hash.split('#')[1]){
+        case 'channel_all' :
+            aChannel[0].className='cur';
+            break;
+        case 'channel_video' :
+            aChannel[1].className='cur';
+            break;
+        case 'channel_newcar' :
+            aChannel[2].className='cur';
+            break;
+        case 'channel_Evaluation' :
+            aChannel[3].className='cur';
+            break;
+        case 'channel_guide' :
+            aChannel[4].className='cur';
+            break;
+        case 'channel_Industry' :
+            aChannel[5].className='cur';
+            break;
+    }
+}
+// //创建视频列表
+// function creatVideolist(info){
+//     id = info.id;
+//     displayMode = info.displayMode;
+//     imgsrc = info['images'];
+//     title = info.title;
+//     time = info.timeString;
+//     type = info['type'];
+//     hot = info.hot;
+//     gourl = info.gourl;
+//     var oType,aImg;
+//     switch(type){
+//         case 'default':
+//             oType='';
+//             break;
+//         case 'hot':
+//             oType='<span class="type3">热点</span>';
+//             break;
+//         case 'recommend':
+//             oType='<span class="type2">推荐</span>';
+//             break;
+//         case 'head':
+//             oType='<span class="type1">头条</span>';
+//             break;
+//         case 'ad':
+//             oType='<span class="type4">推广</span>';
+//             break;
+//     }
+//     var html='';
+//     html+='<section class="video_box"><div class="video"><a href="/Home/Index/page?id='+id+'"><div class="video_link"><img src="'+imgsrc+'" alt=""><span><img src="/Public/images/player.png" alt=""></span></div><h3>'+title+'</h3><div class="item_info2"><span class="time">'+time+'</span><span>热度'+hot+'</span>'+oType+'</div></a></div></section>';
+//     return html;
+// }
+//创建新闻列表
+function creatNews(info){
+    id = info.id;
+    displayMode = info.displayMode;
+    imgsrc = info['images'];
+    title = info.title;
+    time = info.timeString;
+    type = info['type'];
+    hot = info.hot;
+    gourl = info.gourl;
+    var oType,aImg;
+    switch(type){
+        case 'default':
+            oType='';
+            break;
+        case 'hot':
+            oType='<span class="type3">热点</span>';
+            break;
+        case 'recommend':
+            oType='<span class="type2">推荐</span>';
+            break;
+        case 'head':
+            oType='<span class="type1">头条</span>';
+            break;
+        case 'ad':
+            oType='<span class="type4">推广</span>';
+            break;
+    }
+    var html = '';
+    if(location.hash.split('#')[1]=='channel_video'){
+        html+='<section class="video_box"><div class="video"><a href="/Home/Index/page?id='+id+'"><div class="video_link"><img src="'+imgsrc+'" alt=""><span><img src="/Public/images/player.png" alt=""></span></div><h3>'+title+'</h3><div class="item_info2"><span class="time">'+time+'</span><span>热度'+hot+'</span>'+oType+'</div></a></div></section>';
+    }else{
+        if(displayMode=='A'){
+            html += '<section class="box"><a href="/Home/Index/page?id='+id+'"><div class="img_box"><img src="'+imgsrc+'" alt=""></div><h3>'+title+'</h3><div class="item_info"><span class="time">'+time+'</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>';
+        }else if(displayMode=='B'){
+            aImg='<div class="img_cont"><div class="img_box2"><img src="'+imgsrc[0]+'" alt=""></div><div class="img_box2"><img src="'+imgsrc[1]+'" alt=""></div><div class="img_box2"><img src="'+imgsrc[2]+'" alt=""></div></div>';
+            html += '<section class="box"><a href="/Home/Index/page?id='+id+'"><h3 class="long_title">'+title+'</h3>'+aImg+'<div class="item_info item_info2"><span class="time">'+time+'</span><span class="source">热度'+hot+'</span>'+oType+'</div></a></section>';
+        }else if(displayMode=='C'){
+            html += '<section class="box"><a href="'+gourl+'" target="_blank"><h3 class="long_title">'+title+'</h3><div class="ad_cont"><img src="'+imgsrc+'" alt=""></div><div class="item_info item_info2"><span class="time">'+time+'</span>'+oType+'</div></a></section>';
+        }
+    }
+    return html;
+}
+function htmlStorage(html){
+    if(!location.hash.split('#')[1]){
+        localStorage.channel_all_storage=html;
+    }
+    switch(location.hash.split('#')[1]){
+        case 'channel_all' :
+            localStorage.channel_all_storage=html;
+            break;
+        case 'channel_video' :
+            localStorage.channel_video_storage=html;
+            break;
+        case 'channel_newcar' :
+            localStorage.channel_newcar_storage=html;
+            break;
+        case 'channel_Evaluation' :
+            localStorage.channel_Evaluation_storage=html;
+            break;
+        case 'channel_guide' :
+            localStorage.channel_guide_storage=html;
+            break;
+        case 'channel_Industry' :
+            localStorage.channel_Industry_storage=html;
+            break;
+    }
+}
+function urlChange(){
+    if(!location.hash.split('#')[1]){
+        oUrl=face.channel_all+action+'&maxId='+maxId+'&sinceId='+channelSinceId.channel_all+'&jsoncallback=?';
+    }
+    switch (location.hash.split('#')[1]){
+        case 'channel_all' :
+            oUrl=face.channel_all+action+'&maxId='+maxId+'&sinceId='+channelSinceId.channel_all+'&jsoncallback=?';
+            break;
+        case 'channel_video' :
+            oUrl=face.channel_video+action+'&maxId='+maxId+'&sinceId='+channelSinceId.channel_video+'&jsoncallback=?';
+            break;
+        case 'channel_newcar' :
+            oUrl=face.channel_newcar+action+'&maxId='+maxId+'&sinceId='+channelSinceId.channel_newcar+'&jsoncallback=?';
+            break;
+        case 'channel_Evaluation' :
+            oUrl=face.channel_Evaluation+action+'&maxId='+maxId+'&sinceId='+channelSinceId.channel_Evaluation+'&jsoncallback=?';
+            break;
+        case 'channel_guide' :
+            oUrl=face.channel_guide+action+'&maxId='+maxId+'&sinceId='+channelSinceId.channel_guide+'&jsoncallback=?';
+            break;
+        case 'channel_Industry' :
+            oUrl=face.channel_Industry+action+'&maxId='+maxId+'&sinceId='+channelSinceId.channel_Industry+'&jsoncallback=?';
+            break;
+    }
+}
+function ajaxSucc(data){     //ajax成功调用
+    if(action == 'down'){
+        $('.load_img').css('display','none');
+        dataOff = !dataOff;
+    }
+    var html = '';
+    for(var i=0;i<data.info.statuses.length;i++){
+        html += creatNews(data.info.statuses[i]);
+    }
+    
+    switch(location.hash.split('#')[1]){
+        case 'channel_all' :
+            if(data.info.sinceId>0) channelSinceId.channel_all=data.info.sinceId;
+            break;
+        case 'channel_video' :
+            if(data.info.sinceId>0) channelSinceId.channel_video=data.info.sinceId;
+            break;
+        case 'channel_newcar' :
+            if(data.info.sinceId>0) channelSinceId.channel_newcar=data.info.sinceId;
+            break;
+        case 'channel_Evaluation' :
+            if(data.info.sinceId>0) channelSinceId.channel_Evaluation=data.info.sinceId;
+            break;
+        case 'channel_guide' :
+            if(data.info.sinceId>0) channelSinceId.channel_guide=data.info.sinceId;
+            break;
+        case 'channel_Industry' :
+            if(data.info.sinceId>0) channelSinceId.channel_Industry=data.info.sinceId;
+            break;
+        default:
+            if(data.info.sinceId>0) channelSinceId.channel_all=data.info.sinceId;
+            break;
+    }
+    // if(data.info.sinceId > 0)
+    //     sinceId = data.info.sinceId;
+    if(data.info.maxId > 0)
+        maxId = data.info.maxId;
+    
+    if(action == 'up' || action == 'init'){
+        $("#tips_bar").html("为您推荐了"+data.info.updateCount+"条新闻").fadeIn(0,function(){
+            setTimeout('tips_hide()',1000);
+        });
+    }
+    if(action == 'up'){
+        $('.list_box').eq(0).prepend(html);
+        $('.list_top').remove();
+        iconShow=true;
+        
+    }else{
+        $('.list_box').eq(0).append(html);
+    }
+    htmlStorage($('.list_box').html());
+}
+function ajaxAPI(){
+    if(action != 'up' && action != 'init' && action != 'down'){
+        return false;
+    }
+    var async_status = true;
+    if(action == 'up') async_status = false;
+    urlChange();
+    $.ajax({
+        url:oUrl,
+        type:'get',
+        dataType:'jsonp',
+        async:async_status,  //设置为同步
+        success:function(data){
+            ajaxSucc(data);
+        }
+    })
+}
+function urlChangeNormal(){
+    switch (location.hash.split('#')[1]){
+        case 'channel_video' :
+            oUrl=face.channel_video+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_newcar' :
+            oUrl=face.channel_newcar+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_Evaluation' :
+            oUrl=face.channel_Evaluation+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_guide' :
+            oUrl=face.channel_guide+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+        case 'channel_Industry' :
+            oUrl=face.channel_Industry+action+'&maxId='+maxId+'&jsoncallback=?';
+            break;
+    }
+}
+function ajaxSuccNormal(data){     //ajax成功调用
+    var html = '';
+    for(var i=0;i<data.info.statuses.length;i++){
+        html += creatNews(data.info.statuses[i]);
+    }
+    switch(location.hash.split('#')[1]){
+        case 'channel_video' :
+            if(data.info.sinceId>0) channelSinceId.channel_video=data.info.sinceId;
+            break;
+        case 'channel_newcar' :
+            if(data.info.sinceId>0) channelSinceId.channel_newcar=data.info.sinceId;
+            break;
+        case 'channel_Evaluation' :
+            if(data.info.sinceId>0) channelSinceId.channel_Evaluation=data.info.sinceId;
+            break;
+        case 'channel_guide' :
+            if(data.info.sinceId>0) channelSinceId.channel_guide=data.info.sinceId;
+            break;
+        case 'channel_Industry' :
+            if(data.info.sinceId>0) channelSinceId.channel_Industry=data.info.sinceId;
+            break;
+    }
+    if(data.info.maxId > 0)
+        maxId = data.info.maxId;
+    
+    if(action == 'up' || action == 'init'){
+        $("#tips_bar").html("刷新成功").fadeIn(0,function(){
+            setTimeout('tips_hide()',1000);
+        });
+    }
+    if(action == 'up'){
+        $('.list_box').eq(0).html(html);
+        $('.list_top').remove();
+        iconShow=true;
+        
+    }
+    htmlStorage($('.list_box').html());
+}
+function ajaxAPInormal(){
+    if(action != 'up' && action != 'init' && action != 'down'){
+        return false;
+    }
+    var async_status = true;
+    if(action == 'up') async_status = false;
+    urlChangeNormal();
+    $.ajax({
+        url:oUrl,
+        type:'get',
+        dataType:'jsonp',
+        async:async_status,  //设置为同步
+        success:function(data){
+            ajaxSuccNormal(data);
+        }
+    })
+}
+function tips_hide(){
+    $("#tips_bar").fadeOut(800);
+}
+$(function(){
+    //获取新闻列表
+    action = 'init';
+    ajaxAPI();
+    
+    //上拉刷新
+    $(window).scroll(function(){
+        if(getDataCheck() && dataOff){
+            getNewList();
+        }
+    })
+    function getDataCheck(){
+        var oBox = $('.list_box');
+        var aList =oBox.find('section');
+        if(!aList.length) return false;
+        var lastboxHeight = $(aList[aList.length-1]).offset().top+Math.floor($(aList[aList.length-1]).outerHeight()/2);
+        var documentHeight = $(window).height();
+        var scrollTop = $(document).scrollTop();
+        //if(box.length>=200){return false;}
+        return lastboxHeight<documentHeight+scrollTop?true:false;
+    }
+    function getNewList(){
+        $('.load_img').css('display','block');
+        dataOff = !dataOff;
+        action = 'down';
+        ajaxAPI();
+    }
+
+})
+
+
+var clientH=document.documentElement.clientHeight||document.body.clientHeight;
+var vendors=['webkitT','mozT','oT','msT'];
+//var endTrue=false;
+
+function touchStart(ev){
+    if($('#tips_bar').css('display')!='none')
+        return false;
+    
+    document.removeEventListener('touchstart',touchStart,false);
+    var downY=ev.targetTouches[0].pageY;
+    var endTrue=false;
+    $('.list_top').remove();
+    document.addEventListener('touchmove',touchMove,false);
+    function touchMove(ev){
+        var y = ev.targetTouches[0].pageY - downY;
+        if(y>0 && $(document).scrollTop()==0 && iconShow){
+            ev.preventDefault();
+            if(!$('.list_top').length){
+                var oRefresh='<div class="list_top"><div class="v2"><img src="/Public/images/refresh.png" alt=""></div></div>';
+                $('body').append(oRefresh);
+            }
+            if(y>=220){
+                endTrue=true;
+                y=220;
+            }
+            for(var i=0;i<vendors.length;i++){
+                $('.list_top')[0].style[vendors[i]+'ransform']='translateY('+y*0.5+'px)';
+                $('.v2')[0].style[vendors[i]+'ransform']='rotate('+(Math.abs(y/clientH)*365*5)+'deg)';
+            }
+        }
+    }
+    function touceEnd(){
+        iconShow=false;
+        if(endTrue){
+            for(var i=0;i<vendors.length;i++){
+                $('.list_top')[0].style[vendors[i]+'ransition']='all 0.5s';
+                $('.list_top')[0].style[vendors[i]+'ransform']='translateY(80px)';
+            }
+            $('.list_top')[0].addEventListener('webkitTransitionEnd', function () {
+                $('.v2 img')[0].style.webkitAnimation='anime 1s linear infinite';
+                setTimeout(function(){
+                    action = 'up';
+                    if(location.hash.split('#')[1]=='channel_all' || location.hash==''){
+                        ajaxAPI();
+                    }else{
+                        ajaxAPInormal();
+                    }
+                    
+                    document.addEventListener('touchstart',touchStart,false);
+                },1000)
+            });
+            endTrue=false;
+        }else{
+            if($('.list_top').length){
+                for(var i=0;i<vendors.length;i++){
+                    $('.list_top')[0].style[vendors[i]+'ransition']='all 0.5s';
+                    $('.list_top')[0].style[vendors[i]+'ransform']='translateY(-20px)';
+                 }
+             }
+             iconShow=true;
+             document.addEventListener('touchstart',touchStart,false);
+        }
+        document.removeEventListener('touchmove',touchMove,false);
+        document.removeEventListener('touchend',touceEnd,false)
+    }
+    document.addEventListener('touchend',touceEnd,false);
+}
+document.addEventListener('touchstart',touchStart,false);
+
+function refreshOrnot(){
+    var oDate=new Date();
+    action = 'init';
+    function freshFn(obj){
+        if(localStorage[obj+'_lasttime']){
+            if(oDate.getTime()-parseInt(localStorage[obj+'_lasttime'])>=900000){
+                channelSinceId[obj]='0';
+                ajaxAPI();
+            }else{
+                if(!localStorage[obj+'_storage']){
+                    channelSinceId[obj]='0';
+                    ajaxAPI();
+                }else{
+                    $('.list_box').html(localStorage[obj+'_storage']);
+                }
+            }
+        }else{
+            channelSinceId[obj]='0';
+            ajaxAPI();
+        }
+        localStorage[localStorage.lastPage+'_lasttime']=oDate.getTime();
+        localStorage.lastPage=obj;
+    }
+    switch(location.hash.split('#')[1]){
+        case 'channel_all' :
+            freshFn('channel_all');
+            break;
+        case 'channel_video' :
+            freshFn('channel_video');
+            break;
+        case 'channel_newcar' :
+            freshFn('channel_newcar');
+            break;
+        case 'channel_Evaluation' :
+            freshFn('channel_Evaluation');
+            break;
+        case 'channel_guide' :
+            freshFn('channel_guide');
+            break;
+        case 'channel_Industry' :
+            freshFn('channel_Industry');
+            break;
+    }
+}
+function lastPage(){
+    var oDate=new Date();
+    if(!location.hash.split('#')[1]){
+        localStorage.lastPage='channel_all';
+    }else{
+        localStorage.lastPage=location.hash.split('#')[1];
+    }
+}
+lastPage();
+window.onhashchange=function(){
+    $('.list_box').html('');
+    refreshOrnot();
+}
+</script>
+
+</html>
