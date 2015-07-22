@@ -172,6 +172,10 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 /*视频详情*/
 .video_con{width: 100%;background: #000;}
 
+.x_news{padding: 15px 0;}
+.x_news li{line-height: 1.5;border-bottom: 1px solid #DFDFDF;font-size: 14px;padding: 10px;}
+.x_news li a{color: #2c2c2c;}
+
 @media screen and (min-width:360px){
     .box h3{font-size: 19px;max-height: 44px;}
     .video h3{font-size: 18px;}
@@ -181,6 +185,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
     .title{font-size: 22px!important;}
     .article_box div,.article_box p{font-size: 18px;}
     .user_name,.com_cont p,.comment_app_download{font-size: 16px;}
+    .x_news li{font-size: 16px;}
 }
 @media screen and (min-width:400px){
     .logo{width: 100px;}
@@ -194,6 +199,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
     .title{font-size: 24px!important;}
     .article_box div,.article_box p{font-size: 20px;}
     .user_name,.com_cont p,.comment_app_download{font-size: 18px;}
+    .x_news li{font-size: 16px;}
 }
 
 .list_top {position: absolute;top: 0;left: 0;width: 100%;text-align: center;padding: 10px 0;z-index: 800;}

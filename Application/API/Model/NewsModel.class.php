@@ -70,8 +70,8 @@ class NewsModel
         $data['day'] = $today;
         
         $count = $this -> _db_news_choice -> where("day = '{$today}'") -> count();
-        if($count < 1){
-            $this -> _db_news_choice -> where("1") -> order("id DESC") -> limit(100) -> save($data);
+        if($count < 100){
+            $this -> _db_news_choice -> where("day != '{$today}'") -> order("id DESC") -> limit(100-$count) -> save($data);
         }
         return true;
     }

@@ -21,7 +21,7 @@ if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 //if($_SERVER['IS_DEBUG'])
-if($_SERVER['IS_DEBUG'] == 'yes')
+if($_SERVER['IS_DEBUG'] !== 'yes')
     define('APP_DEBUG',true);
 else 
     define('APP_DEBUG',false);

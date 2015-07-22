@@ -152,7 +152,7 @@ class UserModel
         }else{
             //更新用户登录时间
             //$data['last_login'] = time();
-            $this -> _db_user -> where("id = '{$info['id']}'") -> save(array('last_login' => time()));
+            $this -> _db_user -> where("id = '{$info['id']}'") -> save(array('last_login' => date('Y-m-d H:i:s')));
             $uid = $info['id'];
         }
         //将此设备绑定到用户
@@ -208,15 +208,15 @@ class UserModel
             $data['description'] = $info['description'];
             $data['tages'] = $info['ability_tags'];
         }
-        
+
         return $data;
         
     }
     
     public function qq($token , $open_id){
         
-        $app_id = '101030407';
-        $app_key = '5abfdd9910cbe5140e2ba341300a9687';
+        $app_id = '1104779252';
+        $app_key = 'KBoUNjEFxOMT9N5L';
         
         $get_user_info = "https://graph.qq.com/user/get_user_info?"
         . "access_token=" . $token

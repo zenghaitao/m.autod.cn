@@ -8,7 +8,7 @@ class UserController extends BaseController {
         parent::__construct();
         
         //是否为合法访问
-        if(!in_array($_SERVER['REDIRECT_URL'] , array('/API/User/registerDevice','/API/User/reconnect'))){
+        if(!in_array($_SERVER['PATH_INFO'] , array('User/registerDevice','User/reconnect'))){
             $this -> checkPermission();
         }
     }

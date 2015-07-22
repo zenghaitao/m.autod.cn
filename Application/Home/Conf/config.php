@@ -1,7 +1,7 @@
 <?php
 return array(
 	//'配置项'=>'配置值'
-	
+	'SESSION_AUTO_START' => false,
 	'DB0_CONFIG' => array(
 	    'db_name'           => $_SERVER['AD_DB0_M_NAME'].','.$_SERVER['AD_DB0_S0_NAME'],
         'db_type'           => 'mysql',

@@ -11,12 +11,6 @@ class IndexController extends BaseController  {
         parent::__construct();
     }
     
-    public function test(){
-        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
-        
-        var_dump($_db_news_story -> where(1) -> limit(10) -> select(););
-    }
-    
     public function index(){
         
         $_PAGE['title'] = "《汽车日报》每日汽车新闻播报! - autod.cn";
@@ -344,8 +338,15 @@ class IndexController extends BaseController  {
         
         //来源信息
         $source = $M_news -> getSource($info['source_id']);
-        
         $this -> assign('source' , $source);
+        
+        /* 是否已订阅 */
+        if($_SESSION['user_id']){
+            $followed = $M_news -> followed($info['source_id'] , $_SESSION['user_id']);
+            $source['followed'] = $followed?'yes':'no';
+        }else{
+            $source['followed'] = 'no';
+        }
         
         //广告信息
         $ad = $this -> newsAD();
@@ -361,6 +362,11 @@ class IndexController extends BaseController  {
         $_PAGE['description'] = "{$info['summary']} - 汽车日报(autod.cn)";
         $this -> assign('_PAGE',$_PAGE);
         
+        if($_GET['type']=='app'){
+            $this -> appShowPage($info);
+            exit;
+        }
+        
         if($info['open_mode'] == 'video'){
             $this -> video($info);
             exit;
@@ -368,19 +374,58 @@ class IndexController extends BaseController  {
         
         if($info['open_mode'] == 'topic'){
             $this -> topic($info);
+            exit;
         }
         
         if($info['open_mode'] == 'news'){
             $this -> content($info);
+            exit;
         }
         
         if($info['open_mode'] == 'pic'){
             $this -> photo($info);
+            exit;
         }
         
         if($info['open_mode'] == 'sns'){
             $this -> sns($info);
+            exit;
         }
+    }
+    
+    /**
+     * 新闻内容
+     *
+     */
+    private function appShowPage($info){
+        $news_id = $info['id'];
+        $session_id = $_GET['sessionId'];
+        $uid = $_SESSION['user_id'];
+        
+        $M_news = new NewsModel();
+        //页面内容
+        $M_story = new StoryModel();
+        $page = $M_story -> getStoryPage($info['story_id']);
+        $page = $page['html'];
+        
+        if($uid)
+            $this -> assign('isLogin' , 'yes');
+        else 
+            $this -> assign('isLogin' , 'no');
+        
+        //相关新闻
+        $relates = $M_news -> getRelatedNews($news_id , 0 , 6);
+        foreach ($relates as &$row){
+            $row = $this -> formatNews($row);
+        }
+        
+        $this -> assign('session_id' , $session_id);
+        $this -> assign('info' , $info);
+        $this -> assign('page' , $page);
+        $this -> assign('comments' , $comments);
+        $this -> assign('relates' , $relates);
+        
+        $this -> display('app_page');
     }
     
     /**
@@ -490,7 +535,7 @@ class IndexController extends BaseController  {
      */
     public function feedback(){
         $status = 'init';
-        
+               
         if($_POST){
             //记录反馈信息
             $data = array();
@@ -508,7 +553,7 @@ class IndexController extends BaseController  {
             die($status);
         }
         
-        
+        $this -> assign('session_id' , $_GET['sessionId']);
         $this -> display('feedback');
     }
     

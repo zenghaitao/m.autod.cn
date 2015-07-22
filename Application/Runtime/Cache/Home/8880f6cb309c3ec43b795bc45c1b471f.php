@@ -35,7 +35,7 @@
     </div>
     <div class="list_box"><?php endif; ?>
         <?php if(is_array($list)): foreach($list as $key=>$vo): if($vo["displayMode"] == 'A'): ?><section class="box">
-            <a href="/Home/Index/page?id=24524">
+            <a href="autod://com.auto/news/?newsId=<?php echo ($vo["id"]); ?>&newsType=<?php echo ($vo["openMode"]); ?>">
                 <div class="img_box">
                     <img src="<?php echo ($vo["images"]["0"]); ?>" alt="">
                 </div>
@@ -47,7 +47,7 @@
             </a>
         </section><?php endif; ?>
         <?php if($vo["displayMode"] == 'B'): ?><section class="box">
-            <a href="/Home/Index/page?id=24517">
+            <a href="autod://com.auto/news/?newsId=<?php echo ($vo["id"]); ?>&newsType=<?php echo ($vo["openMode"]); ?>">
                 <h3 class="long_title"><?php echo ($vo["title"]); ?></h3>
                 <div class="img_cont">
                     <div class="img_box2"><img src="<?php echo ($vo["images"]["0"]); ?>" alt=""></div>

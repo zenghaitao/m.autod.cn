@@ -217,7 +217,9 @@ class NewsController extends BaseController  {
             $news['displayMode'] = 'C';
             
         $news['openMode'] = (string)$row['open_mode'];
-            
+        //if($news['imageCount'] > 1)
+        //    $news['openMode'] = 'image';
+        
         $news['gourl'] = (string)$row['gourl'];
         if(!$news['gourl'])
             $news['gourl'] = "http://{$_SERVER['HTTP_HOST']}/Home/Index/page?id={$news['id']}";
@@ -380,6 +382,7 @@ class NewsController extends BaseController  {
             $ad = end($ad);
             $news_info['ad'] = $ad;
         }
+        
         
         //记录hot值
         $M_news -> incHot($news_id);

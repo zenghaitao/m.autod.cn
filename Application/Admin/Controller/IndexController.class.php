@@ -17,7 +17,7 @@ class IndexController extends BaseController  {
         parent::__construct();
         
         //是否为合法访问
-        if(!in_array($_SERVER['REDIRECT_URL'] , array('/Admin/Index/login','/Admin/Index/logout'))){
+        if(!in_array($_SERVER['PATH_INFO'] , array('Index/login','Index/logout'))){
             $this -> checkLogin();
         }
     }

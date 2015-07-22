@@ -21,7 +21,7 @@
         <img class="close_btn" src="/Public/images/close.png" alt="">
     </div>
 
-    <?php if(0): ?><div class="bar_top"> 
+    <?php if(1): ?><div class="bar_top"> 
         <a href="/Home/Index/source?id=<?php echo ($source["id"]); ?>"> 
             <div class="avatar"> 
                 <img src="<?php echo ($source["icon"]); ?>" class="avatar" alt="<?php echo ($source["name"]); ?>">
