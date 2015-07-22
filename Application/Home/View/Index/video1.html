@@ -161,6 +161,37 @@ boxHeight();
 window.onresize=function(){
     boxHeight();
 }
+function addCookie(name,value,iDay){
+    var oDate=new Date();
+    oDate.setDate(oDate.getDate()+iDay);
+    document.cookie=name+'='+value+';path=/;expires='+oDate;
+}
+function getCookie(name){
+    var arr=document.cookie.split('; ');
+    for(var i=0; i<arr.length; i++){
+        var arr2=arr[i].split('=');
+        if(arr2[0]==name){
+            return arr2[1]; 
+        }
+    }
+    return '';
+}
+function delCookie(name){
+    addCookie(name,'1',-1);
+}
+$(function(){
+    if(getCookie('downApp_cookie')){
+        $('.pat').css({'margin-top':'-50px'})
+        $('.app_banner').hide();
+    }else{
+        $('.pat').css('margin','0')
+    }
+    $('.close_btn').click(function(){
+        $('.app_banner').hide();
+        addCookie('downApp_cookie',1)
+        $('.pat').css({'padding-top':'-0'})
+    })
+})
 </script>
 </literal>
 </html>
