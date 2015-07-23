@@ -274,8 +274,8 @@ class IndexController extends BaseController  {
         if($news['type'] == 'ad')
             $news['displayMode'] = 'C';
         $news['openMode'] = (string)$row['open_mode'];
-        if($news['imageCount'] > 1)
-            $news['openMode'] = 'image';
+/*        if($news['imageCount'] > 1)
+            $news['openMode'] = 'image';*/
             
         $news['gourl'] = (string)$row['gourl'];
         
@@ -499,7 +499,7 @@ class IndexController extends BaseController  {
      */
     public function download(){
        $ios = 'https://itunes.apple.com/cn/app/qi-che-ri-bao/id850404817?mt=8';
-       $android = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.ina.car&g_f=991653';
+       $android = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.autod.toutiao';
        $pc = "http://www.autod.cn/app";
        
        $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);

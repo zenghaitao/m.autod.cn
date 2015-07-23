@@ -203,7 +203,7 @@ class SnatchController extends BaseController  {
         $_db_ina_story_content = M('ina_story_content' , 'cms_' , 'DB0_CONFIG');
         $_db_ina_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
         
-        $url = 'http://api.news18a.com/auto/data/ina_news_dujia_list.js';
+        $url = 'http://api.news18a.com/init.php?m=api&c=dujia&a=story';
         $json = json_decode(file_get_contents($url),1);
         
         $i = 0;
@@ -254,7 +254,7 @@ class SnatchController extends BaseController  {
         echo "add news:{$i}/{$j}";
         
         $i = 0;$j=0;
-        $url = 'http://api.news18a.com/auto/data/ina_uutv_list.js';
+        $url = 'http://api.news18a.com/init.php?m=api&c=dujia&a=video';
         $json = json_decode(file_get_contents($url),1);
         if(!$json['error']){
             foreach ($json as $row){
