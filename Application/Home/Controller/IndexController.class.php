@@ -408,6 +408,7 @@ class IndexController extends BaseController  {
         $page = $M_story -> getStoryPage($info['story_id']);
         $page = $page['html'];
         $page = str_replace('src="','_src="',$page);
+        $page = str_replace('alt="','_alt="',$page);
         
         if($uid)
             $this -> assign('isLogin' , 'yes');

@@ -166,8 +166,10 @@ window.onload=window.onresize=window.onscroll=function(){
         if(scrollBottom>=imgT){
             if(!aImg[i].src){
                 aImg[i].src=aImg[i].getAttribute('_src');
-                aImg[i].style.minWidth='90px';
-                aImg[i].style.minHeight='70px';
+                aImg[i].onload=function(){
+                    aImg[i].style.minWidth='1px';
+                    aImg[i].style.minHeight='1px';
+                }
                 aImg[i].onerror=function(){
                     this.removeAttribute('src');
                     this.style.minWidth='100%';

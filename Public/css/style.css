@@ -214,6 +214,6 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
     }
 }
 
-.article_box img{min-width: 100%;min-height: 200px;background: url(http://m.autod.cn/Public/images/img_bg.png) no-repeat #ccc;background-size: cover;border: none;}
+.article_box img{min-width: 100%;min-height: 200px;background: url(http://m.autod.cn/Public/images/img_bg.png) no-repeat #dedede center center;border: none;}
 
 
