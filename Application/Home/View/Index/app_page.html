@@ -145,6 +145,34 @@ $().ready(function(){
         $(this).toggleClass("dy");
     });
 });
+
+function getPos(obj){
+    var l=0;
+    var t=0;
+    while(obj){
+        l+=obj.offsetLeft;
+        t+=obj.offsetTop;
+        obj=obj.offsetParent;
+    }   
+    return {left:l, top:t}
+}
+window.onload=window.onresize=window.onscroll=function(){
+    var oBox=$('.article_box')[0];
+    var aImg=oBox.getElementsByTagName('img');
+    var scrollT=document.documentElement.scrollTop || document.body.scrollTop;
+    var scrollBottom=scrollT+document.documentElement.clientHeight;
+    for(var i=0; i<aImg.length; i++){
+        var imgT=getPos(aImg[i]).top;
+        if(scrollBottom>=imgT){
+            if(!aImg[i].src){
+                aImg[i].src=aImg[i].getAttribute('_src');
+                aImg[i].style.minWidth='90px';
+                aImg[i].style.minHeight='70px';
+            }
+        }
+    }   
+}
+
 </literal>
 </script>
 </html>

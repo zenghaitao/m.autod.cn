@@ -39,22 +39,22 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 .box{overflow: hidden;border-bottom: 1px solid #d8d8d8;padding: 10px;}
 .box a{display: block;overflow: hidden;position: relative;}
 .img_box{width: 31.1%;float: left;overflow: hidden;margin-right: 10px;}
-.img_box img{width: 100%;-webkit-border-radius: 4px;-o-border-radius: 4px;-ms-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;display: block;min-height: 71px;background: url(/Public/images/img_bg.png) top center #eaeaea;background-size: contain;}
+.img_box img{width: 100%;-webkit-border-radius: 4px;-o-border-radius: 4px;-ms-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;display: block;min-height: 71px;background: url(http://m.autod.cn/Public/images/img_bg.png) top center #eaeaea;background-size: contain;}
 .box h3{font-size: 17px;font-weight: 700;line-height: 1.2em;text-align: justify;min-height: 2.3em;text-overflow: ellipsis;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;max-height: 40px;}
 .box h3.long_title{min-height: 1.5em;max-height: 26px;white-space:nowrap;}
 
 .item_info{width: 100%;font-size: 11px;line-height: 12px;color: #999;text-align: right;position: absolute;bottom: 2px;padding-left: 34%;padding-left: -webkit-calc(31.3% + 10px);padding-left: -o-calc(31.3% + 10px);padding-left: -ms-calc(31.3% + 10px);padding-left: -moz-calc(31.3% + 10px);padding-left: calc(31.3% + 10px);-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 .item_info span{display: inline-block;vertical-align: middle;text-align: left;}
-.time{background: url(/Public/images/clock.png) no-repeat left center;background-size: 12px;padding-left: 16px;float: left;height: 12px;max-width: 65px;overflow: hidden;}
+.time{background: url(http://m.autod.cn/Public/images/clock.png) no-repeat left center;background-size: 12px;padding-left: 16px;float: left;height: 12px;max-width: 65px;overflow: hidden;}
 .type{height: 12px;font-size: 10px;background: #ff7d78;color: #fff;text-align: center;border-radius: 6px;padding: 0 2px;margin-left: 10px;}
 .img_cont{width: 100%;overflow: hidden;}
 .img_box2{width: 33.3%;float: left;overflow: hidden;}
-.img_box2 img{width: 95%;display: block;border-radius: 4px;margin: 0 auto;min-height: 71px;background: url(/Public/images/img_bg.png) top center #eaeaea;background-size: contain;}
+.img_box2 img{width: 95%;display: block;border-radius: 4px;margin: 0 auto;min-height: 71px;background: url(http://m.autod.cn/Public/images/img_bg.png) top center #eaeaea;background-size: contain;}
 .img_cont .img_box2:first-child img{float: left;}
 .img_cont .img_box2:last-child img{float: right;}
 .item_info2{position: static;padding: 0;margin-top: 10px;}
 .ad_cont{width: 100%;border-radius: 4px;overflow: hidden;}
-.ad_cont img{width: 100%;display: block;min-height: 97px;background: url(/Public/images/img_bg.png) top center #eaeaea;background-size: contain;}
+.ad_cont img{width: 100%;display: block;min-height: 97px;background: url(http://m.autod.cn/Public/images/img_bg.png) top center #eaeaea;background-size: contain;}
 .load_img{text-align: center;padding: 10px 0;display: none;}
 .load_img img{display: inline-block;width: 32px;height: 32px;}
 
@@ -76,7 +76,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 .app_banner a{float: right;height: 32px;background: #ff424b;position: absolute;top: 9px;right: 14%;padding: 0 7px;line-height: 30px;color: #fff;border-radius: 4px;}
 
 .bar_top{background: #eee;text-align: left;}
-.bar_top a{display: block;padding: 5px 10px;height: 30px;background: url(/Public/images/go.png) no-repeat right center;background-size: 15px 15px;}
+.bar_top a{display: block;padding: 5px 10px;height: 30px;background: url(http://m.autod.cn/Public/images/go.png) no-repeat right center;background-size: 15px 15px;}
 .bar_top .avatar{float: left;margin-right: 5px;border: 0;border-radius: 3px;}
 .avatar img {width: 29px;height: 29px;display: block;overflow: hidden;border: 0;}
 .bar_top .name{color: #8f8f8f;line-height: 30px;}
@@ -118,7 +118,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 .bef_com p{margin: 0;color: #979797;}
 .bef_com span{width: 10px;height: 10px;background: #eaeaea;display: block;position: absolute;top: -5px;left: 20px;border-radius: 2px;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);transform:rotate(45deg);}
 .comment_app_download{text-align: center;padding: 20px 0 10px;font-size: 14px;}
-.comment_app_download a{display: block;color: #fff;font-size: 15px;padding: 10px 15px;background: url(/Public/images/white_go.png) #6797f6 no-repeat right center;background-size: 14px;}
+.comment_app_download a{display: block;color: #fff;font-size: 15px;padding: 10px 15px;background: url(http://m.autod.cn/Public/images/white_go.png) #6797f6 no-repeat right center;background-size: 14px;}
 .comment-share-container {
   background: #f0f0f0;
   padding: 8px;
@@ -129,7 +129,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 }
 .comment-empty {
   padding-top: 60px;
-  background: url(/Public/images/details_ic_nocomment.png) #f0f0f0 no-repeat center 10px;
+  background: url(http://m.autod.cn/Public/images/details_ic_nocomment.png) #f0f0f0 no-repeat center 10px;
   background-size: 45px;
   color: #999;
   font-weight: 700;
@@ -153,7 +153,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 .video .item_info2{width: 100%;font-size: 12px;line-height: 20px;color: #999;text-align: right;color: #b7b7b7;margin-top:-20px;margin-bottom:10px;background-color:#ffffff;z-index:999}
 .video .item_info2 span{margin-right:10px}
 .video .item_info2 .time{float: none;margin-right: 20px;}
-.video .time{background: url(/Public/images/clock.png) no-repeat left;background-size: 12px;padding-left: 16px;height: 12px;max-width: 65px;overflow: hidden;}
+.video .time{background: url(http://m.autod.cn/Public/images/clock.png) no-repeat left;background-size: 12px;padding-left: 16px;height: 12px;max-width: 65px;overflow: hidden;}
 .video_box_list .img_box img{min-height: 0px;}
 */
 
@@ -167,7 +167,7 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
 .video .item_info2 span{margin-right:10px}
 .video .item_info2 span.type3{border-radius: 6px;padding: 0 4px;margin-left: 10px;}
 .video .item_info2 .time{height: 20px;line-height: 20px;}
-.video .time{background: url(/Public/images/clock.png) no-repeat left;background-size: 12px;padding-left: 16px;height: 12px;max-width: 65px;overflow: hidden;}
+.video .time{background: url(http://m.autod.cn/Public/images/clock.png) no-repeat left;background-size: 12px;padding-left: 16px;height: 12px;max-width: 65px;overflow: hidden;}
 
 /*视频详情*/
 .video_con{width: 100%;background: #000;}
@@ -214,6 +214,6 @@ header{width: 100%;position: fixed;top: 0;left: 0;z-index: 990;height: 81px;}
     }
 }
 
-
+.article_box img{min-width: 100%;min-height: 200px;background: url(http://m.autod.cn/Public/images/img_bg.png) no-repeat #ccc;background-size: cover;border: none;}
 
 
