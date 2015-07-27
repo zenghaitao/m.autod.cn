@@ -419,6 +419,7 @@ class IndexController extends BaseController  {
             $row = $this -> formatNews($row);
         }
         
+        $this -> assign('host' , 'http://'.$_SERVER['HTTP_HOST']);
         $this -> assign('session_id' , $session_id);
         $this -> assign('info' , $info);
         $this -> assign('page' , $page);

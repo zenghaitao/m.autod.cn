@@ -599,7 +599,7 @@ class SnatchController extends BaseController  {
         
         /* 获取要处理的新闻 */
         $today = date('Y-m-d');
-        $list = $_db_news_story -> where("is_choice = 'no' AND img_count > 0 AND story_date > '{$today}'") -> order("story_date ASC , article_id ASC") -> limit(100) -> select();
+        $list = $_db_news_story -> where("is_choice = 'no' AND img_count > 0 AND add_date > '{$today}'") -> order("story_date ASC , article_id ASC") -> limit(100) -> select();
         foreach ($list as $row){
             if($i >= 10)
                 continue;
