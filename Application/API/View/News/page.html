@@ -29,12 +29,49 @@
     });
     <else/>
     <literal>
+    function getPos(obj){
+        var l=0;
+        var t=0;
+        while(obj){
+            l+=obj.offsetLeft;
+            t+=obj.offsetTop;
+            obj=obj.offsetParent;
+        }   
+        return {left:l, top:t}
+    }
+    window.onload=window.onresize=window.onscroll=function(){
+        var oBox=$('.article_box')[0];
+        var aImg=oBox.getElementsByTagName('img');
+        var scrollT=document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollBottom=scrollT+document.documentElement.clientHeight;
+        for(var i=0; i<aImg.length; i++){
+            var imgT=getPos(aImg[i]).top;
+            if(scrollBottom>=imgT){
+                if(!aImg[i].src){
+                    aImg[i].src=aImg[i].getAttribute('_src');
+                    aImg[i].onload=function(){
+                        aImg[i].style.minWidth='1px';
+                        aImg[i].style.minHeight='1px';
+                    }
+                    aImg[i].onerror=function(){
+                        this.removeAttribute('src');
+                        this.style.minWidth='100%';
+                        this.style.minHeight='200px';
+                    }
+                }
+            }
+        }   
+    }
+    
     $().ready(function(){
         $('img').click(function(){
             var url = $(this).attr('src');
             window.jscalljava.displayImage(url);
         });
     });
+    
+    
+    
     </literal>
     </if>
     </script>

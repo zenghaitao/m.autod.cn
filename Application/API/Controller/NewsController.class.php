@@ -319,6 +319,8 @@ class NewsController extends BaseController  {
         $page_result = $M_story -> getStoryPage($news_info['storyId']);
         
         $page_html = $page_result['html'];
+        $page_html = str_replace('src="','_src="',$page_html);
+        $page_html = str_replace('alt="','_alt="',$page_html);
         
         if($_GET['type']=='iphone'){
             $this -> assign('type' , 'iphone');
