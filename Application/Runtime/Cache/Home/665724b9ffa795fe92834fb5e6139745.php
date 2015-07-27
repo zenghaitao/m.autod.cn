@@ -8,8 +8,9 @@
 <title><?php echo ($_PAGE['title']); ?></title>
 <meta name="keywords" content="<?php echo ($_PAGE['keywords']); ?>">
 <meta name="description" content="<?php echo ($_PAGE['description']); ?>">
-<link rel="stylesheet" href="/Public/css/style.css">
-<script src="/Public/js/jquery.js"></script>
+<link rel="stylesheet" href="<?php echo ($host); ?>/Public/css/style.css">
+<script src="<?php echo ($host); ?>/Public/js/jquery.js"></script>
+
 
 <style>
 *{/*-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;*/margin: 0;padding: 0;}
@@ -95,14 +96,29 @@ input{-webkit-appearance:none;border-radius: 0;}
 </body>
 <script>
 var sessionId = '<?php echo ($session_id); ?>';
+var newsId = '<?php echo ($info["id"]); ?>';
+var isLogin = '<?php echo ($isLogin); ?>';
 
 $().ready(function(){
+    $('.article_box img').click(function(){
+        var url="autod://com.auto/news_pics_detail/?newsId="+newsId+"&url="+$(this).attr('src');
+        //alert(url);
+        window.location.href=url;
+    });
+    
     $('.imgbox img').click(function(){
         var url="autod://com.auto/subscribe/?action=showSubscribe&sourceId="+$(this).parent().parent().attr('sid');
         window.location.href=url;
     });
     
     $('.dylist li span').click(function(){
+        if(isLogin == 'no'){
+            var url="autod://com.auto/subscribe/?action=needLogin";
+            window.location.href=url;
+            return false;
+        }
+        
+        
         if($(this).text()=='订阅'){
            $(this).text('取消订阅'); 
            var url = "/API/News/follow";
