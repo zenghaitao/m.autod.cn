@@ -168,6 +168,11 @@ window.onload=window.onresize=window.onscroll=function(){
                 aImg[i].src=aImg[i].getAttribute('_src');
                 aImg[i].style.minWidth='90px';
                 aImg[i].style.minHeight='70px';
+                aImg[i].onerror=function(){
+                    this.removeAttribute('src');
+                    this.style.minWidth='100%';
+                    this.style.minHeight='200px';
+                }
             }
         }
     }   
