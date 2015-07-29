@@ -48,7 +48,7 @@ class UserController extends BaseController {
         if($reg_id){
             //设置session数据
             $M_user -> setSession($reg_id);
-            $this -> succ(array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>0,'user'=>NULL));
+            $this -> succ(array('sessionId'=>session_id(),'regId'=>$reg_id,'userId'=>0,'user'=>NULL,'open_qq'=>'no'));
         }else 
             $this -> fail(102);
         

@@ -13,6 +13,15 @@ class SnatchController extends BaseController  {
         parent::__construct();
     }
     
+    public function autoKeyWord(){
+        $url = 'http://www.huiche100.com/';
+        $html = file_get_contents($url);
+        
+        $M_snatch = new SnatchModel();
+        $M_snatch -> autoKeyWord($html);
+        
+    }
+    
     public function init(){
         die('none');
         

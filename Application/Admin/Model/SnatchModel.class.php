@@ -137,4 +137,28 @@ class SnatchModel
         }
         return $res;
     }
+    
+    public function autoKeyWord($string){
+        $html = str_get_html($string);
+        $dds = $html -> find('.ina_xzpp_nr dd a');
+        foreach ($dds as $dd){
+            $href = $dd -> href;
+            if(strpos($href , 'ina_xzpp')){
+                $href = str_replace(array('javascript:ina_xzpp(',')') , '' , $href);
+                $href = "http://www.huiche100.com/ind/cars.php?sign_id={$href}";
+                $html = file_get_contents($href);
+                $html = str_get_html($html);
+                
+                $list = $html -> find('dd a');
+                foreach ($list as $row){
+                    $name = $row -> value;
+                    $id = str_replace(array("javascript:ina_xzcx('{$name}',",')') , '' , $row -> href);
+                    
+                    var_dump($name,$id);
+                }
+                exit;
+                
+            }
+        }
+    }
 }
