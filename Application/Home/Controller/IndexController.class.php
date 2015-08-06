@@ -561,6 +561,40 @@ class IndexController extends BaseController  {
     }
     
     /**
+     * 找回密码
+     *
+     */
+    public function findPwd(){
+        if($_POST){
+            $M_user = new UserModel();
+            if($_GET['action'] == 'sendCode'){
+                $phone = $_POST['phone'];
+                $res = $M_user -> makeCode($phone);
+                if($res){
+                    echo 'succ';
+                }else{
+                    echo 'error';
+                }
+                exit;
+            }
+            
+            if($_GET['action'] == 'changePwd'){
+                
+                $res = $M_user -> findPwd($phone , $code , $pwd);
+                if($res){
+                    echo 'succ';
+                }else{
+                    echo '无效的验证码，请重试！';
+                }
+                exit;
+            }
+        }
+        
+        $this -> assign('phone' , $_GET['phone']);
+        $this -> display('findPwd');
+    }
+    
+    /**
      * 评论列表
      *
      */

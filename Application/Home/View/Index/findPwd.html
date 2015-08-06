@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>找回密码</title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<style>
+input , img , textarea{
+-webkit-touch-callout:none;-webkit-tap-highlight-color:rgba(0,0,0,0);outline: none;
+}
+ul{margin:0px auto;padding:0px;width:90%}
+li{list-style:none; margin-top:20px;text-align:center}
+.tips{line-height:40px;color:#666;font-size:12px;display:none}
+#check{width:100%}
+#post{width:100%}
+</style>
+  </head>
+
+  <body>
+
+    <div class="container">
+    <ul>
+<li><input type="text" class="form-control" placeholder="请输入您的手机号" id="phone"></li>
+<li>
+<div class="row">
+  <div class="col-xs-7">
+    <input type="text" class="form-control" placeholder="请输入验证码" id="code">
+  </div>
+  <div class="col-xs-5">
+    <button type="button" class="btn btn-default" id="check">获取验证码</button>
+  </div>
+</div>
+
+</li>
+<li><input type="password" class="form-control" placeholder="请输入新密码" id="npwd"></li>
+<li><input type="password" class="form-control" placeholder="请再次输入新密码" id="npwd2"></li>
+<li><button type="button" class="btn btn-danger" id="post">修改密码</button></li>
+<li><p class="tips bg-warning">请输入您的反馈意见</p></li>
+    </ul>
+    
+    </div> <!-- /container -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+var is_check = 0;
+var max_s_check = 60;
+var s_check = max_s_check;
+
+function checkPhone(phone){
+    if(phone == ''){
+        $('.tips').html("请输入您的手机号").attr('class','tips bg-warning').fadeIn(function(){
+            setTimeout('tips_hide()',1000);
+        });
+        $('#phone')[0].focus();
+        return false;
+    }
+    
+    var reg = /^0?1[3|4|5|6|7|8|9][0-9]\d{8}$/;
+    if (!reg.test(phone)) {
+        $('.tips').html("请输入正确的手机号").attr('class','tips bg-warning').fadeIn(function(){
+            setTimeout('tips_hide()',1000);
+        });
+        $('#phone')[0].focus();
+        return false;
+    };
+    
+    return true;
+}
+
+function checkCode(){
+    if($('#check').attr("disabled") == 'disabled'){
+        s_check = s_check - 1;
+        if(s_check > 0){
+            $('#check').text(s_check+'秒后重试');
+            setTimeout('checkCode()',1000);
+        }else{
+            s_check = max_s_check;
+            $('#check').text('获取验证码');
+            $('#check').removeAttr("disabled"); 
+        }
+    }
+}
+
+$().ready(function(){
+    $('#phone').blur(function(){
+        $('#check').click();
+    });
+    
+    $('#check').click(function(){
+        var phone = $('#phone').val();
+        if(!checkPhone(phone)){
+            return false;
+        }
+        $('#check').attr("disabled","disabled");
+        $.post("/Home/Index/findPwd?action=sendCode", { "phone": phone },
+           function(data){
+             if(data == 'succ'){
+                 is_check = 1;
+                 $('#check').text(s_check+'秒后重试'); 
+                 setTimeout('checkCode()',1000);
+             }else{
+                 $('.tips').html("验证码发送失败，请重试！").attr('class','tips bg-danger').fadeIn(function(){
+                     $('#check').removeAttr("disabled"); 
+                     setTimeout('tips_hide()',1000);
+                 });
+             }
+           });
+    });
+    
+    $('#post').click(function(){
+        var phone = $('#phone').val();
+        var code = $('#code').val();
+        var npwd = $('#npwd').val();
+        var npwd2 = $('#npwd2').val();
+        
+        if(!checkPhone(phone)){
+            return false;
+        }
+        
+        if(is_check == 0){
+            $('.tips').html("请点击【获取验证码】").attr('class','tips bg-warning').fadeIn(function(){
+                setTimeout('tips_hide()',1000);
+            });
+            return false;
+        }
+        
+        if(code == ''){
+            $('.tips').html("请输入验证码").attr('class','tips bg-warning').fadeIn(function(){
+                setTimeout('tips_hide()',1000);
+            });
+            return false;
+        }
+        
+        if(npwd == ''){
+            $('.tips').html("请输入新密码").attr('class','tips bg-warning').fadeIn(function(){
+                setTimeout('tips_hide()',1000);
+            });
+            return false;
+        }
+        
+        if(npwd2 == ''){
+            $('.tips').html("请再次输入新密码").attr('class','tips bg-warning').fadeIn(function(){
+                setTimeout('tips_hide()',1000);
+            });
+            return false;
+        }
+        
+        if(npwd != npwd2){
+            $('#npwd').val('');
+            $('#npwd2').val('');
+            $('.tips').html("新密码输入有误，请重新输入！").attr('class','tips bg-warning').fadeIn(function(){
+                setTimeout('tips_hide()',1000);
+            });
+            return false;
+        }
+        
+        $.post("/Home/Index/findPwd?action=changePwd", { "phone": phone , "code":code , "npwd":npwd },
+           function(data){
+             if(data == 'succ'){
+                 $('.tips').html("密码修改成功！").attr('class','tips bg-success').fadeIn(function(){
+                     $('#phone').val('');
+                     $('#code').val('');
+                     $('#npwd').val('');
+                     $('#npwd2').val('');
+                     setTimeout('tips_hide()',10000);
+                 });
+             }else if(data){
+                 $('#code')[0].focus();
+                 $('.tips').html(data).attr('class','tips bg-danger').fadeIn(function(){
+                     setTimeout('tips_hide()',1000);
+                 });
+             }else{
+                 $('.tips').html("好像网络不是太通畅，再试一次吧！").attr('class','tips bg-danger').fadeIn(function(){
+                     setTimeout('tips_hide()',1000);
+                 });
+             }
+           });
+    });
+});
+function tips_hide(){
+    $(".tips").fadeOut(800);
+}
+</script>
+
+
+  </body>
+</html>

@@ -371,7 +371,6 @@ class UserModel
         $res = $this -> _db_user_code -> add($data);
         if($res){
             $M_sms = new SmsModel();
-            //$res = $M_sms -> Send($phone , "验证码为【{$code}】 有效期为15分钟，感谢您对汽车日报的支持！");
             $res = $M_sms -> Send($phone , "您在汽车日报的验证码为【{$code}】");
             return $res;
         }else{
@@ -414,5 +413,31 @@ class UserModel
         $data = array();
         $data['is_valid'] = 'no';
         $this -> _db_user_code -> where("phone = '{$phone}' AND code = '{$code}'") -> save($data);
+    }
+    
+    /**
+     * 重设密码
+     *
+     * @param string $phone
+     * @param string $code
+     * @param string $pwd
+     * @return bool
+     */
+    public function findPwd($phone , $code , $pwd){
+        
+        $res = $this -> checkCode($phone , $code);
+        if($res){
+            $this -> useCode($phone , $code);
+            
+            $data = array();
+            $data['token'] = md5($pwd);
+            
+            $this -> _db_user -> where("open_id = '{$phone}' , platform = 'mobile'") -> save($data);
+            
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 }
