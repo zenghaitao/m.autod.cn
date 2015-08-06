@@ -5,7 +5,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no"/>
 <meta charset="UTF-8">
-<base href="http://www.lanrentuku.com">
 <title>{$_PAGE['title']}</title>
 <link rel="stylesheet" href="{$host}/Public/css/style.css">
 <script src="{$host}/Public/js/jquery.js"></script>
@@ -50,8 +49,8 @@
                 if(!aImg[i].src){
                     aImg[i].src=aImg[i].getAttribute('_src');
                     aImg[i].onload=function(){
-                        aImg[i].style.minWidth='1px';
-                        aImg[i].style.minHeight='1px';
+                        this.style.minWidth='1px';
+                        this.style.minHeight='1px';
                     }
                     aImg[i].onerror=function(){
                         this.removeAttribute('src');

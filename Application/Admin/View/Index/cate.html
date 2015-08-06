@@ -34,7 +34,7 @@
               <foreach name="list" item="vo">
                 <tr>
                   <td>{$vo.id}</td>
-                  <td>{$vo.name}</td>
+                  <td><a href="/Admin/Index/news?type=choice&cateid={$vo.id}" target="blank">{$vo.name}</a></td>
                   <td>{$vo.today_num}</td>
                   <td>{$vo.today_num}</td>
                   <td>{$vo.today_num}</td>

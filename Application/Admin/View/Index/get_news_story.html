@@ -1,0 +1,74 @@
+			<link href="__PUBLIC__/css/style.css" rel="stylesheet">
+		    <article class="con_box">
+		        <h1 class="title">{$list.title}</h1>
+		        <div class="subtitle"> 
+		            <span>{$list.source}</span>
+		            <span></span>
+		            <span class="fr"></span>
+		        </div>
+		        <div class="article_box" style="height:height: 1000px;overflow:hidden;">
+		            <div>
+		            	{$list.content}
+		            </div>
+		        </div>
+		        <div class="overflow_show">
+		            <a class="text_link">
+		                <i>{$list.show}</i><i>{$list.hide}</i>
+		            </a>
+		        </div>
+		        <input type="hidden" id="title" value="{$list.title}" />
+		        <textarea id="content" style="display:none;">{$list.content}</textarea>
+		        <input type="hidden" id="images" value='{$list.images_str}' />
+		        <input type="hidden" id="title_pic1" value='{$list.title_pic1}' />
+		        <input type="hidden" id="title_pic2" value='{$list.title_pic2}' />
+		        <input type="hidden" id="title_pic3" value='{$list.title_pic3}' />
+		        <input type="hidden" id="short_summary" value="{$list.short_summary}" />
+		        <input type="hidden" id="http" value="{$list.http}" />
+		        <input type="hidden" id="story_data" value="{$list.story_data}" />
+		        <input type="hidden" id="article_id" value="{$list.article_id}" />
+ 		    </article>
+		    <!-- 
+		    <div class="midd_banner" >
+		        <a href="/Home/Index/download"><img class="banner" src="http://7xjrkc.com1.z0.glb.clouddn.com/o_19ps5pmt61r2trq5d8rkhnr1t9.jpg"></a>
+		    </div>
+		     -->
+
+		    <!-- 
+		    	<div class="ad_box">
+		        <a href="#">
+		            <div class="ad_title">ad</div>
+		            <img src="">
+		        </a>
+			    </div>
+			    
+			    <div class="com_box">
+			        <div class="com_title">
+			            <h2>comment</h2>
+			        </div>
+			        <ul class="com_ul">
+			            <foreach name="comments" item="vo">
+			            <li>
+			                <div class="head_img"><img src="" alt=""></div>
+			                <div class="com_cont">
+			                    <div class="user_name"></div>
+			                    <div class="dianzan">
+			                        <a class="hand" href="/Home/Index/download"><img src="/Public/images/hand.png" alt=""></a>
+			                        <a class="comment" href="/Home/Index/download"><img src="/Public/images/comment.png" alt=""></a>
+			                    </div>
+			                    <p></p>
+	
+			                    <div class="bef_com">
+			                        <span></span>
+			                        <p>prevcommemt£º</p>
+			                        <p></p>
+			                    </div>
+			                </div>
+			            </li>
+			            </foreach>
+			        </ul>
+			    </div>
+			    <div class="comment-empty comment-share-container">no comment</div>
+			    <div class="comment_app_download">
+			        <a href="/Home/Index/download">in autodaily</a>
+			    </div>
+		     -->

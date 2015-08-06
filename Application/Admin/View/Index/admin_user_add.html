@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+    <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+      	<div class="col-sm-9 col-sm-offset-3 col-md-3 col-md-offset-2 main">
+          <h1 class="sub-header">添加用户</h1>
+			<form action="/Admin/Index/admin_user_add" method="post" id="form">
+			  <div class="form-group">
+			    <label for="name">用户名</label>
+			    <input type="text" class="form-control" name="name" id="name" placeholder="请输入用户名">
+			  </div>
+			  <div class="form-group">
+			    <label for="email">邮箱</label>
+			    <input type="email" class="form-control" name="email" id="email" placeholder="请输入邮箱">
+			  </div>
+			  <div class="form-group">
+			    <label for="pwd">密码</label>
+			    <input type="password" class="form-control" name="pwd" id="pwd" placeholder="请输入密码">
+			  </div>
+			  <div class="form-group">
+			    <label for="secpwd">再次输入密码</label>
+			    <input type="password" class="form-control" name="secpwd" id="secpwd" placeholder="请再次输入密码">
+			  </div>
+			  <div class="form-group">
+			    <label for="secpwd">所属组</label>
+			    <select class="form-control" name="groupid" id="groupid">
+			    	<option value="0">请选择组</option>
+			    	<volist name="group_config" id="data" key="$key">
+						<option value="{$key}">{$data}
+					</volist>
+			    </select>
+			  </div>
+			  <button type="submit" class="btn btn-default" id="button">提交</button>
+			  <div class="alert alert-success" role="alert" style="display:none;">
+  					<span></span>
+			  </div>
+			</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <include file="common:footer" />
+  </body>
+</html>
+<<script type="text/javascript">
+<!--
+$('document').ready(function(){
+	$("#form .form-control").not("#groupid").blur(function(){
+		checkform('checkform',$("#email").val(),$("#name").val(),$("#pwd").val(),$("#secpwd").val(),$("#groupid").val());
+	});
+	
+	$("#groupid").change(function(){
+		checkform('checkform',$("#email").val(),$("#name").val(),$("#pwd").val(),$("#secpwd").val(),$("#groupid").val());
+	});
+	
+	$("#button").click(function(){
+		adduser('adduser',$("#email").val(),$("#name").val(),$("#pwd").val(),$("#secpwd").val(),$("#groupid").val());
+		return false;
+	});
+	
+	//检查表单
+	function checkform(action,email,name,pwd,secpwd,groupid){
+		$.ajax({
+			  type: "POST",
+			  url: "/Admin/Index/admin_user_add",
+			  data: {action:action,email:email,name:name,pwd:pwd,secpwd:secpwd,groupid:groupid},
+			  success: function(res){
+				 if( res != null && res.message ){
+				   	$('.alert').attr('class','alert alert-warning');
+				   	$(".alert").show(); 
+				   	$('.alert span').text(res.message);  
+			   	 }else{
+					$(".alert").hide(); 
+				 }
+			  }
+		});
+	}
+	
+	//添加用户
+	function adduser(action,email,name,pwd,secpwd,groupid){
+		$.ajax({
+			  type: "POST",
+			  url: "/Admin/Index/admin_user_add",
+			  data: {action:action,email:email,name:name,pwd:pwd,secpwd:secpwd,groupid:groupid},
+			  success: function(res){
+				   if( res != null ){
+					   if( res.status == 'error' ) {
+						   $('.alert').attr('class','alert alert-warning');
+					   }else if ( res.status == 'success' ) {
+						   $('.alert').attr('class','alert alert-success');
+					   }
+					   
+					   $(".alert").show(); 
+					   $('.alert span').text(res.message);
+					   
+					   if( res.status == 'success' ) {
+						   window.location.href = "./admin_user";
+					   }  
+				   }else{
+					   $(".alert").hide();
+				   }
+				   
+			  }
+		
+		});
+	}
+	
+});
+//-->
+</script>

@@ -1,0 +1,32 @@
+
+       <foreach name="list" item="vo">
+            <tr id="row_{$vo.id}">
+                <td>{$vo.id}</td>
+                <td><if condition="$vo.title_pic1 neq ''"><img src="{$vo.title_pic1}" height="70px;"/></if><if condition="$vo.title_pic2 neq ''">&nbsp;<img src="{$vo.title_pic2}" height="70px;"/></if><if condition="$vo.title_pic3 neq ''">&nbsp;<img src="{$vo.title_pic3}" height="70px;"/></if><br/><a class="link" href="###" linkname="/Home/Index/page?id={$vo.id}">{$vo.title}</a>
+                </td>
+                <td>{$vo.story_date}</td>
+                <td>{$vo.source}</td>
+                <td>
+                	 {$vo.colunm_catename}
+                </td>
+                <td>
+                 <a class="delete" id="{$vo.id}" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">{$vo.caozuo}</a>
+                </td>
+           </tr>
+       </foreach>
+       <script type="text/javascript">
+<!--
+
+	$('document').ready(function(){
+		$(".delete").click(function(){
+	    	var id = $(this).attr("id");
+	    	$('#ok').val(id);
+	    });
+	});
+	
+	$('.link').click(function(){
+		var link = $(this).attr('linkname');
+		window.open(link,'','width=360,height=640,scrollbars=yes')
+	});
+//-->
+</script>

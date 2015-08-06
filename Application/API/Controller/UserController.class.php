@@ -151,6 +151,108 @@ class UserController extends BaseController {
     }
     
     /**
+     * 登录功能
+     *
+     */
+    public function login(){
+        $open_id    = $_POST['phone'];
+        $token      = $_POST['password'];
+        $platform   = 'mobile';
+        
+        if(empty($token) || empty($platform) || empty($open_id)) {
+            $this -> fail(101);
+        }
+        
+        $M_user = new UserModel();
+        
+        if($uid = $M_user -> bind($_SESSION['reg_id'] , $platform , $token , $open_id)){
+            $info = $M_user -> getUserInfo($uid);
+            //重设session
+            $M_user -> setSession($_SESSION['reg_id']);
+            $status = array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']);
+            $this -> succ($status);
+        }else{
+            $this -> fail(102);
+        }
+        
+    }
+    
+    /**
+     * 用户注册
+     *
+     */
+    public function register(){
+        $open_id    = $_POST['phone'];
+        $token      = $_POST['password'];
+        $username   = $_POST['usernmae'];
+        $photo      = $_POST['photo'];
+        $code       = $_POST['code'];
+        
+        if(empty($token) || empty($open_id) || empty($photo) || empty($username) || empty($code)) {
+            $this -> fail(101);
+        }
+        
+        $M_user = new UserModel();
+        
+        $res = $M_user -> checkCode($open_id , $code);
+        if(!$res)
+            $this -> fail(103);
+            
+        //使用此验证码
+        $M_user -> useCode($open_id , $code);
+            
+        $res = $M_user -> regMobile($_SESSION['reg_id'] , $open_id , $token , $username , $photo);
+        if(!$res)
+            $this -> fail(102);
+        else {
+            
+            $info = $M_user -> getUserInfo($res);
+            //重设session
+            $M_user -> setSession($_SESSION['reg_id']);
+            $status = array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']);
+            $this -> succ($status);
+        }
+    }
+    
+    /**
+     * 发送手机验证码
+     *
+     */
+    public function sendCode(){
+        $phone        = $_POST['phone'];
+        if(empty($phone)) {
+            $this -> fail(101);
+        }
+        
+        $M_user = new UserModel();
+        $res = $M_user -> makeCode($phone);
+        if($res){
+            $this -> succ($phone);
+        }else{
+            $this -> fail(102);
+        }
+    }
+    
+    /**
+     * 检测验证码是否正确
+     *
+     */
+    public function checkCode(){
+        $phone        = $_POST['phone'];
+        $code         = $_POST['code'];
+        if(empty($phone) || empty($code)) {
+            $this -> fail(101);
+        }
+        $M_user = new UserModel();
+        $res = $M_user -> checkCode($phone , $code);
+        if($res)
+            $this -> succ($code);
+        else 
+            $this -> fail(103);
+        
+    }
+    
+    /**
      * 用户退出登录
      *
      */

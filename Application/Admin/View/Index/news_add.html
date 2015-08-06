@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{$title} - Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+    <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="sub-header">{$title}</h1>
+          <div class="row">
+          	<div class="col-lg-5">
+          		<form>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">url地址</label>
+				    <input type="text" class="form-control" id="url" placeholder="请输入地址">
+				  </div>
+				  <button type="submit" class="btn btn-primary" id="fetch">获取</button>
+				</form>
+          	</div>
+          </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-3" id="showFetch" style="height:640px;width:360px;overflow:auto;display:none;">
+        </div>
+        <div class="col-sm-3 col-md-3 col-sm-offset-3 alert alert-danger" id="fetchNewsAlert" style="display:none;" role="alert"></div>
+        <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-3" id="button1" style="display:none;">
+        <form class="form-inline">
+		  <div class="form-group">
+		    <label for="source">请选择来源:</label>
+	        <select id="source" class="form-control">
+	        	<volist name="source_list" id="data" >
+	        		<option value="{$data.id}">{$data.name}</option>
+	        	</volist>
+	        </select>
+
+		  </div>
+		  <div class="form-group">
+		    <label for="cate">请选择分类:</label>
+	        <select id="cate" class="form-control">
+	        	<volist name="cate_list" id="data" >
+	        		<option value="{$data.id}">{$data.name}</option>
+	        	</volist>
+	        </select>
+		  </div>
+		  <div class="form-group">
+		  <button class="btn btn-primary" id="add">添加</button>
+		  </div>
+		</form>
+		<div class="col-sm-3 col-md-3 col-sm-offset-3 alert alert-danger" id="addNewsAlert" style="display:none;" role="alert"></div>
+        </div>
+      </div>
+    </div>
+    
+<include file="common:footer" />
+<script>
+$().ready(function(){
+	$(".btn").click(function(){
+		
+		if( $(this).attr('id') == 'fetch' ) {
+			var action = 'fetchNews';
+			init();
+		}else if ( $(this).attr('id') == 'add' ) {
+			var action = 'addNews';
+			
+			var title = $("#title").val();
+			var content = $("#content").val();
+			var images = $("#images").val();
+			var source_id = $("#source").val();
+			var source = $("#source :selected").text();
+			var cate_id = $("#cate").val();
+			var title_pic1 = $("#title_pic1").val();
+			var title_pic2 = $("#title_pic2").val();
+			var title_pic3 = $("#title_pic3").val();
+			var story_date = $("#story_data").val(); 
+			var http = $("#http").val();
+			var short_summary = $("#short_summary").val();
+			var article_id = $("#article_id").val();
+			
+		}
+		
+		var $btn = $(this).button('loading');
+		var url = $("#url").val();
+		
+		$.ajax({
+			 type: "POST",
+			 url: "/Admin/Index/addNews",
+			 data: {action:action,url:url,title:title,content:content,images:images,source_id:source_id,source:source,title_pic1:title_pic1,title_pic2:title_pic2,title_pic3:title_pic3,story_date:story_date,http:http,short_summary:short_summary,column_id:cate_id,article_id:article_id},
+			 success: function(msg){
+				 if( action == 'fetchNews' ) {
+					 if(msg.status == 'error'){
+						 $("#fetchNewsAlert").attr({class:'col-sm-3 col-md-3 col-sm-offset-3 alert alert-danger'}).show().text(msg.message);
+					 }else{
+						 $("#showFetch").html(msg.data).show();
+						 $("#button1").show();
+						 
+					 }
+				 }else if( action == 'addNews' ) {
+					 if( msg.status == 'error' ) {
+						 $("#addNewsAlert").attr({class:'col-sm-3 col-md-3 alert alert-danger'}).show().text(msg.message);
+					 }else{
+						 $("#fetchNewsAlert").attr({class:'col-sm-3 col-md-3 col-sm-offset-3 alert alert-success'}).show().text(msg.message);
+						 $("#showFetch").html('').hide();
+						 $("#button1").hide(); 
+					 }
+					 
+				 }
+				 
+				 $btn.button('reset');		 
+			 }
+		});
+		
+		return false;
+	});
+	
+	function init(){
+		$(".alert").hide();
+		$("#showFetch").html('').hide();
+		$("#button1").hide();
+		//$btn.button('reset');
+	}
+});
+</script>
+  </body>
+</html>

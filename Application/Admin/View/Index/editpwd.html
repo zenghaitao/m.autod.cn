@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+  <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+	      <include file="common:menu" />
+	      <div class="col-sm-9 col-sm-offset-3 col-md-3 col-md-offset-2 main">
+		  <form action="./updatepwd" method="post" id="form">
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">用户名</label>
+			    <span>{$username}</span>
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">旧密码</label>
+			    <input type="password" class="form-control" id="oldpwd" name="oldpwd" placeholder="请输入旧密码">
+			  </div>		  
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">新密码</label>
+			    <input type="password" class="form-control" id="newpwd" name="newpwd" placeholder="请输入新密码">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">再次输入新密码</label>
+			    <input type="password" class="form-control" id="secondpwd" name="secondpwd" placeholder="请再次输入新密码">
+			  </div>
+			  <button type="submit" class="btn btn-default" id="button">提交</button>
+			  <div class="alert alert-success" role="alert" style="display:none;">
+  					<span></span>
+			  </div>
+			</form>
+	      </div>
+      </div>
+
+    </div>
+  <include file="common:footer" />
+  </body>
+</html>
+<<script type="text/javascript">
+<!--
+$('document').ready(function(){
+
+	$("#form .form-control").blur(function(){
+		checkpwd('checkpwd',$("#oldpwd").val(),$("#newpwd").val(),$("#secondpwd").val());
+	});
+	
+	$("#button").click(function(){
+		updatepwd('updatepwd',$("#oldpwd").val(),$("#newpwd").val(),$("#secondpwd").val());
+		return false;
+	});
+		
+});
+
+//检查表单
+function checkpwd(action,oldpwd,newpwd,secondpwd){
+	$.ajax({
+	   type: "POST",
+	   url: "/Admin/Index/editpwd",
+	   data: {action:action,oldpwd:oldpwd,newpwd:newpwd,secondpwd:secondpwd},
+	   success: function(res){
+		  if( res != null && res.message ){
+			   $('.alert').attr('class','alert alert-warning');
+			   $(".alert").show(); 
+			   $('.alert span').text(res.message);  
+		  }else{
+			   $(".alert").hide(); 
+		  }
+	   }
+	});
+}
+
+//更新密码
+function updatepwd(action,oldpwd,newpwd,secondpwd){
+	$.ajax({
+		   type: "POST",
+		   url: "/Admin/Index/editpwd",
+		   data: {action:action,newpwd:newpwd,secondpwd:secondpwd,oldpwd},
+		   success: function(res){
+			   if( res != null ){
+				   if( res.status == 'error' ) {
+					   $('.alert').attr('class','alert alert-warning');
+				   }else if ( res.status == 'success' ) {
+					   $('.alert').attr('class','alert alert-success');
+				   }
+				   
+				   $(".alert").show(); 
+				   $('.alert span').text(res.message);
+				   
+				   if( res.status == 'success' ) {
+					   window.location.href = "./admin_user";
+				   } 
+			   }else{
+				   $(".alert").hide();
+			   }
+			   
+		   }
+	});
+}
+//-->
+</script>

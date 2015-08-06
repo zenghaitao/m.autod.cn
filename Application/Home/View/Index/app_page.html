@@ -167,8 +167,8 @@ window.onload=window.onresize=window.onscroll=function(){
             if(!aImg[i].src){
                 aImg[i].src=aImg[i].getAttribute('_src');
                 aImg[i].onload=function(){
-                    aImg[i].style.minWidth='1px';
-                    aImg[i].style.minHeight='1px';
+                    this.style.minWidth='1px';
+                    this.style.minHeight='1px';
                 }
                 aImg[i].onerror=function(){
                     this.removeAttribute('src');

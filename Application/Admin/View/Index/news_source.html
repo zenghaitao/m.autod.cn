@@ -16,23 +16,9 @@
       <div class="row">
       <include file="common:menu" />
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="sub-header">{$title}</h1>
-          <div class="table-responsive">
-          <if condition="$action eq 'choice'">
-          <div>
-            <div class="col-lg-1"><h4>分类：</h4></div>
-          	<div class="col-lg-2">
-          		<select class="form-control selectCate">
-          			<option value="0">全部</option>
-          			<volist name="catelist" id="vo" key="$key">
-						<option value="{$key}">{$vo}</option>
-					</volist>
-          		</select>
-          	</div>
-            <div class="col-lg-1"><a class="btn btn-primary" href="/Admin/Index/addNews">添加新闻</a></div>
-          </div>
-          </if>
-            <table class="table table-striped">
+          <h1 class="sub-header">{$sourcename}</h1>
+          <div class="table-responsive">        
+        	<table class="table table-striped">
               <thead>
                 <tr>
                   <th>id</th>
@@ -43,46 +29,34 @@
                   <th>操作</th>
                 </tr>
               </thead>
-              <tbody>
+              <empty name="list">
+              		<tr><h2>该来源没有新闻</h2></tr>
+              	<else />
+             	<tbody id="news">
+              	
                 <foreach name="list" item="vo">
                 <tr id="row_{$vo.id}">
                   <td>{$vo.id}</td>
-                  <!-- <td><if condition="$vo.title_pic1 neq ''"><a href="{$vo.title_pic1}" target="_blank"><img src="{$vo.title_pic1}" height="70px;"/></a></if><if condition="$vo.title_pic2 neq ''">&nbsp;<a href="{$vo.title_pic2}" target="_blank"><img src="{$vo.title_pic2}" height="70px;"/></a></if><if condition="$vo.title_pic3 neq ''">&nbsp;<a href="{$vo.title_pic3}" target="_blank"><img src="{$vo.title_pic3}" height="70px;"/></a></if><br/><a class="link" href="###" linkname="/Home/Index/page?id={$vo.id}">{$vo.title}</a> -->
                   <td><if condition="$vo.title_pic1 neq ''"><img src="{$vo.title_pic1}" height="70px;"/></if><if condition="$vo.title_pic2 neq ''">&nbsp;<img src="{$vo.title_pic2}" height="70px;"/></if><if condition="$vo.title_pic3 neq ''">&nbsp;<img src="{$vo.title_pic3}" height="70px;"/></if><br/><a class="link" href="###" linkname="/Home/Index/page?id={$vo.id}">{$vo.title}</a>
                   </td>
                   <td>{$vo.story_date}</td>
-                  <td><a href="/Admin/Index/news?type=source&sourceid={$vo.source_id}">{$vo.source}</a></td>
+                  <td>{$vo.source}</td>
                   <td>
-                  	<if condition="$action eq 'choice'">
-                		{$vo.colunm_catename}
-					<else/>
-						<select class="form-control" style="width:100px">
-						<option value="0">请选择</option>
-						<foreach name="catelist" item="row">
-						<option value="{$row.id}">{$row.name}</option>
-						</foreach>
-						</select>
-					</if>
+                	  {$vo.colunm_catename}
                  </td>
                   <td>
-                  <if condition="$action eq 'story'">
-                  <a href="{$vo.id}">上推</a>
-                  </if>
-                  <if condition="$action eq 'choice'">
                   <a class="delete" id="{$vo.id}" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">删除</a>
-                  </if>
-                  <if condition="$action eq 'catenews'">
-                  <a href="###" storyid="{$vo.id}" class="cate">保存</a>
-                  </if>
                   </td>
                 </tr>
                 </foreach>
               </tbody>
+              </empty>
             </table>
-<include file="common:page" />
+            <notempty name="name"><div class="col-lg-1 col-lg-offset-5" id="getMore"><button class="btn btn-primary" >加载更多</button></div></notempty>
           </div>
         </div>
       </div>
+      
       		<div class="modal fade bs-example-modal-lg" id="news_model" style="margin-top:10%;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 			  <div class="modal-dialog modal-lg">
 			    <div class="modal-content">
@@ -111,6 +85,33 @@
 <script>
 $().ready(function(){
 	var href = window.location.href;
+	var sourceIdStr = new String;
+	sourceIdStr = href.match(/sourceid=\d+/ig);
+	
+	if( sourceIdStr != null ) {	
+		var getSourceId = sourceIdStr.toString().substr(9);
+	}
+	
+	var page = 2;
+
+	$("#getMore").click(function(){
+		var $btn = $(this).button('loading');
+		$.get(
+				"/Admin/Index/getNewsBySourceId", 
+				{ sourceId: getSourceId, page: page } ,
+				function($data){
+					page++;
+					$('#news').append($data);
+					
+					$btn.button('reset');
+
+				}
+		);
+	});
+	
+	/*
+	根据来源查询新闻
+	var href = window.location.href;
 	var cateIdStr = new String;
 	cateIdStr = href.match(/cateid=\d+/ig);
 	
@@ -118,7 +119,8 @@ $().ready(function(){
 		var getCateId = cateIdStr.toString().substr(7);
 		$(".selectCate").val(getCateId);
 	}
-
+	
+	
 	//根据分类筛选新闻
 	$(".selectCate").change(function(){
 		var cateId = $(this).val();
@@ -128,25 +130,7 @@ $().ready(function(){
 			alter('分类id不能为空');
 		}
 	});
-	
-    $(".cate").click( function () { 
-        var storyid = $(this).attr("storyid");
-        var cateid = $(this).parent().parent().find('select').eq(0).val();
-        if(cateid == 0){
-            alert('请选择分类');
-            return false;
-        }
-        
-        $.post("/Admin/Index/saveStoryCate", { story_id: storyid, cate_id: cateid },
-            function(data){
-                var tr_id = 'row_'+storyid;
-                if(data == 'succ'){
-                    $('#'+tr_id).hide();
-                }else{
-                    alert('操作失败！');
-                }
-            });
-    });
+	*/
     
     //删除新闻
     $(".delete").click(function(){
@@ -156,7 +140,7 @@ $().ready(function(){
     
     $("#ok").click(function(){
     	var id = $(this).val();
-    	
+
     	if( id != null && id != '' && id != undefined  ) {
     		$.post("/Admin/Index/deleteNews", { action:'deleteNews', id:id },
     			function(res){

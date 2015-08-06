@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+    <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+      	<div class="col-sm-9 col-sm-offset-10 col-md-10 col-md-offset-2 main">
+          <h1 class="sub-header">用户管理</h1>
+          <a href="/Admin/Index/admin_user_add" class="btn btn-primary">添加用户</a>
+          	<div class="alert alert-danger alert-dismissible" role="alert" style="display:none;">
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  			<div id="message"></div>
+			</div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>用户名</th>
+                  <th>邮箱</th>
+                  <th>所属组</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              <foreach name="list" item="vo">
+                <tr id={$vo.id}>
+                  <td>{$vo.id}</td>
+                  <td>{$vo.name}</td>
+                  <td>{$vo.email}</td>
+                  <td class="col-xs-2">
+                  	<select class="form-control groupid" name="groupid" id="groupid" m="{$vo.groupid}">
+			    	<volist name="group_config" id="data" key="$key">
+						<option value="{$key}">{$data}</option>
+					</volist>
+			    	</select>
+                  </td>
+                  <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-lg" value={$vo.id}>删除</button></td>
+                </tr>
+              </foreach>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      		<div class="modal fade bs-example-modal-lg" id="user_admin_model" style="margin-top:10%;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog modal-lg">
+			    <div class="modal-content">
+				     <div class="container-fluid">
+				    	<div class="row">
+				    		<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    		<div class="col-md-4 col-md-offset-4" ><h3>您确定要删除该用户？</h3></div>
+				    		<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-md-2 col-md-offset-4">
+				    			<button class="btn btn-primary" id="ok">确定</button>	
+				    		</div>
+				    		<div class="col-md-2">
+				    			<button id="cancel" class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+				    		</div>
+				    		<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    	</div>			    
+				    </div>
+			    </div>
+			  </div>
+			</div>
+    </div>
+  <include file="common:footer" />
+  </body>
+</html>
+<<script type="text/javascript">
+<!--
+	$("document").ready(function(){
+		//默认选中分组
+		$(".groupid").each(function(){
+			$(this).val($(this).attr('m'));
+		});
+		
+		//改变分组ajax
+		$(".groupid").change(function(){
+			var groupid = $(this).val();
+			var id = $(this).parent().parent().attr('id');
+			
+			if( groupid != '0' ) {
+				$.ajax({
+					  type: "POST",
+					  url: "/Admin/Index/admin_user_update_group",
+					  data: {action:'admin_user_update_group',id:id,groupid:groupid},
+					  success: function(res){
+						 if( res.status == 'success' ) {
+							 if( res.message != '' ) {
+								 $(".alert-danger").show();
+								 $(".alert-danger").children('#message').text(res.message);
+							 }else{
+								 $(".alert-danger").hide();
+							 }
+						 }else if( res.status == 'error' ) {
+							 $(".alert-danger").show();
+							 $(".alert-danger").children('#message').text(res.message);
+						 }else{
+							 
+						 }
+					  }
+				});	
+			}
+			
+		});
+		
+		$(".btn-danger").click(function(){
+			var id= $(this).val();
+			var groupid = $(this).parent().prev().children('.groupid').val();
+			
+			$('#ok').val(id);
+			$('#ok').attr({groupid:groupid});
+		});
+		
+		$("#ok").click(function(){
+			var id= $(this).val();
+			var groupid = $(this).attr('groupid');
+			$(".modal-backdrop").attr('class','modal-backdrop fade in');
+			
+			$.ajax({
+				  type: "POST",
+				  url: "/Admin/Index/admin_user_delete",
+				  data: {action:'admin_user_delete',id:id,groupid:groupid},
+				  success: function(res){
+					 if( res.status == 'success' ) {
+						$("#"+id).remove();
+						$(".alert-danger").hide();
+					 }else if( res.status == 'error' ) {
+						 $(".alert-danger").show();
+						 $(".alert-danger").children('#message').text(res.message);
+					 }else{
+						 
+					 }
+					 
+					 $('#user_admin_model').modal('hide')
+				  }
+			});			
+		});
+		
+	});
+//-->
+</script>  

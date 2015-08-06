@@ -22,6 +22,7 @@ class NewsModel
         $this -> _db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_cate = M('news_cate' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_comments_like = M('news_comments_like' , 'ad_' , 'DB0_CONFIG');
+        $this -> _db_news_spider_page = M('news_spider_page' , 'ad_' , 'DB0_CONFIG');
     }
     
     /**
@@ -239,7 +240,7 @@ class NewsModel
         return $list;
     }
     
-    public function newsList($cate_id , $page = 1 , $count = 10){
+    public function newsList($cate_id , $page = 1 , $count = 10 ){
         if(!$cate_id)
             $where_str = '1';
         else 
@@ -282,6 +283,22 @@ class NewsModel
         $list = $this -> _db_news_choice -> where($where_str) -> order("id DESC") -> limit($count) -> select();
         return $list;
     }
+    
+    /**
+     * 通过sourceid获取新闻列表
+     * @author nj
+     * @param $sourceid 来源id
+     */
+    public function getNewsBySourceId( $sourceId , $page = 0 , $pageSize = '15') {
+    	$where = '1=1';
+    	if( $sourceId ) {
+    		$where .= " and source_id = '{$sourceId}'";
+    	}
+    	
+    	$list = $this -> _db_news_choice -> where($where) -> limit($page*$pageSize) -> select();
+    	return $list;
+    }
+    
     
     /**
      * 基于关键词的搜索结果
@@ -712,4 +729,23 @@ class NewsModel
     public function updateStory($id , $data){
         return $this -> _db_news_choice -> where("story_id = '{$id}'") -> save($data);
     }
+    
+    /**
+     * 通过id删除newschoice
+     * @author nj 2015-7-31
+     * @param int $id 
+     * @param $res
+     */
+    public function deleteNewsById($id){
+    	return $this -> _db_news_choice -> where("id = '{$id}'") -> delete();
+    }
+    
+    /**
+     * 通过is_auto查询来源
+     * @param smallint $isAuto 是否自动抓取
+     */
+    public function getSoureListByIsAuto($isAuto){
+    	return $this -> _db_news_source -> where("is_auto='{$isAuto}'") -> select();
+    }
+    
 }

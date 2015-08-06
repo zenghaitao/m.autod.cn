@@ -13,15 +13,6 @@ class SnatchController extends BaseController  {
         parent::__construct();
     }
     
-    public function autoKeyWord(){
-        $url = 'http://www.huiche100.com/';
-        $html = file_get_contents($url);
-        
-        $M_snatch = new SnatchModel();
-        $M_snatch -> autoKeyWord($html);
-        
-    }
-    
     public function init(){
         die('none');
         
@@ -425,6 +416,9 @@ class SnatchController extends BaseController  {
         $_db_news_spider_page = M('news_spider_page' , 'ad_' , 'DB0_CONFIG');
         
         $sources = $_db_news_source -> where("media_id != 0") -> select();
+        
+        $M_snatch = new SnatchModel();
+        
         foreach ($sources as $source){
             $url = "http://toutiao.com/m{$source['media_id']}/";
             
@@ -439,9 +433,7 @@ class SnatchController extends BaseController  {
                 $max_id = $spider_max_id;
                 
             /* 获取媒体新闻列表页码 */
-            $M_snatch = new SnatchModel($url);
-            $pages = $M_snatch -> toutiaoPageList();
-            unset($M_snatch);
+            $pages = $M_snatch -> toutiaoPageList($url);
             
             $array = array();
             $_find = 0;
@@ -451,8 +443,7 @@ class SnatchController extends BaseController  {
                     continue;
                 }
                 
-                $M_snatch = new SnatchModel($page);
-                $news_list = $M_snatch -> toutiaoPage();
+                $news_list = $M_snatch -> toutiaoPage($url);
                 
                 foreach ($news_list as $news){
                     if($news['article_id'] > $max_id){
@@ -502,15 +493,16 @@ class SnatchController extends BaseController  {
         
         $i = 0;
         $prv_source_id = 0;
+        $M_snatch = new SnatchModel();
+        
         /* 获取要处理的页面 */
         $list = $_db_news_spider_page -> where("is_snatch = 'no' AND img_count > 0") -> order("story_date ASC , article_id ASC") -> limit(100) -> select();
         foreach ($list as $row){
             if($i >= 10)
                 continue;
             
-            $M_snatch = new SnatchModel($row['url']);
             //$M_snatch = new SnatchModel('http://toutiao.com/a4639192103/');
-            $result = $M_snatch -> toutiaoContent();
+            $result = $M_snatch -> toutiaoContent($row['url']);
             
             //更新spider行记录状态
             $_db_news_spider_page -> where("id = '{$row['id']}'") -> save(array('is_snatch'=>'yes'));
@@ -561,6 +553,7 @@ class SnatchController extends BaseController  {
     private function intoChoice($story_info){
         $_db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
         $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
+        $_db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
         
         $data = array();                        
         $data['story_id'] = $story_info['id'];
@@ -586,6 +579,12 @@ class SnatchController extends BaseController  {
         $news_id = $_db_news_choice -> add($data);
         
         $_db_news_story -> where("id = '{$story_info['id']}'") -> save(array('is_choice'=>'yes'));
+        
+        //更新来源表的数据
+        $data = array();
+        $data['last_news'] = $story_info['title'];
+        $data['last_time'] = $story_info['story_date'];
+        $_db_news_source -> where("id = '{$story_info['source_id']}'") -> save($data);
         
         return $news_id;
     }

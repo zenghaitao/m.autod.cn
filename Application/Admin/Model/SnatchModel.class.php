@@ -4,13 +4,12 @@ include_once(dirname(__FILE__)."/simple_html_dom.php");
 
 class SnatchModel
 {
-    private $_url = '';
-    public function __construct($url){
-        $this -> _url = $url;
+    public function __construct(){
+
     }
     
-    public function toutiaoPageList(){
-        $html = file_get_html($this -> _url);
+    public function toutiaoPageList($url){
+        $html = file_get_html($url);
         
         $a_list = $html -> find('#pagebar a');
         $max_page = 0;
@@ -23,18 +22,18 @@ class SnatchModel
         $list = array();
         for ($i = 1 ; $i <= $max_page ; $i ++){
             if($i == 1){
-                $list[$i] = $this -> _url;
+                $list[$i] = $url;
                 continue;
             }
-            $list[$i] = $this -> _url . "p{$i}/";
+            $list[$i] = $url . "p{$i}/";
         }
         
         return $list;
         
     }
     
-    public function toutiaoPage(){
-        $string = file_get_contents($this -> _url);
+    public function toutiaoPage($url){
+        $string = file_get_contents($url);
         $html = str_get_html($string);
         
         $list = $html -> find('#ColumnContainer .pin');
@@ -61,19 +60,26 @@ class SnatchModel
      *
      * @return array
      */
-    public function toutiaoContent(){
+    public function toutiaoContent($url){
         $content = '';
         $imgs = array();
         
-        if(strpos($this -> _url , 'http://toutiao.com/a') === false){
+        if(strpos($url , 'toutiao.com/a') === false){
             return array('content'=>'','images'=>'');
         }
         
-        $string = file_get_contents($this -> _url);
+        $string = file_get_contents($url);
         if(!$string)
             return array('content'=>'','images'=>'');
-        
+
         $html = str_get_html($string);
+        
+        $title = $html -> find("h1" , 0) -> innertext;
+
+        $article_id = $html -> find(".ctn" , 0) -> getAttribute('data-groupid');
+
+        $ptime = $html -> find("#container .time" , 0) -> innertext;
+        
         $content = @$html -> find(".article-content" , 0) -> innertext;
         if(strpos($content , 'img')){
             $img_list = $this -> img($content);
@@ -100,34 +106,176 @@ class SnatchModel
         }
         
         $result = array();
+        $result['article_id'] = $article_id;
         $result['content'] = strip_tags(trim($content) , '<p><img><div><table><tr><td>');
-        //$result['content'] = trim($content);
         $result['images'] = $img_list;
         $result['http'] = $http_response_header[0];
+        $result['title'] = $title;
+        $result['short_summary'] = $title;
+        $result['story_data'] = $ptime;
+        
+        $result['title_pic1'] = str_replace('/large/','/list/',$result['images'][0]);
+        if(count($result['images']) > 2){
+            $result['title_pic2'] = str_replace('/large/','/list/',$result['images'][1]);
+            $result['title_pic3'] = str_replace('/large/','/list/',$result['images'][2]);
+        }
+        
         return $result;
         
     }
     
-    
-    public function parse(){
-        $url_arr = parse_url($this -> _url);
-        if($url_arr['host'] == 'news.163.com'){
-            return $this -> netease();
+    /**
+     * 网易新闻内容分析处理
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public function ntesContent($url){
+        //http://3g.163.com/ntes/special/0034073A/wechat_article.html?docid=B03IV95M00964M64&spst=0&spss=newsapp&spsf=wx&spsw=1
+        $org_url = $url;
+        $url = parse_url($url);
+        parse_str($url['query'] , $query);
+        if(!$query['docid']){
+            return $this -> ntesPhots($org_url);
         }
         
-        exit;
+        $ntes_id = $query['docid'];
+            
+        $url = "http://3g.163.com/touch/article/{$ntes_id}/full.html";
+        $file = file_get_contents($url);
+        $file = str_replace('artiContent(','',$file);
+        $file = str_replace('})','}',$file);
+        $file = json_decode($file,1);
+        $file = $file[$ntes_id];
+        
+        if(!$file)
+            return false;
+        
+        $img = $file['img'];
+        $video = $file['video'];
+        $photo = $file['photoSetList'];
+        
+        $title = $file['title'];
+        $ptime = $file['ptime'];
+        
+        $body = $file['body'];
+        
+        foreach ($img as $row){
+            $img_html = "<p><img src='{$row['src']}' title='{$row['alt']}' /></p>";
+            $body = str_replace($row['ref'] , $img_html , $body);
+        }
+        
+        foreach ($video as $row){
+            $video_html = "<p><video src='{$row['url_mp4']}' poster='{$row['cover']}' style='width:100%'></video></p>";
+            $body = str_replace($row['ref'] , $video_html , $body);
+        }
+        
+        foreach ($photo as $row){
+            $img_html = "<p><img src='{$row['cover']}' title='{$row['title']}' /></p>";
+            $body = str_replace($row['ref'] , $img_html , $body);
+        }
+        
+        $result = array();
+        $result['article_id'] = $ntes_id;
+        $result['content'] = strip_tags(trim($body) , '<p><img><div><table><tr><td><video>');
+        
+        if(strpos($body , 'img')){
+            $img_list = $this -> img($body);
+        }
+        $result['images'] = $img_list;
+        $result['http'] = $http_response_header[0];
+        $result['title'] = $title;
+        $result['short_summary'] = $title;
+        $result['story_data'] = $ptime;
+        
+        $result['title_pic1'] = $result['images'][0];
+        if(count($result['images']) > 2){
+            $result['title_pic2'] = $result['images'][1];
+            $result['title_pic3'] = $result['images'][2];
+        }
+        return $result;
     }
     
-    private function netease(){
-        $html = file_get_html($this -> _url);
+    /**
+     * 分析网易图册新闻
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public function ntesPhots($url){
+        //http://3g.163.com/ntes/special/0034073A/photoshare.html?setid=73215&channelid=0096&spst=3&spss=newsapp&spsf=imsg&spsw=1
+        $url = parse_url($url);
+        parse_str($url['query'] , $query);
+        if(!$query['setid'])
+            return false;
         
-        $res = $html -> find('.end-text' , 0) -> innertext ;
+        $ntes_id = $query['setid'];
+        $channel_id = $query['channelid'];
+            
+        $url = "http://c.3g.163.com/photo/api/jsonp/set/{$channel_id}/{$ntes_id}.json";
+        $file = file_get_contents($url);
+        $file = str_replace('photosetinfo(','',$file);
+        $file = str_replace('})','}',$file);
+        $file = json_decode($file,1);
         
-        $res = strip_tags($res , "<p><img>");
+        $result = array();
+        $result['article_id'] = $channel_id.'-'.$ntes_id;
+        $result['title'] = $file['setname'];
+        $result['short_summary'] = $file['desc'];
+        $result['story_data'] = $file['datatime'];
         
-        return (iconv('gbk' , 'utf-8' , $res));
+        $content = '';
+        $images = array();
+        foreach ($file['photos'] as $row){
+            $img_html = "<p><img src='{$row['imgurl']}' /></p>";
+            $content .= $img_html."<p>{$row['note']}</p>";
+            $images[] = $row['imgurl'];
+        }
+        
+        $result['content'] = $content;
+        $result['images'] = $images;
+        
+        $result['title_pic1'] = $result['images'][0];
+        if(count($result['images']) > 2){
+            $result['title_pic2'] = $result['images'][1];
+            $result['title_pic3'] = $result['images'][2];
+        }
+        
+        $result['http'] = $http_response_header[0];
+        
+        return $result;
     }
     
+    /**
+     * 分析url内容
+     *
+     * @param string $url
+     * @return mixed
+     */
+    public function parsePage($url){
+        $url_arr = parse_url($url);
+        
+        if($url_arr['host'] == '3g.163.com'){
+            return $this -> ntesContent($url);
+        }
+        
+        if($url_arr['host'] == 'toutiao.com'){
+            return $this -> toutiaoContent($url);
+        }
+        
+        if($url_arr['host'] == 'm.toutiao.com'){
+            return $this -> toutiaoContent($url);
+        }
+        
+        return false;
+    }
+    
+    /**
+     * 获取文章中的图片
+     *
+     * @param string $string
+     * @return mixed
+     */
     public function img($string){
         $html = str_get_html($string);
         $imgs = $html -> find('img');
@@ -136,29 +284,5 @@ class SnatchModel
             $res[] = $img -> src;
         }
         return $res;
-    }
-    
-    public function autoKeyWord($string){
-        $html = str_get_html($string);
-        $dds = $html -> find('.ina_xzpp_nr dd a');
-        foreach ($dds as $dd){
-            $href = $dd -> href;
-            if(strpos($href , 'ina_xzpp')){
-                $href = str_replace(array('javascript:ina_xzpp(',')') , '' , $href);
-                $href = "http://www.huiche100.com/ind/cars.php?sign_id={$href}";
-                $html = file_get_contents($href);
-                $html = str_get_html($html);
-                
-                $list = $html -> find('dd a');
-                foreach ($list as $row){
-                    $name = $row -> value;
-                    $id = str_replace(array("javascript:ina_xzcx('{$name}',",')') , '' , $row -> href);
-                    
-                    var_dump($name,$id);
-                }
-                exit;
-                
-            }
-        }
     }
 }

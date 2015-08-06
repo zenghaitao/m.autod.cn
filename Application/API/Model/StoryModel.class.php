@@ -12,6 +12,7 @@ class StoryModel
         $this -> _db_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_story_content = M('news_story_content' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_video = M('ina_vedio' , 'cms_' , 'DB0_CONFIG');
+        $this -> _db_news_spider_page = M('news_spider_page' , 'ad_' , 'DB0_CONFIG');
     }
     
     /**
@@ -99,4 +100,58 @@ class StoryModel
     public function updateStory($id , $data){
         return $this -> _db_story -> where("id = '{$id}'") -> save($data);
     }
+    
+    /**
+     * news_story 插入数据
+     * @param string $article_id 文章id
+     */
+    public function addStory($data){
+    	$urlArr = parse_url($data['url']);
+    	if( $urlArr['host'] == '3g.163.com' ) {
+    		$data['plant'] = 'ntes';
+    	}
+    	$data['add_date'] = date('Y-m-d H:i:s');
+    	$data['is_choice'] = 'no';
+    	$data['img_count'] = substr_count($data['images'],';,;');
+
+    	return $this -> _db_story -> add($data);
+    }
+    
+    /**
+     * news_story_content 插入数据
+     * @param unknown_type $story_id 
+     */
+    public function addStoryContent($data){
+    	$data['page'] = '1';
+    	$data['image_count'] = substr_count($data['images'],';,;');
+    	$data['add_time'] = date('Y-m-d H:i:s');
+    	 
+    	return $this -> _db_story_content -> add($data);
+    }
+    
+    /**
+     * spider_page 插入数据
+     * @param array $data
+     */
+    public function addSpiderPage($data){
+    	$urlArr = parse_url($data['url']);
+    	if( $urlArr['host'] == '3g.163.com' ) {
+    		$data['plant'] = 'ntes';
+    	}
+    	$data['img_count'] = substr_count($data['images'],';,;');
+    	$data['add_date'] = date('Y-m-d H:i:s');
+    	$data['is_snatch'] = 'yes';
+    	
+    	return $this -> _db_news_spider_page -> add($data);
+    }
+    
+    /**
+     * news_story 通过文章id查信息
+     * @param int $article_id 
+     * @return arr $info 
+     */
+    public function getInfoByArticleId($article_id){
+    	return $this -> _db_story -> where("article_id='{$article_id}'") -> find();
+    }
+    
 }
