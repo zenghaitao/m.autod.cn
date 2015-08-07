@@ -19,7 +19,7 @@ return array(
         'db_charset'        => 'utf8',
      ),
      
-	'ERROE_CODE' => array(
+	'ERROR_CODE' => array(
 	   '101'   => '数据格式出错',
 	   '102'   => '写入操作出错',
 	   '103'   => '不存在的数据',
