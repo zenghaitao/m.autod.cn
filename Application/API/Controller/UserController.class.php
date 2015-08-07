@@ -182,6 +182,8 @@ class UserController extends BaseController {
      *
      */
     public function register(){
+        var_dump($_POST);exit;
+        
         $open_id    = $_POST['phone'];
         $token      = $_POST['password'];
         $username   = $_POST['usernmae'];
