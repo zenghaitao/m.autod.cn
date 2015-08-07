@@ -190,7 +190,7 @@ class UserController extends BaseController {
         $code       = $_POST['code'];
         
         if(!$photo)
-            $photo = '/Public/images/admin.png';
+            $photo = 'http://m.autod.cn/Public/images/admin.png';
 
         if(empty($token) || empty($open_id) || empty($photo) || empty($username) || empty($code)) {
             $this -> fail(101);
