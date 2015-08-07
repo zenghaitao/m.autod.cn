@@ -188,6 +188,9 @@ class UserController extends BaseController {
         $photo      = $_POST['photo'];
         $code       = $_POST['code'];
         
+        if(!$photo)
+            $photo = '/Public/images/admin.png';
+        
         if(empty($token) || empty($open_id) || empty($photo) || empty($username) || empty($code)) {
             $this -> fail(101);
         }
