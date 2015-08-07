@@ -190,8 +190,6 @@ class UserController extends BaseController {
         
         if(!$photo)
             $photo = 'http://m.autod.cn/Public/images/admin.png';
-        else 
-            $photo .= '?imageMogr2/thumbnail/200x200';
             
         if(empty($token) || empty($open_id) || empty($photo) || empty($username) || empty($code)) {
             $this -> fail(101);
