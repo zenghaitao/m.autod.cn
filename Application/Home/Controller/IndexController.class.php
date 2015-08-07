@@ -579,6 +579,9 @@ class IndexController extends BaseController  {
             }
             
             if($_GET['action'] == 'changePwd'){
+                $phone = $_POST['phone'];
+                $code = $_POST['code'];
+                $pwd = $_POST['npwd'];
                 
                 $res = $M_user -> findPwd($phone , $code , $pwd);
                 if($res){

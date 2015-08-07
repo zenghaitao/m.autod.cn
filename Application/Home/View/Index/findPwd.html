@@ -91,6 +91,7 @@ $().ready(function(){
     });
     
     $('#check').click(function(){
+        $('#code').val('');
         var phone = $('#phone').val();
         if(!checkPhone(phone)){
             return false;

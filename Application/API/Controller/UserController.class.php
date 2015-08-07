@@ -264,7 +264,6 @@ class UserController extends BaseController {
             $M_user -> setSession($reg_id);
             $status = array('sessionId'=>session_id(),'regId'=>$_SESSION['reg_id'],'userId'=>$_SESSION['user_id'],'user'=>$_SESSION['user']);
             $this -> succ($status);
-            
         }else{
             $this -> fail(102);
         }
