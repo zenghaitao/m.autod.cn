@@ -126,8 +126,8 @@ class UserModel
      *
      * @return array
      */
-    public function getRoot(){
-        $list = $this -> _db_user -> where("is_root = 'yes'") -> select();
+    public function getRobot(){
+        $list = $this -> _db_user -> where("is_robot = 'yes'") -> select();
         return $list;
     }
     
@@ -355,6 +355,14 @@ class UserModel
         return $this -> _db_user_feedback -> add($data);
     }
     
+   /**
+    * 获取机器人信息
+    */	
+   public function getUserByIsRobot($is_robot){
+   	   return $this -> _db_user -> where("is_robot='{$is_robot}'") -> select();
+   }
+
+    
     /**
      * 为手机号生成验证码
      *
@@ -404,6 +412,17 @@ class UserModel
     }
     
     /**
+     * 根据手机号返回用户信息
+     *
+     * @param string $phone
+     * @return mixed
+     */
+    public function getUserByPhone($phone){
+        $info = $this -> _db_user -> where("open_id = '{$phone}' AND platform = 'mobile'") -> find();
+        return $info;
+    }
+    
+    /**
      * 使用此验证码
      *
      * @param string $phone
@@ -440,4 +459,5 @@ class UserModel
         }
         
     }
+
 }

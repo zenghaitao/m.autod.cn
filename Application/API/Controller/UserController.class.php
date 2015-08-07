@@ -228,6 +228,12 @@ class UserController extends BaseController {
         }
         
         $M_user = new UserModel();
+        
+        $info = $M_user -> getUserByPhone($phone);
+        if($info){
+            $this -> fail(107);
+        }
+        
         $res = $M_user -> makeCode($phone);
         if($res){
             $this -> succ($phone);
