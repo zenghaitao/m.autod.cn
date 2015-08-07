@@ -182,18 +182,16 @@ class UserController extends BaseController {
      *
      */
     public function register(){
-        var_dump($_POST);
         
         $open_id    = $_POST['phone'];
         $token      = $_POST['password'];
-        $username   = $_POST['usernmae'];
+        $username   = $_POST['username'];
         $photo      = $_POST['photo'];
         $code       = $_POST['code'];
         
         if(!$photo)
             $photo = '/Public/images/admin.png';
-        
-        var_dump(empty($token) , empty($open_id) , empty($photo) , empty($username) , empty($code));
+
         if(empty($token) || empty($open_id) || empty($photo) || empty($username) || empty($code)) {
             $this -> fail(101);
         }
