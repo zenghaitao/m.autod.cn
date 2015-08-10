@@ -138,10 +138,13 @@ class UserModel
      */
     public function bind($reg_id , $platform , $token , $open_id){
         //手机登录用户对token做加密处理
-        if($platform == 'mobile')
+        if($platform == 'mobile'){
             $token = md5($token);
-        //用户是否已被创建
-        $info = $this -> _db_user -> where("open_id = '{$open_id}' AND platform = '{$platform}'") -> find();
+            $info = $this -> _db_user -> where("open_id = '{$open_id}' AND access_token = '{$token}' AND platform = '{$platform}'") -> find();
+        }else{
+            //用户是否已被创建
+            $info = $this -> _db_user -> where("open_id = '{$open_id}' AND platform = '{$platform}'") -> find();
+        }
         if(!$info){
             //创建用户
             if($platform == 'weibo'){
@@ -379,7 +382,7 @@ class UserModel
         $res = $this -> _db_user_code -> add($data);
         if($res){
             $M_sms = new SmsModel();
-            $res = $M_sms -> Send($phone , "您在汽车日报的验证码为【{$code}】");
+            $res = $M_sms -> Send($phone , "验证码:{$code}【汽车日报】",3);
             return $res;
         }else{
             return false;
@@ -449,9 +452,9 @@ class UserModel
             $this -> useCode($phone , $code);
             
             $data = array();
-            $data['token'] = md5($pwd);
+            $data['access_token'] = md5($pwd);
             
-            $this -> _db_user -> where("open_id = '{$phone}' , platform = 'mobile'") -> save($data);
+            $this -> _db_user -> where("open_id = '{$phone}' AND platform = 'mobile'") -> save($data);
             
             return true;
         }else{
