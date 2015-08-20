@@ -144,6 +144,17 @@ $().ready(function(){
         
         $(this).toggleClass("dy");
     });
+    
+    $('.article_box a').click(function(){
+        
+        var type = $(this).attr('type');
+        var pid = $(this).attr('pid');
+        var title = $(this).text();
+        if(type == 'bseries')
+            window.location.href="autod://com.auto/open/?title="+title+" 来汽车日报询底价还送加油卡！&httpUrl=http://m.autod.cn/Home/Product/order?beseiesid="+pid"&imageUrl=http://7xkym3.com1.z0.glb.clouddn.com/icon-192.png";
+        else
+            return false;
+    });
 });
 
 function getPos(obj){

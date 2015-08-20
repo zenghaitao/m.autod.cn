@@ -410,6 +410,14 @@ class IndexController extends BaseController  {
         $page = str_replace('src="','_src="',$page);
         $page = str_replace('alt="','_alt="',$page);
         
+        //获取关键词
+        $keywords = $M_news -> newsKeyword($news_id);
+        
+        //转化关键词链接
+        foreach ($keywords as $row){
+            $page = $this -> makeKeywordsLink($row , $page);
+        }
+        
         if($uid)
             $this -> assign('isLogin' , 'yes');
         else 
