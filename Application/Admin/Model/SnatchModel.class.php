@@ -48,7 +48,7 @@ class SnatchModel
             @$data['title_pic1'] = trim($e -> find('img',0) -> src);
             @$data['title_pic2'] = trim($e -> find('img',1) -> src);
             @$data['title_pic3'] = trim($e -> find('img',2) -> src);
-            @$data['story_date'] = trim($e -> find('.item_info',0) -> find('td',3) -> plaintext);
+            @$data['story_date'] = trim($e -> find('.item_info',0) -> find('td',2) -> plaintext);
             $result[] = $data;
         }
         
@@ -64,20 +64,29 @@ class SnatchModel
         $content = '';
         $imgs = array();
         
-        if(strpos($url , 'toutiao.com/a') === false){
+        if(strpos($url , 'toutiao.com/a') === false && strpos($url , 'toutiao.com/item') === false){
             return array('content'=>'','images'=>'');
         }
         
-        $string = file_get_contents($url);
+        $string = @file_get_contents($url);
+        
+        if(strpos($http_response_header[0] , '200') === false){
+            //var_dump($http_response_header[5]);
+            $url_arr = parse_url(trim(preg_replace('/Location:/',' ',$http_response_header[5] , 1)));
+            if($url_arr['host'] != 'toutiao.com'){
+                return array('content'=>'','images'=>'');
+            }
+        }
+        
         if(!$string)
             return array('content'=>'','images'=>'');
-
+        
         $html = str_get_html($string);
         
         $title = $html -> find("h1" , 0) -> innertext;
 
-        $article_id = $html -> find(".ctn" , 0) -> getAttribute('data-groupid');
-
+        $article_id = $html -> find("#pagelet-detailbar",0) -> getAttribute('data-groupid');
+        
         $ptime = $html -> find("#container .time" , 0) -> innertext;
         
         $content = @$html -> find(".article-content" , 0) -> innertext;
@@ -285,4 +294,29 @@ class SnatchModel
         }
         return $res;
     }
+    
+    /**
+     * 根据车系id抓取汽车日报的行情新闻
+     * @param unknown_type $beseiesId
+     * return arr
+     */
+    public function fetchAutodHangQing($beseiesId){
+    	$url = "http://m.news18a.com/{$beseiesId}/news/hangqing.html";
+    	
+    	$string = file_get_contents($url);
+    	
+    	$html = str_get_html($string);
+    	
+    	$hangQing = @$html -> find(".ina_dl dl");
+    	$arr = array();
+    	
+    	foreach ( $hangQing as $k => $row ) {
+    		@$arr[$k]['href'] = 'http://m.news18a.com/' . $row->find('a',0)->href ;
+    		@$arr[$k]['content'] = $row->find('a',0)->innertext ;
+    	}
+
+    	$html->clear();
+    	return $arr;
+    }
+     
 }

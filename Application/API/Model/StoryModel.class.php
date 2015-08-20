@@ -21,8 +21,12 @@ class StoryModel
      * @param int $story_id
      * @return array
      */
-    public function getStoryInfo($story_id){
-        $info = $this -> _db_story -> where("id = '{$story_id}' AND is_choice = 'yes'") -> find();
+    public function getStoryInfo($story_id , $is_choice = 'yes'){
+        $where = "id = '{$story_id}'";
+        if($is_choice == 'yes'){
+            $where .= " AND is_choice = '{$is_choice}'";
+        }
+        $info = $this -> _db_story -> where($where) -> find();
         $count = $this -> _db_story_content -> where("story_id = '$story_id'") -> count();
         $info['page_num'] = $count;
         
@@ -42,7 +46,7 @@ class StoryModel
         $images = '';
         $image_count = 0;
         foreach ($pages as $row){
-            $html .= strip_tags($row['content'] , "<p><img><table><tr><td><tbody>");
+            $html .= strip_tags($row['content'] , "<p><img><table><tr><td><tbody><video>");
             $images .= $row['images'];
             $image_count += $row['image_count'];
         }
@@ -110,6 +114,9 @@ class StoryModel
     	if( $urlArr['host'] == '3g.163.com' ) {
     		$data['plant'] = 'ntes';
     	}
+    	if($data['plant'] != 'ntes'){
+    	   $data['article_int_id'] = $data['article_id'];
+    	}
     	$data['add_date'] = date('Y-m-d H:i:s');
     	$data['is_choice'] = 'no';
     	$data['img_count'] = substr_count($data['images'],';,;');
@@ -153,5 +160,13 @@ class StoryModel
     public function getInfoByArticleId($article_id){
     	return $this -> _db_story -> where("article_id='{$article_id}'") -> find();
     }
+    
+    /**
+     * 通过story_id查询story_content里的content
+     * @param unknown_type $story_id
+     */
+  	public function getContentByStoryId($story_id){
+  		return $this -> _db_story_content -> field('content') -> where("story_id='{$story_id}'") -> find();
+  	}
     
 }

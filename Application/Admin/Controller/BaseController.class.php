@@ -75,9 +75,16 @@ class BaseController extends Controller{
         $i++;
         $menu['news'][$i]['action'] = 'news_reply';
         $menu['news'][$i]['name'] = '回复评论';
-        $menu['news'][$i]['url'] = '/Admin/Index/news_reply';
+        $menu['news'][$i]['url'] = '/Admin/Index/news_reply_list';
         $menu['news'][$i]['level'] = '1';
         $i++;
+        
+        $menu['api'][$i]['action'] = 'api_keyword';
+        $menu['api'][$i]['name'] = '产品库数据管理';
+        $menu['api'][$i]['url'] = '/Admin/Index/api_keyword';
+        $menu['api'][$i]['level'] = '2';
+        $i++;
+        
         $menu['news'][$i]['action'] = 'news_ad';
         $menu['news'][$i]['name'] = '广告管理';
         $menu['news'][$i]['url'] = '/Admin/Index/news_ad';
@@ -99,16 +106,18 @@ class BaseController extends Controller{
         $menu['sns'][$i]['url'] = '/Admin/Index/sns_notice';
         $menu['sns'][$i]['level'] = '1';
         $i++;
-        $menu['sns'][$i]['action'] = 'sns_reply';
-        $menu['sns'][$i]['name'] = '回复管理';
-        $menu['sns'][$i]['url'] = '/Admin/Index/sns_reply';
-        $menu['sns'][$i]['level'] = '1';
+        $menu['news'][$i]['action'] = 'sns_reply';
+        $menu['news'][$i]['name'] = '回复管理';
+        $menu['news'][$i]['url'] = '/Admin/Index/sns_reply';
+        $menu['news'][$i]['level'] = '1';
         $i++;
-        $menu['sns'][$i]['action'] = 'admin_user';
-        $menu['sns'][$i]['name'] = '用户管理';
-        $menu['sns'][$i]['url'] = '/Admin/Index/admin_user';
-        $menu['sns'][$i]['level'] = '2';
+        $menu['user'][$i]['action'] = 'admin_user';
+        $menu['user'][$i]['name'] = '用户管理';
+        $menu['user'][$i]['url'] = '/Admin/Index/admin_user';
+        $menu['user'][$i]['level'] = '2';
         $i++;
+        
+        
         
         $this -> assign("menu" , $this -> assignByGroupId($menu));
     }

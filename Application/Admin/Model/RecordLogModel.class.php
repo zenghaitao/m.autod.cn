@@ -3,11 +3,25 @@ namespace Admin\Model;
 
 class RecordLogModel
 {
-	protected $_action_record;
-	protected $_actions_need_record = array('Index/login','Index/logout','Index/editPwd','Index/admin_user_add','Index/admin_user_delete','Index/admin_user_update_group','Index/deleteNews','Index/saveStoryCate','Index/addNews');	//需要记录日志的操作
+	protected $_record_log;
+	protected $_actions_need_record = array(
+			'Index/login',
+			'Index/logout',
+			'Index/editPwd',
+			'Index/admin_user_add',
+			'Index/admin_user_delete',
+			'Index/admin_user_update_group',
+			'Index/deleteNews',
+			'Index/saveStoryCate',
+			'Index/addNews',
+			'Index/news_reply_comment',
+			'Index/news_reply',
+			'Index/news_comment_delete',
+			'Index/newsUpStory'
+			);	//需要记录日志的操作
 	
 	public function __construct(){
-		$this -> _action_record = M('action_record' , 'ad_' , 'DB0_CONFIG');
+		$this -> _record_log = M('record_log' , 'ad_' , 'DB0_CONFIG');
 		
 	}
 	
@@ -27,7 +41,7 @@ class RecordLogModel
 		$data['action'] = $url;
 		$data['action_info'] = serialize($action_info);
 		
-		return $this -> _action_record -> data($data) -> add();
+		return $this -> _record_log -> data($data) -> add();
 	}
 	
 }

@@ -115,7 +115,10 @@ $().ready(function(){
 				 }
 				 
 				 $btn.button('reset');		 
-			 }
+			 },
+			 error: function (XMLHttpRequest, textStatus, errorThrown) {
+				 $btn.button('reset');
+			 } 
 		});
 		
 		return false;
@@ -125,7 +128,6 @@ $().ready(function(){
 		$(".alert").hide();
 		$("#showFetch").html('').hide();
 		$("#button1").hide();
-		//$btn.button('reset');
 	}
 });
 </script>

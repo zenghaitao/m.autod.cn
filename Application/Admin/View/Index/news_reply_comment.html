@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{$title} - Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+    <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+          <div class="col-sm-4 col-sm-offset-3 col-md-4 col-md-offset-2 main">
+          <h1 class="sub-header">{$title}</h1>
+			<form>
+			  <div class="form-group">
+			    <label>评论内容</label>
+			    <textarea class="form-control" readonly="readonly" style="resize:none;" rows="10">{$commentInfo.post}</textarea>
+			  </div>
+			  <div class="form-group">
+			    <label>评论用户</label>
+			    <div><h3>{$commentInfo.username}(用户id{$commentInfo.uid})</h3></div>
+			  </div>	
+			  <div class="form-group">
+			    <label>评论时间</label>
+			    <div><h3>{$commentInfo.add_time}</h3></div>
+			  </div>			  
+			  <div class="form-group">
+			    <label for="replyUid">回复账号</label>
+			    <select class="form-control" id="uid">
+				  <option value="0">请选择回复账号</option>
+				  <volist name="robots" id="data">
+				  	<option value="{$data.id}">{$data.name}</option>
+				  </volist>
+				</select>
+			  </div>
+			  <div class="form-group">
+			    <label for="replyPost">回复内容</label>
+			    <textarea class="form-control" id="post" placeholder="请输入评论内容" style="resize:none;"></textarea>
+			  </div>
+			  <input type="hidden" id="reply_id" value="{$Think.GET.reply_id}" />
+			  <input type="hidden" id="news_id" value="{$Think.GET.news_id}" />
+			  <input type="hidden" id="reply_uid" value="{$Think.GET.reply_uid}" />
+			  <input type="hidden" id="refer" value="{$Think.server.HTTP_REFERER}">
+			  <button type="submit" class="btn btn-primary" id="button">提交</button>
+			  <div class="alert alert-danger" role="alert" style="display:none;"></div>
+			</form>
+          </div>
+        </div>
+      </div>
+    </div>
+	<include file="common:footer" />
+  </body>
+</html>
+<script>
+$().ready(function(){
+	var news_id = $("#news_id").val();
+
+	//window.open('http://m.autod.com/Home/Index/page?id='+news_id,'','width=360,height=640,scrollbars=yes');
+	$("#button").click(function(){
+		$(".alert").hide().text('');
+		var user_id = $("#uid").val();
+		var post = $("#post").val();
+		var reply_id = $("#reply_id").val();	
+		var reply_uid = $("#reply_uid").val();
+		var page = $("#page").val();
+		
+		$.ajax({
+			url : '/Admin/Index/news_reply_comment',
+			type : 'POST',
+			data : {user_id:user_id,post:post,reply_id:reply_id,news_id:news_id,reply_uid:reply_uid},
+			success : function(res){
+				if( res.status == 'error' ) {
+					$(".alert").attr({class:'alert alert-danger'});
+					$(".alert").show().text(res.message);
+				}else{
+					$(".alert").attr({class:'alert alert-success'});
+					$(".alert").show().text(res.message);
+					
+					var refer = $("#refer").val();
+					window.location.href = refer;
+				}
+				
+				
+			}
+		});
+		
+		return false;
+	});
+});
+</script>

@@ -443,6 +443,14 @@ class IndexController extends BaseController  {
         $page = $M_story -> getStoryPage($info['story_id']);
         $page = $page['html'];
         
+        //获取关键词
+        $keywords = $M_news -> newsKeyword($news_id);
+        
+        //转化关键词链接
+        foreach ($keywords as $row){
+            $page = $this -> makeKeywordsLink($row , $page);
+        }
+        
         //热门评论
         $comments = $M_news -> commentsList($news_id , 0 , 50);
         
@@ -458,6 +466,55 @@ class IndexController extends BaseController  {
         $this -> assign('relates' , $relates);
         
         $this -> display('page1');
+    }
+    
+    /**
+     * 更替关键词链接
+     *
+     * @param 关键词 $info
+     * @param string $content
+     * @return string
+     */
+    private function makeKeywordsLink($info , $content){
+        //标签处理
+        $content = preg_replace("/\r\n/","",$content);
+        $tag_arr = array();
+        //图片
+        $img_pattern = "/<img[^>]*\>/";
+        $a_pattern = "/<a[^>]*\>[^<]*<\/a>/";
+        $table_pattern = "/<td[^>]*\>[^<]*<\/td>/";
+        preg_match_all($img_pattern,$content,$match_img);
+        preg_match_all($a_pattern,$content,$match_a);
+        preg_match_all($table_pattern,$content,$match_table);
+        $i = 10000;
+        foreach ($match_img[0] as $row){
+            $content = str_replace($row , "<!--{$i}-->" , $content);
+            $tag_arr[$i] = $row;
+            $i++;
+        }
+        foreach ($match_a[0] as $row){
+            $content = str_replace($row , "<!--{$i}-->" , $content);
+            $tag_arr[$i] = $row;
+            $i++;
+        }
+        foreach ($match_table[0] as $row){
+            $content = str_replace($row , "<!--{$i}-->" , $content);
+            $tag_arr[$i] = $row;
+            $i++;
+        }
+        
+        if($info['type'] == 'bseries'){
+            $content = preg_replace('/'.$info['keyword'].'/' , "<a href='###' pid='{$info['pid']}' type='{$info['type']}'>{$info['keyword']}</a>" , $content , 1 );
+/*            $new_keyword = str_replace(' ' , $info['keyword']);
+            if($new_keyword != $info['keyword']){
+                $content = preg_replace('/'.$new_keyword.'/' , "<a href='###' pid='{$info['pid']}' type='{$info['type']}'>{$info['keyword']}</a>" , $content , 1 );
+            }*/
+        }
+        //标签还原
+        foreach ($tag_arr as $key => $row){
+            $content = str_replace("<!--{$key}-->" , $row , $content);
+        }
+        return $content;
     }
     
     /**

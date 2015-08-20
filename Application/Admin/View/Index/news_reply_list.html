@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{$title} - Auto Daily Dashboard</title>
+    <include file="common:header" />
+  </head>
+  <body>
+    <include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="sub-header">{$title}</h1>
+          <div class="table-responsive">
+          <div>
+
+          	<div class="col-lg-2">
+          		<select id="choice" class="form-control" page="{$Think.GET.page}">
+          			<option value="1" <if condition="$Think.GET.is_robot eq 1">selected="selected"</if> >机器人评论</option>
+          			<option value="0" <if condition="$Think.GET.is_robot eq 0">selected="selected"</if> >用户评论</option>
+          		</select>
+          	</div>
+          	<div>
+          		<a href="/Admin/Index/news_reply_list?is_robot=all" class="btn btn-primary">所有评论</a>
+          	</div>
+          </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>新闻id</th>
+                  <th>评论内容</th>             
+                  <th>用户名</th>
+                  <th>日期</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <foreach name="list" item="vo">
+                <tr id="row_{$vo.id}">
+                  <td>{$rid = $vo.id}</td>
+                  <td><a href="/Admin/Index/news_reply_list?is_robot={$Think.GET.is_robot}&news_id={$vo.news_id}">{$vo.news_id}</a></td>
+                  <td class="postContent"><div style="word-wrap : break-word ;word-break : break-all;max-height:100px;overflow:auto;max-width:800px;">{$vo.post}</div></td>
+                  <td><a href="/Admin/Index/news_reply_list?is_robot={$Think.GET.is_robot}&uid={$vo.uid}">{$vo.username}</a></td>
+                  <td>{$vo.add_time}</td>
+                  <td><a class="btn btn-danger deleteComment" cid="{$vo.id}" uid="{$vo.uid}" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">删除</a>&nbsp;<a href="/Admin/Index/news_reply_comment?reply_id={$vo.id}&news_id={$vo.news_id}&reply_uid={$vo.uid}" class="btn btn-primary">回复{$replyCount.$rid}</a></td>
+                </tr>
+                </foreach>
+              </tbody>
+            </table>
+			<include file="common:page" />
+          </div>
+        </div>
+      </div>
+      		<div class="modal fade bs-example-modal-lg" id="comment_model" style="margin-top:10%;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			  <div class="modal-dialog modal-lg">
+			    <div class="modal-content">
+				     <div class="container-fluid">
+				    	<div class="row">
+				    		<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    		<div class="col-md-4 col-md-offset-4" ><h3>您确定要删除该评论？</h3></div>
+				    		<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col-md-2 col-md-offset-4">
+				    			<button class="btn btn-primary" id="ok">确定</button>	
+				    		</div>
+				    		<div class="col-md-2">
+				    			<button id="cancel" class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+				    		</div>
+				    		<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    	</div>			    
+				    </div>
+			    </div>
+			  </div>
+			</div>
+    </div>
+    
+<include file="common:footer" />
+  </body>
+</html>
+<script>
+$().ready(function(){
+	$("#choice").change(function(){
+		var is_robot = $(this).val();
+		var page = $(this).attr('page');
+		window.location.href = "/Admin/Index/news_reply_list?is_robot=" + is_robot + '&page=' + page;
+	});
+	
+	$(".deleteComment").click(function(){
+		var cid = $(this).attr('cid');
+		var uid = $(this).attr('uid');
+		
+		$("#ok").attr({cid:cid,uid:uid});
+	});
+	
+	$("#ok").click(function(){
+		var cid = $(this).attr('cid');
+		var uid = $(this).attr('uid');
+		var post = $("#row_"+cid).children('.postContent').children().text();
+		
+    	$.post("/Admin/Index/news_comment_delete", { comment_id:cid, uid:uid, post:post},
+    		function(res){
+    			if( res.status == 'success' ) {
+    				$("#row_" + cid).remove();
+    			}else if( res.status == 'error' ) {
+    					alert( res.message );
+    			}
+    				
+    			$('#comment_model').modal('hide')
+    		}	
+    	);
+    });
+});
+</script>

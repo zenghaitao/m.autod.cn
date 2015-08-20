@@ -65,7 +65,7 @@ class SmsModel  {
 		$strRrid = "";	//唯一标识
 		$strMsgfmt = ""; //内容编码
 
-		$strSmsUrlArr = array("http://sdk2.entinfo.cn:8061/mdsmssend.ashx","http://sdk.entinfo.cn:8061/mdsmssend.ashx");
+		$strSmsUrlArr = array("http://117.79.237.29:8061/mdsmssend.ashx","http://119.254.88.62:8061/mdsmssend.ashx");
 		$strKey = array_rand($strSmsUrlArr);
 		$strSmsUrl = $strSmsUrlArr[$strKey];
 		$strSmsParam = "sn=".$this->strReg."&pwd=".strtoupper(MD5($this->strReg.$this->strPwd))."&mobile=".$strPhone."&content=".$strContent."&ext=".$strExt."&stime=".$strStime."&rrid=".$strRrid."&msgfmt=".$strMsgfmt ;

@@ -1,0 +1,17 @@
+	<notempty name="dealer.0">
+	<volist name="dealer" id="vo">
+	<li>
+		<div class="mainbox">
+		<p><span>{$vo.bizMode}</span><c>{$vo.dealerShortName}</c></p>
+		<p class="ina_adr">{$vo.address}</p>
+		</div>
+		<div class="checkicon">
+		<label class="" for="">
+		<input type="checkbox" value="{$vo.dealerId}" >
+		</label>
+		</div>
+	</li>
+	</volist>
+	<else />
+	empty
+	</notempty>

@@ -1,6 +1,8 @@
 <?php
 namespace Admin\Controller;
 
+use Admin\Model\ProApiModel;
+use Admin\Model\CarModel;
 use API\Model\NewsModel;
 use API\Model\StoryModel;
 use API\Model\SnsModel;
@@ -21,8 +23,8 @@ class IndexController extends BaseController  {
         $RecordLog = new RecordLogModel();
 		$RecordLog -> recordLog($_SESSION['admin_uid'],$_SERVER['PATH_INFO'],$_REQUEST);
 		
-        //是否为合法访问
-        if(!in_array($_SERVER['PATH_INFO'] , array('Index/login','Index/logout'))){
+        //是否为合法访问(调用接口不用登陆)
+        if(!in_array($_SERVER['PATH_INFO'] , array('Index/login','Index/logout','Index/syncData'))){
             $this -> checkLogin();
         }
     }
@@ -133,17 +135,20 @@ class IndexController extends BaseController  {
         	$cateid = 0;
         }
         
-        
     	if( isset($_GET['sourceid']) && !empty($_GET['sourceid']) ) {
         	$sourceid = $_GET['sourceid'];
         }else{
         	$sourceid = '';
         }
         
-        if($type == 'story'){        
+        if($type == 'story'){       
             $title = "待处理";
             $result = $M_story -> storyAdminList('no' , $page , $page_count);
             $this -> page($page , $result['count'] , $page_count , "/Admin/Index/news?type=story&page={page}");
+            
+            /* 获取分类列表 */
+            $cate = $M_news -> getCateList();
+            $this -> assign("catelist" , $cate);
             
             $this -> assign('list' , $result['list']);
             $this -> assign("action" , 'story');
@@ -176,7 +181,7 @@ class IndexController extends BaseController  {
             $this -> assign('list' , $result['list']);
             $this -> assign("action" , 'choice');
         }
-        
+
         if($type == 'cate'){        
             $title = "未分类新闻";
             $result = $M_story -> noCateNewsList( $page , $page_count);
@@ -574,8 +579,9 @@ class IndexController extends BaseController  {
     	if( $_POST['action'] == 'deleteNews' && !empty($_POST['id']) ) {
     		$id = trim($_POST['id']);
     		
-    		$newschoice = new NewsModel();
-    		$res = $newschoice -> deleteNewsById($id);
+    		$news = new NewsModel();
+
+    		$res = $news -> deleteNewsById($id);
     		
     		if( $res ) {
     			$data = array('status' => 'success','message' => '删除成功');
@@ -645,7 +651,9 @@ class IndexController extends BaseController  {
     		$row['column_id'] = $row['cate_id'];
     	
     		$row['colunm_catename'] = empty($cate[$row['cate_id']]) ? '未分类' : $cate[$row['cate_id']];
-    		$row['caozuo'] = '刪除';
+    		$row['caozuo']['0'] = '刪除';
+    		$row['caozuo']['1'] = '评论';
+    		$row['caozuo']['2'] = '查看评论';
     	}
     	
     	$this -> assign('list' , $result);
@@ -746,11 +754,832 @@ class IndexController extends BaseController  {
     /**
      * 评论列表
      */
-    public function news_reply(){
+    public function news_reply_list(){
+    	$news = new NewsModel();
     	
-    	//$comments = array('id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1','id'=>'1');
-    	$this -> assign('list',$comments);
+    	$page = (int)$_GET['page'];
+    	if($page < 1)
+    		$page = 1;
+    	$page_count = 50;
+    	
+    	$is_robot = 0;
+    	if( isset($_GET['is_robot']) ) {
+    		$is_robot = $_GET['is_robot'];
+    	}
+    	
+    	if( $is_robot == 1 ) {
+    		$title = '机器人评论列表';
+    	}elseif ( $is_robot == 0 ) {
+    		$title = '用户评论列表';
+    	}
+    	
+    	$news_id = 0;
+    	if( isset($_GET['news_id']) ) {
+    		$news_id = $_GET['news_id'];
+    		$title = '新闻评论列表';
+    	}
+    	
+    	$uid = 0;
+    	if( isset($_GET['uid']) ) {
+    		$uid = $_GET['uid'];
+    		$title = '用户评论列表';
+    	}
+    	
+    	$comments = $news -> getAllCommnets($is_robot, $page, $page_count,$news_id,$uid);
+    	
+    	
+    	$this -> page($page, $comments['count'], $page_count, "/Admin/Index/news_reply_list?is_robot=$is_robot&page={page}&news_id=$news_id&uid=$uid");
+    	$this -> assign('title',$title);
+		$this -> assign('replyCount',$comments['replyCount']);
+    	$this -> assign('list',$comments['res']);
     	$this -> display();
     }
     
+    /**
+     * 回复评论
+     */
+    public function news_reply_comment(){
+    	$title = "回复评论";
+    	$user = new UserModel();
+    	$news = new NewsModel();
+    	
+    	$reply_id = 0;
+    	if( isset($_GET['reply_id']) ) {
+    		$reply_id = $_GET['reply_id'];
+    	}
+    	
+    	if( $_POST ) {
+    		if( empty($_POST['post']) ) {
+    			$data = array('status'=>'error','message'=>'评论不能为空');
+    		}elseif ( empty($_POST['user_id']) ) {
+    			$data = array('status'=>'error','message'=>'请选择回复账号');
+    		}elseif ( empty($_POST['news_id']) ) {
+    			$data = array('status'=>'error','message'=>'新闻id不能为空');
+    		}elseif ( empty($_POST['reply_id']) ){
+    			$data = array('status'=>'error','message'=>'reply_id不能为空');
+    		}elseif( $_POST['user_id'] == $_POST['reply_uid'] ){
+    			$data = array('status'=>'error','message'=>'回复账号和评论账号不能是同一账号');
+    		}else{
+    			$post = $_POST['post'];
+    			$user_id = $_POST['user_id'];
+    			$reply_id = $_POST['reply_id'];
+    			$news_id = $_POST['news_id'];
+    			 
+    			$res = $news -> comments($news_id, $post, $user_id, $reply_id);
+    			 
+    			if( $res ) {
+    				$data = array('status'=>'success','message'=>'回复评论成功');
+    			}else{
+    				$data = array('status'=>'error','message'=>'回复评论失败');
+    			}
+    		}
+    	
+    		$this -> baseAjaxReturn($data);
+    		exit;
+    	}
+    	
+    	$commentInfo = $news -> getCommentInfo($reply_id);
+    	$robots = $user -> getUserByIsRobot('yes');
+    	
+    	$this -> assign('commentInfo',$commentInfo);
+    	$this -> assign('robots',$robots);
+    	$this -> assign('title',$title);
+    	$this -> display();
+    }
+    
+    /**
+     * 评论新闻
+     */
+    public function news_reply(){
+    	$title = "评论新闻";
+    	$user = new UserModel();
+    	
+    	if( $_POST ) {
+    		if( empty($_POST['post']) ) {
+    			$data = array('status'=>'error','message'=>'评论不能为空');
+    		}elseif ( empty($_POST['user_id']) ) {
+    			$data = array('status'=>'error','message'=>'请选择评论账号');
+    		}elseif (empty($_POST['news_id'])) {
+    			$data = array('status'=>'error','message'=>'新闻id不能为空');
+    		}else{
+    			$post = $_POST['post'];
+    			$user_id = $_POST['user_id'];
+    			$news_id = $_POST['news_id'];
+    			
+    			
+    			$news = new NewsModel();
+    			$res = $news -> comments($news_id, $post, $user_id);
+    			
+    			if( $res ) {
+    				$data = array('status'=>'success','message'=>'评论成功');
+    			}else{
+    				$data = array('status'=>'error','message'=>'评论失败');
+    			}
+    		}
+    		
+    		$this -> baseAjaxReturn($data);
+    		exit;
+    	}
+    	
+    	$robots = $user -> getUserByIsRobot('yes');
+		
+    	$this -> assign('robots',$robots);
+    	$this -> assign('title',$title);
+    	$this -> display();
+    }
+    
+    /**
+     * 删除评论
+     */
+    public function news_comment_delete(){
+    	if( $_POST ) {
+    		if( empty($_POST['comment_id']) ) {
+    			$data = array('status'=>'error','message'=>'comment_id不能为空');
+    		}elseif( empty($_POST['uid']) ){
+    			$data = array('status'=>'error','message'=>'uid不能为空');
+    		}else{
+    			$comment_id = $_POST['comment_id'];
+    			$uid = $_POST['uid'];
+    			
+    			$news = new NewsModel();
+    			$res = $news -> commentsDel($comment_id , $uid);
+    			
+    			if( $res ) {
+    				$data = array('status'=>'success','message'=>'删除成功');
+    			}else{
+    				$data = array('status'=>'error','message'=>'删除失败');
+    			}
+    		}
+    	}else{
+    		$data = array('status'=>'error','message'=>'数据不能为空');
+    	}
+    	
+    	$this -> baseAjaxReturn($data);
+    	exit;
+    }
+    
+    /**
+     * 上推新闻
+     */
+    public function newsUpStory(){
+    	if( $_POST && $_POST['action'] == 'newsUpStory' ) {
+    		
+    		if( empty( $_POST['id'] ) ) {
+    			$data = array('status'=>'error','message'=>'新闻id不能为空');
+    		}else{
+    			$id = $_POST['id'];
+    			$arr['is_choice'] = 'yes';
+    			$M_news = new NewsModel();
+    			$M_story = new StoryModel();
+					    			
+    			if( $_POST['cate_id'] != '0' ) {
+    				$arr['column_id'] = $_POST['cate_id'];
+    			}
+    			
+    			$res = $M_story -> updateStory($id, $arr);
+    			
+    			if( !$res ) {
+    				$data = array('status'=>'error','message'=>'新闻分类更新失败');
+    			}
+    			
+    			$res = $M_news -> addNewsToChoice($id);
+    			if( $res && $res != 'no pic' ) {
+    				$data = array('status'=>'success','message'=>'上推成功');
+    			}elseif( $res == 'no pic' ){ 
+    				$data = array('status'=>'error','message'=>'上推失败。原因:' . $res);
+    			}else{
+    				$data = array('status'=>'error','message'=>'上推失败');
+    			}
+    		}
+    		
+    		$this -> baseAjaxReturn($data);
+    		exit;
+    	}
+    }
+    
+    /**
+     * 导入地区数据
+     */
+    public function importArea(){
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    	$res = $api -> getArea();
+		
+    	$i = 0;
+    	$j = 0;
+    	
+    	if( isset($res['item']) && $res['item'] ) {
+    		foreach( $res['item'] as $v ) {
+    			$res = $car -> insertAreaData($v);
+    			if( $res ) {
+    				$i++;
+    			}else{
+    				$j++; 
+    			}
+    		}
+    	}else{
+    		$message = "数据抓取失败";
+    		echo $message . '<p>';
+    	}
+    	
+    	echo $i . '条数据插入成功' . $j . '条数据插入失败';
+		
+    	exit;
+    }
+    
+    /**
+     * 导入品牌数据
+     */
+    public function importBrand(){
+    	set_time_limit(0);
+    	ini_set('memory_limit', '1024M');
+    	
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    	
+    	//抓取品牌数据
+    	$res = $api -> getSign();
+    	$i = 0;
+    	$j = 0;
+    	
+    	if( isset($res['item']) && $res['item'] ) {
+
+    			$str = '';
+    			foreach ( $res['item'] as $key => $val ) {
+    				if( !$car -> getOneSignById($val['id']) ) {
+    					$resu = $car -> insertBrandData($val);
+    					if( $resu ) {
+    						$i++;
+    					}else{
+    						$j++;
+    					}
+    				}else{
+    					echo $val['id'] . '已入库';
+    				}
+    				
+    			}
+  		
+    	}else{
+    		$message = "品牌数据抓取失败";
+    	} 
+
+    	echo $i . '条数据插入成功' . $j . '条数据插入失败' . $str;
+    	exit;
+    }
+
+    /**
+     * 导入厂商数据
+     */
+    public function importFactory(){
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    	 
+    	//抓取厂商数据
+    	$res = $api -> getBrand();
+    	$i = 0;
+    	$j = 0;
+    	 
+    	if( isset($res['item']) && $res['item'] ) {
+
+    			foreach ( $res['item'] as $key => $val ) {
+    				$str = '';
+    				if( !$car->getOneFactoryById($val['id']) ) {
+    					$res = $car -> insertFactoryData($val);
+    					if( $res ) {
+    						$i++;
+    					}else{
+    						$j++;
+    					}
+    				}else{
+    					echo $val['id'] . '已入库';
+    				}
+    				
+    			}
+
+    	}else{
+    		$message = "厂商数据抓取失败";
+    	}
+    
+    	echo $i . '条数据插入成功' . $j . '条数据插入失败' . $str;
+    	exit;
+    }
+
+    /**
+     * 导入车系数据
+     */
+    public function importBseries(){
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    
+    	//抓取车系数据
+    	$res = $api -> getBseries();
+    	$type="bseriesReferencePrice";
+    	$i = 0;
+    	$j = 0;
+    
+    	if( isset($res['item']) && $res['item'] ) {
+
+    			foreach ( $res['item'] as $key => $val ) {
+    				$str = '';
+    				$res = $car -> insertBseriesData($val);
+    				
+    				if( $res ) {
+    					$price = $api -> getOne($type, $val['id']);
+    					
+    					if( !(empty($price['item']['minPrice']) && empty($price['item']['maxPrice'])) ) {
+    						$res1 = $car -> updateBseries($price['item']);
+    						if( !$res1 ) {
+    							echo $val['id'] . "更新厂家报价失败";
+    						}
+    					}
+    					
+    					$i++;
+    				}else{
+    					echo $val['id'] . '入库失败';
+    				}
+    			}
+
+    	}else{
+    		$message = "车系数据抓取失败";
+    	}
+    
+    	echo $i . '条数据插入成功' . $str;
+    	exit;
+    }    
+	
+    /**
+     * 导入车型数据
+     */
+    public function importModel(){
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    
+    	//抓取车型数据
+    	$res = $api -> getModel();
+    	$i = 0;
+    	$j = 0;
+    	$type = "modelReferencePrice";
+
+    	if( isset($res['item']) && $res['item'] ) {
+
+    			foreach ( $res['item'] as $key => $val ) {
+    				$str = '';
+    				
+    				if( !$car -> getOneModelById($val['id']) ) {
+    					$res = $car -> insertModelData($val);
+    					if( $res ) {
+    						$i++;
+    					}else{
+    						$j++;
+    					}
+    				}else{
+    					$str .= $val['id'] . '已入库';
+    				}
+    			}
+
+    	}else{
+    		$message = "车型数据抓取失败";
+    	}
+    
+    	echo $message . $i . '条数据插入成功' . $j . '条数据插入失败' . $str;
+    	exit;
+    }    
+	
+    /**
+     * 更新车型商家报价价格
+     */
+    public function updateModelPrice(){
+    	$car = new CarModel();
+    	$api = new ProApiModel();
+    	$type = "modelReferencePrice";
+    	$page = (int)$_GET['page'];
+    	
+    	$res = $car -> getModelsByPage($page);
+
+    	if( !$res['res'] ) {
+    		echo 'success';
+    		exit;
+    	}
+    	
+    	foreach( $res['res'] as $k => $val ) {
+    
+    		$price = $api -> getOne($type, $val['id']);
+			
+    		if( empty($price['item']['minPrice']) && empty($price['item']['maxPrice']) ) {
+    			echo $val['id'] . '价格都为0' . '<p>';
+    		}else{
+    			$res1 = $car -> updateModel($price['item']);
+    			if( !$res1 ) {
+    				echo $val['id'] . "更新厂家报价失败(可能数据一致不更新)" . $price['item']['minPrice'] . '--' . $price['item']['maxPrice'] . '<p>';
+    			}else{
+    				echo $val['id'] . '更新报价成功' . '<p>';
+    			}
+    		}
+    	}
+    	
+    	$nextpage = $res['page'];
+    	echo '<script>window.location.href="/Admin/Index/updateModelPrice?page=' .$nextpage. '"</script>';
+    	exit;
+    }
+    
+    /**
+     * 导入参数数据
+     */
+    public function importParam(){
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    
+    	//抓取品牌数据
+    	$res = $api -> getParams();
+    	$i = 0;
+    	$j = 0;
+    
+    	if( isset($res['item']) && $res['item'] ) {
+    		foreach ( $res as $v ) {
+    			foreach ( $v as $key => $val ) {
+    				$res = $car -> insertParamsData($val);
+    				if( $res ) {
+    					$i++;
+    				}else{
+    					$j++;
+    				}
+    			}
+    		}
+    	}else{
+    		$message = "参数数据抓取失败";
+    	}
+    
+    	echo $i . '条数据插入成功' . $j . '条数据插入失败';
+    	exit;
+    }
+    
+    /**
+     * 图片数据导入
+     */
+    public function importImg(){
+    	$id = (int)$_GET['id'];
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    	
+    	$nextId = $car -> getNextBseriesId($id);
+    	
+    	if( !$nextId ) {
+    		echo 'success';
+    		exit;
+    	}
+    	
+    	$str = '';
+    	$res = $api -> getOne('photoByBseries', $nextId);
+    	
+    	if( !$res['item'] ) {
+    		echo $str = $nextId . '车系没有数据';
+    	}else{
+	    	$i = 0;
+	    	$j = 0;
+
+	    	if( isset($res['item']) ) {
+	
+	    		foreach( $res['item'] as $key=>$val ) {
+	    			
+	    			if( !is_int($key) ) {
+	    				$val = $res['item'];
+	    			}
+	    			
+	    			if( !$car -> getOneImgById($val['id']) ) {
+	    				$result = $car -> insertImgData($val);
+	    				if( $result ) {
+	    					$i++;
+	    				}else{
+	    					echo $val['id'] . '入库失败<p>';
+	    					$j++;
+	    				}
+	    			}elseif ( $car -> getOneImgById($val['id']) ) {
+	    				echo $str = $val['id'] . '已入库';
+	    			}
+	    			
+	    		}
+	    		
+	    	}
+	    	echo $i . '条入库成功' . $j . '条入库失败';
+    	}
+    	
+    	$this -> assign('nextId',$nextId);
+    	$this -> display('admin_car_import_img');
+    }
+    
+    /**
+     * 导入参配数据
+     */
+    public function importParamConfig(){
+    	$id = (int)$_GET['id'];
+    	$api = new ProApiModel();
+    	$car = new CarModel();
+    	 
+    	$nextId = $car -> getNextModelId($id);
+    	 
+    	if( !$nextId ) {
+    		echo 'success';
+    		exit;
+    	}
+
+    	$str = '';
+    	
+    	$res = $api -> getOne('param', $nextId);
+    	//echo $nextId; dump($res);exit;
+    	if( !$res['item'] ) {
+    		echo $str = $nextId . '车型没有数据';
+    	}else{
+    		$i = 0;
+    		$j = 0;
+    		if( isset($res['item']) && $res['item'] ) {
+    			
+    			foreach( $res['item'] as $key=>$val ) {
+    				if( !is_int($key) ) {
+    					$val = $res['item'];
+    				}
+    				
+    				$val['model_id'] = $nextId;
+					
+    				$isRuKu = $car -> getOneConfigByParamIdModelId($val['paramid'],$nextId);
+    				if(!$isRuKu) {
+    					
+    						$result = $car -> insertParamConfigData($val);
+    						
+    						if( $result ) {
+    							$i++;
+    						}else{
+    							echo $val['paramid'] . '入库失败<p>';
+    							$j++;
+    						}
+
+    				}else{
+    					echo $str = $val['paramid'] . '已入库' . '<p>';
+    				}
+    				
+    			}
+    			
+    		}
+    		echo $i . '条入库成功' . $j . '条入库失败';
+    	}
+    	 
+    	$this -> assign('nextId',$nextId);
+    	$this -> display('admin_car_import_config');    	
+    } 
+    
+    /**
+     * 数据变动通知处理
+     */
+    public function syncData() {
+    	if( $_POST ) {
+    		if( $_POST['MessageType'] == 'SyncData' ) {
+    			$M_car = new CarModel();
+    			$M_api = new ProApiModel();
+    			$id = $_POST['ObjectIdentity'];
+    			$actionName = $_POST['ActionName'];
+    			$TargetObject = $_POST['TargetObject'];
+    			$allowTable = array('MasterBrand','Brand','Serial','Car','Param','Photo');
+
+    			if( in_array($TargetObject, $allowTable) ) {
+    				$result = $this -> getActionNameByTargetObjActionName($TargetObject,$actionName);
+
+    				$type = $result['type'];
+					$action = $result['action'];
+
+    				$api_info = $M_api -> getOne($type, $id);
+    				
+    				if( isset($api_info['0']) && !$api_info['0'] ) {
+    					echo 'not find data,please sure you param right';
+    				}else{
+    					$data = $api_info['item'];
+
+    					$res = false;
+    					if( $actionName == 'Delete' ) {
+    						$res = $M_car -> $action($id);
+    					}else{
+    						if( isset($api_info['item']) && $api_info['item'] ) {
+    							$res = $M_car -> $action($data);
+    						}else{
+    							echo 'empty data';
+    						}
+    					}
+    					
+    					if( $res ) {
+    						echo 'success';
+    					}else{
+    						echo 'failed';
+    					}
+    				}
+    			}else{
+    				echo 'error TargetObject';
+    			}
+    		}else{
+    			echo 'error action';
+    		}
+    		
+    		exit;
+    	}
+    }
+    
+    /**
+     * 根据接口参数获得操作和类型
+     * @param unknown_type $TargetObject
+     * @param unknown_type $actionName
+     * @return multitype:string
+     */
+    private function getActionNameByTargetObjActionName( $TargetObject, $actionName ) {
+    	switch ($TargetObject){
+    		case 'MasterBrand':
+    			$tableName = 'Brand';
+    			$type = "sign";
+    			break;
+    		case 'Brand':
+    			$tableName = 'Factory';
+    			$type = "brand";
+    			break;
+    		case 'Serial ':
+    			$tableName = 'Bseries';
+    			$type = "bseries";
+    			break;
+    		case 'Car':
+    			$tableName = 'Model';
+    			$type = "model";
+    			break;
+    		case 'Param':
+    			$tableName = 'Params';
+    			$type = "param";
+    			break;
+    		case 'Photo':
+    			$tableName = 'Img';
+    			$type = "photoByBseries";
+    			break;
+    		default:break;
+    	}
+    	
+    	switch ($actionName){
+    		case 'Insert' :
+    			$action = 'insert' . $tableName . 'Data';
+    			break;
+    		case 'Delete':
+    			$action = 'delete' . $tableName;
+    			break;
+    		case 'Update' :
+    			$action = 'update' . $tableName;
+    			break;
+    		default:break;
+    	}
+    	
+    	return array( 'action'=>$action, 'type'=>$type );
+    }
+    /**
+     * 生成关键词
+     */
+    public function createKeywords(){
+    	$M_car = new CarModel();
+    	$res = $M_car -> getAllBeseries();
+		
+    	$num = 0;
+    	foreach ( $res as $k => $v ) {
+    		
+    		//单条关键词入字典库
+			$add_res = $M_car -> addOneKeyword($v);
+			
+			if( $add_res === false ) {
+				
+			}else if( $add_res != 0 ) {
+    			$num += $add_res;
+    		}else if( $add_res == 0 ){
+    			echo $v['showname'] . '已入库<p>';
+    		}
+    	}
+    	
+    	echo $num . '条关键词入库成功';
+    	exit;
+    }
+    
+    /**
+     * 分析所有新闻的关键词并入news_keyword库
+     */
+    public function parseNewsKeyword(){
+    	$M_news = new NewsModel();
+    	$M_car = new CarModel();
+    	
+    	$page = (int)$_GET['page'];
+    	
+    	$keywords = $M_car -> getAllKeywords();
+		
+    	$news = $M_news -> getLimitNews($page);
+    	if( !$news['news'] ) {
+    		echo 'success';
+    		exit;
+    	}
+
+    	$num = 0;
+    	foreach ( $news['news'] as $key => $val ) {
+		
+    		$add_res = $M_news -> addKeywordsToNewsKeyword($val,$keywords);
+    		$num = $num + $add_res['num'];
+    		if( !empty($add_res['msg']) ) {
+    			echo $add_res['msg'];
+    			exit;
+    		}
+    		
+    	}
+    	
+    	echo $num . '条关键词入库成功';
+    	
+    	echo '<script>window.location.href="/Admin/Index/parseNewsKeyword?page=' . $news['page'] . '"</script>';
+    	exit;
+    }
+    
+    /**
+     * 产品库字典数据管理
+     */
+    public function api_keyword(){
+    	$M_car = new CarModel();
+    	$title = '数据字典管理';
+    	$page = (int)$_GET['page'];
+    	$page_count = 50;
+    	
+    	//查询关键词
+    	$keywords = $M_car -> keywordList($page, $page_count);
+    	
+    	//查询关键词条数
+    	$count = $M_car -> getCountKeyword();
+    	
+    	//查询所有的车系
+    	$bseries = $M_car -> getAllBeseries();
+    	$bseries_arr = array();
+    	foreach ( $bseries as $k=>$v ) {
+    		$bseries_arr[$v['id']] = $v['name'];
+    	}
+    	
+    	$this -> page($page , $count , $page_count , "/Admin/Index/api_keyword?page={page}");
+    	
+    	$this -> assign('bseries',$bseries_arr);
+    	$this -> assign('keywords',$keywords);
+    	$this -> assign('title',$title);
+    	$this-> display('api_keyword');
+    }
+    
+    /**
+     * 向字典中添加关键词
+     */
+    public function api_keyword_add(){
+    	$M_car = new CarModel();
+    	$title = '添加关键词';
+    	
+    	$Bseries = $M_car -> getAllBeseries();
+    	if( $_POST && $_POST['action'] == 'api_keyword_add' ) {
+    		$data = array();
+    		
+    		if( empty($_POST['keyword']) ) {
+				$data = array('status'=>'error','mess'=>'请填写关键词'); 			
+    		}elseif( empty($_POST['pid']) ) {
+    			$data = array('status'=>'error','mess'=>'请选择车系'); 	
+    		}else{
+    			$keyword_info = $M_car -> getOneKeywordByKeyword($_POST['keyword']);
+    			if( $keyword_info ) {
+    				$data = array('status'=>'error','mess'=>'关键词在字典中已存在，请勿重复添加');
+    			}else{
+    				$add_res = $M_car -> insertKeywords($_POST);
+    				 
+    				if( $add_res ) {
+    					$data = array('status'=>'succ','mess'=>'添加成功');
+    				}else{
+    					$data = array('status'=>'error','mess'=>'添加失败');
+    				}
+    			}
+    		}
+    		
+    		$this -> baseAjaxReturn($data);
+    		exit;
+    	}
+    	$this -> assign('bseries',$Bseries);
+    	$this -> display('api_keyword_add');
+    }
+    
+    /**
+     * 删除 关键词
+     */
+    public function api_keyword_delete(){
+    	if( $_POST && $_POST['action'] == 'api_keyword_delete' ) {
+    		$arr = array();
+    		if( empty($_POST['kid']) ) {
+    			$data = array('status'=>'error','msg'=>'id不能为空');
+    		}else{
+    			$id = $_POST['kid'];
+    			$M_car = new CarModel();
+    			
+    			$del_res = $M_car -> deleteKeywordById($id);
+    			if( $del_res ) {
+    				$data = array('status'=>'succ','mesg'=>'删除成功');
+    			}else{
+    				$data = array('status'=>'error','msg'=>'删除失败');
+    			}
+    		}
+    		
+    		$this -> baseAjaxReturn($data);
+    		exit;
+    	}
+    }
 }

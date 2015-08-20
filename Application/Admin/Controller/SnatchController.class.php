@@ -60,8 +60,8 @@ class SnatchController extends BaseController  {
         $_db_news_story -> where("plant = 'uutv'") -> delete();
         
         /* 网通社新闻部分 */
-        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("article_id DESC") -> find();
-        $max_id = (int)$max_id['article_id'];
+        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("article_int_id DESC") -> find();
+        $max_id = (int)$max_id['article_int_id'];
         
         $M_snatch = new SnatchModel();
         
@@ -127,8 +127,8 @@ class SnatchController extends BaseController  {
         
         /* 初始化 uutv 视频数据 */
         //视频类内容入库
-        $max_id = $_db_news_story -> where("plant = 'uutv'") ->order("article_id DESC") -> find();
-        $max_id = (int)$max_id['article_id'];
+        $max_id = $_db_news_story -> where("plant = 'uutv'") ->order("article_int_id DESC") -> find();
+        $max_id = (int)$max_id['article_int_id'];
         
         $i = 0;
         
@@ -196,6 +196,70 @@ class SnatchController extends BaseController  {
         }
         
         var_dump($i.'over');
+    }
+    
+    private function microtime( $decimals = 2 , $dec_point = '.' , $dec_point = ','  ){
+        list( $usec ,  $sec ) =  explode ( " " ,  microtime ());
+        $time = (float) $usec  + (float) $sec;
+        $time = number_format ( $time ,  $decimals ,  $dec_point ,  $dec_point );
+        return $time;
+    }
+    
+    private function toutiaoNow($time){
+        $url = "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_car&utm_source=toutiao&offset=0&_={$time}";
+        $json = json_decode(file_get_contents($url) , 1);
+        return $json;
+    }
+    
+    private function toutiaoNext($max_behot_time , $max_create_time , $time){
+        $url = "http://toutiao.com/api/article/recent/?source=2&count=20&category=news_car&max_behot_time={$max_behot_time}&utm_source=toutiao&offset=0&max_create_time={$max_create_time}&_={$time2}";
+        $json = json_decode(file_get_contents($url) , 1);
+        return $json;
+    }
+    
+    public function now(){
+                
+        //$time1 = $this -> microtime(2 , '.' , '') - 60 * 60;
+        $time = $this -> microtime(3 , '' , '');
+        $json = $this -> toutiaoNow($time);
+        $max_create_time = 0;
+        $id_data = array();
+        $list = array();
+        
+        foreach ($json['data'] as $row){
+            if($row['source'] == '头条专题'){
+                continue;
+            }
+            if(!in_array($row['id'] , $id_data)){
+                $id_data[] = $row['id'];
+                $list[] = $row;
+            }
+            if($row['create_time'] > $max_create_time)
+                $max_create_time = $row['create_time'];
+        }
+        $max_behot_time = $json['next']['max_behot_time'];
+        
+        for ($i = 0 ; $i < 5 ; $i ++ ){
+            $time = $time + 1;
+            $json = $this -> toutiaoNext($max_behot_time , $max_create_time , $time);
+            foreach ($json['data'] as $row){
+                if($row['source'] == '头条专题'){
+                    continue;
+                }
+                if(!in_array($row['id'] , $id_data)){
+                    $id_data[] = $row['id'];
+                    $list[] = $row;
+                }
+                if($row['create_time'] > $max_create_time)
+                    $max_create_time = $row['create_time'];
+            }
+            $max_behot_time = $json['next']['max_behot_time'];
+        }
+        
+        foreach ($list as $row){
+            var_dump($row['title'],$row['id']);
+        }
+    
     }
     
     public function syncIna(){
@@ -288,8 +352,8 @@ class SnatchController extends BaseController  {
         $M_snatch = new SnatchModel('');
         
         /* 网通社新闻部分 */
-        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("article_id DESC") -> find();
-        $max_id = $max_id['article_id'];
+        $max_id = $_db_news_story -> where("plant = 'ina'") ->order("article_int_id DESC") -> find();
+        $max_id = $max_id['article_int_id'];
         
         $i = 0;
         
@@ -298,6 +362,7 @@ class SnatchController extends BaseController  {
         foreach ($list as $row){
             $data = array();
             $data['article_id'] = $row['id'];
+            $data['article_int_id'] = $row['id'];
             $data['plant'] = 'ina';
             $data['title'] = $row['title'];
             $data['short_summary'] = $row['short_summary'];
@@ -355,8 +420,8 @@ class SnatchController extends BaseController  {
         
         /* UUTV视频部分 */
         //视频类内容入库
-        $max_id = $_db_news_story -> where("plant = 'uutv'") ->order("article_id DESC") -> find();
-        $max_id = $max_id['article_id'];
+        $max_id = $_db_news_story -> where("plant = 'uutv'") ->order("article_int_id DESC") -> find();
+        $max_id = (int)$max_id['article_int_id'];
         
         $i = 0;
         
@@ -365,6 +430,7 @@ class SnatchController extends BaseController  {
         foreach ($list as $row){
             $data = array();
             $data['article_id'] = $row['id'];
+            $data['article_int_id'] = $row['id'];
             $data['plant'] = 'uutv';
             $data['title'] = $row['title'];
             $data['short_summary'] = '';
@@ -521,6 +587,7 @@ class SnatchController extends BaseController  {
                     $data = array();
                     $data['story_id'] = $story_id;
                     $data['article_id'] = $row['article_id'];
+                    $data['article_int_id'] = $row['article_id'];
                     $data['page'] = 1;
                     $data['content'] = $result['content'];
                     $data['images'] = implode(';,;' , $result['images']);
@@ -551,41 +618,8 @@ class SnatchController extends BaseController  {
      * @return int
      */
     private function intoChoice($story_info){
-        $_db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
-        $_db_news_story = M('news_story' , 'ad_' , 'DB0_CONFIG');
-        $_db_news_source = M('news_source' , 'ad_' , 'DB0_CONFIG');
-        
-        $data = array();                        
-        $data['story_id'] = $story_info['id'];
-        $data['cate_id'] = $story_info['column_id'];
-        $data['title'] = $story_info['title'];
-        $data['summary'] = $story_info['short_summary'];
-        $data['source'] = $story_info['source'];
-        $data['source_id'] = $story_info['source_id'];
-        if($story_info['title_pic3'])
-            $data['images'] = $story_info['title_pic1'].';,;'.$story_info['title_pic2'].';,;'.$story_info['title_pic3'];
-        else 
-            $data['images'] = $story_info['title_pic1'];
-
-        $data['story_date'] = $story_info['story_date'];
-        if($story_info['plant'] == 'uutv')
-            $data['open_mode'] = 'video';
-        else 
-            $data['open_mode'] = 'news';
-
-        $data['hot'] = rand(321,1999);
-        $data['day'] = date('Y-m-d');
-        $data['add_time'] = date('Y-m-d H:i:s');
-        $news_id = $_db_news_choice -> add($data);
-        
-        $_db_news_story -> where("id = '{$story_info['id']}'") -> save(array('is_choice'=>'yes'));
-        
-        //更新来源表的数据
-        $data = array();
-        $data['last_news'] = $story_info['title'];
-        $data['last_time'] = $story_info['story_date'];
-        $_db_news_source -> where("id = '{$story_info['source_id']}'") -> save($data);
-        
+        $M_news = new NewsModel();
+        $news_id = $M_news -> addNewsToChoice($story_info['id']);
         return $news_id;
     }
     
@@ -604,10 +638,12 @@ class SnatchController extends BaseController  {
         /* 获取最后的栏目id */
         $info = $_db_news_choice -> where("1") -> order("id DESC") -> find();
         $prv_source_id = $info['source_id'];
+        if($prv_source_id == '49')
+            $prv_source_id = 0;
         
         /* 获取要处理的新闻 */
-        $today = date('Y-m-d');
-        $list = $_db_news_story -> where("is_choice = 'no' AND img_count > 0 AND add_date > '{$today}'") -> order("story_date ASC , article_id ASC") -> limit(100) -> select();
+        $today = date('Y-m-d',time() - 3600 * 24 * 2);
+        $list = $_db_news_story -> where("is_choice = 'no' AND img_count > 0 AND add_date > '{$today}'") -> order("story_date ASC , article_int_id ASC") -> limit(100) -> select();
         foreach ($list as $row){
             if($i >= 10)
                 continue;
@@ -616,6 +652,8 @@ class SnatchController extends BaseController  {
                 //写入前台列表
                 $news_id = $this -> intoChoice($row);
                 $prv_source_id = $row['source_id'];
+                if($prv_source_id == '49')
+                    $prv_source_id = 0;
                 $i++;
             }
         }

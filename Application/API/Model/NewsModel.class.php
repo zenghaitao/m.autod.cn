@@ -1,6 +1,8 @@
 <?php
 namespace API\Model;
 
+use Admin\Model\CarModel;
+
 class NewsModel
 {
 
@@ -12,6 +14,7 @@ class NewsModel
     protected $_db_news_source;
     protected $_db_news_cate;
     protected $_db_news_comments_like;
+    protected $_db_news_keyword;
     
     public function __construct(){
         $this -> _db_news_choice = M('news_choice' , 'ad_' , 'DB0_CONFIG');
@@ -23,6 +26,7 @@ class NewsModel
         $this -> _db_news_cate = M('news_cate' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_comments_like = M('news_comments_like' , 'ad_' , 'DB0_CONFIG');
         $this -> _db_news_spider_page = M('news_spider_page' , 'ad_' , 'DB0_CONFIG');
+        $this -> _db_news_keyword = M('news_keyword' , 'ad_' , 'DB0_CONFIG');
     }
     
     /**
@@ -104,34 +108,53 @@ class NewsModel
      * @return mixed
      */
     public function addNewsToChoice($story_id){
-        
+        $M_news = new NewsModel();
+        $M_car = new CarModel();
         $M_story = new StoryModel();
+       
         
-        $info = $M_story -> getStoryInfo($story_id);
-        
-        //var_dump($info['title_pic1']);
-        
+        $info = $M_story -> getStoryInfo($story_id , 'all');
+
         $data = array();
         $data['story_id'] = $story_id;
-        $data['cate_id'] = $this -> convCateId($info['columnid']);
+        $data['cate_id'] = $this -> convCateId($info['column_id']);
         $data['title'] = $info['title'];
-        $data['summary'] = $info['shortsummary'];
+        $data['summary'] = $info['short_summary'];
         $data['source'] = $info['source'];
-        $data['source_id'] = $info['sourceid']?$info['sourceid']:0;
+        $data['source_id'] = $info['source_id']?$info['source_id']:0;
         $data['images'] = $this -> makeImages($info['title_pic1'] , $info['title_pic2'] , $info['title_pic3']);
-        $data['story_date'] = $info['storyDate']?$info['storyDate']:date("Y-m-d H:i:s");
-        $data['type'] = $this -> convNewsType($info['is_top'] , $info['is_hot'] , $info['is_rec']);
+        $data['story_date'] = $info['story_date']?$info['story_date']:date("Y-m-d H:i:s");
+        $data['type'] = 'default';
         $data['fav_count'] = '0';
         $data['like_count'] = '0';
         $data['comments_count'] = '0';
         $data['day'] = date('Y-m-d');
         $data['add_time'] = date("Y-m-d H:i:s");
         $data['open_mode'] = "news";
+        if($data['cate_id'] == 20)
+            $data['open_mode'] = "video";
+        $data['hot'] = rand(321,1999);
         
         if(!$data['images'])
             return 'no pic';
         
-        return $this -> _db_news_choice -> add($data);
+        $news_id = $this -> _db_news_choice -> add($data);
+        
+        if( $news_id ) {
+            //更新is_choice状态
+            $M_story -> updateStory($story_id , array('is_choice' => 'yes'));
+            
+        	$news_info = $this -> getNews($news_id);
+        	
+        	//分析此篇新闻的关键词并入库
+        	$keywords = $M_car -> getAllKeywords();
+        	$M_news -> addKeywordsToNewsKeyword($news_info,$keywords);
+        	
+        	return $news_id;
+        }else{
+        	return false;
+        }
+        
     }
     
     /**
@@ -241,7 +264,7 @@ class NewsModel
     }
     
     public function newsList($cate_id , $page = 1 , $count = 10 ){
-        if(!$cate_id)
+        if($cate_id == '-1')
             $where_str = '1';
         else 
             $where_str = "cate_id = '{$cate_id}'";
@@ -295,7 +318,7 @@ class NewsModel
     		$where .= " and source_id = '{$sourceId}'";
     	}
     	
-    	$list = $this -> _db_news_choice -> where($where) -> limit($page*$pageSize) -> select();
+    	$list = $this -> _db_news_choice -> where($where) -> limit($page*$pageSize) -> order('id desc') -> select();
     	return $list;
     }
     
@@ -361,9 +384,16 @@ class NewsModel
             $data['reply_post'] = $reply['post'];
             $data['reply_username'] = $reply['username'];
             $data['reply_userphoto'] = $reply['userphoto'];
+            
         }
         $data['add_time'] = date("Y-m-d H:i:s");
         
+        $is_robot = '0';
+        if( $user['is_robot'] == 'yes' ) {
+        	$is_robot = '1';
+        }
+        
+        $data['is_robot'] = $is_robot;
         $comment_id = $this -> _db_news_comments -> add($data);
         if($comment_id){
             $this -> _db_news_choice -> where("id = '{$news_id}'")->setInc('comments_count'); 
@@ -437,11 +467,13 @@ class NewsModel
      * @return unknown
      */
     public function commentsDel($comment_id , $uid){
+    	$info = $this -> getComments($comment_id);
+    	
         $where_str = "id = '{$comment_id}' AND uid = '{$uid}'";
         $res = $this -> _db_news_comments -> where($where_str) -> delete();
+        
         if($res){
-            $info = $this -> getComments($comment_id);
-            $this -> _db_news_choice -> where("id = '{$info['news_id']}'")->setDec('comments_count'); 
+            $res = $this -> _db_news_choice -> where("id = '{$info['news_id']}'")->setDec('comments_count');
         }
         return $res;
     }
@@ -737,9 +769,24 @@ class NewsModel
      * @param $res
      */
     public function deleteNewsById($id){
-    	return $this -> _db_news_choice -> where("id = '{$id}'") -> delete();
+    	
+    	$res = $this -> _db_news_choice -> where("id = '{$id}'") -> delete();
+    	
+    	if( $res ) {
+    		$this -> _db_news_comments -> where("news_id='{$id}'") -> delete();	
+    	}
+    	
+    	return $res;
+
     }
     
+    /**
+     * 通过新闻id删除评论
+     * @param unknown_type $news_id
+     */
+    public function deleteCommnetByNewsId($news_id){
+    	return $this -> _db_news_comments -> where("news_id='{$news_id}'") -> delete();
+    }
     /**
      * 通过is_auto查询来源
      * @param smallint $isAuto 是否自动抓取
@@ -748,4 +795,131 @@ class NewsModel
     	return $this -> _db_news_source -> where("is_auto='{$isAuto}'") -> select();
     }
     
+    /**
+     * 查询所有评论
+     * @param is_robot 是否机器人
+     * @param unknown_type $page
+     * @param unknown_type $page_count
+     */
+    public function getAllCommnets($is_robot,$page,$page_count,$news_id,$uid){
+    	$where = '1=1';
+    	$start = ($page-1)*$page_count;
+    	$limit = " limit $start,$page_count";
+
+    	if( $is_robot != 'all' ) {
+    		$where .= " and is_robot='{$is_robot}'";
+    	}
+
+    	if( $news_id ) {
+    		$where .= " and news_id = '{$news_id}'";
+    	}
+    	if( $uid ) {
+    		$where .= " and uid = '{$uid}'";
+    	}
+   	
+    	$count = $this -> _db_news_comments -> where($where) -> count();
+    	$res = $this -> _db_news_comments -> where($where) -> limit($start,$page_count) -> order('id desc') -> select();
+    	
+    	$sql = "SELECT id,rp.c FROM `ad_news_comments` a right join (SELECT reply_id,count(1) as c FROM `ad_news_comments` WHERE reply_id != '' and $where group by reply_id $limit)  as rp On rp.reply_id = a.id";
+		$replyCount = $this -> _db_news_comments -> query($sql);
+		$replyCountArr = array();
+		if( $replyCount ) {
+			foreach ( $replyCount as $v ) {
+				$replyCountArr[$v['id']] = $v['c'];
+			}
+		}
+		
+    	return array('count'=>$count,'res'=>$res,'replyCount'=>$replyCountArr);
+    }
+    
+    /**
+     * 通过news_id查询评论
+     * @param unknown_type $new_id
+     */
+    public function getCommentByNewsId($new_id) {
+    	return $this -> _db_news_comments -> where("news_id='{$new_id}'") -> order('id asc') -> find();
+    }
+    
+    /**
+     * 分页查询news_choice
+     * @param unknown_type $page
+     * @param unknown_type $pageSize
+     * @return multitype:unknown
+     */
+    public function getLimitNews( $page = 0, $pageSize = 20 ){
+    	$news = $this -> _db_news_choice -> field('id,story_id') -> limit($page*$pageSize,$pageSize) -> order('id desc') -> select();
+    	$page++;
+    	return array('news'=>$news,'page'=>$page);
+    }
+    
+    /**
+     * news_keyword插入数据
+     */
+    public function insertKeywordToKeyword($data){
+    	return $this -> _db_news_keyword -> add($data);
+    }
+    
+	/**
+	 * 通过news_id删除关键词
+	 * @param unknown_type $keyword
+	 */
+    public function deleteKeywordInfoByNewsId($news_id){
+    	return $this -> _db_news_keyword -> where("news_id='{$news_id}'") -> delete();
+    }
+    
+    /**
+     * 入库关键词
+     */
+    public function addKeywordsToNewsKeyword($news,$keywords){
+    	$num = 0;	
+    	$message = '';
+    	$M_story = new StoryModel();
+    	
+    	
+    	//删除此新闻的所有关键词
+    	$this -> deleteKeywordInfoByNewsId($news['id']);
+    	
+    	//查出文章内容
+    	$content = $M_story -> getContentByStoryId($news['story_id']);
+    	$story_content = strip_tags($content['content']);
+    	
+    	foreach ( $keywords as $k=>$v ) {
+
+    		//匹配关键词
+    		$preg_res = strpos($story_content, $v['keyword']);
+    		
+    		if( $preg_res !== false ) {
+
+    			//剔除已匹配到的关键词 （防止当长关键词里包含短关键词关键词重复问题）
+    			$story_content = str_replace($v['keyword'], '', $story_content);
+    	
+    			$data['news_id'] = $news['id'];
+    			$data['keyword'] = $v['keyword'];
+    			$data['type'] = $v['type'];
+    			$data['pid'] = $v['pid'];
+    			
+    			//关键词入库
+    			$ins_res = $this -> insertKeywordToKeyword($data);
+    			if( $ins_res ) {
+    				$num++;
+    			}else{
+    				$message .= '新闻' . $val['id'] . '关键词' . $v['keyword'] . '入库失败' . '<p>'; 
+    			}
+    		}
+    			 
+    	}
+    		
+    	return array('num'=>$num,'msg'=>$message);
+    }
+
+    /**
+     * 获取新闻关键词
+     *
+     * @param int $news_id
+     * @return mixed
+     */
+    public function newsKeyword($news_id){
+        return $this -> _db_news_keyword -> where("news_id = '{$news_id}'") -> select();
+    }
+
 }

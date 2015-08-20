@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$title}</title>
+<include file="common:header" />
+</head>
+<body>
+<include file="common:nav" />
+    <div class="container-fluid">
+      <div class="row">
+      <include file="common:menu" />
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="sub-header">关键词字典管理</h1>
+          <div><a href="./api_keyword_add" class="btn btn-primary">添加关键词</a></div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>关键词</th>
+                  <th>关联id</th>
+                  <th>关联类型</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              <foreach name="keywords" item="vo">
+                <tr id="row_{$vo.id}">
+                  <td>{$vo.id}</td>
+                  <td>{$vo.keyword}</td>
+                  <td pid="{$bid = $vo.pid}">{$bseries.$bid}({$vo.pid})</td>
+                  <td>{$vo.type}</td>
+                  <td><a href="#" class="btn btn-danger delete" data-toggle="modal" data-target=".bs-example-modal-lg" id="{$vo.id}">删除</a></td>
+                </tr>
+              </foreach>
+              </tbody>
+            </table>
+            <include file="common:page" />
+          </div>
+        </div>
+      </div>
+      <div class="modal fade bs-example-modal-lg" id="api_keyword_model" style="margin-top:10%;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="container-fluid">
+					<div class="row">
+				    	<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    	<div class="col-md-4 col-md-offset-4" ><h3>您确定要删除该关键词？</h3></div>
+				    	<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    </div>
+				    <div class="row">
+				    	<div class="col-md-2 col-md-offset-4">
+				    		<button class="btn btn-primary" id="ok">确定</button>	
+				    	</div>
+				    	<div class="col-md-2">
+				    		<button id="cancel" class="btn btn-default" data-dismiss="modal" type="button">取消</button>
+				    	</div>
+				   	<div class="col-md-4 col-md-offset-4" >&nbsp;</div>
+				    </div>			    
+				  </div>
+			 </div>
+		</div>
+	   </div>
+    </div>
+    <include file="common:footer" />
+</body>
+</html>
+<script>
+<!--
+$(function($) {
+	$(".delete").click(function(){
+		var id = $(this).attr('id');
+		
+		$("#ok").attr({kid:id});
+	});
+	
+	$("#ok").click(function(){
+		var kid = $(this).attr('kid');
+		var action = 'api_keyword_delete';
+		
+		$.ajax({
+			type: "POST",
+			url: "/Admin/Index/api_keyword_delete",
+			data: {kid:kid,action:action},
+			success: function(res){
+				if( res.status = 'succ' ) {
+					$("#row_"+kid).remove();	
+				}else{
+					alert(res.mess);
+				}
+				
+				$('#api_keyword_model').modal('hide');
+			}
+		});
+	});
+})
+//-->
+</script>

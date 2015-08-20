@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no"/>
+<link rel="stylesheet" href="__PUBLIC__/css/product/style.css">
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<script src="http://img.news18a.com/3g/js/bit_province_city_data.js"></script>
+<script src="__PUBLIC__/js/jquery.min.js"></script>
+<title></title>
+</head>
+<body>
+<div class="container">
+        <div class="carbox">
+        <a href="http://m.news18a.com/{$Think.GET.beseiesid}/photo.html"><img src="<empty name='list.cspic'>http://image.bitautoimg.com/autoalbum/V2.1/images/150-100.gif<else />{$list.cspic}</empty>" alt="{$list.showname}"></a>
+        <div class="tbox">
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/"><h3>{$list.showname}</h3></a>
+            <p>指导价：<a href="http://m.news18a.com/{$Think.GET.beseiesid}/price.html" ><span>{$list['csminprice']/10000}万-{$list['csmaxprice']/10000}万</span></a></p>
+            <p>市场价：<a href="http://m.news18a.com/{$Think.GET.beseiesid}/price.html" ><span>{$list['minprice']/10000}万-{$list['maxprice']/10000}万</span></a></p>
+        </div>
+        <div class="navbox">
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/">综述</a>
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/price.html">报价</a>
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/param.html">参配</a>
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/photo.html">图片</a>
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/news/daogou.html">导购</a>
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/news/hangqing.html">行情</a>
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/praise.html">口碑</a>
+            <a href="http://m.news18a.com/{$Think.GET.beseiesid}/fuel.html">油耗</a>
+        </div>
+        <div class="hidbox">
+            <p>客户名称：<strong id="name">张小山</strong></p>
+            <p>联系方式：<strong id="phone">13800138000</strong></p>
+            <p style="margin-top:10px;">选择车型</p>
+            <div class="selbox">
+                <select class="modelsel" name="" id="modelSelect">
+                <volist name="models" id="vo">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </volist>
+                </select>
+                <div class="drawer"></div>
+            </div>
+            <p style="margin-top:10px;">选择经销商<b>最多5家</b></p>
+            <div class="selbox selbox2">
+                <select class="modelsel citysel" name="" id=""></select>
+                <div class="drawer"></div>
+            </div>
+            <div class="selbox selbox3">
+                <select class="modelsel inccitysel" name="" id=""></select>
+                <div class="drawer"></div>
+            </div>
+            <input type="hidden" value="2" class="delcityid">   <!-- 默认省份id -->
+            <input type="hidden" value="201" class="delinccityid">   <!-- 默认省份id -->
+            <div class="storbox">
+            	<p class="nonestor"><b></b> 以下为附近经销商推荐</p>
+                <ul>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="checkbox">
+        <p>请输入</p>
+        <span>确定</span>
+    </div>
+    <empty name="models" >
+    <else />
+    <div class="carbox carbox2">
+        <div class="pbox">
+            <div class="dtitle"><span>您的信息非常重要，我们会妥善保管</span></div>
+            <input class="nameinput" type="text" placeholder="输入您的姓名">
+            <input class="numinput" type="text" placeholder="输入您的电话">
+            <div class="dtitle">全国<b>21939</b>家签约4S店为您服务</div>
+            <div class="yysj"><a href="javascript:;">预约试驾</a></div>
+            <div class="xdj"><a href="javascript:;">询底价</a></div>
+        </div>
+    </div>
+    </empty>
+    <notempty name="hangQing.0.content" >
+    <p class="title">{$list.name}行情导购</p>
+    <div class="carbox carbox2" id="hangQing">
+    
+    	<volist name="hangQing" id="vo">
+    	<dl>
+            <a href="{$vo.href}">
+                {$vo.content}
+            </a>
+        </dl>
+        </volist>
+        <dl>
+   	     	<a href="http://m.news18a.com/{$Think.GET.beseiesid}/news/hangqing.html">获取更多</a>
+        </dl>
+    </div>
+    </notempty>
+</div>
+<a href="#" class="yysjbutton">预约试驾</a>
+<a href="#" class="xdjbutton">询底价</a>
+<div class="subbox">
+    <div class="show">
+        <img src="__PUBLIC__/images/product/succ.png" alt=""><span>提交成功</span>
+        <b>确定</b>
+    </div>
+</div>
+</body>
+<script>
+var oTitle=document.querySelector('.title');
+var aInputBox=document.querySelectorAll('.carbox2');
+var navBox=document.querySelector('.navbox');
+var yyBtn=document.querySelector('.yysj');
+var sdBtn=document.querySelector('.xdj');
+var oName=document.querySelector('.nameinput');
+var oNum=document.querySelector('.numinput');
+var hidBox=document.querySelector('.hidbox');
+var yyBotBut=document.querySelector('.yysjbutton');
+var xdBotBut=document.querySelector('.xdjbutton');
+var tipsBox=document.querySelector('.checkbox');
+var oClose=tipsBox.querySelector('span');
+var besriesId = {$Think.GET.beseiesid};	//车系id
+
+function boxHide(){
+    for(var i=0;i<aInputBox.length;i++){
+        aInputBox[i].style.display='none';
+    }
+    navBox.style.display='none';
+    oTitle.style.display='none';
+}
+
+//提示函数
+function tipsShow(num){
+    tipsBox.style.display='block';
+    switch(num){
+        case 1:
+            tipsBox.querySelector('p').innerHTML='请输入中文名';
+            break;
+        case 2:
+            tipsBox.querySelector('p').innerHTML='请输入手机号码';
+            break;
+        case 3:
+            tipsBox.querySelector('p').innerHTML='请输入正确的手机号码';
+            break;
+    }
+}
+oClose.onclick=function(){
+    tipsBox.style.display='none';
+}
+//验证输入
+function checkMessage(){
+    var oName=document.querySelector('.nameinput');
+    var oNum=document.querySelector('.numinput');
+    var regName=/^[\u4e00-\u9fa5]{1,6}$/;
+    var regNum=/^[1][34578][0-9]{9}$/;
+    if(!regName.test(oName.value)){
+        tipsShow(1);
+        return false;
+    }else if(oNum.value==''){
+        tipsShow(2);
+        return false;
+    }else if(!regNum.test(oNum.value)){
+        tipsShow(3);
+        return false;
+    }else{
+        return true;
+    }
+}
+yyBtn.onclick=function(){
+    if(checkMessage()){
+        boxHide();
+        hidBox.style.display='block';
+        hidBox.querySelectorAll('strong')[0].innerHTML=oName.value;
+        hidBox.querySelectorAll('strong')[1].innerHTML=oNum.value;
+        yyBotBut.style.display='block';
+    }
+}
+
+$(".xdjbutton").click(function(){
+	postUserData('xdj');
+});
+$(".yysjbutton").click(function(){
+	postUserData('yysj');
+});
+
+//发送用户数据到预约方法
+function postUserData(type){
+	var bserise_id = location.search.substr(11);
+	var name = $("#name").text();
+	var phone = $("#phone").text();
+	var model_id = $("#modelSelect").val();
+	var model_name = $("#modelSelect :selected").text();
+	var sales_province_id = $(".citysel").val();
+	var sales_province_name = $(".citysel :selected").text();
+	var sales_city_id = $(".inccitysel").val();
+	var sales_city_name = $(".inccitysel :selected").text();
+	var sales_id = '';
+	var dianName = '';
+	var dianNum = 0;
+	var checkeNum = $(".checkon").size();
+	$(".checkon").each(function(i){
+		dianNum++;
+		var dianId = $(this).children().val();
+		var dianMing = $(this).parent().prev().children().eq(0).children().eq(1).text();
+		
+		if( i == checkeNum-1 ) {
+			dianName = dianName + dianMing;
+			sales_id = sales_id + dianId;
+		}else{
+			dianName = dianName + dianMing + ';';
+			sales_id = sales_id + dianId + ';';			
+		}
+	});
+	
+	if( sales_city_id == '-1' ){
+		erroShow('请选择城市');
+	}else if( dianNum <= 0 ){
+		erroShow('请选择经销商');
+	}else{
+		$.ajax({
+			url : '/Home/Product/yuYueDrive',
+			type : 'post',
+			data : {
+				type:type,
+				bserise_id:bserise_id,
+				name:name,
+				phone:phone,
+				model_id:model_id,
+				sales_province_id:sales_province_id,
+				sales_city_id:sales_city_id,
+				sales_id:sales_id,
+				sales_province_name:sales_province_name,
+				sales_city_name:sales_city_name,
+				dianName:dianName,
+				model_name:model_name,
+			},
+			success : function( res ) {
+				//var data = eval('('+ res +')');
+				if( res != null ) {
+					if(res.status == 'sucess') {
+						succShow();
+					}else{
+						erroShow(res.message);
+					}						
+				}else{
+					console.log('empty');
+				}
+
+			}
+		});
+	}	
+}
+
+sdBtn.onclick=function(){
+    if(checkMessage()){
+        boxHide();
+        hidBox.style.display='block';
+        hidBox.querySelectorAll('strong')[0].innerHTML=oName.value;
+        hidBox.querySelectorAll('strong')[1].innerHTML=oNum.value;
+        xdBotBut.style.display='block';
+    }
+}
+
+//城市选择
+//初始化省市
+var allCity=JSon_Province_City.Prov_City;
+//省份
+var citySel=document.querySelector('.citysel');
+var cityList='';
+var def,incDef='';
+var cityId=document.querySelector('.delcityid').value;
+for(var name in allCity){
+    if(allCity[name].cityId == cityId){
+        def = 'selected';
+    }else{
+        def = '';
+    }
+    cityList += '<option value="'+allCity[name].cityId+'"'+def+'>'+allCity[name].cityName+'</option>';
+}
+
+var incCitySel=document.querySelector('.inccitysel');
+var ct =allCity[cityId-1].include_cities;
+var incCityList = '<option value="-1">选择城市</option>';
+var incCityId=document.querySelector('.delinccityid').value;
+for(var i=0;i<ct.length;i++){
+    if(ct[i].cityId==incCityId){
+        incDef='selected';
+    }else{
+        incDef=''
+    }
+    incCityList+='<option value="'+ct[i].cityId+'" '+incDef+'>'+ct[i].cityName+'</option>'
+}
+citySel.innerHTML=cityList;     //省份
+incCitySel.innerHTML=incCityList;    //城市
+
+//省份切换
+citySel.onchange=function(){
+    var theValue=citySel.value;
+    var cts=allCity[theValue-1].include_cities;
+    incCityList='<option value="-1">选择城市</option>';
+    for(var i=0;i<cts.length;i++){
+        incCityList+='<option value="'+cts[i].cityId+'">'+cts[i].cityName+'</option>'
+    }
+    incCitySel.innerHTML=incCityList;
+    
+    var cityId = this.value;
+    if( cityId != -1 ) {
+    	ajaxGetSales(cityId,besriesId);
+    }
+}
+
+//城市切换
+incCitySel.onchange=function(){
+	var cityId = this.value;
+    if( cityId != -1 ) {
+    	ajaxGetSales(cityId,besriesId);
+    }
+}
+
+//经销商选择
+var I_num = 0;
+function selectSale(){
+	var aLabel=document.querySelectorAll('.storbox label');
+	for(var i=0;i<aLabel.length;i++){
+	    aLabel[i].onclick=function(){
+	        if(this.className){
+	        	if( I_num <= 0 )
+	        		return ;
+	            this.className='';
+	            this.querySelector('input').removeAttribute('checked');
+	            I_num--;
+	        }else{
+	        	if( I_num >= 5 )
+	        		return ;
+	            this.className='checkon';
+	            this.querySelector('input').setAttribute('checked','checked');
+	            I_num++;
+	        }
+	    }
+	}	
+}
+
+
+document.querySelector('body').onload = function(){
+	var cityId = document.querySelector('.delcityid').value;
+	//ajaxGetHangQing(besriesId);
+	ajaxGetSales(cityId,besriesId);
+	
+}
+
+//车型切换
+document.querySelector("#modelSelect").onchange = function(){
+ 	var modelId = this.value;
+ 	
+ 	var cityId = document.querySelector(".citysel").value;
+ 	if( document.querySelector(".inccitysel").value != '-1' ) {
+ 		cityId =  document.querySelector(".inccitysel").value;
+ 	}
+ 	
+	$.ajax({
+		url : '/Home/Product/getSalesByModelIdCityId',
+		type : 'post',
+		data : {cityId:cityId,modelId:modelId},
+		success : function( res ) {
+			dealSalesRes(res);
+		}
+	});
+}
+
+//获取经销商数据
+function ajaxGetSales( cityId, besriesId ) {
+	$.ajax({
+		url : '/Home/Product/getSalesByCityId',
+		type : 'post',
+		data : {cityId:cityId,id:besriesId},
+		success : function( res ){
+			dealSalesRes(res);
+		}
+	});
+}
+
+//获取行情新闻
+/*
+function ajaxGetHangQing(besriesId) {
+	$.ajax({
+		url : '/Home/Product/fetchHangqQing',
+		type : 'post',
+		data : {besriesId:besriesId},
+		success : function( res ){
+			dealHangQingRes(res);
+		}
+	});
+}
+*/
+
+//处理获取经销商返回结果
+function dealSalesRes( res ) {
+	if( res.indexOf('empty') != '-1' ) {
+		document.querySelector('.nonestor').style.display = 'block';
+		
+		if( incCitySel.options[incCitySel.options.selectedIndex].value != -1 ) {
+			content = incCitySel.options[incCitySel.options.selectedIndex].innerHTML+'暂无经销商';
+		}else{
+			content = citySel.options[citySel.options.selectedIndex].innerHTML+'暂无经销商';
+		}
+		
+		document.querySelector('.nonestor b').innerHTML=content;
+	}else{
+		document.querySelector('.nonestor').style.display = 'none';
+		storbox = document.querySelector('.storbox ul');
+		storbox.innerHTML = res;
+		I_num = 0;	//计数归零
+	}
+	
+	selectSale();
+	
+}
+
+//处理行情新闻获取返回结果
+/*
+function dealHangQingRes( res ) {
+	$("#hangQing").html(res);
+}
+*/
+var succBox=document.querySelector('.subbox');
+var theIcon=succBox.querySelector('img');
+var theText=succBox.querySelector('span');
+var theBtn=succBox.querySelector('b');
+theBtn.onclick=function(){
+    succBox.style.display='none';
+}
+
+function succShow(){
+    succBox.style.display='block';
+    theIcon.src='/Public/images/product/succ.png';
+    theText.innerHTML='提交成功';
+}
+
+function erroShow(msg){
+    succBox.style.display='block';
+    theIcon.src='/Public/images/product/erro.png';
+    theText.innerHTML=msg;
+}
+</script>
+</html>

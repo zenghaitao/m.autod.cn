@@ -45,14 +45,18 @@
                 	  {$vo.colunm_catename}
                  </td>
                   <td>
-                  <a class="delete" id="{$vo.id}" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">删除</a>
+                  <a class="delete btn btn-danger" id="{$vo.id}" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">删除</a>
+                  <a  class="btn btn-primary" href='/Admin/Index/news_reply?news_id={$vo.id}' target="_blank">评论</a>
+                  <if condition="$vo.comments_count gt 0">
+                  	<a  class="btn btn-primary" href='/Admin/Index/news_reply_list?news_id={$vo.id}&is_robot=all' target="_blank">查看评论({$vo.comments_count})</a>
+                  </if>
                   </td>
                 </tr>
                 </foreach>
               </tbody>
               </empty>
             </table>
-            <notempty name="name"><div class="col-lg-1 col-lg-offset-5" id="getMore"><button class="btn btn-primary" >加载更多</button></div></notempty>
+            <div class="col-lg-1 col-lg-offset-5" id="getMore"><button class="btn btn-primary" >加载更多</button></div>
           </div>
         </div>
       </div>

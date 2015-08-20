@@ -194,6 +194,15 @@ $(function(){
         $('.pat').css({'padding-top':'-0'})
     })
 
+    $('.article_box a').click(function(){
+        
+        var type = $(this).attr('type');
+        var pid = $(this).attr('pid');
+        if(type == 'bseries')
+            window.location.href="/Home/Product/order?beseiesid="+pid;
+        else
+            return false;
+    });
 })
 </script>
 </html>

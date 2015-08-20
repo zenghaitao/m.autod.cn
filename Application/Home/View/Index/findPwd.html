@@ -109,7 +109,12 @@ $().ready(function(){
                      setTimeout('tips_hide()',1000);
                  });
              }
-           });
+           }).error(function() { 
+                 $('.tips').html("验证码发送失败，请重试！").attr('class','tips bg-danger').fadeIn(function(){
+                     $('#check').removeAttr("disabled"); 
+                    setTimeout('tips_hide()',1000);
+                 });
+            });
     });
     
     $('#post').click(function(){

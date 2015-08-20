@@ -10,7 +10,11 @@
                 	 {$vo.colunm_catename}
                 </td>
                 <td>
-                 <a class="delete" id="{$vo.id}" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">{$vo.caozuo}</a>
+               	 <a class="delete btn btn-danger" id="{$vo.id}" data-toggle="modal" data-target=".bs-example-modal-lg" href="#">{$vo.caozuo.0}</a>
+                 <a  class="btn btn-primary" href='/Admin/Index/news_reply?news_id={$vo.id}&page={$Think.GET.page}&action=source' target="_blank">{$vo.caozuo.1}</a>
+                  <if condition="$vo.comments_count gt 0">
+                  	<a  class="btn btn-primary" href='/Admin/Index/news_reply_list?news_id={$vo.id}&is_robot=all' target="_blank">{$vo.caozuo.2}({$vo.comments_count})</a>
+                  </if>
                 </td>
            </tr>
        </foreach>
