@@ -536,6 +536,11 @@ class NewsModel
      * @param int $uid
      */
     public function favAdd($news_id , $uid){
+        
+        $res = $this -> _db_news_fav -> where("uid = '{$uid}' AND news_id = '{$news_id}'") -> find();
+        if($res)
+            return $res['id'];
+        
         $data = array();
         $data['news_id'] = $news_id;
         $data['uid'] = $uid;
