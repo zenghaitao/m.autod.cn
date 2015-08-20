@@ -8,7 +8,7 @@ class UserController extends BaseController {
         parent::__construct();
         
         //是否为合法访问
-        if(!in_array($_SERVER['PATH_INFO'] , array('User/registerDevice','User/reconnect'))){
+        if(!in_array($_SERVER['PATH_INFO'] , array('User/registerDevice','User/reconnect','User/config'))){
             $this -> checkPermission();
         }
     }
@@ -17,6 +17,12 @@ class UserController extends BaseController {
 
     }
     
+    public function config(){
+        if($_GET['ver'] > 'iphone2.0.0')
+            $this -> succ(array('open_qq'=>'no'));
+        else 
+            $this -> succ(array('open_qq'=>'yes'));
+    }
     
     /**
      * 根据设备ID创建用户
