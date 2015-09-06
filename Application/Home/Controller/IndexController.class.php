@@ -341,11 +341,10 @@ class IndexController extends BaseController  {
         //来源信息
         $source = $M_news -> getSource($info['source_id']);
         $this -> assign('source' , $source);
-        
+        var_dump($_SESSION);exit;
         /* 是否已订阅 */
         if($_SESSION['user_id']){
             $followed = $M_news -> followed($info['source_id'] , $_SESSION['user_id']);
-            var_dump($followed);
             $source['followed'] = $followed?'yes':'no';
         }else{
             $source['followed'] = 'no';
