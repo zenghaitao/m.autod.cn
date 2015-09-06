@@ -345,6 +345,7 @@ class IndexController extends BaseController  {
         /* 是否已订阅 */
         if($_SESSION['user_id']){
             $followed = $M_news -> followed($info['source_id'] , $_SESSION['user_id']);
+            var_dump($followed);
             $source['followed'] = $followed?'yes':'no';
         }else{
             $source['followed'] = 'no';
