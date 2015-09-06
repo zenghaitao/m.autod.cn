@@ -1,5 +1,7 @@
 <?php
 namespace Home\Controller;
+use Admin\Model\AppRecommendModel;
+
 use API\Model\NewsModel;
 use API\Model\StoryModel;
 use API\Model\UserModel;
@@ -423,6 +425,13 @@ class IndexController extends BaseController  {
         else 
             $this -> assign('isLogin' , 'no');
         
+        //判断来源
+        if(stripos($_SERVER['HTTP_USER_AGENT'] , 'ios') !== false){
+            $this -> assign('deviceOS' , 'ios');
+        }else{
+            $this -> assign('deviceOS' , 'android');
+        }
+            
         //相关新闻
         $relates = $M_news -> getRelatedNews($news_id , 0 , 6);
         foreach ($relates as &$row){
@@ -460,7 +469,7 @@ class IndexController extends BaseController  {
         }
         
         //热门评论
-        $comments = $M_news -> commentsList($news_id , 0 , 50);
+        $comments = $M_news -> commentsList($news_id , 0 , 20);
         
         //相关新闻
         $relates = $M_news -> getRelatedNews($news_id , 0 , 10);
@@ -901,7 +910,6 @@ class IndexController extends BaseController  {
             echo json_encode(array('sinceId'=>$since_id,'html'=>$html,'count'=>count($list)));
             exit;
         }
-       
         
         $this -> display('fav_list');
     }
@@ -909,6 +917,7 @@ class IndexController extends BaseController  {
     public function appStore(){
         $list = array();
         
+        /*
         $row = array();
         $row['name'] = '微用';
         $row['url'] = 'http://www.weyoo.com.cn/';
@@ -964,7 +973,10 @@ class IndexController extends BaseController  {
         $row['intro'] = '活动内详：23 日前在优酷应用内的“用户反馈”中提交使用感受，有机会赢得三星 Note 2 等豪礼！';
         $row['size'] = '18.67';
         $list[] = $row;
-        
+        */
+        $M_recommend = new AppRecommendModel();
+        $list = $M_recommend -> getAllRecommend();
+		
         $this -> assign('list' , $list);
         $this -> display('appstore');
     }
