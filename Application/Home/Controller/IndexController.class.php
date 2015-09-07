@@ -342,6 +342,10 @@ class IndexController extends BaseController  {
         $source = $M_news -> getSource($info['source_id']);
         $this -> assign('source' , $source);
 
+        if($_GET['isdebug']=='yes'){
+            var_dump($_SESSION);
+        }
+        
         /* 是否已订阅 */
         if($_SESSION['user_id']){
             $followed = $M_news -> followed($info['source_id'] , $_SESSION['user_id']);
