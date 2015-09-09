@@ -13,6 +13,10 @@ class IndexController extends BaseController  {
         parent::__construct();
     }
     
+    public function bai(){
+        die();
+    }
+    
     public function index(){
         
         $_PAGE['title'] = "《汽车日报》每日汽车新闻播报! - autod.cn";
